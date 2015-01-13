@@ -56,3 +56,5 @@ function ghc-pkg-reset() {
 }
  
 alias cabalupgrades="cabal list --installed  | egrep -iv '(synopsis|homepage|license)'"
+PS1="%{$fg[green]%}%h %{$fg[cyan]%}%2~ %{$reset_color%}»"
+
