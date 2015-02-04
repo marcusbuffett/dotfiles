@@ -15,10 +15,11 @@ antigen apply
 
 export EDITOR="vim"
 alias t="trash"
-alias ls="ls -G"
+alias ls="ls --color"
 alias v="vim"
 alias vvim="vim ~/.vimrc"
 alias grep='grep --color=auto'
+alias tmux="tmux -2"
 
 setopt AUTO_CD
 setopt AUTO_LIST
@@ -31,6 +32,7 @@ bindkey -v
 
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
+export ZDOTDIR=$HOME
 
 # unregister broken GHC packages. Run this a few times to resolve dependency rot in installed packages.
 # ghc-pkg-clean -f cabal/dev/packages*.conf also works.
@@ -66,4 +68,5 @@ function compile()
     clang++ -Wall -Wvla -Wshadow -Wunreachable-code -Wconversion -Wno-write-strings -Wno-sign-compare -Wno-sign-conversion -Wno-shorten-64-to-32 -g $1 -o 
 }
 PS1="%{$fg[green]%}%h %{$fg[cyan]%}%2~ %{$reset_color%}»"
-
+alias compile++="~/.compile.py"
+alias compileRun++="~/.compileRun.py"
