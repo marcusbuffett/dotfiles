@@ -15,14 +15,15 @@ Plugin 'mattn/emmet-vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'eagletmt/ghcmod-vim'
 "Plugin 'vim-scripts/haskell.vim'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'Shougo/neocomplete.vim'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Shougo/neocomplete.vim'
 Plugin 'eagletmt/neco-ghc'
 "Plugin 'dag/vim2hs'
 Bundle 'christoomey/vim-tmux-navigator'
 Plugin 'altercation/vim-colors-solarized'
 "Plugin 'enomsg/vim-haskellConcealPlus'
-Plugin 'xolox/vim-easytags'
+"Plugin 'xolox/vim-easytags'
+Plugin 'godlygeek/tabular'
 Plugin 'xolox/vim-misc'
 "Plugin 'qualiabyte/vim-colorstepper'
 
@@ -59,6 +60,8 @@ set laststatus=2
 set number
 set relativenumber
 set synmaxcol=180
+set gdefault
+set guioptions-=r
 colorscheme gruvbox
 
 nnoremap ; :
@@ -73,6 +76,16 @@ autocmd filetype haskell nmap <leader>t :w <bar> GhcModTypeInsert<CR>
 autocmd filetype haskell nmap <leader>r :!clear <bar> runhaskell %<CR>
 autocmd filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
 
+func! WordProcessorMode()
+    setlocal formatoptions=t1
+    setlocal textwidth=80
+    map j gj
+    map k gk
+    setlocal smartindent
+    setlocal spell spelllang=en_us
+    setlocal noexpandtab
+endfu
+com! WP call WordProcessorMode()
 
 nnoremap <silent> <F5> :!clear;python %<CR>
 

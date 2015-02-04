@@ -25,6 +25,7 @@ setopt AUTO_LIST
 setopt MENU_COMPLETE
 unsetopt LIST_BEEP
 setopt INC_APPEND_HISTORY
+setopt AUTOPUSHD
 
 bindkey -v
 
@@ -38,6 +39,10 @@ function ghc-pkg-clean() {
   do
     echo unregistering $p; ghc-pkg $* unregister $p
   done
+}
+
+function gpprun () {
+    g++ $1 && ./a.out && t a.out
 }
  
 # remove all installed GHC/cabal packages, leaving ~/.cabal binaries and docs in place.
@@ -56,3 +61,8 @@ function ghc-pkg-reset() {
 }
  
 alias cabalupgrades="cabal list --installed  | egrep -iv '(synopsis|homepage|license)'"
+
+function compile() 
+{
+    clang++ -Wall -Wvla -Wshadow -Wunreachable-code -Wconversion -Wno-write-strings -Wno-sign-compare -Wno-sign-conversion -Wno-shorten-64-to-32 -g $1 -o 
+}
