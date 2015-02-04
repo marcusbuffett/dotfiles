@@ -61,8 +61,9 @@ function ghc-pkg-reset() {
 }
  
 alias cabalupgrades="cabal list --installed  | egrep -iv '(synopsis|homepage|license)'"
-
 function compile() 
 {
     clang++ -Wall -Wvla -Wshadow -Wunreachable-code -Wconversion -Wno-write-strings -Wno-sign-compare -Wno-sign-conversion -Wno-shorten-64-to-32 -g $1 -o 
 }
+PS1="%{$fg[green]%}%h %{$fg[cyan]%}%2~ %{$reset_color%}»"
+
