@@ -90,10 +90,10 @@ com! WP call WordProcessorMode()
 nnoremap <silent> <F5> :!clear;python %<CR>
 
 "Enable neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"let g:neocomplete#enable_at_startup = 1
+"let g:neocomplete#enable_smart_case = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 
 "Auto syntax checking
