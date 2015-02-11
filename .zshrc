@@ -15,7 +15,7 @@ antigen apply
 
 export EDITOR="vim"
 alias t="trash"
-alias ls="ls --color"
+alias ls="ls -G"
 alias v="vim"
 alias vvim="vim ~/.vimrc"
 alias grep='grep --color=auto'
