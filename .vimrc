@@ -1,10 +1,11 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+"Plugins
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+"Plugins
 Plugin 'gmarik/Vundle.vim'
-
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -33,10 +34,21 @@ Plugin 'vim-scripts/closetag.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'ervandew/supertab'
 Plugin 'SirVer/ultisnips'
+Plugin 'tpope/vim-surround'
 "Plugin 'Rip-Rip/clang_complete'
 "Plugin 'qualiabyte/vim-colorstepper'
-
-
+Plugin 'rizzatti/dash.vim'
+"Plugin 'hallettj/jslint.vim'
+Plugin 'takac/vim-hardtime'
+"Plugin 'vim-scripts/vim-auto-save'
+Plugin 'vim-scripts/restore_view.vim'
+Plugin 'jelera/vim-javascript-syntax'
+"Plugin 'vim-scripts/JavaScript-Indent'
+Plugin 'jamescarr/snipmate-nodejs'
+Plugin 'myhere/vim-nodejs-complete'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'Valloric/ListToggle'
+Plugin 'tpope/vim-abolish'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -53,7 +65,7 @@ set ttyfast
 set t_vb=
 set hidden
 set incsearch
-set hlsearch
+set nohlsearch
 set nowrap
 set shiftwidth=4
 set softtabstop=4
@@ -64,7 +76,7 @@ set undolevels=1000
 set title
 set t_Co=256
 set formatoptions-=cro
-set scrolloff=10
+set scrolloff=5
 set laststatus=2
 set number
 set relativenumber
@@ -73,59 +85,36 @@ set gdefault
 set guioptions-=r
 colorscheme gruvbox
 
-"nnoremap ; :
-
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 
 nmap <leader>p :CtrlP<CR>
+nmap <Leader>; :%s/\<<C-r><C-w>\>/
 nmap <leader>n :CtrlPBuffer<CR>
 nmap <leader>b :CtrlPTag<CR>
 nmap <leader>w :wa<CR>
 nmap <leader>q :wqa<CR>
 nmap <leader>/ :noh<CR>
+nmap <leader>d :Dash<CR>
+nmap <leader>f :Errors<CR>
+
+map <Leader>e <Plug>(easymotion-prefix)
+let g:lt_location_list_toggle_map = '<leader>l'
+let g:lt_quickfix_list_toggle_map = '<nop>'
 autocmd filetype haskell nmap <leader>t :w <bar> GhcModTypeInsert<CR>
 autocmd filetype haskell nmap <leader>r :!clear <bar> runhaskell %<CR>
 autocmd filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
+autocmd filetype javascript nmap <leader>t :TernType<CR>
+autocmd filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd filetype python  nmap <leader>r :!clear <bar> python %<CR>
 autocmd filetype cpp     nmap <leader>r :!~/.compileRun.py %<CR>
+autocmd filetype haskell setlocal omnifunc=necoghc#omnifunc
 autocmd FileType css     set omnifunc=csscomplete#CompleteCSS
-let g:ycm_semantic_triggers = {
-    \   'scss': [ 're!^\s{4}', 're!:\s+' ],
-    \   'css' : [ 're!^\s{4}', 're!:\s+' ]
-\ }
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<Tab>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+"Hardtime
+let g:hardtime_default_on = 1
 
-"" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<c-y>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-"function! g:UltiSnips_Complete()
-    "call UltiSnips#ExpandSnippet()
-    "if g:ulti_expand_res == 0
-        "if pumvisible()
-            "return "\<C-n>"
-        "else
-            "call UltiSnips#JumpForwards()
-            "if g:ulti_jump_forwards_res == 0
-               "return "\<TAB>"
-            "endif
-        "endif
-    "endif
-    "return ""
-"endfunction
-
-"au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsListSnippets="<c-e>"
-"" this mapping Enter key to <C-y> to chose the current highlight item 
-"" and close the selection list, same as other IDEs.
-"" CONFLICT with some plugins like tpope/Endwise
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
+"CtrlP
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|bower_components'
 
 func! WordProcessorMode()
     setlocal formatoptions=t1
@@ -138,23 +127,45 @@ func! WordProcessorMode()
 endfu
 com! WP call WordProcessorMode()
 
-"nnoremap <silent> <F5> :!clear;python %<CR>
-
-"Enable neocomplete
-"let g:neocomplete#enable_at_startup = 1
-"let g:neocomplete#enable_smart_case = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
 
 "Auto syntax checking
 let g:syntastic_mode_map = { "mode": "active"}
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_javascript_checkers = ['jshint']
+
+
+"Easy Motion
+map s <Plug>(easymotion-s)
+let g:EasyMotion_skipfoldedline = 0
 
 "YouCompleteMe
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_key_list_select_completion = ['<Tab>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
+"let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:ycm_semantic_triggers = {
+    \   'scss': [ 're!^\s{4}', 're!:\s+' ],
+    \   'css' : [ 're!^\s{4}', 're!:\s+' ],
+    \   'haskell' : ['.', '('],
+    \   'javascript' : ["require"]
+\ }
+let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_min_num_of_chars_for_completion = 1
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
 "For zsh
 set shell=zsh\ -l
