@@ -41,7 +41,7 @@ Plugin 'rizzatti/dash.vim'
 "Plugin 'hallettj/jslint.vim'
 Plugin 'takac/vim-hardtime'
 "Plugin 'vim-scripts/vim-auto-save'
-Plugin 'vim-scripts/restore_view.vim'
+"Plugin 'vim-scripts/restore_view.vim'
 Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'vim-scripts/JavaScript-Indent'
 Plugin 'jamescarr/snipmate-nodejs'
@@ -49,6 +49,8 @@ Plugin 'myhere/vim-nodejs-complete'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'Valloric/ListToggle'
 Plugin 'tpope/vim-abolish'
+Plugin 'gregsexton/MatchTag'
+Plugin 'scrooloose/nerdtree'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -83,6 +85,7 @@ set relativenumber
 set synmaxcol=180
 set gdefault
 set guioptions-=r
+set mouse=a
 colorscheme gruvbox
 
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
@@ -95,7 +98,6 @@ nmap <leader>w :wa<CR>
 nmap <leader>q :wqa<CR>
 nmap <leader>/ :noh<CR>
 nmap <leader>d :Dash<CR>
-nmap <leader>f :Errors<CR>
 
 map <Leader>e <Plug>(easymotion-prefix)
 let g:lt_location_list_toggle_map = '<leader>l'
@@ -104,17 +106,24 @@ autocmd filetype haskell nmap <leader>t :w <bar> GhcModTypeInsert<CR>
 autocmd filetype haskell nmap <leader>r :!clear <bar> runhaskell %<CR>
 autocmd filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
 autocmd filetype javascript nmap <leader>t :TernType<CR>
+autocmd filetype javascript nmap <leader>f :TernDef<CR>
+autocmd filetype javascript nmap <leader>d :TernDoc<CR>
 autocmd filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd filetype html       setlocal ts=2 sts=2 sw=2
 autocmd filetype python  nmap <leader>r :!clear <bar> python %<CR>
 autocmd filetype cpp     nmap <leader>r :!~/.compileRun.py %<CR>
 autocmd filetype haskell setlocal omnifunc=necoghc#omnifunc
 autocmd FileType css     set omnifunc=csscomplete#CompleteCSS
+autocmd FileType scss     set omnifunc=csscomplete#CompleteCSS
 
 "Hardtime
-let g:hardtime_default_on = 1
+"let g:hardtime_default_on = 1
 
+"NerdTree
+map <C-n> :NERDTreeToggle<CR>
 "CtrlP
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|bower_components'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|bower_components\|dist'
+let g:ctrlp_working_path_mode = 'ra'
 
 func! WordProcessorMode()
     setlocal formatoptions=t1
@@ -127,6 +136,9 @@ func! WordProcessorMode()
 endfu
 com! WP call WordProcessorMode()
 
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd CursorMoved  * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave  * if pumvisible() == 0|pclose|endif
 
 "Auto syntax checking
 let g:syntastic_mode_map = { "mode": "active"}
