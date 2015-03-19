@@ -4,27 +4,17 @@ import ycm_core
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
-<<<<<<< HEAD
-flags =["-Wall",
-"-Wvla",
-"-Wshadow",
-"-Wunreachable-code",
-"-Wconversion",
-"-Wno-write-strings",
-"-Wno-sign-compare",
-"-Wno-sign-conversion",
-"-Wno-shorten-64-to-32",
-"-g"]
-=======
 flags = [
-'-Wall',
-'-Wextra',
-'-Werror',
-'-Wc++98-compat',
-'-Wno-long-long',
-'-Wno-variadic-macros',
-'-fexceptions',
-'-DNDEBUG',
+'-Wall', 
+'-Wvla', 
+'-Wshadow', 
+'-Wunreachable-code',
+'-Wconversion',
+'-Wno-shorten-64-to-32', 
+'-Wno-sign-conversion', 
+'-Wno-sign-compare', 
+'-Wno-write-strings',
+'-g',
 # THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
 # language to use when compiling headers. So it will guess. Badly. So C++
 # headers will be compiled as C headers. You don't want that so ALWAYS specify
@@ -38,8 +28,8 @@ flags = [
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
 'c++',
-#'-isystem',
-#'../BoostParts',
+'-isystem',
+'../BoostParts',
 '-isystem',
 # This path will only work on OS X, but extra paths that don't exist are not
 # harmful
@@ -53,6 +43,14 @@ flags = [
 '-I',
 './ClangCompleter',
 '-isystem',
+'./tests/gmock/gtest',
+'-isystem',
+'./tests/gmock/gtest/include',
+'-isystem',
+'./tests/gmock',
+'-isystem',
+'./tests/gmock/include',
+'-isystem',
 '/usr/include',
 '-isystem',
 '/usr/local/include',
@@ -62,7 +60,6 @@ flags = [
 '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
 ]
 
->>>>>>> 43c7c065d9e83bd66ccef90e31801bf5ac345d56
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
@@ -86,10 +83,7 @@ SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
 def DirectoryOfThisScript():
   return os.path.dirname( os.path.abspath( __file__ ) )
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 43c7c065d9e83bd66ccef90e31801bf5ac345d56
 def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
   if not working_directory:
     return list( flags )
