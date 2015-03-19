@@ -68,5 +68,5 @@ then
     alias ls="ls -G"
 elif [[ "$OSTYPE" == *"linux"* ]]
 then
-    alias ls="ls --color=AUTO"
+    alias ls="ls --color=auto"
 fi
