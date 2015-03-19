@@ -16,7 +16,6 @@ antigen apply
 
 export EDITOR="vim"
 alias t="trash"
-alias ls="ls -G"
 alias v="vim"
 alias vvim="vim ~/.vimrc"
 alias grep='grep --color=auto'
@@ -63,3 +62,11 @@ export NVM_DIR="/Users/marcusbuffett/.nvm"
 function tr {
     tree -L 2;
 }
+
+if [[ "$OSTYPE" == *"darwin"* ]]
+then
+    alias ls="ls -G"
+elif [[ "$OSTYPE" == *"linux"* ]]
+then
+    alias ls="ls --color=AUTO"
+fi
