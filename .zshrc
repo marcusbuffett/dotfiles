@@ -17,14 +17,14 @@ antigen apply
 if [[ "$OSTYPE" == *"darwin"* ]]
 then
     alias ls="ls -G"
+	alias t="trash"
 elif [[ "$OSTYPE" == *"linux"* ]]
 then
     alias ls="ls --color=AUTO"
-    alias trash=gvfs-trash
+    alias t=gvfs-trash
 fi
 
 export EDITOR="vim"
-alias t="trash"
 alias v="vim"
 alias vvim="vim ~/.vimrc"
 alias grep='grep --color=auto'
