@@ -32,6 +32,15 @@ setopt NO_BEEP
 
 bindkey -v
 
+if [[ "$OSTYPE" == *"darwin"* ]]
+then
+    alias ls="ls -G"
+elif [[ "$OSTYPE" == *"linux"* ]]
+then
+    alias ls="ls --color=AUTO"
+    alias trash=gvfs-trash
+fi
+
 function mcd () {
     mkdir "$@" && cd "$@"
 }
@@ -63,10 +72,3 @@ function tr {
     tree -L 2;
 }
 
-if [[ "$OSTYPE" == *"darwin"* ]]
-then
-    alias ls="ls -G"
-elif [[ "$OSTYPE" == *"linux"* ]]
-then
-    alias ls="ls --color=AUTO"
-fi
