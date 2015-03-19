@@ -14,6 +14,15 @@ antigen theme skaro
 # Tell antigen that you're done.
 antigen apply
 
+if [[ "$OSTYPE" == *"darwin"* ]]
+then
+    alias ls="ls -G"
+elif [[ "$OSTYPE" == *"linux"* ]]
+then
+    alias ls="ls --color=AUTO"
+    alias trash=gvfs-trash
+fi
+
 export EDITOR="vim"
 alias t="trash"
 alias v="vim"
@@ -31,6 +40,7 @@ setopt AUTOPUSHD
 setopt NO_BEEP
 
 bindkey -v
+
 
 function mcd () {
     mkdir "$@" && cd "$@"
@@ -62,11 +72,3 @@ export NVM_DIR="/Users/marcusbuffett/.nvm"
 function tr {
     tree -L 2;
 }
-
-if [[ "$OSTYPE" == *"darwin"* ]]
-then
-    alias ls="ls -G"
-elif [[ "$OSTYPE" == *"linux"* ]]
-then
-    alias ls="ls --color=auto"
-fi
