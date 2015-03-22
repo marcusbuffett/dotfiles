@@ -51,6 +51,8 @@ Plugin 'Valloric/ListToggle'
 Plugin 'tpope/vim-abolish'
 Plugin 'gregsexton/MatchTag'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Raimondi/delimitMate'
+"Plugin 'octol/vim-cpp-enhanced-highlight'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -111,7 +113,7 @@ autocmd filetype javascript nmap <leader>d :TernDoc<CR>
 autocmd filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd filetype html       setlocal ts=2 sts=2 sw=2
 autocmd filetype python  nmap <leader>r :!clear <bar> python %<CR>
-autocmd filetype cpp     nmap <leader>r :!~/.compileRun.py %<CR>
+autocmd filetype cpp     nmap <leader>r :wa <bar> !~/.compileRun.py %<CR>
 autocmd filetype haskell setlocal omnifunc=necoghc#omnifunc
 autocmd FileType css     set omnifunc=csscomplete#CompleteCSS
 autocmd FileType scss     set omnifunc=csscomplete#CompleteCSS

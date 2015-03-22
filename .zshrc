@@ -63,8 +63,8 @@ export ZDOTDIR=$HOME
 export NODE_ENV=development
 
 PS1="%{$fg[cyan]%}%2~ %{$reset_color%}"
-alias compile++="~/.compile.py"
-alias compileRun++="~/.compileRun.py"
+alias compile="~/.compile.py"
+alias compileRun="~/.compileRun.py"
 
 export NVM_DIR="/Users/marcusbuffett/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
