@@ -62,6 +62,7 @@ let mapleader="\<Space>"
 syntax enable
 set autochdir
 set autoindent
+set smartindent
 set background=dark
 set backspace=indent,eol,start
 set visualbell
@@ -109,11 +110,12 @@ autocmd filetype haskell nmap <leader>r :!clear <bar> runhaskell %<CR>
 autocmd filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
 autocmd filetype javascript nmap <leader>t :TernType<CR>
 autocmd filetype javascript nmap <leader>f :TernDef<CR>
-autocmd filetype javascript nmap <leader>d :TernDoc<CR>
+autocmd filetype javascript nmap K :TernDoc<CR>
 autocmd filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd filetype html       setlocal ts=2 sts=2 sw=2
 autocmd filetype python  nmap <leader>r :!clear <bar> python %<CR>
 autocmd filetype cpp     nmap <leader>r :wa <bar> !~/.compileRun.py %<CR>
+autocmd filetype cpp     nmap <leader>h :wa <bar> !~/.compile.py %<CR>
 autocmd filetype haskell setlocal omnifunc=necoghc#omnifunc
 autocmd FileType css     set omnifunc=csscomplete#CompleteCSS
 autocmd FileType scss     set omnifunc=csscomplete#CompleteCSS
@@ -146,6 +148,8 @@ autocmd InsertLeave  * if pumvisible() == 0|pclose|endif
 let g:syntastic_mode_map = { "mode": "active"}
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_python_checkers = ['flake8', 'pep8']
+"let g:syntastic_cpp_checkers = ['cppcheck']
 
 
 "Easy Motion
@@ -156,6 +160,8 @@ let g:EasyMotion_skipfoldedline = 0
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_key_list_select_completion = ['<Tab>', '<Down>']
+"Set to 0 to enable syntastic for cpp
+let g:ycm_show_diagnostics_ui = 1
 "let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
 "let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:ycm_semantic_triggers = {
