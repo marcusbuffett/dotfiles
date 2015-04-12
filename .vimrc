@@ -52,6 +52,7 @@ Plugin 'tpope/vim-abolish'
 Plugin 'gregsexton/MatchTag'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Raimondi/delimitMate'
+Plugin 'gregsexton/VimCalc'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -94,6 +95,7 @@ colorscheme gruvbox
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 
 nmap <leader>p :CtrlP<CR>
+nmap <leader><leader>p :CtrlPCurWD<CR>
 nmap <Leader>; :%s/\<<C-r><C-w>\>/
 nmap <leader>n :CtrlPBuffer<CR>
 nmap <leader>b :CtrlPTag<CR>
@@ -108,11 +110,13 @@ let g:lt_quickfix_list_toggle_map = '<nop>'
 autocmd filetype haskell nmap <leader>t :w <bar> GhcModTypeInsert<CR>
 autocmd filetype haskell nmap <leader>r :!clear <bar> runhaskell %<CR>
 autocmd filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
+autocmd filetype javascript nmap <leader>r :!clear <bar> node %<CR>
 autocmd filetype javascript nmap <leader>t :TernType<CR>
 autocmd filetype javascript nmap <leader>f :TernDef<CR>
 autocmd filetype javascript nmap K :TernDoc<CR>
 autocmd filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd filetype html       setlocal ts=2 sts=2 sw=2
+autocmd filetype scss       setlocal ts=2 sts=2 sw=2
 autocmd filetype python  nmap <leader>r :!clear <bar> python %<CR>
 autocmd filetype cpp     nmap <leader>r :wa <bar> !~/.compileRun.py %<CR>
 autocmd filetype cpp     nmap <leader>h :wa <bar> !~/.compile.py %<CR>
@@ -140,8 +144,10 @@ func! WordProcessorMode()
 endfu
 com! WP call WordProcessorMode()
 
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd CursorMoved  * if pumvisible() == 0|pclose|endif
+match ErrorMsg '\%>80v.\+'
+
+"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+"autocmd CursorMoved  * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave  * if pumvisible() == 0|pclose|endif
 
 "Auto syntax checking
@@ -172,8 +178,8 @@ let g:ycm_semantic_triggers = {
 \ }
 let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_min_num_of_chars_for_completion = 1
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 let g:UltiSnipsExpandTrigger = "<nop>"
 let g:ulti_expand_or_jump_res = 0

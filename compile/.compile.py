@@ -27,7 +27,7 @@ if __name__ == "__main__":
                   "-Wall", "-Wvla", "-Wshadow", "-Wunreachable-code",
                   "-Wconversion",
                   "-Wno-shorten-64-to-32", "-Wno-sign-conversion", 
-                  "-Wno-sign-compare", "-Wno-write-strings",
+                  "-Wno-sign-compare", "-Wno-write-strings", 
                   "-g"]
         os.system(" ".join(prefix + args))
 
