@@ -29,6 +29,7 @@ alias v="vim"
 alias vvim="vim ~/.vimrc"
 alias grep='grep --color=auto'
 alias tmux="tmux -2"
+alias http-server="http-server -p 9000 -a 127.0.0.1"
 
 setopt AUTO_CD
 setopt AUTO_LIST
@@ -49,13 +50,21 @@ function cs () {
     cd "$@" && ls
 }
 
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-    zle reset-prompt
+precmd() {
+  RPROMPT=""
+  }
+  zle-keymap-select() {
+    RPROMPT=""
+  [[ $KEYMAP = vicmd ]] && RPROMPT="NORMAL"
+    () { return $__prompt_status }
+  zle reset-prompt
+  }
+  zle-line-init() {
+    typeset -g __prompt_status="$?"
 }
-zle -N zle-line-init
 zle -N zle-keymap-select
+zle -N zle-line-init
+
 
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
