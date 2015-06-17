@@ -10,7 +10,8 @@ antigen bundle fasd
 ## Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
 ## Load the theme.
-antigen theme skaro
+# antigen theme skaro
+antigen theme agnoster
 # Tell antigen that you're done.
 antigen apply
 
@@ -25,6 +26,7 @@ then
 fi
 
 export EDITOR="vim"
+export TERM="xterm-256color"
 alias v="vim"
 alias vvim="vim ~/.vimrc"
 alias grep='grep --color=auto'
@@ -49,6 +51,7 @@ function mcd () {
 function cs () {
     cd "$@" && ls
 }
+DEFAULT_USER=`whoami`
 
 precmd() {
   RPROMPT=""
@@ -65,15 +68,16 @@ precmd() {
 zle -N zle-keymap-select
 zle -N zle-line-init
 
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
 
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
 export ZDOTDIR=$HOME
 export NODE_ENV=development
 
-PS1="%{$fg[cyan]%}%2~ %{$reset_color%}"
-alias compile="~/.compile.py"
-alias compileRun="~/.compileRun.py"
+# PS1="%{$fg[cyan]%}%2~ %{$reset_color%}"
 
 export NVM_DIR="/Users/marcusbuffett/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -81,3 +85,10 @@ export NVM_DIR="/Users/marcusbuffett/.nvm"
 function tr {
     tree -L 2;
 }
+
+# Really weird fix for Control-H not working in neovim, black magic below
+# infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+# tic $TERM.ti
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
