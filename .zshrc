@@ -26,7 +26,8 @@ then
 fi
 
 export EDITOR="vim"
-export TERM="xterm-256color"
+export GOPATH="$HOME/go"
+# export TERM="xterm-256color"
 alias v="vim"
 alias vvim="vim ~/.vimrc"
 alias grep='grep --color=auto'

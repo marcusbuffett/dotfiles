@@ -8,7 +8,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/vimproc.vim'
 Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
-Plug 'eagletmt/ghcmod-vim'
+" Plug 'eagletmt/ghcmod-vim'
 "Plug 'vim-scripts/haskell.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eagletmt/neco-ghc'
@@ -50,6 +50,8 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'mxw/vim-jsx'
 Plug 'reedes/vim-pencil'
 Plug 'davidhalter/jedi'
+Plug 'altercation/vim-colors-solarized'
+Plug 'cakebaker/scss-syntax.vim'
 call plug#end()
 
 " Options
@@ -62,6 +64,7 @@ set background=dark
 set backspace=indent,eol,start
 set visualbell
 set ttyfast
+set t_Co=256
 set t_vb=
 set hidden
 set incsearch
@@ -75,7 +78,6 @@ set ignorecase
 set smartcase
 set undolevels=1000
 set title
-set t_Co=256
 set formatoptions-=cro
 set scrolloff=5
 set laststatus=2
@@ -116,12 +118,19 @@ autocmd filetype javascript nmap <leader>f :TernDef<CR>
 autocmd filetype javascript nmap K :TernDoc<CR>
 autocmd filetype python setlocal ts=4 sts=4 sw=4
 autocmd filetype python  nmap <leader>r :!python3 %<CR>
+autocmd filetype php  nmap <leader>r :!php %<CR>
 autocmd filetype cpp     nmap <leader>r :wa <bar> !~/.compileRun.py %<CR>
 autocmd filetype cpp     nmap <leader>h :wa <bar> !~/.compile.py %<CR>
 autocmd filetype haskell setlocal omnifunc=necoghc#omnifunc
 autocmd FileType css     set omnifunc=csscomplete#CompleteCSS
 autocmd FileType scss     set omnifunc=csscomplete#CompleteCSS
 autocmd FileType javascript setlocal omnifunc=tern#Complete
+
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+  autocmd FileType scss setlocal iskeyword+=-
+augroup END
 
 "Hardtime
 "let g:hardtime_default_on = 1
@@ -150,14 +159,14 @@ let g:ctrlp_working_path_mode = 'ra'
 " match ErrorMsg '\%>80v.\+'
 
 "autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd CursorMoved  * if pumvisible() == 0|pclose|endif
+" autocmd CursorMoved  * if pumvisible() == 0|pclose|endif
 " autocmd InsertLeave  * if pumvisible() == 0|pclose|endif
 
 "Auto syntax checking
 let g:syntastic_mode_map = { "mode": "active"}
 let g:syntastic_check_on_open=1
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_checkers = ['jshint']
 " let g:syntastic_jsx_checkers = ['jsxhint']
 " let g:syntastic_python_checkers = ['flake8']
 " let g:syntastic_python_flake8_post_args='--ignore=E501'
