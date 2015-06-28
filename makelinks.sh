@@ -11,4 +11,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 mkdir ~/antigen
 curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/antigen/antigen.zsh
 
+git config --global user.name "Marcus Buffett"
+git config --global user.email "marcusbuffett@me.com"
+
 vim +PlugInstall
+

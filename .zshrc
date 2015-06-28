@@ -21,7 +21,7 @@ then
 	alias t="trash"
 elif [[ "$OSTYPE" == *"linux"* ]]
 then
-    alias ls="ls --color=AUTO"
+    alias ls="ls --color=auto"
     alias t=gvfs-trash
 fi
 
