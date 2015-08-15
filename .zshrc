@@ -25,14 +25,15 @@ then
     alias t=gvfs-trash
 fi
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export GOPATH="$HOME/go"
-# export TERM="xterm-256color"
-alias v="vim"
-alias vvim="vim ~/.vimrc"
+export TERM="screen-256color"
+alias v="nvim"
+alias vvim="nvim ~/.nvimrc"
 alias grep='grep --color=auto'
 alias tmux="tmux -2"
 alias http-server="http-server -p 9000 -a 127.0.0.1"
+alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 setopt AUTO_CD
 setopt AUTO_LIST
@@ -44,7 +45,6 @@ setopt AUTOPUSHD
 setopt NO_BEEP
 
 bindkey -v
-
 
 function mcd () {
     mkdir "$@" && cd "$@"
@@ -75,6 +75,7 @@ bindkey '^[[B' down-line-or-search
 
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
+export PATH=$HOME/.cabal/bin:$PATH
 export ZDOTDIR=$HOME
 export NODE_ENV=development
 

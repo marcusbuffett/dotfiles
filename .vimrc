@@ -186,7 +186,8 @@ let g:EasyMotion_skipfoldedline = 0
 let g:ycm_semantic_triggers = {
     \   'scss': [ 're!^\s{4}', 're!:\s+' ],
     \   'css' : [ 're!^\s{4}', 're!:\s+' ],
-    \   'javascript' : ["require"]
+    \   'javascript' : ["require"],
+    \   'haskell' : ["."]
 \ }
 " let g:ycm_path_to_python_interpreter='/usr/local/bin/python3'
 " let g:ycm_key_invoke_completion = '<C-Space>'
