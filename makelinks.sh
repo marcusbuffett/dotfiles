@@ -1,4 +1,4 @@
-for f in ".jshintrc" ".tmux.conf" ".vimrc" ".ycm_extra_conf.py" ".ycm_extra_conf.pyc" ".zshrc"
+for f in ".jshintrc" ".tmux.conf" ".vimrc" ".ycm_extra_conf.py" ".ycm_extra_conf.pyc" ".zshrc" ".tmux-osx.conf"
 do
     rm ~/$f
     ln -s ~/dotfiles/$f ~/$f
@@ -11,4 +11,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 mkdir ~/antigen
 curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/antigen/antigen.zsh
 
+git config --global user.name "Marcus Buffett"
+git config --global user.email "marcusbuffett@me.com"
+
 vim +PlugInstall
+
