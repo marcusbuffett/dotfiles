@@ -14,5 +14,5 @@ curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh >
 git config --global user.name "Marcus Buffett"
 git config --global user.email "marcusbuffett@me.com"
 
-vim +PlugInstall
+# vim +PlugInstall
 
