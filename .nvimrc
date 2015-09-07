@@ -113,6 +113,8 @@ nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gp :Gpush<CR>
 nnoremap <Leader>gl :Gpush<CR>
+nnoremap <Leader>go :Gbrowse<CR>
+nnoremap <Leader>gg :Ggrep 
 
 map <Leader>e <Plug>(easymotion-prefix)
 let g:lt_location_list_toggle_map = '<leader>l'
