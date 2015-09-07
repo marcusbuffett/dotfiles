@@ -102,7 +102,7 @@ nmap <leader>w :wa<CR>
 nmap <leader>q :wqa<CR>
 nmap <leader>/ :noh<CR>
 nmap <leader>d :Dash<CR>
-nmap <leader>, :pclose<CR>
+nmap <leader>x :pclose<CR>
 nmap <tab> :b#<cr>
 
 nnoremap <Leader>gs :Gstatus<CR>
