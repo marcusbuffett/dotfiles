@@ -1,0 +1,93 @@
+2015-08-20 12:17:43	marcusbuffett	hi
+2015-08-20 12:17:44	--	NickServ: Invalid command. Use /msg NickServ help for a command listing.
+2015-08-20 12:17:48	marcusbuffett	help
+2015-08-20 12:17:48	--	NickServ: ***** NickServ Help *****
+2015-08-20 12:17:48	--	NickServ: NickServ allows users to 'register' a nickname, and stop
+2015-08-20 12:17:48	--	NickServ: others from using that nick. NickServ allows the owner of a
+2015-08-20 12:17:48	--	NickServ: nickname to disconnect a user from the network that is using
+2015-08-20 12:17:48	--	NickServ: their nickname.
+2015-08-20 12:17:48	--	NickServ:  
+2015-08-20 12:17:48	--	NickServ: For more information on a command, type:
+2015-08-20 12:17:48	--	NickServ: /msg NickServ help <command>
+2015-08-20 12:17:48	--	NickServ: For a verbose listing of all commands, type:
+2015-08-20 12:17:48	--	NickServ: /msg NickServ help commands
+2015-08-20 12:17:48	--	NickServ:  
+2015-08-20 12:17:48	--	NickServ: The following commands are available:
+2015-08-20 12:17:48	--	NickServ: GHOST           Reclaims use of a nickname.
+2015-08-20 12:17:48	--	NickServ: IDENTIFY        Identifies to services for a nickname.
+2015-08-20 12:17:48	--	NickServ: INFO            Displays information on registrations.
+2015-08-20 12:17:48	--	NickServ: LISTCHANS       Lists channels that you have access to.
+2015-08-20 12:17:48	--	NickServ: REGISTER        Registers a nickname.
+2015-08-20 12:17:48	--	NickServ: RELEASE         Releases a services enforcer.
+2015-08-20 12:17:48	--	NickServ: SENDPASS        Email registration passwords.
+2015-08-20 12:17:48	--	NickServ:  
+2015-08-20 12:17:48	--	NickServ: Other commands: ACC, ACCESS, CERT, DROP, HELP, LOGOUT, 
+2015-08-20 12:17:48	--	NickServ:                 REGAIN, SETPASS, STATUS, TAXONOMY, VERIFY
+2015-08-20 12:17:48	--	NickServ: ***** End of Help *****
+2015-08-20 12:18:07	marcusbuffett	identify RouxTheDay
+2015-08-20 12:18:07	--	NickServ: marcusbuffett is not a registered nickname.
+2015-08-20 12:21:02	RouxTheDay	help
+2015-08-20 12:21:03	--	NickServ: ***** NickServ Help *****
+2015-08-20 12:21:03	--	NickServ: NickServ allows users to 'register' a nickname, and stop
+2015-08-20 12:21:03	--	NickServ: others from using that nick. NickServ allows the owner of a
+2015-08-20 12:21:03	--	NickServ: nickname to disconnect a user from the network that is using
+2015-08-20 12:21:03	--	NickServ: their nickname.
+2015-08-20 12:21:03	--	NickServ:  
+2015-08-20 12:21:03	--	NickServ: For more information on a command, type:
+2015-08-20 12:21:03	--	NickServ: /msg NickServ help <command>
+2015-08-20 12:21:03	--	NickServ: For a verbose listing of all commands, type:
+2015-08-20 12:21:03	--	NickServ: /msg NickServ help commands
+2015-08-20 12:21:03	--	NickServ:  
+2015-08-20 12:21:03	--	NickServ: The following commands are available:
+2015-08-20 12:21:03	--	NickServ: GHOST           Reclaims use of a nickname.
+2015-08-20 12:21:03	--	NickServ: IDENTIFY        Identifies to services for a nickname.
+2015-08-20 12:21:03	--	NickServ: INFO            Displays information on registrations.
+2015-08-20 12:21:03	--	NickServ: LISTCHANS       Lists channels that you have access to.
+2015-08-20 12:21:03	--	NickServ: REGISTER        Registers a nickname.
+2015-08-20 12:21:03	--	NickServ: RELEASE         Releases a services enforcer.
+2015-08-20 12:21:03	--	NickServ: SENDPASS        Email registration passwords.
+2015-08-20 12:21:03	--	NickServ:  
+2015-08-20 12:21:03	--	NickServ: Other commands: ACC, ACCESS, CERT, DROP, HELP, LOGOUT, 
+2015-08-20 12:21:03	--	NickServ:                 REGAIN, SETPASS, STATUS, TAXONOMY, VERIFY
+2015-08-20 12:21:03	--	NickServ: ***** End of Help *****
+2015-08-20 12:21:14	RouxTheDay	register
+2015-08-20 12:21:15	--	NickServ: Insufficient parameters for REGISTER.
+2015-08-20 12:21:15	--	NickServ: Syntax: REGISTER <password> <email>
+2015-08-20 12:21:39	RouxTheDay	register itn9gumo marcusbuffett@me.com
+2015-08-20 12:21:40	--	NickServ: marcusbuffett@me.com has too many accounts registered.
+2015-08-31 14:26:00	RouxTheD1	hi
+2015-08-31 14:26:00	--	NickServ: Invalid command. Use /msg NickServ help for a command listing.
+2015-08-31 14:26:02	RouxTheD1	help
+2015-08-31 14:26:03	--	NickServ: ***** NickServ Help *****
+2015-08-31 14:26:03	--	NickServ: NickServ allows users to 'register' a nickname, and stop
+2015-08-31 14:26:03	--	NickServ: others from using that nick. NickServ allows the owner of a
+2015-08-31 14:26:03	--	NickServ: nickname to disconnect a user from the network that is using
+2015-08-31 14:26:03	--	NickServ: their nickname.
+2015-08-31 14:26:03	--	NickServ:  
+2015-08-31 14:26:03	--	NickServ: For more information on a command, type:
+2015-08-31 14:26:03	--	NickServ: /msg NickServ help <command>
+2015-08-31 14:26:03	--	NickServ: For a verbose listing of all commands, type:
+2015-08-31 14:26:03	--	NickServ: /msg NickServ help commands
+2015-08-31 14:26:03	--	NickServ:  
+2015-08-31 14:26:03	--	NickServ: The following commands are available:
+2015-08-31 14:26:03	--	NickServ: GHOST           Reclaims use of a nickname.
+2015-08-31 14:26:03	--	NickServ: IDENTIFY        Identifies to services for a nickname.
+2015-08-31 14:26:03	--	NickServ: INFO            Displays information on registrations.
+2015-08-31 14:26:03	--	NickServ: LISTCHANS       Lists channels that you have access to.
+2015-08-31 14:26:03	--	NickServ: REGISTER        Registers a nickname.
+2015-08-31 14:26:03	--	NickServ: RELEASE         Releases a services enforcer.
+2015-08-31 14:26:03	--	NickServ: SENDPASS        Email registration passwords.
+2015-08-31 14:26:03	--	NickServ:  
+2015-08-31 14:26:03	--	NickServ: Other commands: ACC, ACCESS, CERT, DROP, HELP, LOGOUT, 
+2015-08-31 14:26:03	--	NickServ:                 REGAIN, SETPASS, STATUS, TAXONOMY, VERIFY
+2015-08-31 14:26:03	--	NickServ: ***** End of Help *****
+2015-08-31 14:26:10	RouxTheD1	info
+2015-08-31 14:26:10	--	NickServ: RouxTheD1 is not registered.
+2015-08-31 14:26:17	--	NickServ: This nickname is registered. Please choose a different nickname, or identify via /msg NickServ identify <password>.
+2015-08-31 14:26:23	RouxTheDay	identify itn9gumo
+2015-08-31 14:26:23	--	NickServ: You are now identified for RouxTheDay.
+2015-08-31 20:33:03	--	irc: disconnected from server
+2015-08-31 20:50:30	--	irc: disconnected from server
+2015-08-31 21:05:47	--	irc: disconnected from server
+2015-09-01 08:45:01	--	irc: disconnected from server
+2015-09-01 14:29:26	--	irc: disconnected from server

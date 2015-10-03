@@ -81,7 +81,7 @@ set formatoptions-=cro
 set scrolloff=5
 set laststatus=2
 set number
-set relativenumber
+" set relativenumber
 set synmaxcol=180
 set gdefault
 set guioptions-=r
@@ -99,7 +99,7 @@ nmap <Leader>; :%s/\<<C-r><C-w>\>/
 nmap <leader>n :CtrlPBuffer<CR>
 nmap <leader>b :CtrlPTag<CR>
 nmap <leader>w :wa<CR>
-nmap <leader>q :wqa<CR>
+nmap <leader>q :wq<CR>
 nmap <leader>/ :noh<CR>
 nmap <leader>d :Dash<CR>
 nmap <leader>x :pclose<CR>
@@ -148,6 +148,7 @@ augroup END
 
 "NerdTree
 map <C-n> :NERDTreeToggle<CR>
+map <C-f> :NERDTreeFocus<CR>
 " map <C-p> <c-w><c-p>
 
 "NerdCommenter
