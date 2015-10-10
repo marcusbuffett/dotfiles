@@ -5,6 +5,11 @@ do
     # do something on $f
 done
 
+mkdir ~/.vim
+ln -s ~/.vim ~/.nvim
+
+sudo apt-get install -y zsh python-dev curl cmake tmux build-essential
+
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -14,7 +19,6 @@ curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh >
 git config --global user.name "Marcus Buffett"
 git config --global user.email "marcusbuffett@me.com"
 
-sudo apt-get install -y zsh
 
 chsh -s `which zsh`
 
