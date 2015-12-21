@@ -141,4 +141,10 @@ function ghc-pkg-reset() {
   )
 }
 
+# source aws_keys.sh
+
 alias cabalupgrades="cabal list --installed  | egrep -iv '(synopsis|homepage|license)'"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
