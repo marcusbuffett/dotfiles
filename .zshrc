@@ -33,7 +33,7 @@ export PATH="$PATH:$GOPATH/bin"
 # export TERM="screen-256color"
 # alias nvimdiff="nvim -d"
 alias v="vim"
-alias vvim="vim ~/.vimrc"
+alias vvim="v ~/.vimrc"
 alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
 alias grep='grep --color=auto'
 alias tmux="tmux -2"
