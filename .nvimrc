@@ -115,26 +115,26 @@ nnoremap <Leader>gg :Ggrep
 let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<nop>'
 augroup EditVim
-  autocmd!
-  autocmd BufRead,BufNewFile *.jade setlocal ft=jade
-  " autocmd filetype haskell nmap <leader>t :w <bar> GhcModTypeInsert<CR>
-  autocmd filetype haskell nmap <leader>r :!runhaskell %<CR>
-  autocmd filetype haskell nmap <leader><leader>r :!cabal run<CR>
-  autocmd filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
-  autocmd filetype javascript nmap <leader>r :!node %<CR>
-  autocmd filetype javascript nmap <leader>t :TernType<CR>
-  autocmd filetype javascript nmap <leader>f :TernDef<CR>
-  autocmd filetype javascript nmap K :TernDoc<CR>
-  autocmd filetype python setlocal ts=4 sts=4 sw=4
-  autocmd filetype python  nmap <leader>r :!python3 %<CR>
-  autocmd filetype ruby  nmap <leader>r :!ruby %<CR>
-  autocmd filetype php  nmap <leader>r :!php %<CR>
-  autocmd filetype cpp     nmap <leader>r :wa <bar> !~/.compileRun.py %<CR>
-  autocmd filetype cpp     nmap <leader>h :wa <bar> !~/.compile.py %<CR>
-  autocmd filetype haskell setlocal omnifunc=necoghc#omnifunc
-  autocmd FileType css     set omnifunc=csscomplete#CompleteCSS
-  autocmd FileType scss     set omnifunc=csscomplete#CompleteCSS
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
+  au!
+  au BufRead,BufNewFile *.jade setlocal ft=jade
+  " au filetype haskell nmap <leader>t :w <bar> GhcModTypeInsert<CR>
+  au filetype haskell nmap <leader>r :!runhaskell %<CR>
+  au filetype haskell nmap <leader><leader>r :!cabal run<CR>
+  au filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
+  au filetype javascript nmap <leader>r :!node %<CR>
+  au filetype javascript nmap <leader>t :TernType<CR>
+  au filetype javascript nmap <leader>f :TernDef<CR>
+  au filetype javascript nmap K :TernDoc<CR>
+  au filetype python setlocal ts=4 sts=4 sw=4
+  au filetype python  nmap <leader>r :!python3 %<CR>
+  au filetype ruby  nmap <leader>r :!ruby %<CR>
+  au filetype php  nmap <leader>r :!php %<CR>
+  au filetype cpp     nmap <leader>r :wa <bar> !~/.compileRun.py %<CR>
+  au filetype cpp     nmap <leader>h :wa <bar> !~/.compile.py %<CR>
+  au filetype haskell setlocal omnifunc=necoghc#omnifunc
+  au FileType css     set omnifunc=csscomplete#CompleteCSS
+  au FileType scss     set omnifunc=csscomplete#CompleteCSS
+  au FileType javascript setlocal omnifunc=tern#Complete
   au FileType haskell nnoremap <buffer> <leader>t :HdevtoolsType<CR>
   au FileType haskell nnoremap <buffer> <silent> <leader>ct :HdevtoolsClear<CR>
 augroup END
@@ -156,6 +156,7 @@ augroup END
 map <C-n> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFocus<CR>
 " map <C-p> <c-w><c-p>
+
 
 "NerdCommenter
 let NERDSpaceDelims = 1
