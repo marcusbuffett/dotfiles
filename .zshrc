@@ -25,12 +25,12 @@ then
     alias t=gvfs-trash
 fi
 
-export EDITOR="nvim"
+export EDITOR="vim"
 
 export GOPATH="$HOME/go"
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
-alias v="nvim"
+alias v="vim"
 alias vvim="v ~/.vimrc"
 alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
 alias grep='grep --color=auto'
@@ -107,8 +107,8 @@ function ggrep () {
 }
 
 # Really weird fix for Control-H not working in neovim, black magic below
-infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
-tic $TERM.ti
+# infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+# tic $TERM.ti
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
