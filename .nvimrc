@@ -105,6 +105,7 @@ nmap <leader>w :wa<CR>
 nmap <leader>q :wqa<CR>
 nmap <leader>/ :noh<CR>
 nmap <leader>d :Dash<CR>
+nmap <leader>, :pclose<CR>
 nmap <tab> :b#<cr>
 
 map <Leader>e <Plug>(easymotion-prefix)
