@@ -22,7 +22,7 @@ Plug 'ervandew/supertab'
 Plug 'xolox/vim-misc'
 Plug 'vim-scripts/closetag.vim'
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-surround'
 "Plug 'qualiabyte/vim-colorstepper'
 Plug 'rizzatti/dash.vim'
@@ -114,8 +114,6 @@ nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gw :Gwrite<CR>
-
-
 
 map <Leader>e <Plug>(easymotion-prefix)
 let g:lt_location_list_toggle_map = '<leader>l'
@@ -213,9 +211,9 @@ let g:ycm_key_list_previous_completion = ['<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<c-e>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
+" let g:UltiSnipsExpandTrigger = "<c-e>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 
 "For zsh
 set shell=zsh\ -l
