@@ -22,7 +22,7 @@ Plug 'ervandew/supertab'
 Plug 'xolox/vim-misc'
 Plug 'vim-scripts/closetag.vim'
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-surround'
 "Plug 'qualiabyte/vim-colorstepper'
 Plug 'rizzatti/dash.vim'
@@ -65,9 +65,6 @@ set smartindent
 set background=dark
 set backspace=indent,eol,start
 set visualbell
-set ttyfast
-set t_Co=256
-set t_vb=
 set hidden
 set incsearch
 set nohlsearch
@@ -96,7 +93,7 @@ colorscheme gruvbox
 
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
  
-nmap <leader>p :CtrlP<CR>
+let g:ctrlp_map = '<leader>p'
 nmap <leader><leader>p :CtrlPCurWD<CR>
 nmap <Leader>; :%s/\<<C-r><C-w>\>/
 nmap <leader>n :CtrlPBuffer<CR>
@@ -139,6 +136,7 @@ augroup END
 
 "NerdTree
 map <C-n> :NERDTreeToggle<CR>
+" map <C-p> <c-w><c-p>
 
 "NerdCommenter
 let NERDSpaceDelims = 1
@@ -198,14 +196,14 @@ let g:ycm_min_num_of_chars_for_completion = 1
 "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" let g:ycm_key_list_select_completion = ['<Down>']
+" let g:ycm_key_list_previous_completion = ['<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<c-e>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
+" let g:UltiSnipsExpandTrigger = "<c-e>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 
 "For zsh
 set shell=zsh\ -l
