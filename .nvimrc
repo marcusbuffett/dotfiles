@@ -92,6 +92,7 @@ set autoread
 colorscheme gruvbox
 
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
+let g = 'x'
  
 let g:ctrlp_map = '<leader>p'
 nmap <leader><leader>p :CtrlPCurWD<CR>
