@@ -92,7 +92,6 @@ set autoread
 colorscheme gruvbox
 
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
-let g = 'x'
  
 let g:ctrlp_map = '<leader>p'
 nmap <leader><leader>p :CtrlPCurWD<CR>
@@ -157,6 +156,7 @@ let NERDSpaceDelims = 1
 "CtrlP
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|bower_components\|dist'
 let g:ctrlp_working_path_mode = 'ra'
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " func! WordProcessorMode()
     " setlocal formatoptions=t1
