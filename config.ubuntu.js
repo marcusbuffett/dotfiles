@@ -1,4 +1,4 @@
-for f in ".jshintrc" ".tmux.conf" ".nvimrc" ".vimrc" ".ycm_extra_conf.py" ".ycm_extra_conf.pyc" ".zshrc" ".tmux-osx.conf"
+for f in ".jshintrc" ".tmux.conf" ".nvimrc" ".vimrc" ".ycm_extra_conf.py" ".ycm_extra_conf.pyc" ".zshrc" ".tmux-osx.conf" ".weechat"
 do
     rm ~/$f
     ln -s ~/dotfiles/$f ~/$f
@@ -14,5 +14,8 @@ curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh >
 git config --global user.name "Marcus Buffett"
 git config --global user.email "marcusbuffett@me.com"
 
-# vim +PlugInstall
+sudo apt-get install -y zsh
 
+chsh -s `which zsh`
+
+# vim +PlugInstall

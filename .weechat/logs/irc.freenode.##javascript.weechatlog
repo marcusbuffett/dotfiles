@@ -1,0 +1,986 @@
+2015-08-20 21:05:30	-->	RouxTheDay (~RouxTheDa@199.21.87.214) has joined ##javascript
+2015-08-20 21:05:30	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-20 21:05:30	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-20 21:05:30	--	Channel ##javascript: 1203 nicks (0 ops, 0 voices, 1203 normals)
+2015-08-20 21:05:31	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-20 21:05:41	<--	shannonlucas (uid33073@gateway/web/irccloud.com/x-azaatarsaupxmjhi) has quit
+2015-08-20 21:06:02	-->	eydaimon (~eydaimon@unaffiliated/anywho) has joined ##javascript
+2015-08-20 21:06:12	<--	jacaballero (~jacaballe@186.32.239.77.cablemodem.amnethn.com) has quit (Max SendQ exceeded)
+2015-08-20 21:06:13	<--	Chunk2 (~chunk@host-184-174-132-176.DAIOLT1.epbfi.com) has quit (Ping timeout: 256 seconds)
+2015-08-20 21:06:44	<--	caleb_ (~caleb@ip98-167-222-208.ph.ph.cox.net) has quit (Ping timeout: 246 seconds)
+2015-08-20 21:06:52	-->	xxneolithicxx (~xxneolith@c-71-235-111-216.hsd1.ct.comcast.net) has joined ##javascript
+2015-08-20 21:06:52	<--	Geisted_ (~chatzilla@c-98-210-70-13.hsd1.ca.comcast.net) has quit (Ping timeout: 246 seconds)
+2015-08-20 21:06:54	<--	kirotawa (~kirotawa@177.204.177.136.dynamic.adsl.gvt.net.br) has quit (Ping timeout: 260 seconds)
+2015-08-20 21:07:05	<--	xxneolithicxx (~xxneolith@c-71-235-111-216.hsd1.ct.comcast.net) has quit (Max SendQ exceeded)
+2015-08-20 21:09:04	<--	hds (~hds@unaffiliated/sinfocol) has quit (Ping timeout: 265 seconds)
+2015-08-20 21:09:04	<--	dan|el (~eydaimon@70-59-129-64.ptld.qwest.net) has quit (Ping timeout: 265 seconds)
+2015-08-20 21:09:30	<--	johnix (48d0848d@gateway/web/freenode/ip.72.208.132.141) has quit (Quit: Page closed)
+2015-08-20 21:09:46	-->	bePolite (~sprinf@unaffiliated/sprinf) has joined ##javascript
+2015-08-20 21:10:09	<--	tejasmanohar (~tejasmano@2601:484:c303:e101:3944:9499:f1da:37cf) has quit (Quit: WeeChat 1.2)
+2015-08-20 21:11:08	-->	Chunk2 (~chunk@host-184-174-132-176.DAIOLT1.epbfi.com) has joined ##javascript
+2015-08-20 21:11:22	<--	bhughes (~bhughes@89.11.155.208) has quit (Read error: Connection reset by peer)
+2015-08-20 21:11:32	<--	wjf (~wjf@cpe-74-71-143-105.nyc.res.rr.com) has quit (Quit: wjf)
+2015-08-20 21:11:47	--	welly[work] is now known as welly[work][away
+2015-08-20 21:12:44	-->	bhughes (~bhughes@89.11.155.208) has joined ##javascript
+2015-08-21 08:58:02	--	irc: disconnected from server
+2015-08-21 08:58:27	-->	RouxTheDay (~RouxTheDa@199.21.87.214) has joined ##javascript
+2015-08-21 08:58:27	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 08:58:27	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 08:58:27	--	Channel ##javascript: 1321 nicks (0 ops, 0 voices, 1321 normals)
+2015-08-21 08:58:27	--	Notice(verne.freenode.net): [freenode-info] channel trolls and no channel staff around to help? please check with freenode support: http://freenode.net/faq.shtml#gettinghelp
+2015-08-21 08:58:31	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 08:58:46	Joseph__Silber	pastry, every module in only invoked once. All calls to `require('foo')` get the same instance returned from the module.
+2015-08-21 08:58:47	pastry	everyone has their implementation, of course, but as a base line if you don't have a reference to something from the running context it will be slated for garbage collection some time in the future
+2015-08-21 08:58:51	-->	Ix-Xitan (~Plandox@78.133.21.10) has joined ##javascript
+2015-08-21 08:58:53	<--	Industrial (~industria@ip-213-127-162-6.ip.prioritytelecom.net) has quit (Remote host closed the connection)
+2015-08-21 08:58:57	--	Ix-Xitan is now known as PointBlank
+2015-08-21 08:58:58	<--	PointBlank (~Plandox@78.133.21.10) has quit (Client Quit)
+2015-08-21 08:59:12	Joseph__Silber	We're talking past each other.
+2015-08-21 08:59:21	--	irc: disconnected from server
+2015-08-21 08:59:47	-->	RouxTheDay (~RouxTheDa@199.21.87.214) has joined ##javascript
+2015-08-21 08:59:47	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 08:59:47	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 08:59:48	--	Channel ##javascript: 1320 nicks (0 ops, 0 voices, 1320 normals)
+2015-08-21 08:59:51	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 09:00:03	Joseph__Silber	Nope. It's part of the semantics of the module system.
+2015-08-21 09:00:14	pastry	yes, not of the vm
+2015-08-21 09:00:20	-->	Alpha64 (~Alpha64@unaffiliated/alpha64) has joined ##javascript
+2015-08-21 09:00:41	Joseph__Silber	If it's part of the semantics, then no matter what happens I must always get back the same instance.
+2015-08-21 09:00:41	--	irc: disconnected from server
+2015-08-21 09:01:05	-->	RouxTheDay (~RouxTheDa@199.21.87.214) has joined ##javascript
+2015-08-21 09:01:05	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 09:01:05	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 09:01:05	--	Channel ##javascript: 1320 nicks (0 ops, 0 voices, 1320 normals)
+2015-08-21 09:01:09	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 09:01:16	<--	Alpha64 (~Alpha64@unaffiliated/alpha64) has left ##javascript
+2015-08-21 09:01:20	<--	stns (~stns@unaffiliated/stns) has quit (Quit: Leaving)
+2015-08-21 09:02:03	<--	citizen-stig (~citizen-s@89.221.207.219) has quit (Remote host closed the connection)
+2015-08-21 09:02:21	Joseph__Silber	Given that I can call `require` whenever I want, I guess that means the the exports can never get garbage collected.
+2015-08-21 09:02:29	Joseph__Silber	Or am I missing something?
+2015-08-21 09:02:37	<--	DevAntoine (~DevAntoin@185.31.151.238) has quit (Quit: Quitte)
+2015-08-21 09:02:45	zap0	how do you query the visible horizontal space on a page?
+2015-08-21 09:03:50	<--	corenominal (~corenomin@ubuntu/member/corenominal) has quit (Quit: Leaving)
+2015-08-21 09:04:06	-->	nettoweb (~textual@177.16.147.109) has joined ##javascript
+2015-08-21 09:04:26	-->	jhoffmcd (~jhoffmcd@static-108-13-189-204.lsanca.fios.verizon.net) has joined ##javascript
+2015-08-21 09:04:29	phishy	zap0: window.innerWidth ?
+2015-08-21 09:06:13	ajf-	any good source of oop patterns ?
+2015-08-21 09:06:23	<--	BigPi (~BigPi@office.nublue.co.uk) has quit (Remote host closed the connection)
+2015-08-21 09:06:37	<--	ljosberinn (~ljosberin@82.221.42.50) has quit (Read error: Connection reset by peer)
+2015-08-21 09:06:58	-->	Meorge-iPad (uid85929@gateway/web/irccloud.com/x-wqoqxrjvnqikzaou) has joined ##javascript
+2015-08-21 09:07:28	<--	p4trix (~p4trix@76.Red-79-152-198.dynamicIP.rima-tde.net) has quit (Read error: Connection reset by peer)
+2015-08-21 09:07:34	dash	ajf-: http://laputan.org/mud
+2015-08-21 09:07:45	tsousa	how can i pass an array to a function in javascript?
+2015-08-21 09:07:45	--	irc: disconnected from server
+2015-08-21 09:08:01	-->	RouxTheDay (~RouxTheDa@199.21.87.214) has joined ##javascript
+2015-08-21 09:08:01	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 09:08:01	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 09:08:01	--	Channel ##javascript: 1315 nicks (0 ops, 0 voices, 1315 normals)
+2015-08-21 09:08:05	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 09:08:28	-->	Pietilson (~Pietilson@97-87-8-154.dhcp.mdsn.wi.charter.com) has joined ##javascript
+2015-08-21 09:09:50	-->	maestrojed (~maestroje@173-8-213-38-Oregon.hfc.comcastbusiness.net) has joined ##javascript
+2015-08-21 09:10:05	<--	kamyl_ (~chatzilla@s57247.telnet.net.pl) has quit (Quit: ChatZilla 0.9.92 [Firefox 40.0/20150807085045])
+2015-08-21 09:10:31	tsousa	dash: so why this code doesnt work? http://ideone.com/eBzDaS
+2015-08-21 09:10:52	-->	rimdeker (~rimdeker@unaffiliated/rimdeker) has joined ##javascript
+2015-08-21 09:11:35	raypulver	tsousa: needs a var keyword when "index" is initialized to 0
+2015-08-21 09:11:58	<--	Gluesticky (~nobody@unaffiliated/gluesticky) has quit (Quit: This is the end. Goodbye cruel world!)
+2015-08-21 09:12:01	<--	krawchyk_ (~textual@static-108-45-111-234.washdc.fios.verizon.net) has quit
+2015-08-21 09:12:10	<--	mary5030 (~mary5030@72.32.115.233) has quit (Ping timeout: 240 seconds)
+2015-08-21 09:12:19	tsousa	raypulver: still getting a run time error
+2015-08-21 09:13:07	raypulver	your code works for me .. what env are you running from?
+2015-08-21 09:13:27	l0pher	maybe Ideone doesn't expose console?
+2015-08-21 09:13:37	<--	northfurr (~manhari@unaffiliated/northfurr) has quit (Quit: northfurr)
+2015-08-21 09:13:56	<--	Germanaz0 (~German@unaffiliated/germanaz0) has quit (Quit: Lingo: www.lingoirc.com)
+2015-08-21 09:14:23	<--	FunnyLookinHat (~FunnyLook@ubuntu/member/funnylookinhat) has quit (Ping timeout: 246 seconds)
+2015-08-21 09:14:43	<--	tsousa (~tsousa@188.251.111.71) has quit (Quit: Leaving)
+2015-08-21 09:14:59	zap0	phishy, thanks.
+2015-08-21 09:15:16	-->	elv (~elv@pool-100-37-225-122.nycmny.fios.verizon.net) has joined ##javascript
+2015-08-21 09:15:16	-->	psy_ (~psy@43.224.156.125) has joined ##javascript
+2015-08-21 09:15:40	-->	mary5030 (~mary5030@72.32.115.233) has joined ##javascript
+2015-08-21 09:15:41	-->	Torkable (~Torkable@63-157-123-234.dia.static.qwest.net) has joined ##javascript
+2015-08-21 09:15:47	<--	psy_ (~psy@43.224.156.125) has quit (Max SendQ exceeded)
+2015-08-21 09:15:59	<--	thirdkni_ (~thirdknif@101.50.118.175) has quit (Remote host closed the connection)
+2015-08-21 09:16:08	smoke_fumus	guys, i need some webgl help. http://psq-games-projects.tk/sf3d/ here, take a look. arrow keys rotate player right now around Yvertical and X axis respectively. at first it appears to be fine, untill you do 180 x/y and then start moving other axis- camera starts wobble around despite that i desperately trying to set it to mat4x4*XYZ*transition(0,15,55)*Rotation
+2015-08-21 09:16:26	--	m451^AFK is now known as m451
+2015-08-21 09:16:33	-->	MEGAGHZ (~meowww@181.95.125.22) has joined ##javascript
+2015-08-21 09:16:36	-->	psy_ (~psy@43.224.156.125) has joined ##javascript
+2015-08-21 09:17:41	-->	elGatoNegro (~elGatoNeg@rrcs-45-59-229-42.west.biz.rr.com) has joined ##javascript
+2015-08-21 09:18:13	<--	callback (~meri@125.233.86.79.rev.sfr.net) has quit (Quit: WeeChat 1.3)
+2015-08-21 09:18:37	kirua	im trying to implement ajax on my webpage, but i receive in http response the page i would like to display, what should i do?
+2015-08-21 09:18:41	yansanmo	tsousa it works if you select node.js
+2015-08-21 09:19:15	yansanmo	use it
+2015-08-21 09:19:35	yansanmo	kirua, use the response
+2015-08-21 09:20:02	<--	mewm (~textual@94.126.177.1) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 09:20:10	<--	infiniteNOP (~infiniteN@unaffiliated/infinitenop) has quit (Quit: Konversation terminated!)
+2015-08-21 09:20:23	kirua	its exactly what i would like to display, so i dont really want to start extracting data from it
+2015-08-21 09:20:27	-->	asteele (~Cronoh@ip72-223-68-69.ph.ph.cox.net) has joined ##javascript
+2015-08-21 09:20:46	-->	doctrv (~doctrv@104.233.77.16) has joined ##javascript
+2015-08-21 09:20:53	-->	atomiccc (~textual@75.144.20.113) has joined ##javascript
+2015-08-21 09:21:21	<--	nikhil__ (~nikhil@105-237-107-226.access.mtnbusiness.co.za) has quit (Quit: Leaving)
+2015-08-21 09:21:42	-->	nikhil_ (~nikhil@105-237-107-226.access.mtnbusiness.co.za) has joined ##javascript
+2015-08-21 09:21:53	<--	nikhil_ (~nikhil@105-237-107-226.access.mtnbusiness.co.za) has quit (Max SendQ exceeded)
+2015-08-21 09:21:54	<--	juampy (~juampy@14.Red-88-10-202.dynamicIP.rima-tde.net) has quit (Ping timeout: 260 seconds)
+2015-08-21 09:21:57	dash	kirua: instead of using XHR, redirect to it.
+2015-08-21 09:22:08	-->	LumpyGravy (~LumpyGrav@89.101.233.162) has joined ##javascript
+2015-08-21 09:22:26	-->	nirakara (~nikhil@105-237-107-226.access.mtnbusiness.co.za) has joined ##javascript
+2015-08-21 09:22:41	-->	graphettion (~graphetti@mailokc.c2ti.com) has joined ##javascript
+2015-08-21 09:23:06	<--	yosito (~yosito@cpe-174-100-171-30.neo.res.rr.com) has quit (Remote host closed the connection)
+2015-08-21 09:23:11	-->	nomic (~nomic@host81-157-165-14.range81-157.btcentralplus.com) has joined ##javascript
+2015-08-21 09:23:27	<--	elv (~elv@pool-100-37-225-122.nycmny.fios.verizon.net) has quit (Ping timeout: 256 seconds)
+2015-08-21 09:23:29	<--	ASTP001 (~ASTP001@50-78-139-78-static.hfc.comcastbusiness.net) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 09:23:31	kirua	with window.location.replace ?
+2015-08-21 09:24:19	-->	ranguli (~ranguli@mtprnf0117w-142177102191.dhcp-dynamic.FibreOp.nl.bellaliant.net) has joined ##javascript
+2015-08-21 09:24:42	-->	Mumpsimus (~Nostreim@ip68-98-91-115.ph.ph.cox.net) has joined ##javascript
+2015-08-21 09:24:59	-->	ansikt (a85ef510@gateway/web/freenode/ip.168.94.245.16) has joined ##javascript
+2015-08-21 09:25:00	<--	suspicious_ee (~laite@dsl-espbrasgw1-50dfbe-156.dhcp.inet.fi) has quit (Quit: WeeChat 1.2)
+2015-08-21 09:25:04	ansikt	Hi.
+2015-08-21 09:25:08	<--	nomic (~nomic@host81-157-165-14.range81-157.btcentralplus.com) has quit (Client Quit)
+2015-08-21 09:25:26	ansikt	What's the accepted practice for sharing Error types?
+2015-08-21 09:25:37	<--	RegulationD (~regulatio@71-14-10-66.static.stbr.ga.charter.com) has quit (Remote host closed the connection)
+2015-08-21 09:26:03	<--	war_pigs (~war_pigs@108-75-173-160.lightspeed.cicril.sbcglobal.net) has quit (Quit: later... computer is sleeping)
+2015-08-21 09:26:04	-->	FunnyLookinHat (~FunnyLook@ubuntu/member/funnylookinhat) has joined ##javascript
+2015-08-21 09:26:09	ansikt	Eg.  If in module 1, I'm throwing MyCoolException, and in module 2 I'm trying to catch MyCoolException, both modules will need access to the exception.
+2015-08-21 09:26:32	<--	nettoweb (~textual@177.16.147.109) has quit (Quit: My MacBook Pro has gone to sleep. ZZZzzz…)
+2015-08-21 09:26:56	-->	Rainb (~rainb@181.50.148.224) has joined ##javascript
+2015-08-21 09:27:03	ansikt	So, do I define MyCoolException as a module and include it in both?  Or do I store it as a property of module 1?  Or do I just have a generic error handler which looks at exception.name?
+2015-08-21 09:27:16	-->	beauby (~beauby@AMontsouris-652-1-196-211.w82-123.abo.wanadoo.fr) has joined ##javascript
+2015-08-21 09:27:44	<--	tuskkk___ (uid18470@gateway/web/irccloud.com/x-evtvkebarvempuzt) has quit (Quit: Connection closed for inactivity)
+2015-08-21 09:27:53	-->	momoterra (~momoterra@d75-157-146-228.bchsia.telus.net) has joined ##javascript
+2015-08-21 09:28:10	<--	interop_madness (~invalid@unaffiliated/interop-madness/x-8858653) has quit (Quit: Leaving)
+2015-08-21 09:28:19	-->	{0xc6} (~c6h@unaffiliated/c6h) has joined ##javascript
+2015-08-21 09:28:22	-->	juampy (~juampy@14.Red-88-10-202.dynamicIP.rima-tde.net) has joined ##javascript
+2015-08-21 09:29:00	<--	willv2 (~Thunderbi@88.96.238.246) has quit (Quit: willv2)
+2015-08-21 09:29:01	<--	sandstrom (~sandstrom@unaffiliated/sandstrom) has quit (Quit: My computer has gone to sleep.)
+2015-08-21 09:29:16	-->	traverseda_lapto (~traversed@216.191.98.58) has joined ##javascript
+2015-08-21 09:29:48	-->	javascript958 (5d1cef50@gateway/web/freenode/ip.93.28.239.80) has joined ##javascript
+2015-08-21 09:29:54	javascript958	hi, i need help :) https://jsfiddle.net/#&togetherjs=ffHwHn5NSy
+2015-08-21 09:30:05	-->	Betal (~Betal@unaffiliated/betal) has joined ##javascript
+2015-08-21 09:30:05	<--	jmather (~textual@astound-66-234-205-234.ca.astound.net) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 09:30:26	-->	jmather (~textual@astound-66-234-205-234.ca.astound.net) has joined ##javascript
+2015-08-21 09:30:54	<--	joshfarrant (~joshfarra@195.191.107.205) has quit (Remote host closed the connection)
+2015-08-21 09:31:29	<--	hackal (b00a28b2@gateway/web/freenode/ip.176.10.40.178) has quit (Quit: Page closed)
+2015-08-21 09:31:53	<--	howdoi (uid224@gateway/web/irccloud.com/x-znppimihheajwtwq) has quit (Quit: Connection closed for inactivity)
+2015-08-21 09:32:08	<--	cvvjf (~cvvjf@95.222.28.58) has quit (Quit: This computer has gone to sleep)
+2015-08-21 09:32:31	<--	momoterra (~momoterra@d75-157-146-228.bchsia.telus.net) has quit (Ping timeout: 256 seconds)
+2015-08-21 09:32:32	<--	asheinfeld (~asheinfel@static-108-30-103-46.nycmny.fios.verizon.net) has quit (Read error: Connection reset by peer)
+2015-08-21 09:32:37	<--	MarkyC (~MarkyC@75.98.201.106) has quit (Quit: This computer has gone to sleep)
+2015-08-21 09:32:38	<--	nicholas_c (~nicholas_@2a02:b90:7004:1:597c:80d7:953d:959b) has quit (Quit: Leaving)
+2015-08-21 09:32:54	<--	djam90 (~djam90_3@97e0486e.skybroadband.com) has quit (Ping timeout: 250 seconds)
+2015-08-21 09:33:05	<--	Wizek (~Wizek@catv-89-132-138-118.catv.broadband.hu) has quit (Ping timeout: 244 seconds)
+2015-08-21 09:33:51	-->	suspicious_eel (~laite@dsl-espbrasgw1-50dfbe-156.dhcp.inet.fi) has joined ##javascript
+2015-08-21 09:34:03	-->	FernandoBasso (~FernandoB@201.86.206.29.dynamic.adsl.gvt.net.br) has joined ##javascript
+2015-08-21 09:34:16	-->	renlo (~loren@67.207.106.11) has joined ##javascript
+2015-08-21 09:34:18	javascript958	https://jsfiddle.net/#&togetherjs=ffHwHn5NSy
+2015-08-21 09:34:24	<--	VictorCL (~VictorCL@80.31.229.32) has quit (Quit: My MacBook Pro has gone to sleep. ZZZzzz…)
+2015-08-21 09:34:27	<--	pandaant (~batman@149.201.240.93) has quit (Remote host closed the connection)
+2015-08-21 09:34:36	<--	robh71 (~robh71@68-116-223-3.dhcp.sprn.tx.charter.com) has quit (Ping timeout: 264 seconds)
+2015-08-21 09:34:37	<--	hadees (~hadees@rrcs-67-79-8-124.sw.biz.rr.com) has left ##javascript
+2015-08-21 09:34:57	iocube	anyone familiar with Polymer? i have a question about properties, do they have to be surrounded by an element? i.e <template>{{ name }}</template> will not be rendered, but, <template><b>{{ name }}</b></template> yes.
+2015-08-21 09:35:00	-->	NeverDie (~NeverDie@cpe-184-152-22-98.nyc.res.rr.com) has joined ##javascript
+2015-08-21 09:35:04	<--	ranguli (~ranguli@mtprnf0117w-142177102191.dhcp-dynamic.FibreOp.nl.bellaliant.net) has quit (Quit: Textual IRC Client: www.textualapp.com)
+2015-08-21 09:35:32	<--	baweaver (~baweaver@173.230.196.25) has quit (Remote host closed the connection)
+2015-08-21 09:35:54	<--	naniwa (~usrvimbin@213.58.220.122) has quit (Quit: Leaving)
+2015-08-21 09:36:10	<--	Tennis (~Tennis@unaffiliated/tennis) has quit (Quit: Leaving)
+2015-08-21 09:36:11	<--	tempname11 (~tempname1@79.165.104.134) has quit (Ping timeout: 244 seconds)
+2015-08-21 09:36:13	<--	topher23 (~christoph@19.sub-70-208-158.myvzw.com) has quit (Quit: topher23)
+2015-08-21 09:36:41	<--	Twirl (~Twirl@unaffiliated/twirl) has quit (Ping timeout: 244 seconds)
+2015-08-21 09:37:12	<--	LumpyGravy (~LumpyGrav@89.101.233.162) has quit (Ping timeout: 244 seconds)
+2015-08-21 09:38:04	<--	siba (~textual@60-242-28-48.static.tpgi.com.au) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 09:38:06	-->	davi_ (~davi@2001:4b98:dc0:51:216:3eff:feae:792) has joined ##javascript
+2015-08-21 09:38:30	--	davi_ is now known as Guest72060
+2015-08-21 09:38:40	<--	loktar (~loktar@ip98-161-48-154.om.om.cox.net) has quit (Ping timeout: 246 seconds)
+2015-08-21 09:38:43	-->	buxc (~buxc@180.211.253.67) has joined ##javascript
+2015-08-21 09:38:55	-->	stag (2e13663a@gateway/web/freenode/ip.46.19.102.58) has joined ##javascript
+2015-08-21 09:39:02	-->	ranguli (~ranguli@mtprnf0117w-142177102191.dhcp-dynamic.FibreOp.nl.bellaliant.net) has joined ##javascript
+2015-08-21 09:39:22	stag	Is it possible to catch an event of element being removed and prevent it ?
+2015-08-21 09:39:24	<--	phpnode (~charles@host86-169-94-237.range86-169.btcentralplus.com) has quit (Ping timeout: 250 seconds)
+2015-08-21 09:39:25	-->	asheinfeld (~asheinfel@static-108-30-103-46.nycmny.fios.verizon.net) has joined ##javascript
+2015-08-21 09:40:20	-->	PixelRabbit (~PixelRabb@h238n25-vb-a11.ias.bredband.telia.com) has joined ##javascript
+2015-08-21 09:40:56	-->	Kephael (~Kephael@unaffiliated/kephael) has joined ##javascript
+2015-08-21 09:41:21	-->	jacky (~jacky@unaffiliated/webjadmin) has joined ##javascript
+2015-08-21 09:41:24	-->	Zzaichik (~Adium@24-104-129.146.hfc.mediarain.com) has joined ##javascript
+2015-08-21 09:41:36	-->	Torkable_ (~Torkable@63-157-123-226.dia.static.qwest.net) has joined ##javascript
+2015-08-21 09:41:39	-->	krawchyk (~textual@static-108-45-111-234.washdc.fios.verizon.net) has joined ##javascript
+2015-08-21 09:41:40	-->	Ilyes512 (~Ilyes512@86.84.16.59) has joined ##javascript
+2015-08-21 09:41:42	-->	steeze (~steeze@wsip-70-184-158-90.ok.ok.cox.net) has joined ##javascript
+2015-08-21 09:41:43	<--	krawchyk (~textual@static-108-45-111-234.washdc.fios.verizon.net) has quit (Client Quit)
+2015-08-21 09:41:47	-->	dieguin (~dieguin@163.128.11.37.dynamic.jazztel.es) has joined ##javascript
+2015-08-21 09:42:09	<--	Torkable (~Torkable@63-157-123-234.dia.static.qwest.net) has quit (Ping timeout: 252 seconds)
+2015-08-21 09:42:10	-->	MarkyC (~MarkyC@75.98.201.106) has joined ##javascript
+2015-08-21 09:42:10	--	Torkable_ is now known as Torkable
+2015-08-21 09:42:26	<--	astrobun_ (~astrobunn@g1-27-253-251-7.bmobile.ne.jp) has quit (Read error: Connection reset by peer)
+2015-08-21 09:42:49	-->	astrobun_ (~astrobunn@w253080.ppp.asahi-net.or.jp) has joined ##javascript
+2015-08-21 09:42:56	-->	munichlinux (~munichlin@2001:4998:effd:7804::1116) has joined ##javascript
+2015-08-21 09:43:16	<--	zigzagzig (~zac@c-68-56-137-109.hsd1.mi.comcast.net) has quit (Remote host closed the connection)
+2015-08-21 09:43:18	<--	SubZeroFX (~SubZeroFX@unaffiliated/subzerofx) has quit (Quit: Leaving)
+2015-08-21 09:43:26	<--	jmather (~textual@astound-66-234-205-234.ca.astound.net) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 09:44:05	<--	kirua (~kiru@unaffiliated/kirua) has quit (Ping timeout: 240 seconds)
+2015-08-21 09:44:29	<--	ejb (~textual@unaffiliated/ejb) has quit (Quit: My MacBook Pro has gone to sleep. ZZZzzz…)
+2015-08-21 09:44:30	-->	SomeKittens (uid27802@gateway/web/irccloud.com/x-jovfocvmitkxugsk) has joined ##javascript
+2015-08-21 09:44:56	-->	b_rare (~b_rare@173-27-198-44.client.mchsi.com) has joined ##javascript
+2015-08-21 09:45:08	<--	fullstack (~fullstack@2604:a880:1:20::198:1) has quit (Changing host)
+2015-08-21 09:45:08	-->	fullstack (~fullstack@unaffiliated/fullstack) has joined ##javascript
+2015-08-21 09:45:31	<--	b_rare (~b_rare@173-27-198-44.client.mchsi.com) has quit (Max SendQ exceeded)
+2015-08-21 09:45:51	<--	abes (abes@198-84-226-233.cpe.teksavvy.com) has left ##javascript
+2015-08-21 09:46:09	-->	b_rare (~b_rare@173-27-198-44.client.mchsi.com) has joined ##javascript
+2015-08-21 09:46:30	<--	stag (2e13663a@gateway/web/freenode/ip.46.19.102.58) has quit (Quit: Page closed)
+2015-08-21 09:46:32	-->	HewwoThere (~HewloTher@180.200.159.150) has joined ##javascript
+2015-08-21 09:46:34	<--	HewwoThere (~HewloTher@180.200.159.150) has quit (Max SendQ exceeded)
+2015-08-21 09:46:44	<--	b_rare (~b_rare@173-27-198-44.client.mchsi.com) has quit (Max SendQ exceeded)
+2015-08-21 09:46:47	yansanmo	javascript958, again this problem?
+2015-08-21 09:46:54	<--	javascript958 (5d1cef50@gateway/web/freenode/ip.93.28.239.80) has quit (Ping timeout: 246 seconds)
+2015-08-21 09:46:58	yansanmo	javascript958, what was wrong with the previous solution?
+2015-08-21 09:47:02	-->	HewwoThere (~HewloTher@180.200.159.150) has joined ##javascript
+2015-08-21 09:47:04	<--	HewwoThere (~HewloTher@180.200.159.150) has quit (Max SendQ exceeded)
+2015-08-21 09:47:07	-->	b_rare (~b_rare@173-27-198-44.client.mchsi.com) has joined ##javascript
+2015-08-21 09:47:19	<--	vmonteco (~vmonteco@gre92-5-82-230-56-235.fbx.proxad.net) has quit (Remote host closed the connection)
+2015-08-21 09:47:32	-->	HewwoThere (~HewloTher@180.200.159.150) has joined ##javascript
+2015-08-21 09:47:34	<--	HewwoThere (~HewloTher@180.200.159.150) has quit (Max SendQ exceeded)
+2015-08-21 09:48:02	-->	HewwoThere (~HewloTher@180.200.159.150) has joined ##javascript
+2015-08-21 09:48:06	<--	HewwoThere (~HewloTher@180.200.159.150) has quit (Read error: Connection reset by peer)
+2015-08-21 09:48:33	-->	darlingbot (~ad@194.44.240.4) has joined ##javascript
+2015-08-21 09:48:43	-->	warfront1 (~warfront1@71.16.241.58) has joined ##javascript
+2015-08-21 09:48:55	yansanmo	like it's the same answer, except it use the jquery syntax to get the class name
+2015-08-21 09:49:19	<--	tarkus (~hello@109.230.140.12) has quit (Read error: Connection reset by peer)
+2015-08-21 09:49:37	-->	tarkus (~hello@109.230.140.12) has joined ##javascript
+2015-08-21 09:49:48	<--	emma_ (~em@unaffiliated/emma) has quit (Ping timeout: 272 seconds)
+2015-08-21 09:49:50	-->	bkuberek (~bkuberek@74.201.131.164) has joined ##javascript
+2015-08-21 09:49:54	-->	tables (~john@h-74-1-229-251.snva.ca.megapath.net) has joined ##javascript
+2015-08-21 09:49:59	<--	MEGAGHZ (~meowww@181.95.125.22) has quit (Remote host closed the connection)
+2015-08-21 09:50:03	-->	nodweber (~nodweber@94.100.229.188) has joined ##javascript
+2015-08-21 09:50:36	-->	learning_javascr (17f2c0f5@gateway/web/freenode/ip.23.242.192.245) has joined ##javascript
+2015-08-21 09:50:37	-->	ASOLr (~ASOLr@2601:18e:c000:e2b0:225:22ff:fedc:4d20) has joined ##javascript
+2015-08-21 09:50:39	-->	baweaver (~baweaver@173.230.196.25) has joined ##javascript
+2015-08-21 09:50:50	<--	orriols (~manel@unaffiliated/j-caselles/x-3604445) has quit (Ping timeout: 260 seconds)
+2015-08-21 09:51:03	-->	emma_ (~em@unaffiliated/emma) has joined ##javascript
+2015-08-21 09:51:18	<--	skullcrasher (~skullcras@p57A3BE39.dip0.t-ipconnect.de) has quit (Remote host closed the connection)
+2015-08-21 09:51:22	-->	MEGAGHZ (~meowww@181.95.125.22) has joined ##javascript
+2015-08-21 09:52:21	<--	baweaver (~baweaver@173.230.196.25) has quit (Remote host closed the connection)
+2015-08-21 09:52:33	-->	phpnode (~charles@host86-169-94-74.range86-169.btcentralplus.com) has joined ##javascript
+2015-08-21 09:52:55	<--	earational (~earationa@bl12-180-46.dsl.telepac.pt) has quit (Quit: leaving)
+2015-08-21 09:53:03	-->	loktar (~loktar@ip98-161-48-154.om.om.cox.net) has joined ##javascript
+2015-08-21 09:53:19	knod	stag's question was an interesting one
+2015-08-21 09:53:26	--	juampy is now known as juampy_backlater
+2015-08-21 09:53:43	<--	Handir (uid16790@gateway/web/irccloud.com/x-levfsoiiyghjtukk) has quit (Quit: Connection closed for inactivity)
+2015-08-21 09:53:44	<--	Smeef (~deathonat@cpe-69-203-208-219.nyc.res.rr.com) has quit (Ping timeout: 244 seconds)
+2015-08-21 09:54:08	<--	bongjovi (~bongjovi@host109-156-142-0.range109-156.btcentralplus.com) has quit (Quit: Textual IRC Client: www.textualapp.com)
+2015-08-21 09:54:10	learning_javascr	I'm trying to play around with the Google API in JS.  I get it to work, and I want to create a trip of 10 stops, each with a marker and each with a infowindow.  So I have 10 variables for new LatLng. Then 10 marker variables.  Then I have to set those 10 markers on the map.  Then 10 info window variables, then setting those 10 variables.  Am I doing this efficiently?  Seems like there would be a better way, or can I re
+2015-08-21 09:55:03	-->	wdbl (~wdbl@ool-45744c00.dyn.optonline.net) has joined ##javascript
+2015-08-21 09:55:07	<--	bkuberek (~bkuberek@74.201.131.164) has quit (Ping timeout: 265 seconds)
+2015-08-21 09:55:09	knod	learning_javascr: I don't know the answer to your question, but your text got cut off at 'better way, or can I re'
+2015-08-21 09:55:12	-->	nullbytes (18feb35f@gateway/web/freenode/ip.24.254.179.95) has joined ##javascript
+2015-08-21 09:55:24	-->	leptone (~Adium@2601:643:8201:c2ef:bcdd:daa1:7f66:fc88) has joined ##javascript
+2015-08-21 09:55:25	tcsc	do either Date.now or Performance.now require uh, `this`? like if I want to pass them around should I bind them to Date/Performance respectively?
+2015-08-21 09:55:32	<--	ansikt (a85ef510@gateway/web/freenode/ip.168.94.245.16) has quit (Quit: Page closed)
+2015-08-21 09:55:36	-->	baweaver (~baweaver@173.230.196.25) has joined ##javascript
+2015-08-21 09:55:44	tcsc	err, performance not Performance
+2015-08-21 09:55:44	<--	jmichaelward (~jmichaelw@23-25-150-153-static.hfc.comcastbusiness.net) has quit (Remote host closed the connection)
+2015-08-21 09:55:48	learning_javascr	knod: thanks.  There really wasnt anything after that besides... "is there a better way, like read from a CSV"
+2015-08-21 09:56:00	-->	jmichaelward (~jmichaelw@23-25-150-153-static.hfc.comcastbusiness.net) has joined ##javascript
+2015-08-21 09:56:06	-->	Twirl (~Twirl@unaffiliated/twirl) has joined ##javascript
+2015-08-21 09:56:33	progrock	hmm, is Pacifica a little too far to live to commute to Santa Clara?
+2015-08-21 09:56:57	progrock	Looks like a fucking beautiful place to live
+2015-08-21 09:57:01	knod	tcsc: I've used Date.now() without `this`, and I've assigned that value to a variable and passed it around, but I'm not sure what you mean about `this`. What would you be trying to achieve by using `this`?
+2015-08-21 09:57:08	nullbytes	I have a GridX virtual scrolling list. Each row contains a button. Why am I unable to press the buttons on the iPad?
+2015-08-21 09:57:09	-->	codestorm444 (~codestorm@VIXLET-CA-L.edge5.LosAngeles1.Level3.net) has joined ##javascript
+2015-08-21 09:57:17	-->	eyda|mon (~eydaimon@unaffiliated/anywho) has joined ##javascript
+2015-08-21 09:57:42	<--	sdwrage (~sdwrage@cpe-204-210-252-25.columbus.res.rr.com) has quit (Quit: Leaving)
+2015-08-21 09:57:50	<--	mary5030 (~mary5030@72.32.115.233) has quit (Ping timeout: 240 seconds)
+2015-08-21 09:57:52	<--	dapinitial (~dapinitia@98.99.251.68) has quit (Remote host closed the connection)
+2015-08-21 09:58:16	tcsc	knod: i just want to make sure if i do var now = (window.performance && window.performance.now) ? window.performance.now : Date.now it wont break
+2015-08-21 09:58:35	-->	joshbuddy (~josh@wikimedia/Joshbuddy) has joined ##javascript
+2015-08-21 09:58:41	tcsc	it doesnt appear to, fwiw
+2015-08-21 09:58:53	-->	nettoweb (~textual@177.96.154.32) has joined ##javascript
+2015-08-21 09:59:01	-->	dan|el (~eydaimon@70-59-128-154.ptld.qwest.net) has joined ##javascript
+2015-08-21 09:59:03	tcsc	but i might have to bind them for it to be guaranteed to work
+2015-08-21 09:59:11	knod	Ok
+2015-08-21 09:59:19	<--	eydaimon (~eydaimon@unaffiliated/anywho) has quit (Ping timeout: 246 seconds)
+2015-08-21 09:59:36	knod	Why?
+2015-08-21 09:59:40	tcsc	actually performance.now seems to require it
+2015-08-21 09:59:46	tcsc	binding, that is.
+2015-08-21 10:00:02	-->	thirdknife (~thirdknif@101.50.118.175) has joined ##javascript
+2015-08-21 10:00:06	<--	BBBThunda (~BBBThunda@69.46.227.226) has quit (Quit: Leaving)
+2015-08-21 10:00:30	-->	Jarwain (~Jarwain@unaffiliated/jarwain) has joined ##javascript
+2015-08-21 10:00:33	tcsc	what do you mean why?
+2015-08-21 10:00:43	knod	like, var perf = performance.now?
+2015-08-21 10:00:54	-->	nAeLuH (~chatzilla@nhm-gw.nhm.org) has joined ##javascript
+2015-08-21 10:00:59	knod	window.perf...
+2015-08-21 10:00:59	tcsc	yeah if i call that it says "now called on an object that does not implement Performance"
+2015-08-21 10:01:17	knod	Weird
+2015-08-21 10:01:30	<--	eyda|mon (~eydaimon@unaffiliated/anywho) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:01:31	knod	So you have to do this.performance.now?
+2015-08-21 10:01:39	tcsc	so i guess i have to do var now = window.performance ? window.performance.now.bind(window.performance) : Date.now
+2015-08-21 10:01:47	-->	meesir (~paul@hlfxns016cw-142166216032.dhcp-dynamic.FibreOP.ns.bellaliant.net) has joined ##javascript
+2015-08-21 10:01:51	<--	gladely (~gladely@c-71-202-27-17.hsd1.ca.comcast.net) has quit (Quit: Be back later ...)
+2015-08-21 10:02:01	tcsc	no, i just have to make sure it's called with the right `this` value.
+2015-08-21 10:02:05	tcsc	by binding.
+2015-08-21 10:02:12	<--	codestorm444 (~codestorm@VIXLET-CA-L.edge5.LosAngeles1.Level3.net) has quit (Ping timeout: 264 seconds)
+2015-08-21 10:02:16	-->	bkuberek (~bkuberek@74.201.131.164) has joined ##javascript
+2015-08-21 10:02:18	<--	learning_javascr (17f2c0f5@gateway/web/freenode/ip.23.242.192.245) has quit (Ping timeout: 246 seconds)
+2015-08-21 10:02:27	-->	FIFO[a][a] (~FIFOd@cpe-66-57-19-221.nc.res.rr.com) has joined ##javascript
+2015-08-21 10:02:49	-->	beefKitten (~Adium@216.55.25.70) has joined ##javascript
+2015-08-21 10:02:58	<--	andygmb (~andygmb@86.47.125.199) has quit (Quit: Leaving)
+2015-08-21 10:03:14	-->	dapinitial (~dapinitia@98.99.251.68) has joined ##javascript
+2015-08-21 10:04:10	-->	eydaimon (~eydaimon@unaffiliated/anywho) has joined ##javascript
+2015-08-21 10:04:37	-->	InTheCloudDan (~vapidworx@2601:44:c500:be7e:358c:6235:e87c:948f) has joined ##javascript
+2015-08-21 10:05:21	-->	tempname11 (~tempname1@79.165.104.134) has joined ##javascript
+2015-08-21 10:05:42	<--	astrobun_ (~astrobunn@w253080.ppp.asahi-net.or.jp) has quit (Remote host closed the connection)
+2015-08-21 10:05:45	<--	nodweber (~nodweber@94.100.229.188) has quit (Read error: Connection reset by peer)
+2015-08-21 10:06:31	<--	dan|el (~eydaimon@70-59-128-154.ptld.qwest.net) has quit (Ping timeout: 256 seconds)
+2015-08-21 10:06:52	--	m451 is now known as m451^AFK
+2015-08-21 10:09:05	<--	tables (~john@h-74-1-229-251.snva.ca.megapath.net) has quit (Remote host closed the connection)
+2015-08-21 10:09:23	-->	mary5030 (~mary5030@50.56.230.39) has joined ##javascript
+2015-08-21 10:09:33	<--	baweaver (~baweaver@173.230.196.25) has quit (Remote host closed the connection)
+2015-08-21 10:10:22	--	m451^AFK is now known as m451
+2015-08-21 10:10:30	<--	atomiccc (~textual@75.144.20.113) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 10:10:30	<--	mary5030 (~mary5030@50.56.230.39) has quit (Remote host closed the connection)
+2015-08-21 10:10:55	-->	eyda|mon (~eydaimon@unaffiliated/anywho) has joined ##javascript
+2015-08-21 10:11:15	<--	nettoweb (~textual@177.96.154.32) has quit (Ping timeout: 245 seconds)
+2015-08-21 10:11:19	<--	Xethron (~Xethron@unaffiliated/xethron) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:11:30	-->	mary5030 (~mary5030@72.32.115.233) has joined ##javascript
+2015-08-21 10:11:47	<--	mbrzuzy (~mbrzuzy@216-129-39-94.dedicated.allstream.net) has quit (Quit: My iMac has gone to sleep. ZZZzzz…)
+2015-08-21 10:12:21	<--	ughitsaaron (~ughitsaar@ool-4350dc5b.dyn.optonline.net) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 10:12:51	<--	FIFO[a][a] (~FIFOd@cpe-66-57-19-221.nc.res.rr.com) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:12:59	-->	dan|el (~eydaimon@70-59-148-66.ptld.qwest.net) has joined ##javascript
+2015-08-21 10:13:06	<--	asiankid (~jon@122.52.135.188) has quit
+2015-08-21 10:13:12	-->	_X_C_V_B_ (~asdfghj@dur-dhcp-1-240.dsl.airstreamcomm.net) has joined ##javascript
+2015-08-21 10:13:23	<--	eydaimon (~eydaimon@unaffiliated/anywho) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:13:50	<--	GenericAPI (~youtubeap@c-24-16-154-173.hsd1.wa.comcast.net) has quit (Remote host closed the connection)
+2015-08-21 10:14:02	-->	unclechu (~unclechu@188.162.185.6) has joined ##javascript
+2015-08-21 10:14:08	-->	zigzagzig (~zac@c-68-56-137-109.hsd1.mi.comcast.net) has joined ##javascript
+2015-08-21 10:15:27	<--	eyda|mon (~eydaimon@unaffiliated/anywho) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:15:37	<--	thirdknife (~thirdknif@101.50.118.175) has quit (Remote host closed the connection)
+2015-08-21 10:16:33	-->	GenericAPI (~youtubeap@c-24-16-154-173.hsd1.wa.comcast.net) has joined ##javascript
+2015-08-21 10:16:38	wdbl	With promises - how do you chain a set of functions so that the success callback is the next function?
+2015-08-21 10:16:56	Torkable	.then
+2015-08-21 10:16:59	jacky	^
+2015-08-21 10:17:10	-->	nodweber (~nodweber@94.100.229.188) has joined ##javascript
+2015-08-21 10:17:38	wdbl	I'm using .then, but I ended up with so much more code than I would have just using Node-style errbacks
+2015-08-21 10:17:53	wdbl	I have to write double the callbacks basically, to do what I want
+2015-08-21 10:18:02	Torkable	eh?
+2015-08-21 10:18:17	-->	yosito (~yosito@cpe-174-100-171-30.neo.res.rr.com) has joined ##javascript
+2015-08-21 10:18:38	wdbl	Just a comment to say that I must be doing something wrong!
+2015-08-21 10:18:38	-->	orriols (~manel@176-35-19-39.ssebb.co.uk) has joined ##javascript
+2015-08-21 10:18:45	<--	orriols (~manel@176-35-19-39.ssebb.co.uk) has quit (Changing host)
+2015-08-21 10:18:45	-->	orriols (~manel@unaffiliated/j-caselles/x-3604445) has joined ##javascript
+2015-08-21 10:18:47	yansanmo	better to triple them
+2015-08-21 10:18:57	-->	nucleartide (~jason@cpe-68-175-46-167.nyc.res.rr.com) has joined ##javascript
+2015-08-21 10:19:02	Torkable	wdbl: paste a snippet
+2015-08-21 10:19:10	-->	atomiccc (~textual@75.144.20.113) has joined ##javascript
+2015-08-21 10:19:27	-->	thirdknife (~thirdknif@101.50.118.175) has joined ##javascript
+2015-08-21 10:19:28	<--	ConspiratorX (~textual@76.22.237.143) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 10:19:30	-->	nb_bez___ (uid24701@gateway/web/irccloud.com/x-filkpdhdrwzxyrnl) has joined ##javascript
+2015-08-21 10:19:31	wdbl	Theoretically - if I have to do logic on the success/failure after each promise, then I *will* end up with double the callbacks right?
+2015-08-21 10:19:48	wdbl	In other words - if I can't share the same error fn for each failure scenario
+2015-08-21 10:19:50	<--	Draecos (~Draecos@58-7-167-241.dyn.iinet.net.au) has quit (Quit: This computer has gone to sleep)
+2015-08-21 10:20:02	yansanmo	why not?
+2015-08-21 10:20:07	wdbl	I will paste a snippet, gonna take a few minutes
+2015-08-21 10:20:52	yansanmo	a then/catch require a function as first argument, you can define the function anywhere you like, and reuse function
+2015-08-21 10:21:08	<--	dieguin (~dieguin@163.128.11.37.dynamic.jazztel.es) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:21:55	-->	buxc_ (~buxc@180.211.253.21) has joined ##javascript
+2015-08-21 10:22:05	<--	in2rd (~in2rd@pool-71-179-55-4.bltmmd.fios.verizon.net) has quit (Ping timeout: 260 seconds)
+2015-08-21 10:22:07	-->	dieguin (~dieguin@163.128.11.37.dynamic.jazztel.es) has joined ##javascript
+2015-08-21 10:22:10	-->	ASTP001 (~ASTP001@50-78-139-78-static.hfc.comcastbusiness.net) has joined ##javascript
+2015-08-21 10:22:17	wdbl	The only failure-path function that I feel like I can reuse looks like this: function rejectError(error) { q.reject(error); }
+2015-08-21 10:22:38	wdbl	Every other failure-path function has custom logic for the step that just ran
+2015-08-21 10:22:41	-->	nguzman_ (~nbguzman@142.204.133.10) has joined ##javascript
+2015-08-21 10:22:53	Torkable	why
+2015-08-21 10:22:56	-->	baweaver (~baweaver@173.230.196.25) has joined ##javascript
+2015-08-21 10:23:06	-->	sim642 (~sim642@205-29-190-90.dyn.estpak.ee) has joined ##javascript
+2015-08-21 10:23:10	wdbl	I don't know - I'm broken
+2015-08-21 10:23:17	wdbl	ok, I'll go try harder and come back later
+2015-08-21 10:23:17	<--	Melamo (~textual@162-199-37-114.lightspeed.milwwi.sbcglobal.net) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 10:23:17	-->	northfurr (~manhari@unaffiliated/northfurr) has joined ##javascript
+2015-08-21 10:23:22	-->	Musok (~Sendoushi@114.248.108.93.rev.vodafone.pt) has joined ##javascript
+2015-08-21 10:23:26	wdbl	with some code - thanks for your help
+2015-08-21 10:23:48	sim642	I just got fucked by JS, again... Anyone wanna guess what "a::b".split(":", 2) returns?
+2015-08-21 10:24:02	<--	pwnawannab[NE] (~pwnawanna@c-73-227-117-239.hsd1.nh.comcast.net) has quit (Ping timeout: 246 seconds)
+2015-08-21 10:24:05	<--	buxc (~buxc@180.211.253.67) has quit (Ping timeout: 256 seconds)
+2015-08-21 10:24:23	<--	Guest72060 (~davi@2001:4b98:dc0:51:216:3eff:feae:792) has quit (Ping timeout: 246 seconds)
+2015-08-21 10:24:29	-->	iiulian (~iiulian@188.24.75.116) has joined ##javascript
+2015-08-21 10:24:39	ljharb	sim642: obviously without the 2 it'd be an array of length 3
+2015-08-21 10:24:39	yansanmo	["a",""]
+2015-08-21 10:24:42	ljharb	and the 2 cuts out the last one
+2015-08-21 10:24:43	-->	eric_lagergren (~barsonme@c-73-19-102-71.hsd1.wa.comcast.net) has joined ##javascript
+2015-08-21 10:24:43	sim642	['a',''], not ['a',':b'] like every other language's split with limit, I've seen and used
+2015-08-21 10:24:46	ljharb	what else would it be
+2015-08-21 10:24:53	--	iiulian is now known as Guest36750
+2015-08-21 10:24:54	-->	dna113p (~dj@151.sub-70-209-197.myvzw.com) has joined ##javascript
+2015-08-21 10:24:57	ljharb	sim642: that's your expectations fucking you over, not JS.
+2015-08-21 10:25:07	sim642	no, look at any other language, library
+2015-08-21 10:25:09	ljharb	literally every time you enter X language with expectations from Y language you're wrong
+2015-08-21 10:25:12	<--	juampy_backlater (~juampy@14.Red-88-10-202.dynamicIP.rima-tde.net) has quit (Quit: Leaving)
+2015-08-21 10:25:15	ljharb	other languages are irrelevant
+2015-08-21 10:25:16	Torkable	^^^
+2015-08-21 10:25:16	<--	munichlinux (~munichlin@2001:4998:effd:7804::1116) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:25:17	sim642	I just wonder what is the logical reason for this behavior
+2015-08-21 10:25:18	ljharb	learn *javascript*
+2015-08-21 10:25:18	-->	fekz (~makoto@unaffiliated/fekz) has joined ##javascript
+2015-08-21 10:25:21	-->	mbrzuzy (~mbrzuzy@216-129-39-94.dedicated.allstream.net) has joined ##javascript
+2015-08-21 10:25:21	sim642	because I can truncate myself
+2015-08-21 10:25:23	<--	asheinfeld (~asheinfel@static-108-30-103-46.nycmny.fios.verizon.net) has quit (Read error: Connection reset by peer)
+2015-08-21 10:25:24	ljharb	what is the logical reason for the other behavior
+2015-08-21 10:25:27	sim642	but I can't get the other behavior myself
+2015-08-21 10:25:36	sim642	limiting the number of splits
+2015-08-21 10:25:47	<--	xinming (~xinming@125.86.86.68) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:25:47	sim642	not the number of returned elements, which is trivial to slice
+2015-08-21 10:25:48	<--	northfurr (~manhari@unaffiliated/northfurr) has quit (Client Quit)
+2015-08-21 10:26:11	-->	northfurr (~manhari@unaffiliated/northfurr) has joined ##javascript
+2015-08-21 10:26:19	ljharb	>> "a::b".split(/:+/, 2) @ sim642
+2015-08-21 10:26:19	ecmabot	sim642: (object) ['a', 'b']
+2015-08-21 10:26:24	ljharb	sure you can. just use a regex instead of a string.
+2015-08-21 10:26:33	-->	nettoweb (~textual@177.96.154.32) has joined ##javascript
+2015-08-21 10:26:35	yansanmo	it's missing the :
+2015-08-21 10:26:39	Torkable	lol
+2015-08-21 10:26:48	ljharb	ah, that's what they want
+2015-08-21 10:26:50	<--	zap0 (~moofy@123-243-103-30.static.tpgi.com.au) has quit (Quit: zap0)
+2015-08-21 10:26:50	sim642	and doesn't generalize again
+2015-08-21 10:26:54	ljharb	wait that's weird, why do you want that
+2015-08-21 10:26:59	-->	TikityTik (~TikityTik@162.223.44.49) has joined ##javascript
+2015-08-21 10:27:00	ljharb	splitting is done on a delimiter
+2015-08-21 10:27:03	<--	intothev01d (~intothev0@unaffiliated/intothev01d) has quit
+2015-08-21 10:27:04	ljharb	by definition you don't want the delimiter
+2015-08-21 10:27:12	sim642	but if I limit the splitting
+2015-08-21 10:27:12	<--	mbrzuzy (~mbrzuzy@216-129-39-94.dedicated.allstream.net) has quit (Client Quit)
+2015-08-21 10:27:14	ljharb	i think you want a regex and "match"
+2015-08-21 10:27:19	sim642	why would I want it to split everything and then discard it again
+2015-08-21 10:27:23	ljharb	limiting the splitting is just split + slice
+2015-08-21 10:27:30	wdbl	if the option is called `limit` in other languages, that's a bad name IMO. Limiting the number of results actually makes sense. The option you want is removing empty entries.
+2015-08-21 10:27:37	ljharb	it doesn't split everything, it just stops iterating the string to produce splits
+2015-08-21 10:27:49	-->	xinming (~xinming@222.180.235.147) has joined ##javascript
+2015-08-21 10:27:51	<--	Musok (~Sendoushi@114.248.108.93.rev.vodafone.pt) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:27:52	-->	diamonds (~Slim@unaffiliated/diamonds) has joined ##javascript
+2015-08-21 10:28:00	sim642	if it stopped, the last element would be the rest
+2015-08-21 10:28:31	-->	Smeef (~deathonat@cpe-69-203-208-219.nyc.res.rr.com) has joined ##javascript
+2015-08-21 10:28:34	-->	momoterra (~momoterra@d75-157-146-228.bchsia.telus.net) has joined ##javascript
+2015-08-21 10:28:36	<--	anix (~anix@p5DDA38EE.dip0.t-ipconnect.de) has quit (Quit: This computer has gone to sleep)
+2015-08-21 10:28:43	<--	Ethylene (~Ethylene@unaffiliated/ethylene) has quit (Remote host closed the connection)
+2015-08-21 10:28:43	<--	Mateon1 (~Mateon1@unaffiliated/mateon1) has quit (Ping timeout: 252 seconds)
+2015-08-21 10:28:45	yansanmo	the last element is "b"
+2015-08-21 10:28:54	ljharb	>> var str = 'a::b', loc = str.indexOf(':'); [str.slice(0, loc), str.slice(loc + 1)] @ sim642
+2015-08-21 10:28:55	ecmabot	sim642: (object) ['a', ':b']
+2015-08-21 10:29:08	ljharb	you say you want this generalized but this isn't a general use case.
+2015-08-21 10:29:18	ljharb	i've never once seen this pop up. what do your strings represent, in reality?
+2015-08-21 10:29:45	<--	ASTP001 (~ASTP001@50-78-139-78-static.hfc.comcastbusiness.net) has quit (Quit: Textual IRC Client: www.textualapp.com)
+2015-08-21 10:30:12	-->	nerd (~e^0@unaffiliated/e0/x-7387528) has joined ##javascript
+2015-08-21 10:30:13	sim642	splitting an IRC line by :
+2015-08-21 10:30:17	-->	arpadszasz (~arpad.sza@2a02:2f05:11:6600:d1af:25b4:3c54:2d90) has joined ##javascript
+2015-08-21 10:30:19	sim642	if the message part contains :s too
+2015-08-21 10:30:27	sim642	for example
+2015-08-21 10:31:02	sim642	I think I've even seen nodejs irc libraries use that limit argument for it...
+2015-08-21 10:31:45	sim642	my point is that if I wanted it truncated like it is right now, it could be achieved using the other behavior without limit and slice
+2015-08-21 10:31:53	sim642	but eh, this is JS
+2015-08-21 10:32:17	<--	R-Ratones (~vivaperon@mx.snoop.com.ar) has quit (Quit: Viva Perón!)
+2015-08-21 10:32:24	<--	nodweber (~nodweber@94.100.229.188) has quit
+2015-08-21 10:32:26	-->	asheinfeld (~asheinfel@static-108-30-103-46.nycmny.fios.verizon.net) has joined ##javascript
+2015-08-21 10:32:30	<--	Rainb (~rainb@181.50.148.224) has quit (Ping timeout: 245 seconds)
+2015-08-21 10:32:34	-->	eydaimon (~eydaimon@unaffiliated/anywho) has joined ##javascript
+2015-08-21 10:32:47	<--	jeadre (~jeadre@li1421-113.members.linode.com) has quit (Remote host closed the connection)
+2015-08-21 10:32:50	Pookz	So you guys really think having a build step for Javascript is a fad?
+2015-08-21 10:32:58	yansanmo	limit
+2015-08-21 10:32:58	yansanmo	    Optional. Integer specifying a limit on the number of splits to be found. The split() method still splits on every match of separator, but it truncates the returned array to at most limit elements.
+2015-08-21 10:33:00	<--	momoterra (~momoterra@d75-157-146-228.bchsia.telus.net) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:33:07	<--	xinming (~xinming@222.180.235.147) has quit (Ping timeout: 252 seconds)
+2015-08-21 10:33:14	sim642	yansanmo, yes I can read, that's why I wondered
+2015-08-21 10:33:18	<--	L8D (~L8D@cpe-70-123-155-208.austin.res.rr.com) has quit (Ping timeout: 260 seconds)
+2015-08-21 10:33:34	<--	diamonds (~Slim@unaffiliated/diamonds) has quit (Read error: Connection reset by peer)
+2015-08-21 10:33:37	ljharb	Pookz: not just guys here, but no. use browserify and npm
+2015-08-21 10:33:43	ljharb	Pookz: you'll always want some kind of build step.
+2015-08-21 10:33:46	<--	JDHawke (~JDHawke@cpe-67-249-1-91.twcny.res.rr.com) has quit (Quit: Nettalk6 - www.ntalk.de)
+2015-08-21 10:33:53	<--	Grimor (uid26616@gateway/web/irccloud.com/x-ocxpftxluwhaeidq) has quit (Quit: Connection closed for inactivity)
+2015-08-21 10:34:06	-->	xinming (~xinming@219.152.162.244) has joined ##javascript
+2015-08-21 10:34:19	<--	darlingbot (~ad@194.44.240.4) has quit (Quit: Leaving)
+2015-08-21 10:34:41	-->	jeadre (~jeadre@li1421-113.members.linode.com) has joined ##javascript
+2015-08-21 10:34:46	<--	hextileX (~Thunderbi@xdsl-87-79-252-205.netcologne.de) has quit (Quit: hextileX)
+2015-08-21 10:34:48	-->	simion314_ (~quassel@92.83.124.152) has joined ##javascript
+2015-08-21 10:34:58	yansanmo	it makes you a true builder!
+2015-08-21 10:35:05	<--	dan|el (~eydaimon@70-59-148-66.ptld.qwest.net) has quit (Ping timeout: 244 seconds)
+2015-08-21 10:35:13	Pookz	damn, we've been using yeoman/grunt on a few projects
+2015-08-21 10:35:21	<--	simion314 (~quassel@92.83.124.152) has quit (Read error: Connection reset by peer)
+2015-08-21 10:35:41	ljharb	ugh, no need for all that.
+2015-08-21 10:35:41	-->	in2rd (~in2rd@pool-71-179-55-4.bltmmd.fios.verizon.net) has joined ##javascript
+2015-08-21 10:35:50	wdbl	I posted my Really Bad Promises Code (tm) http://pastebin.com/zp7y4wS3 Look at the listDocumentFiles function if you care. I tried to *not* use anonymous functions so I could share them.
+2015-08-21 10:35:50	ljharb	Pookz: just use npm run-scripts, and browserify. the rest is unnecessarily complex.
+2015-08-21 10:35:52	-->	abijeet (~abijeet@124.123.26.52) has joined ##javascript
+2015-08-21 10:35:56	<--	orriols (~manel@unaffiliated/j-caselles/x-3604445) has quit (Ping timeout: 246 seconds)
+2015-08-21 10:36:05	Pookz	I'll look into it
+2015-08-21 10:36:10	-->	xxneolithicxx (~xxneolith@c-71-235-111-216.hsd1.ct.comcast.net) has joined ##javascript
+2015-08-21 10:36:24	<--	xxneolithicxx (~xxneolith@c-71-235-111-216.hsd1.ct.comcast.net) has quit (Max SendQ exceeded)
+2015-08-21 10:37:04	-->	goldbrush (~newww@2.68.40.227.mobile.tre.se) has joined ##javascript
+2015-08-21 10:37:14	-->	RegulationD (~regulatio@71-14-10-66.static.stbr.ga.charter.com) has joined ##javascript
+2015-08-21 10:37:15	<--	f11f12 (~f11f12@p509157FA.dip0.t-ipconnect.de) has quit (Read error: Connection reset by peer)
+2015-08-21 10:37:18	<--	bradjones (~bradley@unaffiliated/jab) has quit (Ping timeout: 272 seconds)
+2015-08-21 10:43:41	--	irc: disconnected from server
+2015-08-21 10:44:09	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 10:44:09	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 10:44:09	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 10:44:09	--	Channel ##javascript: 1307 nicks (0 ops, 0 voices, 1307 normals)
+2015-08-21 10:44:13	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 10:44:26	ImQ009	Well, you can peel a banana in 4 different ways
+2015-08-21 10:44:32	<--	Kallis (~Kallis@cpc15-slam6-2-0-cust171.2-4.cable.virginm.net) has quit (Max SendQ exceeded)
+2015-08-21 11:52:52	--	irc: disconnected from server
+2015-08-21 11:53:18	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 11:53:18	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 11:53:18	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 11:53:18	--	Channel ##javascript: 1324 nicks (0 ops, 0 voices, 1324 normals)
+2015-08-21 11:53:18	Torkable	wow that's awesome
+2015-08-21 11:53:21	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 11:59:30	mmmveggies	dont forget to manually breathe and blink and try to comfortably rest your tongue in your mouth
+2015-08-21 11:59:30	-->	{0xc6} (~c6h@unaffiliated/c6h) has joined ##javascript
+2015-08-21 11:59:30	-->	citizen-stig (~citizen-s@89.221.207.219) has joined ##javascript
+2015-08-21 11:59:30	<--	NeverDie (~NeverDie@cpe-184-152-22-98.nyc.res.rr.com) has quit (Quit: I'm off to sleep. ZZZzzz…)
+2015-08-21 11:59:30	-->	baweaver (~baweaver@173.230.196.25) has joined ##javascript
+2015-08-21 11:59:30	-->	junqed (~junqed@178.70.54.237) has joined ##javascript
+2015-08-21 11:59:30	samssh	mmmveggies, thanks...
+2015-08-21 11:59:30	-->	sergey (~sergey@91.243.214.23) has joined ##javascript
+2015-08-21 11:59:30	fooey	https://www.reddit.com/r/ShittyLifeProTips
+2015-08-21 11:59:30	fooey	shoulda figured that was actually a thing
+2015-08-21 11:59:30	 *	samssh squirts ketchup on mmmveggies 
+2015-08-21 11:59:31	<--	stamina (~stamina@177-211-128-083.dynamic.caiway.nl) has quit (Quit: WeeChat 1.2)
+2015-08-21 11:59:31	-->	noethics (~noethics@172.98.67.93) has joined ##javascript
+2015-08-21 11:59:31	<--	diegoaguilar (~diegoagui@177.241.230.142) has quit (Remote host closed the connection)
+2015-08-21 11:59:31	<--	MaxSan_ (~one@213.152.161.165) has quit (Ping timeout: 240 seconds)
+2015-08-21 11:59:31	-->	aaronmoodie (~aaronmood@64.124.192.210) has joined ##javascript
+2015-08-21 11:59:31	<--	sboudri__ (~sboudrias@2601:645:8100:c38d:90c:fff1:c51:b7aa) has quit
+2015-08-21 11:59:31	steeze	tcsc, would i use yield to help calculate the lucas sequence in O(n)?
+2015-08-21 11:59:31	-->	tonebender (~tonebende@rrcs-24-39-135-42.nyc.biz.rr.com) has joined ##javascript
+2015-08-21 11:59:31	<--	maikowblue (~none@187.21.38.43) has quit (Ping timeout: 260 seconds)
+2015-08-21 11:59:31	<--	jost_ (~jost@p579C6027.dip0.t-ipconnect.de) has quit (Remote host closed the connection)
+2015-08-21 11:59:33	Torkable	why not just cache your results
+2015-08-21 11:59:35	<--	Pietilson (~Pietilson@97-87-8-154.dhcp.mdsn.wi.charter.com) has quit (Ping timeout: 246 seconds)
+2015-08-21 11:59:41	<--	VictorCL (~VictorCL@67.pool85-50-174.dynamic.orange.es) has quit (Quit: My MacBook Pro has gone to sleep. ZZZzzz…)
+2015-08-21 11:59:44	fooey	should make a /r/shittyjs to share all the nightmares we have to decipher
+2015-08-21 11:59:49	Torkable	its like the easiest fix ever
+2015-08-21 12:00:08	-->	VictorCL (~VictorCL@67.pool85-50-174.dynamic.orange.es) has joined ##javascript
+2015-08-21 12:00:14	-->	maikowblue (~none@187.21.38.43) has joined ##javascript
+2015-08-21 12:00:17	-->	topher23 (~christoph@c-71-62-158-132.hsd1.va.comcast.net) has joined ##javascript
+2015-08-21 12:00:34	<--	baweaver (~baweaver@173.230.196.25) has quit (Ping timeout: 260 seconds)
+2015-08-21 12:02:50	steeze	Torkable, are you responding to me?
+2015-08-21 12:02:50	Torkable	yes
+2015-08-21 12:02:50	steeze	how would i cache the results?
+2015-08-21 12:02:50	<--	TheoMurpse (~TheoMurps@cpe-72-191-48-158.satx.res.rr.com) has quit (Quit: Leaving)
+2015-08-21 12:02:50	Torkable	http://www.sitepoint.com/implementing-memoization-in-javascript/
+2015-08-21 12:02:50	-->	therue2 (~therue4@61-217-196-32.dynamic.hinet.net) has joined ##javascript
+2015-08-21 12:03:09	steeze	ahh thanks. i didnt know what to search for. didnt realize that's what memoization was
+2015-08-21 12:03:48	<--	s3shs (~s3shs@orfwout.lpl.arizona.edu) has quit (Quit: Computer has gone to sleep.)
+2015-08-21 12:04:07	Torkable	yup
+2015-08-21 12:04:14	<--	SubZeroFX (~SubZeroFX@unaffiliated/subzerofx) has quit (Quit: Leaving)
+2015-08-21 12:04:25	Torkable	that's not to say that lazy evaluation using generator functions won't work either
+2015-08-21 12:04:45	Torkable	but caching is sorta the "classic" fix for this kind of thing
+2015-08-21 12:04:49	steeze	cool
+2015-08-21 12:05:10	steeze	yeah generators still kind of hurt my brain so ill put that on the backburner till i better understand the other design patterns
+2015-08-21 12:05:48	Torkable	im not familiar with that tutorial
+2015-08-21 12:05:58	<--	therue (~therue4@61-217-196-79.dynamic.hinet.net) has quit (Ping timeout: 272 seconds)
+2015-08-21 12:06:03	Torkable	so if it sucks, find a different memoization tutorial
+2015-08-21 12:06:19	steeze	well just realizing it was memoization helped me because i saw fibonacci examples using it
+2015-08-21 12:06:31	steeze	i can probably decipher that and apply it to my problem
+2015-08-21 12:06:40	Torkable	lucas numbers are very similar to fib
+2015-08-21 12:06:45	steeze	and sitepoint is usually pretty good
+2015-08-21 12:06:46	Torkable	should be applicable
+2015-08-21 12:06:54	steeze	sweet thanks for the nudge in the right direction
+2015-08-21 12:06:58	Torkable	np
+2015-08-21 12:07:03	<--	dapinitial (~dapinitia@98.99.251.68) has quit (Remote host closed the connection)
+2015-08-21 12:07:09	-->	dickdaley (~dickdaley@198.233.131.186) has joined ##javascript
+2015-08-21 12:07:26	-->	vacho (a8a1c00f@gateway/web/freenode/ip.168.161.192.15) has joined ##javascript
+2015-08-21 12:07:35	-->	Ilyes512 (~Ilyes512@86.84.16.59) has joined ##javascript
+2015-08-21 12:07:51	vacho	trying to call a JS function inline.. but not working? <a href="#" onclick="checkDelete(39)">Click Me</a>
+2015-08-21 12:08:06	-->	enet (~enet@broadband-178-140-82-100.nationalcablenetworks.ru) has joined ##javascript
+2015-08-21 12:08:31	Torkable	!inline
+2015-08-21 12:08:31	vacho	ReferenceError: checkDelete is not defined
+2015-08-21 12:08:31	ecmabot	Torkable: Using inline event handlers is bad practice and results in poorly factored, hard-to-manage code. Consider attaching your events with Javascript, instead, eg: https://developer.mozilla.org/en/DOM/element.addEventListener
+2015-08-21 12:08:48	-->	InFlames (~adam@pool-71-160-192-12.lsanca.dsl-w.verizon.net) has joined ##javascript
+2015-08-21 12:08:50	<--	dieguin (~dieguin@163.128.11.37.dynamic.jazztel.es) has quit (Ping timeout: 240 seconds)
+2015-08-21 12:09:39	<--	asheinfeld (~asheinfel@static-108-30-103-46.nycmny.fios.verizon.net) has quit (Read error: Connection reset by peer)
+2015-08-21 12:09:50	Torkable	wait, is it supposed to be in quotes?
+2015-08-21 12:10:33	-->	Carolin (~Carolin@2a02:8071:b182:df01:db8:d896:d278:da5d) has joined ##javascript
+2015-08-21 12:11:12	steeze	Torkable, so does this memoization work via closures? is that how it caches the outputs?
+2015-08-21 12:11:19	-->	socialblogsite (~socialblo@c-98-242-139-128.hsd1.fl.comcast.net) has joined ##javascript
+2015-08-21 12:11:27	<--	zigzagzig (~zac@c-68-56-137-109.hsd1.mi.comcast.net) has quit (Remote host closed the connection)
+2015-08-21 12:11:30	Torkable	mmm? you're just saving results in an object
+2015-08-21 12:11:38	Torkable	instead of recalculating them
+2015-08-21 12:11:38	<--	astrobun_ (~astrobunn@121.1.253.80) has quit (Remote host closed the connection)
+2015-08-21 12:11:49	steeze	oh
+2015-08-21 12:11:59	Torkable	each value in fib is the result of other values
+2015-08-21 12:12:00	<--	jhoffmcd (~jhoffmcd@static-108-13-189-204.lsanca.fios.verizon.net) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 12:12:05	Torkable	right?
+2015-08-21 12:12:06	-->	Musok (~Sendoushi@93.108.248.114) has joined ##javascript
+2015-08-21 12:12:31	steeze	oh so you cache the previou sresults instead of calculating them each time
+2015-08-21 12:12:35	Torkable	so to get a value you have to get the ones before it, so for every value you have to calculate every value before it
+2015-08-21 12:12:49	-->	astrobun_ (~astrobunn@w253080.ppp.asahi-net.or.jp) has joined ##javascript
+2015-08-21 12:13:00	Torkable	but if you save them, you can just look and see what the last total was
+2015-08-21 12:13:00	-->	atomicb0mb (~textual@189.62.117.61) has joined ##javascript
+2015-08-21 12:13:06	steeze	got it
+2015-08-21 12:13:08	<--	thirdknife (~thirdknif@101.50.118.175) has quit (Remote host closed the connection)
+2015-08-21 12:13:13	Torkable	instead of recalculating every single value every time
+2015-08-21 12:13:21	<--	ASTP001 (~ASTP001@50-78-139-78-static.hfc.comcastbusiness.net) has quit (Quit: My Mac has gone to sleep. ZZZzzz…)
+2015-08-21 12:13:26	Torkable	not sure if I explained that well
+2015-08-21 12:13:45	<--	topher23 (~christoph@c-71-62-158-132.hsd1.va.comcast.net) has quit (Read error: Connection reset by peer)
+2015-08-21 12:14:05	steeze	no i got it
+2015-08-21 12:14:11	Torkable	ok good lol
+2015-08-21 12:14:34	steeze	i see how it works, i just go tripped up thinking there was a closure that allowed you to save the previous state in memory
+2015-08-21 12:14:48	steeze	but it's more simple than that. it's just in an object?
+2015-08-21 12:14:52	Torkable	yup
+2015-08-21 12:14:58	steeze	cool
+2015-08-21 12:15:03	-->	kimi`` (~xoxo@2a02:810d:1880:c68:f089:a5cf:55a5:166e) has joined ##javascript
+2015-08-21 12:15:11	Torkable	so you can look up n-1 and n-2 and add them
+2015-08-21 12:15:26	Torkable	instead of calculating the whole damn thing again and then adding them
+2015-08-21 12:16:14	<--	Sendoushi (~Sendoushi@bl18-225-17.dsl.telepac.pt) has quit (Remote host closed the connection)
+2015-08-21 12:16:19	Torkable	you can use an array or an object
+2015-08-21 12:16:27	Torkable	same idea either way
+2015-08-21 12:16:36	<--	jarlopez (~jmickos@216-15-126-121.c3-0.sbo-ubr1.sbo.ma.cable.rcn.com) has quit (Quit: leaving)
+2015-08-21 12:16:40	wdbl	anyone using babel/regenerator to do async/await in angular? How's it working out for you?
+2015-08-21 12:16:44	<--	Musok (~Sendoushi@93.108.248.114) has quit (Ping timeout: 272 seconds)
+2015-08-21 12:16:50	Torkable	I think I used an array, but that was years ago and using c++
+2015-08-21 12:17:01	Torkable	I would just follow that tutorial
+2015-08-21 12:17:43	<--	leptone (~Adium@2601:643:8201:c2ef:bcdd:daa1:7f66:fc88) has quit (Quit: Leaving.)
+2015-08-21 12:17:46	<--	akkufomk (~KHamilton@12.183.174.162) has quit (Ping timeout: 240 seconds)
+2015-08-21 12:18:31	-->	asheinfeld (~asheinfel@static-108-30-103-46.nycmny.fios.verizon.net) has joined ##javascript
+2015-08-21 12:18:38	-->	Merkss (~Merkss@dhcp-089-098-150-090.chello.nl) has joined ##javascript
+2015-08-21 12:19:03	-->	mglvl (uid23456@gateway/web/irccloud.com/x-ighpntoowsxcibms) has joined ##javascript
+2015-08-21 12:19:05	<--	orthoplex64 (~orthoplex@unaffiliated/orthoplex64) has quit (Ping timeout: 252 seconds)
+2015-08-21 12:19:10	-->	s3shs (~s3shs@orfwout.lpl.arizona.edu) has joined ##javascript
+2015-08-21 12:19:22	<--	macwinner (~macwinner@192.77.239.202) has quit (Remote host closed the connection)
+2015-08-21 12:19:33	-->	akkufomk (~KHamilton@12.171.253.140) has joined ##javascript
+2015-08-21 12:26:01	--	irc: disconnected from server
+2015-08-21 12:26:25	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 12:26:25	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 12:26:25	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 12:26:25	--	Channel ##javascript: 1325 nicks (0 ops, 0 voices, 1325 normals)
+2015-08-21 12:26:29	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 12:26:46	-->	austincheney (~austinche@4.15.37.75) has joined ##javascript
+2015-08-21 13:26:50	--	irc: disconnected from server
+2015-08-21 13:27:15	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 13:27:15	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 13:27:15	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 13:27:15	--	Channel ##javascript: 1311 nicks (0 ops, 0 voices, 1311 normals)
+2015-08-21 13:27:19	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 13:27:22	-->	Eels (~Eels@2a02:1811:d15:d400:61b5:9b2f:5111:ac75) has joined ##javascript
+2015-08-21 13:27:37	-->	jmichael_ (~jmichaelw@23-25-150-153-static.hfc.comcastbusiness.net) has joined ##javascript
+2015-08-21 13:27:45	carolny	the difference here is that this CP/M program actually performed a function; it let you essentially pirate other software by storing it in RAM after you had removed the cartridge or whatever it was stored on
+2015-08-21 14:27:57	--	irc: disconnected from server
+2015-08-21 14:28:25	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 14:28:25	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 14:28:25	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 14:28:25	--	Channel ##javascript: 1287 nicks (0 ops, 0 voices, 1287 normals)
+2015-08-21 14:28:28	Torkable	lol
+2015-08-21 14:28:29	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 14:28:30	Torkable	even better
+2015-08-21 14:37:09	--	irc: disconnected from server
+2015-08-21 14:37:36	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 14:37:36	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 14:37:36	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 14:37:36	--	Channel ##javascript: 1287 nicks (0 ops, 0 voices, 1287 normals)
+2015-08-21 14:37:40	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 14:37:42	<--	nodist (~kevin@pool-74-101-160-19.nycmny.fios.verizon.net) has quit (Quit: Leaving)
+2015-08-21 14:37:48	MarkyC	What's the difference between window.location.refresh and document.location.refresh?
+2015-08-21 14:38:16	-->	Beatzebub (~beatzebub@d162-156-106-225.bchsia.telus.net) has joined ##javascript
+2015-08-21 14:38:16	tejasmanohar	ohh hmmm
+2015-08-21 14:38:25	<--	cotalinux (~Cota@79.112.16.192) has quit (Remote host closed the connection)
+2015-08-21 14:38:25	tejasmanohar	how could i match digits individually in regex? i know /\d+/g could match digits and then things in b/w remove them but that'd result in something like "234g5" ["234", "5"]
+2015-08-21 14:38:33	tejasmanohar	instead of ["2", "3", "4", "5"]
+2015-08-21 14:38:33	--	irc: disconnected from server
+2015-08-21 14:39:01	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 14:39:01	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 14:39:01	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 14:39:01	--	Channel ##javascript: 1287 nicks (0 ops, 0 voices, 1287 normals)
+2015-08-21 14:39:02	Torkable	you can split them later
+2015-08-21 14:39:05	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 14:39:09	<--	Rainb (~rainb@181.50.148.224) has quit (Ping timeout: 252 seconds)
+2015-08-21 14:39:11	Torkable	just get all the digits
+2015-08-21 14:39:14	tejasmanohar	i.e. match ALL
+2015-08-21 14:39:15	tejasmanohar	oh ok
+2015-08-21 14:39:19	tejasmanohar	got it
+2015-08-21 14:39:20	-->	FunnyLookinHat (~FunnyLook@ubuntu/member/funnylookinhat) has joined ##javascript
+2015-08-21 14:39:31	Torkable	"12345".split('')
+2015-08-21 14:39:37	-->	Es0teric (~textual@199.34.249.167) has joined ##javascript
+2015-08-21 14:39:38	Torkable	>> "12345".split('')
+2015-08-21 14:39:38	--	irc: disconnected from server
+2015-08-21 14:40:06	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 14:40:06	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 14:40:06	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 14:40:06	--	Channel ##javascript: 1287 nicks (0 ops, 0 voices, 1287 normals)
+2015-08-21 14:40:10	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 14:40:30	-->	GreenJello (~GreenJell@unaffiliated/greenjello) has joined ##javascript
+2015-08-21 14:41:13	-->	jost_ (~jost@p54832024.dip0.t-ipconnect.de) has joined ##javascript
+2015-08-21 14:41:21	--	workingpickle is now known as picklevape
+2015-08-21 14:41:26	<--	django_ (uid53725@gateway/web/irccloud.com/x-bmgkcepbrmncpfny) has quit (Quit: Connection closed for inactivity)
+2015-08-21 14:41:34	<--	bstrarm (~busterarm@unaffiliated/busterarm) has quit (Ping timeout: 260 seconds)
+2015-08-21 14:41:36	-->	beefcakeba (~busterarm@unaffiliated/busterarm) has joined ##javascript
+2015-08-21 14:42:23	<--	bicccio (~bicccio@2-224-242-21.ip172.fastwebnet.it) has quit (Remote host closed the connection)
+2015-08-21 14:42:26	<--	m2n (~m2n@unaffiliated/m2n) has quit (Ping timeout: 240 seconds)
+2015-08-21 14:42:46	<--	bradjones (~bradley@unaffiliated/jab) has quit (Ping timeout: 240 seconds)
+2015-08-21 14:43:05	-->	hextileX1 (~Thunderbi@xdsl-87-78-76-5.netcologne.de) has joined ##javascript
+2015-08-21 14:43:50	-->	bradjones (~bradley@host86-167-105-166.range86-167.btcentralplus.com) has joined ##javascript
+2015-08-21 14:43:51	<--	bradjones (~bradley@host86-167-105-166.range86-167.btcentralplus.com) has quit (Changing host)
+2015-08-21 14:43:51	-->	bradjones (~bradley@unaffiliated/jab) has joined ##javascript
+2015-08-21 15:00:59	--	irc: disconnected from server
+2015-08-21 15:13:59	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 15:13:59	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 15:13:59	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 15:13:59	--	Channel ##javascript: 1258 nicks (0 ops, 0 voices, 1258 normals)
+2015-08-21 15:14:03	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 15:14:13	bprompt	>> (/(\d){3,12}/).test('123-456-7899') @ tejasmanohar
+2015-08-21 15:14:14	ecmabot	tejasmanohar: (boolean) true
+2015-08-21 15:14:27	-->	Zzaichik (~Adium@24-104-129.146.hfc.mediarain.com) has joined ##javascript
+2015-08-21 16:01:00	--	irc: disconnected from server
+2015-08-21 16:01:25	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 16:01:25	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 16:01:25	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 16:01:25	--	Channel ##javascript: 1246 nicks (0 ops, 0 voices, 1246 normals)
+2015-08-21 16:01:29	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 16:01:36	<--	garyserj (~garyserj@82-69-82-248.dsl.in-addr.zen.co.uk) has quit (Ping timeout: 264 seconds)
+2015-08-21 16:01:39	bethia	buu: it breaks the inheritance, its redefining the object or something, what if i have a bunch of props i want to define, i dont wnat to use dot notation for all that
+2015-08-21 17:01:49	--	irc: disconnected from server
+2015-08-21 17:02:16	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 17:02:16	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 17:02:16	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 17:02:16	--	Channel ##javascript: 1226 nicks (0 ops, 0 voices, 1226 normals)
+2015-08-21 17:02:17	tcsc	oh i see
+2015-08-21 17:02:20	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 17:02:25	Felishia	tcsc, I'm saying, that thing is hard to read, check it out, it has like [{{
+2015-08-21 17:02:31	-->	sdothum (~sdothum@108.63.182.82) has joined ##javascript
+2015-08-21 17:02:42	tcsc	yeah
+2015-08-21 17:17:43	--	irc: disconnected from server
+2015-08-21 19:49:51	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 19:49:51	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 19:49:51	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 19:49:51	--	Channel ##javascript: 1189 nicks (0 ops, 0 voices, 1189 normals)
+2015-08-21 19:49:55	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 20:50:06	--	irc: disconnected from server
+2015-08-21 20:50:31	-->	RouxTheDay (~RouxTheDa@173.247.199.46) has joined ##javascript
+2015-08-21 20:50:31	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 20:50:31	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 20:50:31	--	Channel ##javascript: 1190 nicks (0 ops, 0 voices, 1190 normals)
+2015-08-21 20:50:31	--	Notice(sendak.freenode.net): [freenode-info] channel trolls and no channel staff around to help? please check with freenode support: http://freenode.net/faq.shtml#gettinghelp
+2015-08-21 20:50:34	<--	tejasmanohar (~tejasmano@2601:484:c303:e101:14f3:8a8f:abb6:ee0e) has quit (Client Quit)
+2015-08-21 20:50:35	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 23:04:37	--	irc: disconnected from server
+2015-08-21 23:04:55	-->	RouxTheDay (~RouxTheDa@2601:645:8101:9a39:15d3:f641:d339:61ee) has joined ##javascript
+2015-08-21 23:04:55	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-21 23:04:55	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-21 23:04:55	--	Channel ##javascript: 1170 nicks (0 ops, 0 voices, 1170 normals)
+2015-08-21 23:04:57	Gilgameshkun	*Oh* no.  You earned this headache. :P
+2015-08-21 23:04:59	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-21 23:05:08	Gilgameshkun	I get a headache, you get one too. :3
+2015-08-21 23:05:08	dash	Gilgameshkun: why are you writing that?
+2015-08-21 23:05:19	-->	citizen-stig (~citizen-s@89.221.207.219) has joined ##javascript
+2015-08-21 23:05:54	Gilgameshkun	As part of an experimental JSON transform library - manipulating data structure trees before and after parsing.
+2015-08-21 23:06:12	Gilgameshkun	One use is converting the data structure into a reference list so it can be serialized even with cyclic references.
+2015-08-21 23:06:15	Gilgameshkun	And then converted back.
+2015-08-21 23:06:26	Gilgameshkun	Has to be cloned during each conversion iteration so as not to affect the original data structure.
+2015-08-21 23:06:32	<--	asheinfeld (~asheinfel@pool-173-56-65-148.nycmny.fios.verizon.net) has quit (Ping timeout: 272 seconds)
+2015-08-21 23:06:38	Gilgameshkun	......my head hurts.
+2015-08-21 23:06:45	<--	Literphor (~alfred@209.237.92.139) has quit (Quit: Literphor)
+2015-08-21 23:06:47	Gilgameshkun	It's easier to just code.
+2015-08-21 23:07:13	Gilgameshkun	Stop asking me to explain why I need stuff. XD
+2015-08-21 23:07:28	dash	shrug, if you can't explain it, you probably don't understand it :)
+2015-08-21 23:07:35	Gilgameshkun	It's not that simple.
+2015-08-21 23:07:41	Gilgameshkun	Like I said, coding is a savant skill for me.
+2015-08-21 23:07:49	Gilgameshkun	Like, when I'm feeling really drowsy, it's hard to talk to people, but I can still code.
+2015-08-21 23:07:54	-->	iiulian (~iiulian@188.24.75.116) has joined ##javascript
+2015-08-21 23:08:08	dash	i don't know what that is, i put all my skill points into remembering funny quotes
+2015-08-21 23:08:17	Gilgameshkun	It just comes easily.  But I have to turn off parts of my brain's language to make it work best.
+2015-08-21 23:08:17	--	iiulian is now known as Guest11758
+2015-08-21 23:08:23	ljharb	Gilgameshkun: that already exists.
+2015-08-21 23:08:32	-->	Texnical (~Texnical@unaffiliated/reactorex) has joined ##javascript
+2015-08-21 23:08:34	Gilgameshkun	ljharb:  I said "experimental". XD
+2015-08-21 23:08:36	ljharb	https://www.npmjs.com/package/json-stringify-safe
+2015-08-21 23:08:44	ljharb	right but it already exists as not an experiment
+2015-08-21 23:08:55	Gilgameshkun	It's not just to test for cyclic references.
+2015-08-21 23:08:59	dash	anyway, normally I'd get nervous about trying to clone arbitrary object graphs but json is simple enough that you might be able to do it in a systematic way
+2015-08-21 23:09:03	Gilgameshkun	It's also to convert to and from reference lists.
+2015-08-21 23:09:06	dash	Gilgameshkun: how are you serializing cycles
+2015-08-21 23:09:26	Gilgameshkun	Well, I'm rather proud of this.
+2015-08-21 23:09:39	<--	Sendoushi (~Sendoushi@114.248.108.93.rev.vodafone.pt) has quit (Ping timeout: 256 seconds)
+2015-08-21 23:09:51	<--	citizen-stig (~citizen-s@89.221.207.219) has quit (Ping timeout: 240 seconds)
+2015-08-21 23:10:21	Gilgameshkun	A reference list is the format of an array, full of various values.  Nulls, booleans, numbers, string, arrays, objects, etc.  But for each array and object member of the list, all the values are numbers - indexes of the reference list.
+2015-08-21 23:10:56	Gilgameshkun	Element 0 is the "root".
+2015-08-21 23:10:58	<--	elv (~elv@pool-100-37-225-122.nycmny.fios.verizon.net) has quit (Remote host closed the connection)
+2015-08-21 23:11:20	Gilgameshkun	Okay, speaking too much English again...I can't keep coding for right now.  I need food to soothe my hurt head. XD
+2015-08-21 23:12:10	<--	Guest11758 (~iiulian@188.24.75.116) has quit (Ping timeout: 240 seconds)
+2015-08-21 23:12:25	Gilgameshkun	I use language minimally when I code.  Very few comments, and only enough language to name variables.
+2015-08-21 23:12:25	-->	zap0 (~moofy@123-243-103-30.static.tpgi.com.au) has joined ##javascript
+2015-08-21 23:12:39	Gilgameshkun	Or else I'll get a headache and my coding will slow down.
+2015-08-21 23:12:46	dash	why hurry?
+2015-08-21 23:12:57	Gilgameshkun	Because I like to maintain a nice pace?
+2015-08-21 23:13:02	Gilgameshkun	It's like riding a bicycle.
+2015-08-21 23:13:23	dash	you complain a lot for someone who's still on irc ;-p
+2015-08-21 23:13:24	-->	smoke_fumus (~smoke_fum@188.35.176.90) has joined ##javascript
+2015-08-21 23:13:29	yansanmo	it's hard when you don't move
+2015-08-21 23:13:41	-->	mrpinc (~mr_pinc@65.90.67.4) has joined ##javascript
+2015-08-21 23:13:55	Gilgameshkun	I idle here mainly inbetween coding, or to test the >> shell, or to quick Q&A.
+2015-08-21 23:14:07	Gilgameshkun	err...
+2015-08-21 23:14:18	Gilgameshkun	I mean, I idle here and then speak mainly inbetween coding, or to test the (etc.)
+2015-08-21 23:14:21	yansanmo	you shouldn't test the >> shell
+2015-08-21 23:14:35	Gilgameshkun	I don't use it tons. XD
+2015-08-21 23:14:46	<--	lonewaft (~Jason@pool-108-38-84-189.lsanca.fios.verizon.net) has quit (Ping timeout: 240 seconds)
+2015-08-21 23:14:57	yansanmo	you can only use it to show something to someone else
+2015-08-21 23:15:01	<--	mr_pinc (~mr_pinc@65.90.67.4) has quit (Ping timeout: 245 seconds)
+2015-08-22 09:01:02	--	irc: disconnected from server
+2015-08-22 09:01:25	-->	RouxTheDay (~RouxTheDa@199.21.87.214) has joined ##javascript
+2015-08-22 09:01:25	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-22 09:01:25	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-22 09:01:25	--	Channel ##javascript: 1202 nicks (0 ops, 0 voices, 1202 normals)
+2015-08-22 09:01:29	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-22 09:02:02	-->	marthinal (~chatzilla@143.Red-79-144-190.dynamicIP.rima-tde.net) has joined ##javascript
+2015-08-22 09:02:29	-->	zerobaud (4df2707e@gateway/web/freenode/ip.77.242.112.126) has joined ##javascript
+2015-08-22 09:02:38	-->	CorySimmons (~textual@cpe-174-103-84-179.mi.res.rr.com) has joined ##javascript
+2015-08-22 09:02:42	-->	pluma (~pluma@unaffiliated/pluma) has joined ##javascript
+2015-08-22 09:02:45	zerobaud	How can I add a div element from inside a external script to the body of the document?
+2015-08-22 09:03:06	zerobaud	document.innerHTML += '<div></div>'; ?
+2015-08-22 09:03:08	<--	gladely (~gladely@c-71-202-27-17.hsd1.ca.comcast.net) has quit (Ping timeout: 272 seconds)
+2015-08-22 09:03:09	<--	seiyria (~seiyria@kurea.link) has left ##javascript ("Leaving")
+2015-08-22 09:03:11	zerobaud	it doesnt really work
+2015-08-22 09:03:33	<--	armyriad (~armyriad@184.75.214.163) has quit (Ping timeout: 255 seconds)
+2015-08-22 09:03:34	yansanmo	document.body.appendChild(document.createElement('div'))
+2015-08-22 09:04:38	zerobaud	thanks yansanmo
+2015-08-22 09:04:57	zerobaud	the adding of the div will reflect back when view the html of the page right?
+2015-08-22 09:05:09	howdoi	what would you expect from a functional JS talk?
+2015-08-22 09:05:11	yansanmo	the DOM
+2015-08-22 09:05:54	zerobaud	is that what you see when you right click viewsource? or is the DOM transient in memory only and view source only reflects the initial page as it got received?
+2015-08-22 09:06:13	cjohnson	correct zerobaud
+2015-08-22 09:06:18	cjohnson	the "element inspector" is a live view of the DOM
+2015-08-22 09:06:22	cjohnson	view source is only what the server transmitted
+2015-08-22 09:06:28	<--	MaSOuD (~DC@unaffiliated/masoud) has quit (Remote host closed the connection)
+2015-08-22 09:06:29	zerobaud	ah :), that explains why it wasnt working :)
+2015-08-22 09:06:30	zerobaud	thanks
+2015-08-22 09:06:35	cjohnson	the browser receives that source and unserialize the HTML into a DOM
+2015-08-22 09:06:50	-->	Meow-J (uid69628@gateway/web/irccloud.com/x-joaabuadexbjcyxr) has joined ##javascript
+2015-08-22 09:07:58	-->	L8D (~L8D@cpe-70-123-155-208.austin.res.rr.com) has joined ##javascript
+2015-08-22 09:08:23	-->	cyberspace009 (4b701526@gateway/web/freenode/ip.75.112.21.38) has joined ##javascript
+2015-08-22 09:08:30	-->	kevrom (~kevrom@71.90.179.112) has joined ##javascript
+2015-08-22 09:09:05	-->	stallmen (~gentoo@unaffiliated/adsjlkdk) has joined ##javascript
+2015-08-22 09:09:32	-->	citizen-stig (~citizen-s@89.221.207.219) has joined ##javascript
+2015-08-22 09:09:46	-->	MaSOuD (~DC@unaffiliated/masoud) has joined ##javascript
+2015-08-22 09:10:32	-->	progrock (~bob@104.246.13.34) has joined ##javascript
+2015-08-22 09:10:43	-->	mjw56 (~subr0utin@168.244.11.10) has joined ##javascript
+2015-08-22 09:11:25	-->	kristian_on_linu (~kristian@0170201069.0.fullrate.dk) has joined ##javascript
+2015-08-22 09:11:40	-->	katu (kat@lua.cz) has joined ##javascript
+2015-08-22 09:11:40	kristian_on_linu	!mdn json
+2015-08-22 09:11:41	ecmabot	kristian_on_linu: JSON - JavaScript | MDN <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON>
+2015-08-22 09:12:57	-->	ishahnaz (~null@unaffiliated/ishahnaz) has joined ##javascript
+2015-08-22 09:12:58	socialblogsite	is there any way to output to the console the line number where/when each IF is triggered? (like developer tools or some extension/plugin)
+2015-08-22 09:13:21	-->	SomeKittens (uid27802@gateway/web/irccloud.com/x-zfrwsykcraxxctmb) has joined ##javascript
+2015-08-22 09:13:59	cjohnson	use debugger; instead
+2015-08-22 09:14:03	cyberspace009	I am stuck in a javascript app. I want to launch a function but I wish to know if this is a good practice: http://hastebin.com/zoyajopatu.js
+2015-08-22 09:14:06	<--	dickdaley (~dickdaley@ip72-213-207-178.pn.at.cox.net) has quit (Ping timeout: 240 seconds)
+2015-08-22 09:14:21	<--	darkbasic_ (~quassel@niko.linuxsystems.it) has quit (Ping timeout: 250 seconds)
+2015-08-22 09:14:22	<--	citizen-stig (~citizen-s@89.221.207.219) has quit (Ping timeout: 265 seconds)
+2015-08-22 09:14:26	<--	sqram (~resio@c-50-128-219-252.hsd1.fl.comcast.net) has quit (Ping timeout: 246 seconds)
+2015-08-22 09:14:54	-->	armyriad (~armyriad@184.75.214.163) has joined ##javascript
+2015-08-22 09:14:57	cjohnson	cyberspace009: what about it? there isn't really any code here what specifically are you concerned about?
+2015-08-22 09:15:18	cyberspace009	cjohnson: calling that main function bad practice
+2015-08-22 09:15:21	cyberspace009	?
+2015-08-22 09:15:48	-->	darkbasic (~quassel@niko.linuxsystems.it) has joined ##javascript
+2015-08-22 09:16:03	cyberspace009	Once that .js file is launched it will call that function but I wonder if this is a bad practice.
+2015-08-22 09:16:22	-->	Hixon10 (~Hixon10@31.173.242.169) has joined ##javascript
+2015-08-22 09:16:50	zerobaud	hm it still doesnt seem to work as expected the code = (flashdiv = document.createElement('div'); flashdiv.id = 'flashtojs'; document.body.appendChild(flashdiv); ) the DOM is not reflecting the adding of the div (firefox F12)
+2015-08-22 09:17:24	zerobaud	anobdy with a clue what could go wrong?
+2015-08-22 09:17:29	cjohnson	cyberspace009: you're wondering if calling a function is bad practice?
+2015-08-22 09:17:38	cjohnson	you aren't calling anything here btw
+2015-08-22 09:17:45	cyberspace009	cjohnson: from the global side, though
+2015-08-22 09:17:47	cjohnson	oh nvm scratch that
+2015-08-22 09:17:49	socialblogsite	cjohnson: I meant without having to enter code by hand every time. Something to target all the “IF”s
+2015-08-22 09:17:58	cjohnson	well no in general you want to use modules
+2015-08-22 09:18:03	cjohnson	socialblogsite: conditional breakpoints
+2015-08-22 09:18:06	cjohnson	!debugger @ socialblogsite
+2015-08-22 09:18:06	ecmabot	socialblogsite: Browser-based debuggers -- Firefox <https://developer.mozilla.org/en-US/docs/Tools/Web_Console>, Safari <https://developer.apple.com/technologies/safari/developer-tools.html>, Chrome <https://developers.google.com/chrome-developer-tools/docs/overview>, Opera <http://www.opera.com/dragonfly/>, IE <http://msdn.microsoft.com/en-us/library/dd565625%28v=vs.85%29>
+2015-08-22 09:18:18	cjohnson	cyberspace009: if you use modules nothing exists in the global space
+2015-08-22 09:18:27	cjohnson	!module @ cyberspace009
+2015-08-22 09:18:27	ecmabot	cyberspace009: Modules divide programs into clusters of code that, by some criterion, belong together. ES6 defines second-class modules, but JS can encode first-class ones. Major implementations include AMD, CommonJS and Node modules. All of them can be used in any JS VM, including browsers. See also: http://robotlolita.me/2013/06/06/node-modules-to-rule-them-all.html and http://eloquentjavascript.net/10_modules.html.
+2015-08-22 09:18:41	<--	iocube (~wowa@87.68.73.59.cable.012.net.il) has quit (Read error: Connection reset by peer)
+2015-08-22 09:19:32	socialblogsite	cjohnson: Do you KNOW it can be achieved from the developer tools? or you are sending me to find my own answer somewhere else?
+2015-08-22 09:19:52	<--	dj_pi (~dj@c-73-191-212-56.hsd1.mi.comcast.net) has quit (Ping timeout: 250 seconds)
+2015-08-22 09:19:53	-->	iocube (~wowa@87.68.73.59.cable.012.net.il) has joined ##javascript
+2015-08-22 09:20:00	-->	d10n-work (uid37161@gateway/web/irccloud.com/x-yzhcxnfuzdjepdzu) has joined ##javascript
+2015-08-22 09:20:39	Sorella	socialblogsite: WHY do you want to do that?
+2015-08-22 09:21:17	socialblogsite	because I want to track WHERE each if triggered WITHOUT having to manually enter hundreds of lines of code.
+2015-08-22 09:21:20	Sorella	Line numbers should be irrelevant
+2015-08-22 09:21:23	zomg	socialblogsite: the answer is no
+2015-08-22 09:21:30	Sorella	socialblogsite: use a stepping debugger
+2015-08-22 09:21:39	socialblogsite	zomg: thanks :)
+2015-08-22 09:21:41	zomg	socialblogsite: you would have to use something to preprocess the code to insert logging code before if statements, but that's about it
+2015-08-22 09:21:45	-->	snowkidind (~snowkidin@pool-96-255-210-73.washdc.fios.verizon.net) has joined ##javascript
+2015-08-22 09:21:49	zerobaud	yansanmo: are you sure its possible to add a HTML element form a external javascript? I really cant get it to work... even changing the body with document.body.innerHTML += '<h1>test</h1>' doesnt show anything
+2015-08-22 09:22:01	Sorella	socialblogsite: knowing "which line conditionals are triggered" tells you: nothing. Literally nothing. It's not helpful at all.
+2015-08-22 09:22:10	-->	tables (~john@h-74-1-229-251.snva.ca.megapath.net) has joined ##javascript
+2015-08-22 09:22:12	<--	g105b (~g105b@host-92-19-209-21.static.as13285.net) has quit (Ping timeout: 244 seconds)
+2015-08-22 09:22:13	Sorella	socialblogsite: use a stepping debugger if you want to figure out the flow of your program
+2015-08-22 09:22:24	-->	ASOLr (~ASOLr@2601:18e:c000:e2b0:225:22ff:fedc:4d20) has joined ##javascript
+2015-08-22 09:22:30	socialblogsite	sorella: stepping debugger is what developer tools do, right? pausing, let it continue, etc
+2015-08-22 09:22:46	Sorella	socialblogsite: yes, you can find a stepping debugger in the developer tools
+2015-08-22 09:22:56	Sorella	All browsers have one these days
+2015-08-22 09:23:06	zerobaud	yansanmo: it does work with document.writeln strange...
+2015-08-22 09:23:16	socialblogsite	yeah, the problem is there are lots of loops and nested ifs… I’d be clicking “next” forever before I see it.
+2015-08-22 09:23:27	socialblogsite	thanks guys
+2015-08-22 09:23:42	-->	mariuscc (~mariuscc@host193168.ppp.telecomplus.ro) has joined ##javascript
+2015-08-22 09:23:48	socialblogsite	I’ll manually search-replace every if(){ with some code.
+2015-08-22 09:23:59	<--	socialblogsite (~socialblo@c-98-242-139-128.hsd1.fl.comcast.net) has quit (Quit: socialblogsite)
+2015-08-22 09:24:02	-->	Kn|t3 (~agarwalvi@106.51.23.149) has joined ##javascript
+2015-08-22 09:24:05	Sorella	socialblogsite: how is that a problem? You want to use "step into" and "step over" rather than "continue". The first takes you inside the function you're calling, the second takes you to the next statement (without entering the function)
+2015-08-22 09:24:15	<--	smelzer (~stephan@x4d0a3f5c.dyn.telefonica.de) has quit (Ping timeout: 244 seconds)
+2015-08-22 09:24:28	-->	g105b (~g105b@host-92-19-209-21.static.as13285.net) has joined ##javascript
+2015-08-22 09:24:44	Sorella	Of course, if your source code is badly written, it'll be much harder to debug. But stepping debuggers will still make it less hard than anything else.
+2015-08-22 09:24:47	<--	marthinal (~chatzilla@143.Red-79-144-190.dynamicIP.rima-tde.net) has quit (Remote host closed the connection)
+2015-08-22 09:24:47	<--	Jimbocuzzi (~chatzilla@2605:a601:842:1201:21ef:6d08:d1d6:cbd4) has quit (Ping timeout: 246 seconds)
+2015-08-22 09:26:14	<--	northfurr (~manhari@unaffiliated/northfurr) has quit (Quit: northfurr)
+2015-08-22 09:26:21	zomg	I like how it seems to be becoming more and more common here to assume the user is an idiot and their code is terrible, and instead of answering their question, just give them a lot of handwavey generic advice masked as best practices
+2015-08-22 09:26:35	kristian_on_linu	hi all
+2015-08-22 09:26:43	-->	Wizek (~Wizek@catv-5-148-245-217.catv.broadband.hu) has joined ##javascript
+2015-08-22 09:27:08	kristian_on_linu	on Linux, what is a good way to work with JSON files? I currently open them in vim, but I find it a bit hard to see what's what ...
+2015-08-22 09:27:31	zomg	That's a good question... I use Vim as well for that
+2015-08-22 09:27:33	-->	Sonex (~none@84.92.51.164) has joined ##javascript
+2015-08-22 09:27:36	GreenJello	same
+2015-08-22 09:27:48	mchelen	kristian_on_linu: do you have syntax highlighting enabled in vim?
+2015-08-22 09:27:48	zomg	I never had an issue with it though since the files that need to be edited by hand tend to be reasonably small
+2015-08-22 09:27:55	mchelen	generally json files should not be hand edited
+2015-08-22 09:28:00	GreenJello	I've tried a lot of json editors, they tend to be more difficult than helpful
+2015-08-22 09:28:00	kristian_on_linu	mchelen: yeah
+2015-08-22 09:28:16	mchelen	kristian_on_linu: what problem do you encounter when using vim?
+2015-08-22 09:28:18	kristian_on_linu	and I'm not looking to edit, just figure out what
+2015-08-22 09:28:26	kristian_on_linu	responds to what, sorry
+2015-08-22 09:28:26	GreenJello	I guess you could do json -> yaml -> editor -> json
+2015-08-22 09:28:54	mchelen	you might use some editor that has code folding
+2015-08-22 09:28:59	<--	pEYEd (~kvirc@ool-435231ec.dyn.optonline.net) has quit (Read error: Connection reset by peer)
+2015-08-22 09:29:01	mchelen	so you can collapse/expand parts
+2015-08-22 09:29:02	-->	northfurr (~manhari@unaffiliated/northfurr) has joined ##javascript
+2015-08-22 09:29:05	mchelen	vim does support that too
+2015-08-22 09:29:07	-->	bythia1 (6c3f6cd7@gateway/web/cgi-irc/kiwiirc.com/ip.108.63.108.215) has joined ##javascript
+2015-08-22 09:29:09	<--	armyriad (~armyriad@184.75.214.163) has quit (Quit: Leaving)
+2015-08-22 09:29:10	<--	Pie_Man (~Icedove@unaffiliated/pie-man/x-7893243) has quit (Remote host closed the connection)
+2015-08-22 09:29:12	yansanmo	zerobaud, you can only access the document.body after the document.body is created
+2015-08-22 09:29:24	yansanmo	zerobaud, it's all about timing
+2015-08-22 09:29:27	-->	Pietilson (~Pietilson@71-89-24-38.dhcp.stpt.wi.charter.com) has joined ##javascript
+2015-08-22 09:29:32	-->	sqram (~resio@c-50-128-219-252.hsd1.fl.comcast.net) has joined ##javascript
+2015-08-22 09:29:37	kristian_on_linu	http://codebeautify.org/online-json-editor
+2015-08-22 09:29:42	kristian_on_linu	this seems to do the trick :)
+2015-08-22 09:29:45	zomg	kristian_on_linu: if you just want to look at it, there's a Chrome extension that formats JSON.. that's what I use
+2015-08-22 09:29:57	<--	hetii (~na@31-178-122-20.dynamic.chello.pl) has quit (Ping timeout: 250 seconds)
+2015-08-22 09:30:08	-->	j201 (~j201@CPE7cb21bcc3740-CM7cb21bcc373d.cpe.net.cable.rogers.com) has joined ##javascript
+2015-08-22 09:30:08	<--	j201 (~j201@CPE7cb21bcc3740-CM7cb21bcc373d.cpe.net.cable.rogers.com) has quit (Changing host)
+2015-08-22 09:30:08	-->	j201 (~j201@unaffiliated/j201) has joined ##javascript
+2015-08-22 09:30:18	<--	cyberspace009 (4b701526@gateway/web/freenode/ip.75.112.21.38) has quit (Quit: Page closed)
+2015-08-22 09:30:19	<--	phutchins (~phutchins@99-39-102-241.lightspeed.tukrga.sbcglobal.net) has quit (Ping timeout: 252 seconds)
+2015-08-22 09:30:32	yansanmo	document.write  works before the document is loaded,   updating the body, works after the body is loaded
+2015-08-22 09:32:19	<--	blue_deref (~blue_dere@cpe-74-77-246-241.buffalo.res.rr.com) has quit (Quit: bbn)
+2015-08-22 09:34:50	-->	Onionnion (~Onionnion@cpe-75-86-231-49.wi.res.rr.com) has joined ##javascript
+2015-08-22 09:36:42	<--	spenatmannen (~spenatman@194-218-198-28.customer.telia.com) has quit (Ping timeout: 272 seconds)
+2015-08-22 09:36:47	-->	Dragooon (~shitizgar@simplemachines/customizer/Dragooon) has joined ##javascript
+2015-08-22 09:36:56	kristian_on_linu	thanks, zomg
+2015-08-22 09:37:08	-->	merobertsjr_ (~meroberts@ip72-197-184-83.sd.sd.cox.net) has joined ##javascript
+2015-08-22 09:37:18	-->	John_AU (~John@14-203-170-159.static.tpgi.com.au) has joined ##javascript
+2015-08-22 09:37:27	-->	FernandoBasso (~FernandoB@187.39.175.6) has joined ##javascript
+2015-08-22 09:37:45	<--	theRealGent (~theRealGe@unaffiliated/therealgent) has quit (Ping timeout: 250 seconds)
+2015-08-22 09:38:47	-->	orriols_ (~manel@176-35-19-39.ssebb.co.uk) has joined ##javascript
+2015-08-22 09:38:49	-->	avahey (uid15316@gateway/web/irccloud.com/x-yjgjqarrlsgqyhui) has joined ##javascript
+2015-08-22 09:39:15	-->	CMOTD (~CMOTD@46.7.114.57) has joined ##javascript
+2015-08-22 09:39:39	<--	biberu\ (~biberu@h198176.upc-h.chello.nl) has quit
+2015-08-22 09:39:49	-->	chargen (~chargen@199.47.79.188.dynamic.jazztel.es) has joined ##javascript
+2015-08-22 09:43:23	--	irc: disconnected from server
+2015-08-22 11:43:29	-->	RouxTheDay (~RouxTheDa@199.21.87.214) has joined ##javascript
+2015-08-22 11:43:29	--	Topic for ##javascript is "Can't talk? Get registered on freenode (HOWTO: http://freenode.net/faq.shtml#nicksetup ). | ECMAScript, JavaScript. JS *not* Java. | Say "!help" (or ask and wait). | Say "!mdn abc" for docs on "abc". | Don't paste code in the channel."
+2015-08-22 11:43:29	--	Topic set by Agamemnus (~Agamemnus@pool-173-76-102-147.bstnma.fios.verizon.net) on Mon, 11 May 2015 13:06:33
+2015-08-22 11:43:30	--	Channel ##javascript: 1235 nicks (0 ops, 0 voices, 1235 normals)
+2015-08-22 11:43:30	--	Notice(hitchcock.freenode.net): [freenode-info] channel trolls and no channel staff around to help? please check with freenode support: http://freenode.net/faq.shtml#gettinghelp
+2015-08-22 11:43:30	mjw56	yw
+2015-08-22 11:43:34	--	Channel created on Sat, 25 Nov 2006 22:42:45
+2015-08-22 11:43:45	-->	jdelgado__ (~jdelgado@2602:306:302d:4f60:196e:6929:3eb:74f1) has joined ##javascript
