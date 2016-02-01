@@ -8,6 +8,7 @@ done
 mkdir ~/.vim
 ln -s ~/.vim ~/.nvim
 
+sudo apt-get update
 sudo apt-get install -y zsh python-dev curl cmake tmux build-essential
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
