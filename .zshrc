@@ -38,6 +38,16 @@ alias grep='grep --color=auto'
 alias tmux="tmux -2"
 alias http-server="http-server -p 9000 -a 127.0.0.1"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+alias dk='docker'
+alias dkm='docker-machine'
+# alias dkme='eval $(docker-machine env $1
+function dkme () {
+  eval $(docker-machine env $1)
+}
+function dkrm () {
+    docker rm -f $(docker ps -aq)
+  # fi
+}
 # eval "$(fasd --init auto)"
 
 setopt AUTO_CD

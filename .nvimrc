@@ -83,6 +83,7 @@ set formatoptions-=cro
 set scrolloff=5
 set laststatus=2
 set number
+set noswapfile
 " set relativenumber
 set synmaxcol=180
 set gdefault
@@ -241,7 +242,7 @@ set shell=zsh\ -l
 "Easy tags
 let g:easytags_languages = {
 \   'haskell': {
-\     'cmd': 'hasktags',
+\     'cmd': 'lushtags',
 \       'args': ['-c'],
 \       'fileoutput_opt': '-f',
 \       'stdout_opt': '-f-',

@@ -5,13 +5,17 @@ do
     # do something on $f
 done
 
-mkdir ~/.vim
+mkdir -p ~/.config/nvim
 ln -s ~/.vim ~/.nvim
 
 sudo apt-get update
 sudo apt-get install -y zsh python-dev curl cmake tmux build-essential
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
+sudo apt-get install neovim
+sudo apt-get install python-dev python-pip python3-dev python3-pip
 
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 mkdir ~/antigen
