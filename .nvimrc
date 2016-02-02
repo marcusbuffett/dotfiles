@@ -9,6 +9,7 @@ Plug 'Shougo/vimproc.vim'
 Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'eagletmt/ghcmod-vim'
+Plug 'https://github.com/bitc/vim-hdevtools'
 "Plug 'vim-scripts/haskell.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eagletmt/neco-ghc'
@@ -54,6 +55,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kchmck/vim-coffee-script'
+Plug 'gilgigilgil/anderson.vim'
 call plug#end()
 
 " Options
@@ -119,23 +121,28 @@ nnoremap <Leader>gg :Ggrep
 map <Leader>e <Plug>(easymotion-prefix)
 let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<nop>'
-autocmd BufRead,BufNewFile *.jade setlocal ft=jade
-" autocmd filetype haskell nmap <leader>t :w <bar> GhcModTypeInsert<CR>
-autocmd filetype haskell nmap <leader>r :!runhaskell %<CR>
-autocmd filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
-autocmd filetype javascript nmap <leader>r :!node %<CR>
-autocmd filetype javascript nmap <leader>t :TernType<CR>
-autocmd filetype javascript nmap <leader>f :TernDef<CR>
-autocmd filetype javascript nmap K :TernDoc<CR>
-autocmd filetype python setlocal ts=4 sts=4 sw=4
-autocmd filetype python  nmap <leader>r :!python3 %<CR>
-autocmd filetype php  nmap <leader>r :!php %<CR>
-autocmd filetype cpp     nmap <leader>r :wa <bar> !~/.compileRun.py %<CR>
-autocmd filetype cpp     nmap <leader>h :wa <bar> !~/.compile.py %<CR>
-autocmd filetype haskell setlocal omnifunc=necoghc#omnifunc
-autocmd FileType css     set omnifunc=csscomplete#CompleteCSS
-autocmd FileType scss     set omnifunc=csscomplete#CompleteCSS
-autocmd FileType javascript setlocal omnifunc=tern#Complete
+augroup EditVim
+  autocmd!
+  autocmd BufRead,BufNewFile *.jade setlocal ft=jade
+  " autocmd filetype haskell nmap <leader>t :w <bar> GhcModTypeInsert<CR>
+  autocmd filetype haskell nmap <leader>r :!runhaskell %<CR>
+  autocmd filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
+  autocmd filetype javascript nmap <leader>r :!node %<CR>
+  autocmd filetype javascript nmap <leader>t :TernType<CR>
+  autocmd filetype javascript nmap <leader>f :TernDef<CR>
+  autocmd filetype javascript nmap K :TernDoc<CR>
+  autocmd filetype python setlocal ts=4 sts=4 sw=4
+  autocmd filetype python  nmap <leader>r :!python3 %<CR>
+  autocmd filetype php  nmap <leader>r :!php %<CR>
+  autocmd filetype cpp     nmap <leader>r :wa <bar> !~/.compileRun.py %<CR>
+  autocmd filetype cpp     nmap <leader>h :wa <bar> !~/.compile.py %<CR>
+  autocmd filetype haskell setlocal omnifunc=necoghc#omnifunc
+  autocmd FileType css     set omnifunc=csscomplete#CompleteCSS
+  autocmd FileType scss     set omnifunc=csscomplete#CompleteCSS
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+  au FileType haskell nnoremap <buffer> <leader>t :HdevtoolsType<CR>
+  au FileType haskell nnoremap <buffer> <silent> <leader>ct :HdevtoolsClear<CR>
+augroup END
 
 augroup VimCSS3Syntax
   autocmd!
@@ -180,7 +187,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:syntastic_mode_map = { "mode": "active"}
 let g:syntastic_check_on_open=1
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 " let g:syntastic_jsx_checkers = ['jsxhint']
 " let g:syntastic_python_checkers = ['flake8']
 " let g:syntastic_python_flake8_post_args='--ignore=E501'
@@ -215,8 +222,10 @@ let g:ycm_min_num_of_chars_for_completion = 1
 " let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " " better key bindings for UltiSnipsExpandTrigger
-" let g:UltiSnipsExpandTrigger = "<c-e>"
-" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsExpandTrigger = "<CR>"
+let g:UltiSnipsExpandTrigger = "<nop>"
+inoremap <expr> <CR> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>" : "\<CR>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
 " let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 
 "For zsh

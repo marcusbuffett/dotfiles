@@ -25,13 +25,15 @@ then
     alias t=gvfs-trash
 fi
 
-export EDITOR="nvim"
+export EDITOR="vim"
 
 export GOPATH="$HOME/go"
-export TERM="screen-256color"
-alias nvimdiff="nvim -d"
-alias v="nvim"
-alias vvim="nvim ~/.nvimrc"
+export GOBIN=$GOPATH/bin
+export PATH="$PATH:$GOPATH/bin"
+# export TERM="screen-256color"
+# alias nvimdiff="nvim -d"
+alias v="vim"
+alias vvim="vim ~/.nvimrc"
 alias grep='grep --color=auto'
 alias tmux="tmux -2"
 alias http-server="http-server -p 9000 -a 127.0.0.1"
