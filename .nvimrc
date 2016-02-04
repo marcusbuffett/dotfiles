@@ -56,6 +56,7 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kchmck/vim-coffee-script'
 Plug 'gilgigilgil/anderson.vim'
+Plug 'airblade/vim-rooter'
 call plug#end()
 
 " Options
@@ -127,6 +128,7 @@ augroup EditVim
   autocmd BufRead,BufNewFile *.jade setlocal ft=jade
   " autocmd filetype haskell nmap <leader>t :w <bar> GhcModTypeInsert<CR>
   autocmd filetype haskell nmap <leader>r :!runhaskell %<CR>
+  autocmd filetype haskell nmap <leader><leader>r :!cabal run<CR>
   autocmd filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
   autocmd filetype javascript nmap <leader>r :!node %<CR>
   autocmd filetype javascript nmap <leader>t :TernType<CR>
@@ -242,7 +244,7 @@ set shell=zsh\ -l
 "Easy tags
 let g:easytags_languages = {
 \   'haskell': {
-\     'cmd': 'lushtags',
+\     'cmd': 'hasktags',
 \       'args': ['-c'],
 \       'fileoutput_opt': '-f',
 \       'stdout_opt': '-f-',

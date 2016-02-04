@@ -33,7 +33,8 @@ export PATH="$PATH:$GOPATH/bin"
 # export TERM="screen-256color"
 # alias nvimdiff="nvim -d"
 alias v="vim"
-alias vvim="vim ~/.nvimrc"
+alias vvim="vim ~/.vimrc"
+alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
 alias grep='grep --color=auto'
 alias tmux="tmux -2"
 alias http-server="http-server -p 9000 -a 127.0.0.1"
@@ -102,6 +103,14 @@ export NVM_DIR="/Users/marcusbuffett/.nvm"
 
 function tr {
     tree -L 2;
+}
+function ggrep () {
+  if test $(git grep -c $1 | wc -l) -gt 10;
+  then
+    echo "Too many matches!"
+  else
+    vim $(git grep --name-only $1)
+  fi
 }
 
 # Really weird fix for Control-H not working in neovim, black magic below
