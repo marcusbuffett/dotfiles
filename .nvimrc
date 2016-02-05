@@ -56,6 +56,7 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kchmck/vim-coffee-script'
 Plug 'gilgigilgil/anderson.vim'
+Plug 'rizzatti/dash.vim'
 Plug 'airblade/vim-rooter'
 call plug#end()
 
@@ -136,6 +137,7 @@ augroup EditVim
   autocmd filetype javascript nmap K :TernDoc<CR>
   autocmd filetype python setlocal ts=4 sts=4 sw=4
   autocmd filetype python  nmap <leader>r :!python3 %<CR>
+  autocmd filetype ruby  nmap <leader>r :!ruby %<CR>
   autocmd filetype php  nmap <leader>r :!php %<CR>
   autocmd filetype cpp     nmap <leader>r :wa <bar> !~/.compileRun.py %<CR>
   autocmd filetype cpp     nmap <leader>h :wa <bar> !~/.compile.py %<CR>
@@ -232,7 +234,8 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 " let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 
 "For zsh
-set shell=zsh\ -l
+" set shell=zsh\ -l
+set shell=/bin/bash\ -i
 
 "For concealing
 " let hscoptions="Bxb-tQZAe"
@@ -252,6 +255,7 @@ let g:easytags_languages = {
 \   }
 \}
 let g:easytags_async = 1
+let g:easytags_dynamic_files=1
 
 "Airline
 let g:airline_powerline_fonts = 1
