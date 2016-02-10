@@ -9,7 +9,7 @@ Plug 'Shougo/vimproc.vim'
 Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'eagletmt/ghcmod-vim'
-Plug 'https://github.com/bitc/vim-hdevtools'
+Plug 'bitc/vim-hdevtools'
 "Plug 'vim-scripts/haskell.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eagletmt/neco-ghc'
@@ -19,7 +19,7 @@ Plug 'christoomey/vim-tmux-navigator'
 "Plug 'enomsg/vim-haskellConcealPlus'
 Plug 'xolox/vim-easytags'
 Plug 'godlygeek/tabular'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 Plug 'xolox/vim-misc'
 Plug 'vim-scripts/closetag.vim'
 Plug 'honza/vim-snippets'
@@ -31,33 +31,35 @@ Plug 'rizzatti/dash.vim'
 Plug 'takac/vim-hardtime'
 "Plug 'vim-scripts/vim-auto-save'
 "Plug 'vim-scripts/restore_view.vim'
-" Plug 'jelera/vim-javascript-syntax'
+"Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 "Plug 'vim-scripts/JavaScript-Indent'
 Plug 'jamescarr/snipmate-nodejs'
-Plug 'myhere/vim-nodejs-complete'
+"Plug 'myhere/vim-nodejs-complete'
 Plug 'marijnh/tern_for_vim'
 Plug 'Valloric/ListToggle'
 Plug 'tpope/vim-abolish'
 Plug 'gregsexton/MatchTag'
 Plug 'scrooloose/nerdtree'
 Plug 'Raimondi/delimitMate'
-" Plug 'gregsexton/VimCalc'
+"Plug 'gregsexton/VimCalc'
 Plug 'tpope/vim-repeat'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'digitaltoad/vim-jade'
-Plug 'leafgarland/typescript-vim'
-Plug 'dart-lang/dart-vim-plugin'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'dart-lang/dart-vim-plugin'
 Plug 'mxw/vim-jsx'
 Plug 'reedes/vim-pencil'
-Plug 'davidhalter/jedi'
-Plug 'altercation/vim-colors-solarized'
+"Plug 'davidhalter/jedi'
+"Plug 'altercation/vim-colors-solarized'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kchmck/vim-coffee-script'
-Plug 'gilgigilgil/anderson.vim'
+"Plug 'gilgigilgil/anderson.vim'
 Plug 'rizzatti/dash.vim'
+Plug 'rking/ag.vim'
 Plug 'airblade/vim-rooter'
+" Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 " Options
@@ -89,12 +91,17 @@ set noswapfile
 " set relativenumber
 set synmaxcol=180
 set gdefault
+set guioptions-=l
 set guioptions-=r
 set mouse=a
 set timeoutlen=1000 ttimeoutlen=10
 set autoread
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
 
-colorscheme gruvbox
+colorscheme solarized
 
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
  
@@ -107,7 +114,9 @@ nmap <leader>w :wa<CR>
 nmap <leader>q :wq<CR>
 nmap <leader>/ :noh<CR>
 nmap <leader>d :Dash<CR>
+nmap <leader>D :Dash 
 nmap <leader>x :pclose<CR>
+nmap <leader>a :Ag ""<left>
 nmap <tab> :b#<cr>
 
 nnoremap <Leader>gs :Gstatus<CR>
@@ -121,7 +130,7 @@ nnoremap <Leader>gl :Gpush<CR>
 nnoremap <Leader>go :Gbrowse<CR>
 nnoremap <Leader>gg :Ggrep 
 
-map <Leader>e <Plug>(easymotion-prefix)
+" map <Leader>e <Plug>(easymotion-prefix)
 let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<nop>'
 augroup EditVim
@@ -155,8 +164,12 @@ augroup VimCSS3Syntax
   autocmd FileType scss setlocal iskeyword+=-
 augroup END
 
-"Hardtime
-"let g:hardtime_default_on = 1
+" Hardtime
+" let g:hardtime_default_on = 1
+" let g:hardtime_allow_different_key = 1
+" let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "n", "w", "b", "W", "B", "e", "E", ";"]
+" let g:list_of_visual_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+" let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 "NerdTree
 map <C-n> :NERDTreeToggle<CR>
@@ -200,9 +213,20 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 
 "Easy Motion
-nmap s <Plug>(easymotion-s)
-vmap s <Plug>(easymotion-s)
-let g:EasyMotion_skipfoldedline = 0
+" nmap s <Plug>(easymotion-s)
+" vmap s <Plug>(easymotion-s)
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
+" let g:EasyMotion_skipfoldedline = 0
+" Gif config
+" map  / <Plug>(easymotion-sn)
+" omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+" map  n <Plug>(easymotion-next)
+" map  N <Plug>(easymotion-prev)
 
 "YouCompleteMe
 " let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -235,7 +259,7 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 
 "For zsh
 " set shell=zsh\ -l
-set shell=/bin/bash\ -i
+set shell=/bin/bash
 
 "For concealing
 " let hscoptions="Bxb-tQZAe"
