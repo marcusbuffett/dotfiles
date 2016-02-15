@@ -25,14 +25,12 @@ then
     alias t=gvfs-trash
 fi
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 export GOPATH="$HOME/go"
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
-# export TERM="screen-256color"
-# alias nvimdiff="nvim -d"
-alias v="vim"
+alias v="nvim"
 alias vvim="v ~/.vimrc"
 alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
 alias grep='grep --color=auto'
@@ -41,15 +39,12 @@ alias http-server="http-server -p 9000 -a 127.0.0.1"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias dk='docker'
 alias dkm='docker-machine'
-# alias dkme='eval $(docker-machine env $1
 function dkme () {
   eval $(docker-machine env $1)
 }
 function dkrm () {
     docker rm -f $(docker ps -aq)
-  # fi
 }
-# eval "$(fasd --init auto)"
 
 setopt AUTO_CD
 setopt AUTO_LIST
@@ -96,8 +91,6 @@ export PATH=$HOME/.cabal/bin:$PATH
 export ZDOTDIR=$HOME
 export NODE_ENV=development
 
-# PS1="%{$fg[cyan]%}%2~ %{$reset_color%}"
-
 export NVM_DIR="/Users/marcusbuffett/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -114,8 +107,8 @@ function ggrep () {
 }
 
 # Really weird fix for Control-H not working in neovim, black magic below
-# infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
-# tic $TERM.ti
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+tic $TERM.ti
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
