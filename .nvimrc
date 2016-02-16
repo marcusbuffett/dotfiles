@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
-" Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " Plug 'pydave/AsyncCommand'
-Plug 'stgpetrovic/syntastic-async'
+" Plug 'stgpetrovic/syntastic-async'
 
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
