@@ -2,6 +2,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
+" Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-grepper'
 Plug 'scrooloose/nerdcommenter'
 Plug 'bling/vim-airline'
 Plug 'Lokaltog/vim-easymotion'
@@ -41,6 +43,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
 Plug 'airblade/vim-rooter'
+Plug 'tpope/vim-rails'
 call plug#end()
 
 " Options
@@ -48,6 +51,7 @@ let mapleader="\<Space>"
 syntax enable
 set autochdir
 set autoindent
+set noautochdir
 set smartindent
 set background=dark
 set backspace=indent,eol,start
@@ -77,6 +81,7 @@ set guioptions-=r
 set mouse=a
 set timeoutlen=1000 ttimeoutlen=10
 set autoread
+set cpoptions+=d
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -91,14 +96,18 @@ nmap <leader><leader>p :CtrlPCurWD<CR>
 nmap <Leader>; :%s/\<<C-r><C-w>\>/
 nmap <leader>n :CtrlPBuffer<CR>
 nmap <leader>b :CtrlPTag<CR>
+nmap <leader>P :CtrlP<CR><C-\>w
+nmap <leader>B :CtrlPTag<CR><C-\>w
+" vmap <leader>p y:CtrlP<CR><C-\>c
+" vmap <leader>b y:CtrlP<CR><C-\>c
 nmap <leader>w :wa<CR>
 nmap <leader>q :wq<CR>
 nmap <leader>/ :noh<CR>
 nmap <leader>d :Dash<CR>
 nmap <leader>D :Dash 
 nmap <leader>x :pclose<CR>
-nmap <leader>a :Ag ""<left>
-nmap <tab> :b#<cr>
+" nmap <leader>a :Ag ""<left>
+nmap <leader>ag  :Grepper! -tool ag  -open -switch -grepprg ag<cr>
 
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
@@ -188,6 +197,7 @@ let g:syntastic_mode_map = { "mode": "active"}
 let g:syntastic_check_on_open=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_scss_checkers = ['scss_lint']
 " let g:syntastic_jsx_checkers = ['jsxhint']
 " let g:syntastic_python_checkers = ['flake8']
 " let g:syntastic_python_flake8_post_args='--ignore=E501'
@@ -195,10 +205,12 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 
 "Easy Motion
-" nmap s <Plug>(easymotion-s)
-" vmap s <Plug>(easymotion-s)
+nmap S <Plug>(easymotion-s)
+vmap S <Plug>(easymotion-s)
 nmap s <Plug>(easymotion-s2)
+vmap s <Plug>(easymotion-s2)
 nmap t <Plug>(easymotion-t2)
+vmap t <Plug>(easymotion-t2)
 " let g:EasyMotion_skipfoldedline = 0
 " Gif config
 " map  / <Plug>(easymotion-sn)
@@ -261,7 +273,8 @@ let g:easytags_languages = {
 \   }
 \}
 let g:easytags_async = 1
-let g:easytags_dynamic_files=1
+set tags=./tags;
+let g:easytags_dynamic_files = 2
 
 "Airline
 let g:airline_powerline_fonts = 1
