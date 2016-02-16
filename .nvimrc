@@ -98,6 +98,7 @@ colorscheme solarized
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
  
 let g:ctrlp_map = '<leader>p'
+nnoremap <silent> <esc> :noh<cr><esc>
 nmap <leader><leader>p :CtrlPCurWD<CR>
 nmap <Leader>; :%s/\<<C-r><C-w>\>/
 nmap <leader>n :CtrlPBuffer<CR>
