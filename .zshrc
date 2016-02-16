@@ -39,6 +39,7 @@ alias tmux="tmux -2"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias dk='docker'
 alias dkm='docker-machine'
+alias gph='git push origin head'
 function dkme () {
   eval $(docker-machine env $1)
 }
