@@ -35,7 +35,7 @@ alias vvim="v ~/.vimrc"
 alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
 alias grep='grep --color=auto'
 alias tmux="tmux -2"
-alias http-server="http-server -p 9000 -a 127.0.0.1"
+# alias http-server="http-server -p 9000 -a 127.0.0.1"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias dk='docker'
 alias dkm='docker-machine'
