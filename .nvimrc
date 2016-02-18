@@ -1,24 +1,27 @@
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+" Plug 'pydave/AsyncCommand'
+Plug 'stgpetrovic/syntastic-async'
+
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 " Plug 'junegunn/fzf.vim'
-Plug 'mhinz/vim-grepper'
+" Plug 'mhinz/vim-grepper'
 Plug 'scrooloose/nerdcommenter'
 Plug 'bling/vim-airline'
-Plug 'Lokaltog/vim-easymotion'
+" Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/vimproc.vim'
 Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'eagletmt/ghcmod-vim'
-Plug 'bitc/vim-hdevtools'
+" Plug 'bitc/vim-hdevtools'
 Plug 'Valloric/YouCompleteMe'
-Plug 'eagletmt/neco-ghc'
+" Plug 'eagletmt/neco-ghc'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'xolox/vim-easytags'
+" Plug 'xolox/vim-easytags'
 Plug 'godlygeek/tabular'
 Plug 'xolox/vim-misc'
-Plug 'vim-scripts/closetag.vim'
+" Plug 'vim-scripts/closetag.vim'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-surround'
@@ -31,7 +34,7 @@ Plug 'Valloric/ListToggle'
 Plug 'tpope/vim-abolish'
 Plug 'gregsexton/MatchTag'
 Plug 'scrooloose/nerdtree'
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'digitaltoad/vim-jade'
@@ -40,15 +43,16 @@ Plug 'reedes/vim-pencil'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kchmck/vim-coffee-script'
-Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
 Plug 'airblade/vim-rooter'
-Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-rails'
+" Plug 'yegappan/greplace'
 call plug#end()
 
 " Options
 let mapleader="\<Space>"
 syntax enable
+set foldcolumn=1
 set autochdir
 set autoindent
 set noautochdir
@@ -87,6 +91,8 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
+runtime macros/matchit.vim
+
 colorscheme solarized
 
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
@@ -105,20 +111,21 @@ nmap <leader>q :wq<CR>
 nmap <leader>/ :noh<CR>
 nmap <leader>d :Dash<CR>
 nmap <leader>D :Dash 
-nmap <leader>x :pclose<CR>
+nmap <leader>x :pclose<CR>:ccl<CR>
 " nmap <leader>a :Ag ""<left>
-nmap <leader>ag  :Grepper! -tool ag  -open -switch -grepprg ag<cr>
+nmap <leader>ag  :Grepper -tool ag  -open -switch -grepprg ag<cr>
+nmap <tab> :b#<CR>
 
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gw :Gwrite<CR>
-nnoremap <Leader>gp :Gpush<CR>
-nnoremap <Leader>gl :Gpush<CR>
-nnoremap <Leader>go :Gbrowse<CR>
-nnoremap <Leader>gg :Ggrep 
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gd :Gdiff<CR>
+noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gr :Gread<CR>
+noremap <Leader>gw :Gwrite<CR>
+noremap <Leader>gp :Gpush<CR>
+noremap <Leader>gl :Gpush<CR>
+noremap <Leader>go :Gbrowse<CR>
+noremap <Leader>gg :Ggrep 
 
 " map <Leader>e <Plug>(easymotion-prefix)
 let g:lt_location_list_toggle_map = '<leader>l'
@@ -155,10 +162,10 @@ augroup VimCSS3Syntax
 augroup END
 
 " Hardtime
-" let g:hardtime_default_on = 1
-" let g:hardtime_allow_different_key = 1
-" let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "n", "w", "b", "W", "B", "e", "E", ";"]
-" let g:list_of_visual_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:hardtime_default_on = 1
+let g:hardtime_allow_different_key = 1
+let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "n", "w", "b", "W", "B", "e", "E", ";"]
+let g:list_of_visual_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 " let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 "NerdTree
@@ -171,8 +178,8 @@ map <C-f> :NERDTreeFocus<CR>
 let NERDSpaceDelims = 1
 
 "CtrlP
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|bower_components\|dist'
-let g:ctrlp_working_path_mode = 'ra'
+" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|bower_components\|dist'
+" let g:ctrlp_working_path_mode = 'ra'
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " func! WordProcessorMode()
@@ -198,6 +205,7 @@ let g:syntastic_check_on_open=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_scss_checkers = ['scss_lint']
+let g:syntastic_ruby_checkers = ['rubocop']
 " let g:syntastic_jsx_checkers = ['jsxhint']
 " let g:syntastic_python_checkers = ['flake8']
 " let g:syntastic_python_flake8_post_args='--ignore=E501'
@@ -206,11 +214,10 @@ let g:syntastic_scss_checkers = ['scss_lint']
 
 "Easy Motion
 nmap S <Plug>(easymotion-s)
-vmap S <Plug>(easymotion-s)
 nmap s <Plug>(easymotion-s2)
-vmap s <Plug>(easymotion-s2)
+" vmap s <Plug>(easymotion-s2)
 nmap t <Plug>(easymotion-t2)
-vmap t <Plug>(easymotion-t2)
+" vmap t <Plug>(easymotion-t2)
 " let g:EasyMotion_skipfoldedline = 0
 " Gif config
 " map  / <Plug>(easymotion-sn)
@@ -263,18 +270,18 @@ set shell=/bin/bash
 " augroup END
 
 "Easy tags
-let g:easytags_languages = {
-\   'haskell': {
-\     'cmd': 'hasktags',
-\       'args': ['-c'],
-\       'fileoutput_opt': '-f',
-\       'stdout_opt': '-f-',
-\       'recurse_flag': '-R'
-\   }
-\}
-let g:easytags_async = 1
-set tags=./tags;
-let g:easytags_dynamic_files = 2
+" let g:easytags_languages = {
+" \   'haskell': {
+" \     'cmd': 'hasktags',
+" \       'args': ['-c'],
+" \       'fileoutput_opt': '-f',
+" \       'stdout_opt': '-f-',
+" \       'recurse_flag': '-R'
+" \   }
+" \}
+" let g:easytags_async = 1
+" set tags=./tags;
+" let g:easytags_dynamic_files = 2
 
 "Airline
 let g:airline_powerline_fonts = 1
