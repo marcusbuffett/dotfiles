@@ -112,8 +112,8 @@ nmap <leader>/ :noh<CR>
 nmap <leader>d :Dash<CR>
 nmap <leader>D :Dash 
 nmap <leader>x :pclose<CR>:ccl<CR>
-" nmap <leader>a :Ag ""<left>
-nmap <leader>ag  :Grepper -tool ag  -open -switch -grepprg ag<cr>
+nmap <leader>a :Ag ""<left>
+" nmap <leader>ag  :Grepper -tool ag  -open -switch -grepprg ag<cr>
 nmap <tab> :b#<CR>
 
 noremap <Leader>gs :Gstatus<CR>
