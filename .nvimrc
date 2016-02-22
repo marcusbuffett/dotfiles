@@ -62,7 +62,7 @@ set backspace=indent,eol,start
 set visualbell
 set hidden
 set incsearch
-set nohlsearch
+set hlsearch
 set nowrap
 set shiftwidth=2
 set softtabstop=2
