@@ -86,6 +86,8 @@ set mouse=a
 set timeoutlen=1000 ttimeoutlen=10
 set autoread
 set cpoptions+=d
+set history=5000 " Lots of history 
+set re=1 " Use old regex engine (faster)
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -172,6 +174,7 @@ let g:list_of_visual_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<L
 "NerdTree
 map <C-n> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFocus<CR>
+let NERDTreeMapHelp='<f1>'
 " map <C-p> <c-w><c-p>
 
 
