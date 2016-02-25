@@ -44,7 +44,10 @@ function dkme () {
   eval $(docker-machine env $1)
 }
 function dkrm () {
-    docker rm -f $(docker ps -aq)
+  docker rm -f $(docker ps -aq)
+}
+function faid () {
+  open "https://itunes.apple.com/app/id$1"
 }
 
 setopt AUTO_CD
@@ -55,6 +58,9 @@ setopt INC_APPEND_HISTORY
 export KEYTIMEOUT=1
 setopt AUTOPUSHD
 setopt NO_BEEP
+# tons of history
+HISTSIZE=1000000 
+SAVEHIST=1000000
 
 bindkey -v
 
