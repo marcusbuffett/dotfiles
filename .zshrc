@@ -159,5 +159,5 @@ preexec() {
     branch="N/A"
     repo="N/A"
   fi
-  echo "$date, `pwd`, $repo, $branch, $1" >> ~/.zsh_history_long
+  echo "$date\t`pwd`\t$repo\t$branch\t$1" >> ~/.zsh_history_long
 }
