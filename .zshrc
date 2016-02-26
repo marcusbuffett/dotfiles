@@ -161,3 +161,5 @@ preexec() {
   fi
   echo "$date\t`pwd`\t$repo\t$branch\t$1" >> ~/.zsh_history_long
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
