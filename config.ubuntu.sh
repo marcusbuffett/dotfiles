@@ -2,7 +2,6 @@ for f in ".jshintrc" ".tmux.conf" ".nvimrc" ".vimrc" ".ycm_extra_conf.py" ".ycm_
 do
     rm ~/$f
     ln -s ~/dotfiles/$f ~/$f
-    # do something on $f
 done
 
 mkdir -p ~/.config/nvim
