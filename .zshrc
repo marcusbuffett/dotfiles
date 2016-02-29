@@ -148,3 +148,5 @@ alias cabalupgrades="cabal list --installed  | egrep -iv '(synopsis|homepage|lic
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
