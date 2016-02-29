@@ -150,3 +150,16 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+preexec() {
+  date=`date +%s`
+  cmd=$1
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    branch=$(git branch | grep "* " | awk '{print $2}')
+    repo=$(basename `git rev-parse --show-toplevel`)
+  else
+    branch="N/A"
+    repo="N/A"
+  fi
+  echo "$date\t`pwd`\t$repo\t$branch\t$1" >> ~/.zsh_history_long
+}
