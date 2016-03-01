@@ -27,6 +27,7 @@ fi
 
 export EDITOR="vim"
 
+export PATH="$PATH:~/.cargo/bin"
 export GOPATH="$HOME/go"
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
@@ -48,6 +49,9 @@ function dkrm () {
 }
 function faid () {
   open "https://itunes.apple.com/app/id$1"
+}
+function ua () {
+  alias $1 | awk -F "'" '$0=$2'
 }
 
 setopt AUTO_CD
@@ -101,9 +105,6 @@ export NODE_ENV=development
 export NVM_DIR="/Users/marcusbuffett/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-function tr {
-    tree -L 2;
-}
 function ggrep () {
   if test $(git grep -c $1 | wc -l) -gt 10;
   then
