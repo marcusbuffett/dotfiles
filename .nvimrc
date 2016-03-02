@@ -3,9 +3,21 @@ Plug 'scrooloose/syntastic'
 " Plug 'pydave/AsyncCommand'
 " Plug 'stgpetrovic/syntastic-async'
 
-Plug 'tpope/vim-fugitive'
-Plug 'kien/ctrlp.vim'
-" Plug 'junegunn/fzf.vim'
+if has('nvim')
+  Plug 'benekastah/neomake'
+else
+  Plug 'scrooloose/syntastic'
+endif
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'lambdalisue/vim-gita'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim'
+else
+  Plug 'Valloric/YouCompleteMe'
+endif
 " Plug 'mhinz/vim-grepper'
 Plug 'scrooloose/nerdcommenter'
 Plug 'bling/vim-airline'
