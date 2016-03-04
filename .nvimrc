@@ -94,7 +94,7 @@ set gdefault
 set guioptions-=l
 set guioptions-=r
 set mouse=a
-set timeoutlen=1000 ttimeoutlen=10
+set timeoutlen=500 ttimeoutlen=10
 set autoread
 set cpoptions+=d
 set history=5000 " Lots of history 
