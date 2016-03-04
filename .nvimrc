@@ -89,7 +89,7 @@ set laststatus=2
 set number
 set noswapfile
 " set relativenumber
-set synmaxcol=180
+set synmaxcol=0
 set gdefault
 set guioptions-=l
 set guioptions-=r
