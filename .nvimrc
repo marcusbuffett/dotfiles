@@ -113,7 +113,6 @@ let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 let g:ctrlp_map = '<leader>p'
 " nnoremap <silent> <esc> :noh<cr><esc>
 nmap <leader><leader>p :CtrlPCurWD<CR>
-nmap <Leader>; :<C-f>i
 nmap <leader>n :CtrlPBuffer<CR>
 nmap <leader>b :CtrlPTag<CR>
 nmap <leader>P :CtrlP<CR><C-\>w
