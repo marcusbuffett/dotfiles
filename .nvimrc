@@ -125,7 +125,11 @@ nmap <leader>/ :noh<CR>
 nmap <leader>d :Dash<CR>
 nmap <leader>D :Dash 
 nmap <leader>x :pclose<CR>:ccl<CR>
-nmap <leader>a :Ag ""<left>
+nmap <leader>aa :Ag ""<left>
+nmap <leader>ag :Ag -G "" ""<left><left><left><left>
+nmap <leader>agr :Ag -G "\.rb" ""<left>
+nmap <leader>agj :Ag -G "\.js" ""<left>
+nmap <leader>agh :Ag -G "\.hs" ""<left>
 " nmap <leader>ag  :Grepper -tool ag  -open -switch -grepprg ag<cr>
 nmap <tab> :b#<CR>
 
