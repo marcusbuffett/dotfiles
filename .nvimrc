@@ -133,16 +133,11 @@ nmap <leader>agh :Ag -G "\.hs" ""<left>
 " nmap <leader>ag  :Grepper -tool ag  -open -switch -grepprg ag<cr>
 nmap <tab> :b#<CR>
 
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gd :Gdiff<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gr :Gread<CR>
-noremap <Leader>gw :Gwrite<CR>
-noremap <Leader>gp :Gpush<CR>
-noremap <Leader>gl :Gpush<CR>
-noremap <Leader>go :Gbrowse<CR>
-noremap <Leader>gg :Ggrep 
+noremap <Leader>gs :Gita status<CR>
+noremap <Leader>gd :Gita diff<CR>
+noremap <Leader>gb :Gita blame<CR>
+noremap <Leader>gc :Gita commit<CR>
+noremap <Leader>gw :Gita add %<CR>
 
 " map <Leader>e <Plug>(easymotion-prefix)
 let g:lt_location_list_toggle_map = '<leader>l'
