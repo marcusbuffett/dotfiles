@@ -163,8 +163,9 @@ augroup EditVim
   au FileType css     set omnifunc=csscomplete#CompleteCSS
   au FileType scss     set omnifunc=csscomplete#CompleteCSS
   au FileType javascript setlocal omnifunc=tern#Complete
-  au FileType haskell nnoremap <buffer> <leader>t :HdevtoolsType<CR>
-  au FileType haskell nnoremap <buffer> <silent> <leader>ct :HdevtoolsClear<CR>
+  au FileType haskell nnoremap <buffer> <leader>t :GhcModType<CR>
+  au FileType haskell nnoremap <buffer> <silent> <leader>ct :GhcModTypeClear<CR>
+  au FileType haskell nnoremap <buffer> <silent> <leader>/ :noh <bar> GhcModTypeClear<CR>
 augroup END
 
 augroup VimCSS3Syntax
