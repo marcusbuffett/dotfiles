@@ -214,16 +214,23 @@ let NERDSpaceDelims = 1
 " autocmd InsertLeave  * if pumvisible() == 0|pclose|endif
 
 "Auto syntax checking
-let g:syntastic_mode_map = { "mode": "active"}
-let g:syntastic_check_on_open=1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_scss_checkers = ['scss_lint']
-let g:syntastic_ruby_checkers = ['rubocop']
-" let g:syntastic_jsx_checkers = ['jsxhint']
-" let g:syntastic_python_checkers = ['flake8']
-" let g:syntastic_python_flake8_post_args='--ignore=E501'
-"let g:syntastic_cpp_checkers = ['cppcheck']
+if has('nvim')
+  autocmd! BufWritePost * Neomake
+  autocmd! BufReadPost * Neomake
+  let g:neomake_ruby_enabled_makers = ['rubocop']
+else
+  let g:syntastic_mode_map = { "mode": "active"}
+  let g:syntastic_check_on_open=1
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_javascript_checkers = ['eslint']
+  let g:syntastic_scss_checkers = ['scss_lint']
+  let g:syntastic_ruby_checkers = ['rubocop']
+  let g:syntastic_coffee_checkers = ['coffeelint']
+  " let g:syntastic_jsx_checkers = ['jsxhint']
+  " let g:syntastic_python_checkers = ['flake8']
+  " let g:syntastic_python_flake8_post_args='--ignore=E501'
+  "let g:syntastic_cpp_checkers = ['cppcheck']
+endif
 
 
 "Easy Motion
