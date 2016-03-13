@@ -280,8 +280,8 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 " let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 
 "For zsh
-" set shell=zsh\ -l
-set shell=/bin/bash
+set shell=zsh\ -l
+" set shell=/bin/bash
 
 "For concealing
 " let hscoptions="Bxb-tQZAe"
