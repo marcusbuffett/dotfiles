@@ -1,8 +1,8 @@
-for f in ".jshintrc" ".tmux.conf" ".nvimrc" ".vimrc" ".ycm_extra_conf.py" ".ycm_extra_conf.pyc" ".zshrc" ".tmux-osx.conf" ".weechat" ".gitignore"
+for f in $(find ~/dotfiles -regex "\./\..*") 
 do
-    rm ~/$f
-    ln -s ~/dotfiles/$f ~/$f
-    # do something on $f
+  g=$(echo $f | cut -c 3-)
+  rm ~/$g
+  ln -s ~/dotfiles/$g ~/$g
 done
 
 mkdir -p ~/.config/nvim
