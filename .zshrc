@@ -20,7 +20,7 @@ antigen apply
 if [[ "$OSTYPE" == *"darwin"* ]]
 then
     alias ls="ls -G"
-	alias t="trash"
+    alias t="trash"
 elif [[ "$OSTYPE" == *"linux"* ]]
 then
     alias ls="ls --color=auto"
