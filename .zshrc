@@ -1,3 +1,5 @@
+autoload -Uz compinit && compinit
+
 source ~/antigen/antigen.zsh
 
 antigen use oh-my-zsh
