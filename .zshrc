@@ -27,6 +27,8 @@ then
     alias t=gvfs-trash
 fi
 
+autoload -U +X bashcompinit && bashcompinit
+
 export EDITOR="vim"
 
 export PATH="$PATH:~/.cargo/bin"
