@@ -1,4 +1,6 @@
+
 autoload -Uz compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 
 source ~/antigen/antigen.zsh
 
@@ -26,8 +28,6 @@ then
     alias ls="ls --color=auto"
     alias t=gvfs-trash
 fi
-
-autoload -U +X bashcompinit && bashcompinit
 
 export EDITOR="vim"
 
