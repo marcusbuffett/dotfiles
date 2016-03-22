@@ -29,7 +29,7 @@ then
     alias t=gvfs-trash
 fi
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 export PATH="$PATH:~/.cargo/bin"
 export GOPATH="$HOME/go"
