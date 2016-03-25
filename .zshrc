@@ -35,6 +35,7 @@ export PATH="$PATH:~/.cargo/bin"
 export GOPATH="$HOME/go"
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
+export AWS_KEYPAIR_NAME=marcus
 alias v="nvim"
 alias vvim="nvim ~/.vimrc"
 alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
