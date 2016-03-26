@@ -46,6 +46,27 @@ alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias dk='docker'
 alias dkm='docker-machine'
 alias gph='git push origin head'
+alias todo='nvim ~/.todo.md'
+alias gsuno='git status -uno -s'
+alias gfs='git ls-files -m $(git rev-parse --show-toplevel)'
+alias gcmu='git ls-files --exclude-standard --others| fzf -m | xargs git add'
+alias gcmum='gfs | fzf -m | xargs git add'
+alias gbzf='git checkout $(git branch --list | cut -c 3- | fzf)'
+# function grmu() {
+  # git status --short | awk "$0 ~ '^M' {print $2}" | fzf -m | xargs git reset HEAD
+# }
+alias gsm='git ls-files -m | fzf -m | xargs'
+alias gwe='git commit -a --fixup'
+# alias -g _gf='$(fasd -d | awk fzf)'
+# alias z='_gf | xargs cd'
+alias -g _lf='$(fzf)'
+alias lf='vim _lf'
+eval "$(fasd --init auto)"
+alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
+unalias z
+function z () {
+  cd $(ds | fzf)
+}
 function dkme () {
   eval $(docker-machine env $1)
 }
