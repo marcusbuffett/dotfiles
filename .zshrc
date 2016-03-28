@@ -92,6 +92,9 @@ setopt NO_BEEP
 HISTSIZE=1000000 
 SAVEHIST=1000000
 
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+tic $TERM.ti
+
 bindkey -v
 
 function mcd () {
