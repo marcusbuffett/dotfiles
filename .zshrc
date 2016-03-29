@@ -139,7 +139,7 @@ function ggrep () {
   then
     echo "Too many matches!"
   else
-    vim $(git grep --name-only $1)
+    nvim $(git grep --name-only $1)
   fi
 }
 
