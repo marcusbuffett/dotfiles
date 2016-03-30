@@ -150,7 +150,7 @@ function ggrep () {
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-eval "$(fasd --init auto)"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # ghc-pkg-clean -f cabal/dev/packages*.conf also works.
 function ghc-pkg-clean() {
