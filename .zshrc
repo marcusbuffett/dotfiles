@@ -152,13 +152,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-# ghc-pkg-clean -f cabal/dev/packages*.conf also works.
-function ghc-pkg-clean() {
-  for p in `ghc-pkg check $* 2>&1  | grep problems | awk '{print $6}' | sed -e 's/:$//'`
-  do
-    echo unregistering $p; ghc-pkg $* unregister $p
-  done
-}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # remove all installed GHC/cabal packages, leaving ~/.cabal binaries and docs in place.
 # When all else fails, use this to get out of dependency hell and start over.
