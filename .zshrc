@@ -1,7 +1,3 @@
-
-autoload -Uz compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-
 source ~/antigen/antigen.zsh
 
 antigen use oh-my-zsh
@@ -10,15 +6,16 @@ antigen bundle git
 antigen bundle common-aliases
 antigen bundle wd
 
-## Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle ehamberg/zsh-cabal-completion
-## Load the theme.
-# antigen theme skaro
 antigen theme agnoster
-# Tell antigen that you're done.
 antigen apply
 
+# Completion inits
+autoload -Uz compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
+# OS-specific stuff
 if [[ "$OSTYPE" == *"darwin"* ]]
 then
     alias ls="ls -G"
@@ -29,13 +26,16 @@ then
     alias t=gvfs-trash
 fi
 
+# Exports
 export EDITOR="nvim"
-
 export PATH="$PATH:~/.cargo/bin"
 export GOPATH="$HOME/go"
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
 export AWS_KEYPAIR_NAME=marcus
+export NVM_DIR="/Users/marcusbuffett/.nvm"
+
+# Aliases
 alias v="nvim"
 alias vvim="nvim ~/.vimrc"
 alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
@@ -61,25 +61,56 @@ alias gwe='git commit -a --fixup'
 # alias z='_gf | xargs cd'
 alias -g _lf='$(fzf)'
 alias lf='vim _lf'
-eval "$(fasd --init auto)"
 alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
-unalias z
+
+# Functions
 function z () {
   cd $(ds | fzf)
 }
+
 function dkme () {
   eval $(docker-machine env $1)
 }
+
 function dkrm () {
   docker rm -f $(docker ps -aq)
 }
+
 function faid () {
   open "https://itunes.apple.com/app/id$1"
 }
+
 function ua () {
   alias $1 | awk -F "'" '$0=$2'
 }
 
+function ggrep () {
+  if test $(git grep -c $1 | wc -l) -gt 10;
+  then
+    echo "Too many matches!"
+  else
+    nvim $(git grep --name-only $1)
+  fi
+}
+
+function ghc-pkg-reset() {
+  read 'ans?Erasing all your user ghc and cabal packages - are you sure (y/N)? '
+
+  [[ x$ans =~ "xy" ]] && ( \
+    echo 'erasing directories under ~/.ghc'; command rm -rf `find ~/.ghc/* -maxdepth 1 -type d`; \
+    echo 'erasing ~/.cabal/lib'; command rm -rf ~/.cabal/lib; \
+  )
+}
+
+function mcd () {
+    mkdir "$@" && cd "$@"
+}
+
+function cs () {
+    cd "$@" && ls
+}
+
+# Options
 setopt AUTO_CD
 setopt AUTO_LIST
 setopt MENU_COMPLETE
@@ -92,19 +123,20 @@ setopt NO_BEEP
 HISTSIZE=1000000 
 SAVEHIST=1000000
 
+# Various script evals
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fasd --init auto)"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Making ctrl-h work in neovim
 infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
 tic $TERM.ti
 
+# Setting up vim mode for zsh
 bindkey -v
 
-function mcd () {
-    mkdir "$@" && cd "$@"
-}
-function cs () {
-    cd "$@" && ls
-}
-DEFAULT_USER=`whoami`
-
+# Prompt related stuff
 precmd() {
   RPROMPT=""
   }
@@ -120,14 +152,17 @@ precmd() {
 zle -N zle-keymap-select
 zle -N zle-line-init
 
+# Search up and down in history with arrow keys
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
 
+# PATHS
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
+<<<<<<< HEAD
 export ZDOTDIR=$HOME
 export NODE_ENV=development
 
@@ -187,3 +222,5 @@ preexec() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+=======
+>>>>>>> 0c7433a... Refactoring .zshrc
