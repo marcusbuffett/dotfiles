@@ -7,6 +7,13 @@ done
 mkdir -p ~/.config/nvim
 ln -s ~/.vim ~/.nvim
 
+curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > antigen.zsh
+source antigen.zsh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 while [ 1 ]
 do
   if xcode-select -p &> /dev/null; then
