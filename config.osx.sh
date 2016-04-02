@@ -17,7 +17,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 while [ 1 ]
 do
   if xcode-select -p &> /dev/null; then
-    brew install python
     break
   else
     sleep 5
