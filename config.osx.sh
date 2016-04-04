@@ -29,7 +29,7 @@ pip install thefuck simplewatch chess-cli
 
 gem install sass
 
-brew install awscli cloc cabal-install cmake git ghc haskell-stack node tmux mongodb openssl python python3 phantomjs tree weechat wget zsh
+brew install ag awscli cabal-install cloc coreutils cmake ctags fasd fzf git git-crypt ghc gpg haskell-stack node tmux mongo mongodb openssl python python3 phantomjs redis tree vim webp weechat wget zsh
 
 mkdir -p /data/db
 
