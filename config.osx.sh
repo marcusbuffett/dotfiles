@@ -23,16 +23,26 @@ do
   fi
 done
 
+cat ./brew_packages | xargs brew install
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# ST
+# brew install imagemagick libav phantomjs libtiff
+
+brew link vim
+
 npm install -g bower grunt-cli babel eslint gh grunt gulp how2 http-server js-beautify jshint nodemon mocha uglify
 
 pip install thefuck simplewatch chess-cli
 
 gem install sass
 
-brew install ag awscli cabal-install cloc coreutils cmake ctags fasd fzf git git-crypt ghc gpg haskell-stack node tmux mongo mongodb openssl python python3 phantomjs redis tree vim webp weechat wget zsh
 
-mkdir -p /data/db
+sudo mkdir -p /data/db
 
 sudo chown 777 /data/db
 
+echo "/usr/local/bin/zsh" >> /etc/shells
 chsh -s /usr/local/bin/zsh
+
+\curl -sSL https://get.rvm.io | bash
