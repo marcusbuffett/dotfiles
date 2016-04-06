@@ -37,7 +37,6 @@ pip install thefuck simplewatch chess-cli
 
 gem install sass
 
-
 sudo mkdir -p /data/db
 
 sudo chown 777 /data/db
