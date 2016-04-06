@@ -130,8 +130,8 @@ eval "$(fasd --init auto)"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Making ctrl-h work in neovim
-infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
-tic $TERM.ti
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/$TERM.ti
+tic ~/$TERM.ti
 
 # Setting up vim mode for zsh
 bindkey -v
