@@ -21,6 +21,7 @@ python
 python3
 phantomjs
 redis
+trash
 tree
 vim
 webp
