@@ -4,25 +4,20 @@ Plug 'scrooloose/syntastic'
 " Plug 'stgpetrovic/syntastic-async'
 
 if has('nvim')
+  Plug 'Shougo/deoplete.nvim'
   Plug 'benekastah/neomake'
 else
+  Plug 'Valloric/YouCompleteMe'
   Plug 'scrooloose/syntastic'
 endif
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
 Plug 'lambdalisue/vim-gita'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim'
-else
-  Plug 'Valloric/YouCompleteMe'
-endif
 " Plug 'mhinz/vim-grepper'
 Plug 'scrooloose/nerdcommenter'
 Plug 'bling/vim-airline'
 " Plug 'Lokaltog/vim-easymotion'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'eagletmt/ghcmod-vim'
