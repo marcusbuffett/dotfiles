@@ -1,3 +1,8 @@
+""" vim-plug
+" PlugInstall to install plugins
+" PlugClean to remove unused plugins
+" PlugUpdate to update installed plugins
+" UpdateRemotePlugins to update some neovim plugins
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 " Plug 'pydave/AsyncCommand'
