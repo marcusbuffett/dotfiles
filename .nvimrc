@@ -4,15 +4,16 @@
 " PlugUpdate to update installed plugins
 " UpdateRemotePlugins to update some neovim plugins
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/syntastic'
-" Plug 'pydave/AsyncCommand'
-" Plug 'stgpetrovic/syntastic-async'
 
 if has('nvim')
+  " Autocomplete
   Plug 'Shougo/deoplete.nvim'
+  " Syntax checking + linting + static code analysis
   Plug 'benekastah/neomake'
 else
+  " Autocomplete
   Plug 'Valloric/YouCompleteMe'
+  " Syntax checking + linting + static code analysis
   Plug 'scrooloose/syntastic'
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
