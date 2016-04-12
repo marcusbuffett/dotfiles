@@ -16,49 +16,70 @@ else
   " Syntax checking + linting + static code analysis
   Plug 'scrooloose/syntastic'
 endif
+
+" Fuzzy searching for everything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Git wrapper
 Plug 'lambdalisue/vim-gita'
-" Plug 'mhinz/vim-grepper'
+" Commenting
 Plug 'scrooloose/nerdcommenter'
+" Status line
 Plug 'bling/vim-airline'
-" Plug 'Lokaltog/vim-easymotion'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" HTML and CSS abbreviation expansion using Emmet
 Plug 'mattn/emmet-vim'
+" Lots of color schemes
 Plug 'flazz/vim-colorschemes'
+" GHCMod for completion, linting, etc. of Haskell
 Plug 'eagletmt/ghcmod-vim'
-" Plug 'bitc/vim-hdevtools'
-" Plug 'eagletmt/neco-ghc'
+" Send ctrl-h, ctrl-j, ctrl-k, ctrl-l to tmux if there is no window
 Plug 'christoomey/vim-tmux-navigator'
-" Plug 'xolox/vim-easytags'
+" Aligning of text using :Tabularize
 Plug 'godlygeek/tabular'
-Plug 'xolox/vim-misc'
-" Plug 'vim-scripts/closetag.vim'
+" Lots of snippets
 Plug 'honza/vim-snippets'
+" Snippet engine
 Plug 'SirVer/ultisnips'
+" Adds operations like cs]) to change [test] to (test)
 Plug 'tpope/vim-surround'
+" Dash support (documentation app for OS X)
 Plug 'rizzatti/dash.vim'
+" Makes vim hard
 Plug 'takac/vim-hardtime'
+" Better JavaScript support (indentation, syntax highlighting, etc)
 Plug 'pangloss/vim-javascript'
-Plug 'jamescarr/snipmate-nodejs'
+" Tern for some (minimal) static code analysis for JavaScript
 Plug 'marijnh/tern_for_vim'
+" Toggle location list / quickfix list
 Plug 'Valloric/ListToggle'
+" Substitute command that intelligently changes case, plurality,etc.
 Plug 'tpope/vim-abolish'
+" Highlight matching HTML tag
 Plug 'gregsexton/MatchTag'
+" File explorer
 Plug 'scrooloose/nerdtree'
-" Plug 'Raimondi/delimitMate'
+" Allows other plugins to support the repeat command (.)
 Plug 'tpope/vim-repeat'
+" CSS3 syntax support
 Plug 'hail2u/vim-css3-syntax'
+" Jade support
 Plug 'digitaltoad/vim-jade'
+" JSX support
 Plug 'mxw/vim-jsx'
-Plug 'reedes/vim-pencil'
+" SCSS support
 Plug 'cakebaker/scss-syntax.vim'
+" Indent guides, useful for callback-hell and HTML
 Plug 'nathanaelkane/vim-indent-guides'
+" Coffescript support
 Plug 'kchmck/vim-coffee-script'
+" Silver searcher wrapper
 Plug 'rking/ag.vim'
+" Set cwd to root of git project if exists
 Plug 'airblade/vim-rooter'
-" Plug 'tpope/vim-rails'
-" Plug 'yegappan/greplace'
+" Needed by other plugins
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" Dependency of other plugins
+Plug 'xolox/vim-misc'
 call plug#end()
 
 " Options
