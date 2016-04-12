@@ -82,49 +82,82 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'xolox/vim-misc'
 call plug#end()
 
-" Options
+""" Options
+
+" Set leader to space
 let mapleader="\<Space>"
+" Enable syntax highlighting
 syntax enable
-set foldcolumn=1
-set autochdir
+" Copy indent from current line when inserting new line
 set autoindent
-set noautochdir
+" Smart indenting based on language
 set smartindent
+" Dark background
 set background=dark
+" Make backspace work as expected
 set backspace=indent,eol,start
+" Visual bell instead of audio bell
 set visualbell
+" Support hidden buffers
 set hidden
+" Highlight matches as the search is type
 set incsearch
+" Highlight all matches for a search
 set hlsearch
+" Don't wrap lines
 set nowrap
+" Number of spaces to use for auto indent + >> + <<, etc
 set shiftwidth=2
+" Number of spaces that a <Tab> inserts
 set softtabstop=2
+" Number of spaces that a <Tab> displays
 set tabstop=2
+" Expand tabs to spaces
 set expandtab
+" Ignore case when searching
 set ignorecase
+" Don't ignore case when there is a capital in the search
 set smartcase
+" Lots of undo
 set undolevels=1000
+" Allow vim to set the title of the shell
 set title
-set formatoptions-=cro
-set scrolloff=5
+" When hitting enter on a commented line, continue the comment
+set formatoptions-=cr
+" No scroll offset
+set scrolloff=0
+" Always have a status line
 set laststatus=2
+" Show line numbers
 set number
+" Don't store swap files
 set noswapfile
-" set relativenumber
+" No limit to syntax highlighting
 set synmaxcol=0
+" use g flag for substitute by default
 set gdefault
+" Disable left scrollbar
 set guioptions-=l
+" Disable right scrollbar
 set guioptions-=r
+" Intercept mouse events
 set mouse=a
-set timeoutlen=500 ttimeoutlen=10
-set autoread
+" Timeout for mappings
+set timeoutlen=500 
+" Timeout for key sequences
+set ttimeoutlen=10
+" Use tags file relative to cwd, not current file's directory
 set cpoptions+=d
-set history=5000 " Lots of history 
-set re=1 " Use old regex engine (faster)
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-filetype on           " Enable filetype detection
-filetype indent on    " Enable filetype-specific indenting
-filetype plugin on    " Enable filetype-specific plugins
+" Lots of history
+set history=5000
+" Use new and shiny regex engine
+set re=2
+" Enable filetype detection
+filetype on
+" Enable filetype-specific indenting
+filetype indent on
+" Enable filetype-specific plugins
+filetype plugin on
 
 runtime macros/matchit.vim
 
