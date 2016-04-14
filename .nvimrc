@@ -159,8 +159,10 @@ filetype indent on
 " Enable filetype-specific plugins
 filetype plugin on
 
+" Enable % to match more than braces
 runtime macros/matchit.vim
 
+" Set colorscheme
 colorscheme solarized
 
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
