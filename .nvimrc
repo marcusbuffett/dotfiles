@@ -165,40 +165,14 @@ runtime macros/matchit.vim
 " Set colorscheme
 colorscheme solarized
 
-let $PATH = $PATH . ':' . expand('~/.cabal/bin')
- 
-let g:ctrlp_map = '<leader>p'
-" nnoremap <silent> <esc> :noh<cr><esc>
-nmap <leader><leader>p :CtrlPCurWD<CR>
-nmap <leader>n :Buffers<CR>
-nmap <leader>b :Tags<CR>
-nmap <leader>p :Files<CR>
-nmap <leader>s :BLines<CR>
-" vmap <leader>p y:CtrlP<CR><C-\>c
-" vmap <leader>b y:CtrlP<CR><C-\>c
+" General mappings
 nmap <leader>w :wa<CR>
 nmap <leader>q :wq<CR>
 nmap <leader>/ :noh<CR>
-nmap <leader>d :Dash<CR>
-nmap <leader>D :Dash 
-nmap <leader>x :pclose<CR>:ccl<CR>
-nmap <leader>aa :Ag ""<left>
-nmap <leader>ag :Ag -G "" ""<left><left><left><left>
-nmap <leader>agr :Ag -G "\.rb" ""<left>
-nmap <leader>agj :Ag -G "\.js" ""<left>
-nmap <leader>agh :Ag -G "\.hs" ""<left>
-" nmap <leader>ag  :Grepper -tool ag  -open -switch -grepprg ag<cr>
+nmap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
 nmap <tab> :b#<CR>
 
-noremap <Leader>gs :Gita status<CR>
-noremap <Leader>gd :Gita diff<CR>
-noremap <Leader>gb :Gita blame<CR>
-noremap <Leader>gc :Gita commit<CR>
-noremap <Leader>gw :Gita add %<CR>
-
-" map <Leader>e <Plug>(easymotion-prefix)
-let g:lt_location_list_toggle_map = '<leader>l'
-let g:lt_quickfix_list_toggle_map = '<nop>'
+" Augroup for editing
 augroup EditVim
   au!
   au BufRead,BufNewFile *.jade setlocal ft=jade
@@ -231,7 +205,60 @@ augroup VimCSS3Syntax
   autocmd FileType scss setlocal iskeyword+=-
 augroup END
 
-" Hardtime
+""" Plugin configurations
+
+"" FZF
+" Search buffers
+nmap <leader>n :Buffers<CR>
+" Search tags
+nmap <leader>b :Tags<CR>
+" Search files
+nmap <leader>p :Files<CR>
+" Search lines in current file
+nmap <leader>s :BLines<CR>
+
+"" Dash
+" Search dash for current word
+nmap <leader>d :Dash<CR>
+" Open command mode to search dash
+nmap <leader>D :Dash 
+
+"" Ag
+" Search all files for text
+nmap <leader>aa :Ag ""<left>
+" Put cursor in field for file include regex
+nmap <leader>ag :Ag -G "" ""<left><left><left><left>
+" Only search specific file types
+nmap <leader>agr :Ag -G "\.rb" ""<left>
+nmap <leader>agj :Ag -G "\.js" ""<left>
+nmap <leader>agh :Ag -G "\.hs" ""<left>
+" TODO make a mapping to search for only matches that are in the same
+" filetype as the current file
+
+"" Gita
+" Status without untracked files
+noremap <Leader>gs :Gita status --untracked-files=no<CR>
+" Status with untracked files
+noremap <Leader>ga :Gita status<CR>
+" Diff current file
+noremap <Leader>gd :Gita diff<CR>
+" Diff current file against cached file
+noremap <Leader>gd :Gita diff --cached<CR>
+" Blame current file
+noremap <Leader>gb :Gita blame<CR>
+" Stage the current file
+noremap <Leader>gw :Gita add %<CR>
+" Commit staged changes
+noremap <Leader>gc :Gita commit<CR>
+
+"" ListToggle
+" Toggle location list 
+let g:lt_location_list_toggle_map = '<leader>tl'
+" Toggle quickfix list 
+let g:lt_quickfix_list_toggle_map = '<leader>tq'
+
+"" Hardtime
+" Enable hardtime
 let g:hardtime_default_on = 1
 let g:hardtime_allow_different_key = 1
 let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "n", "w", "b", "W", "B", "e", "E", ";"]
