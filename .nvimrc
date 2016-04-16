@@ -172,31 +172,45 @@ nmap <leader>/ :noh<CR>
 nmap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
 nmap <tab> :b#<CR>
 
+
 " Augroup for editing
 augroup EditVim
   au!
+  " Detect jade files
   au BufRead,BufNewFile *.jade setlocal ft=jade
-  " au filetype haskell nmap <leader>t :w <bar> GhcModTypeInsert<CR>
-  au filetype haskell nmap <leader>r :!runhaskell %<CR>
-  au filetype haskell nmap <leader><leader>r :!cabal run<CR>
+  " Run files using <leader>r, respecting file type
+  au filetype python     nmap <leader>r  :!python3 %<CR>
+  au filetype haskell    nmap <leader>r  :!runhaskell %<CR>
+  au filetype javascript nmap <leader>r  :!node %<CR>
+  au filetype haskell    nmap <leader>rc :!cabal run<CR>
+  au filetype ruby       nmap <leader>r  :!ruby %<CR>
+  au filetype ruby       nmap <leader>rb :!bundle exec ruby %<CR>
+  au filetype php        nmap <leader>r  :!php %<CR>
+
+  """ Filetype-specific mappings
+  "" Haskell
+  " Search hoogle
   au filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
-  au filetype javascript nmap <leader>r :!node %<CR>
+  " Autocomplete using necoghc
+  au filetype haskell setlocal omnifunc=necoghc#omnifunc
+  " Get type of expression under cursor
+  au FileType haskell nnoremap <buffer> <leader>t :GhcModType<CR>
+  " Clear highlighting of expression
+  au FileType haskell nnoremap <buffer> <silent> <leader>/ :noh <bar> GhcModTypeClear<CR>
+
+  "" JavaScript
   au filetype javascript nmap <leader>t :TernType<CR>
   au filetype javascript nmap <leader>f :TernDef<CR>
   au filetype javascript nmap K :TernDoc<CR>
-  au filetype python setlocal ts=4 sts=4 sw=4
-  au filetype python  nmap <leader>r :!python3 %<CR>
-  au filetype ruby  nmap <leader>r :!ruby %<CR>
-  au filetype php  nmap <leader>r :!php %<CR>
-  au filetype cpp     nmap <leader>r :wa <bar> !~/.compileRun.py %<CR>
-  au filetype cpp     nmap <leader>h :wa <bar> !~/.compile.py %<CR>
-  au filetype haskell setlocal omnifunc=necoghc#omnifunc
-  au FileType css     set omnifunc=csscomplete#CompleteCSS
-  au FileType scss     set omnifunc=csscomplete#CompleteCSS
   au FileType javascript setlocal omnifunc=tern#Complete
-  au FileType haskell nnoremap <buffer> <leader>t :GhcModType<CR>
-  au FileType haskell nnoremap <buffer> <silent> <leader>ct :GhcModTypeClear<CR>
-  au FileType haskell nnoremap <buffer> <silent> <leader>/ :noh <bar> GhcModTypeClear<CR>
+
+  "" Other
+  " 4-spaces for python
+  au filetype python setlocal ts=4 sts=4 sw=4
+  " Autocomplete css
+  au FileType css     set omnifunc=csscomplete#CompleteCSS
+  " Autocomplete scss
+  au FileType scss     set omnifunc=csscomplete#CompleteCSS
 augroup END
 
 augroup VimCSS3Syntax
