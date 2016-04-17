@@ -213,6 +213,7 @@ augroup EditVim
   au FileType scss     set omnifunc=csscomplete#CompleteCSS
 augroup END
 
+" Make commands that wok an words and WORDS include '-' in css + scss
 augroup VimCSS3Syntax
   autocmd!
   autocmd FileType css setlocal iskeyword+=-
