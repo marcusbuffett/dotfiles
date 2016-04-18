@@ -282,14 +282,19 @@ let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<L
 let g:list_of_visual_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
-"NerdTree
-map <C-n> :NERDTreeToggle<CR>
-map <C-f> :NERDTreeFocus<CR>
+"" NerdTree
+" Toggle nerdtree
+map <leader>n :NERDTreeToggle<CR>
+" Move cursor to nerdtree
+map <leader>nl :NERDTreeFocus<CR>
+" Find the current file in nerdtree and move cursor
+map <leader>nf :NERDTreeFind<CR>
+" Why NERDTree uses '?' as its help command is beyond me...
 let NERDTreeMapHelp='<f1>'
-" map <C-p> <c-w><c-p>
 
 
-"NerdCommenter
+"" NerdCommenter
+" Put one space after the comment character
 let NERDSpaceDelims = 1
 
 "CtrlP
