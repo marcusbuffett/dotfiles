@@ -297,45 +297,27 @@ let NERDTreeMapHelp='<f1>'
 " Put one space after the comment character
 let NERDSpaceDelims = 1
 
-"CtrlP
-" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|bower_components\|dist'
-" let g:ctrlp_working_path_mode = 'ra'
-" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-" func! WordProcessorMode()
-    " setlocal formatoptions=t1
-    " setlocal textwidth=80
-    " map j gj
-    " map k gk
-    " setlocal smartindent
-    " setlocal spell spelllang=en_us
-    " setlocal noexpandtab
-" endfu
-" com! WP call WordProcessorMode()
-
-" match ErrorMsg '\%>80v.\+'
-
-"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-" autocmd CursorMoved  * if pumvisible() == 0|pclose|endif
-" autocmd InsertLeave  * if pumvisible() == 0|pclose|endif
-
-"Auto syntax checking
+"" Syntastic / Neomake
+" Use syntastic for vim, neomake for neovim
 if has('nvim')
+  " Check file after every write
   autocmd! BufWritePost * Neomake
+  " Check file after every read
   autocmd! BufReadPost * Neomake
+  " Only use rubocop for ruby
   let g:neomake_ruby_enabled_makers = ['rubocop']
 else
+  " Check on save
   let g:syntastic_mode_map = { "mode": "active"}
+  " Check on open
   let g:syntastic_check_on_open=1
+  " Populate the location list with warnings/errors
   let g:syntastic_always_populate_loc_list = 1
+  " Enable language-specific checkers
   let g:syntastic_javascript_checkers = ['eslint']
   let g:syntastic_scss_checkers = ['scss_lint']
   let g:syntastic_ruby_checkers = ['rubocop']
   let g:syntastic_coffee_checkers = ['coffeelint']
-  " let g:syntastic_jsx_checkers = ['jsxhint']
-  " let g:syntastic_python_checkers = ['flake8']
-  " let g:syntastic_python_flake8_post_args='--ignore=E501'
-  "let g:syntastic_cpp_checkers = ['cppcheck']
 endif
 
 
