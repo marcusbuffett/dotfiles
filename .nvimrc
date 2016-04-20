@@ -321,62 +321,28 @@ else
 endif
 
 
-"Easy Motion
-nmap S <Plug>(easymotion-s)
-nmap s <Plug>(easymotion-s2)
-" vmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
-" vmap t <Plug>(easymotion-t2)
-" let g:EasyMotion_skipfoldedline = 0
-" Gif config
-" map  / <Plug>(easymotion-sn)
-" omap / <Plug>(easymotion-tn)
-
-" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
-" Without these mappings, `n` & `N` works fine. (These mappings just provide
-" different highlight method and have some other features )
-" map  n <Plug>(easymotion-next)
-" map  N <Plug>(easymotion-prev)
-
-"YouCompleteMe
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-" let g:ycm_key_list_select_completion = ['<Tab>', '<Down>']
-"Set to 0 to enable syntastic for cpp
-" let g:ycm_show_diagnostics_ui = 1
-let g:ycm_semantic_triggers = {
-    \   'scss': [ 're!^\s{4}', 're!:\s+' ],
-    \   'css' : [ 're!^\s{4}', 're!:\s+' ],
-    \   'javascript' : ["require"],
-    \   'haskell' : ["."]
-\ }
-" let g:ycm_path_to_python_interpreter='/usr/local/bin/python3'
-" let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_min_num_of_chars_for_completion = 1
-"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" make YCM compatible with UltiSnips (using supertab)
-" let g:ycm_key_list_select_completion = ['<Down>']
-" let g:ycm_key_list_previous_completion = ['<Up>']
-" let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" " better key bindings for UltiSnipsExpandTrigger
-" let g:UltiSnipsExpandTrigger = "<CR>"
-let g:UltiSnipsExpandTrigger = "<nop>"
-inoremap <expr> <CR> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>" : "\<CR>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
-
-"For zsh
-set shell=zsh\ -l
-" set shell=/bin/bash
-
-"For concealing
-" let hscoptions="Bxb-tQZAe"
-" augroup AdjustConceal
-    " autocmd!
-    " autocmd ColorScheme *.hs highlight link Conceal conditional
-" augroup END
+"" YouCompleteMe and Deoplete
+" Use YouCompleteMe for vim, Deoplete for neovim
+if has('nvim')
+  " Enabel deoplete
+  let g:deoplete#enable_at_startup = 1
+  " If there aren't input patterns set for completion, set it to {}
+  if !exists('g:deoplete#omni#input_patterns')
+    let g:deoplete#omni#input_patterns = {}
+  endif
+  " Tab for completion
+  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+else
+  " Set what keys trigger YouCompleteMe
+  let g:ycm_semantic_triggers = {
+      \   'scss': [ 're!^\s{4}', 're!:\s+' ],
+      \   'css' : [ 're!^\s{4}', 're!:\s+' ],
+      \   'javascript' : ["require"],
+      \   'haskell' : ["."]
+  \ }
+  " Only require one char to trigger completion
+  let g:ycm_min_num_of_chars_for_completion = 1
+endif
 
 "Easy tags
 " let g:easytags_languages = {
