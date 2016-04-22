@@ -344,21 +344,8 @@ else
   let g:ycm_min_num_of_chars_for_completion = 1
 endif
 
-"Easy tags
-" let g:easytags_languages = {
-" \   'haskell': {
-" \     'cmd': 'hasktags',
-" \       'args': ['-c'],
-" \       'fileoutput_opt': '-f',
-" \       'stdout_opt': '-f-',
-" \       'recurse_flag': '-R'
-" \   }
-" \}
-" let g:easytags_async = 1
-" set tags=./tags;
-" let g:easytags_dynamic_files = 2
-
-"Airline
+"" Airline
+" Enable powerline fonts
 let g:airline_powerline_fonts = 1
 
 "Pencil
