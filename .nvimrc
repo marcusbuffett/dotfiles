@@ -347,22 +347,3 @@ endif
 "" Airline
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
-
-"Pencil
-let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
-
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-augroup END"
-
-let g:deoplete#enable_at_startup = 1
-if !exists('g:deoplete#omni#input_patterns')
-  let g:deoplete#omni#input_patterns = {}
-endif
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
-
-"Syntax stuff
-" map <leader>S :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-            " \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-            " \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
