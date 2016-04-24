@@ -257,7 +257,7 @@ noremap <Leader>ga :Gita status<CR>
 " Diff current file
 noremap <Leader>gd :Gita diff<CR>
 " Diff current file against cached file
-noremap <Leader>gd :Gita diff --cached<CR>
+noremap <Leader>gdc :Gita diff --cached<CR>
 " Blame current file
 noremap <Leader>gb :Gita blame<CR>
 " Stage the current file
