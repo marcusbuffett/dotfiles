@@ -56,7 +56,7 @@ Plug 'Valloric/ListToggle'
 Plug 'tpope/vim-abolish'
 " Highlight matching HTML tag
 Plug 'gregsexton/MatchTag'
-" File explorer
+" " File explorer
 Plug 'scrooloose/nerdtree'
 " Allows other plugins to support the repeat command (.)
 Plug 'tpope/vim-repeat'
@@ -166,12 +166,11 @@ runtime macros/matchit.vim
 colorscheme solarized
 
 " General mappings
-nmap <leader>w :wa<CR>
-nmap <leader>q :wq<CR>
-nmap <leader>/ :noh<CR>
-nmap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
-nmap <tab> :b#<CR>
-
+nnoremap <leader>w :wa<CR>
+nnoremap <leader>q :wq<CR>
+nnoremap <leader>/ :noh<CR>
+nnoremap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
+nnoremap <tab> :b#<CR>
 
 " Augroup for editing
 augroup EditVim
@@ -179,18 +178,18 @@ augroup EditVim
   " Detect jade files
   au BufRead,BufNewFile *.jade setlocal ft=jade
   " Run files using <leader>r, respecting file type
-  au filetype python     nmap <leader>r  :!python3 %<CR>
-  au filetype haskell    nmap <leader>r  :!runhaskell %<CR>
-  au filetype javascript nmap <leader>r  :!node %<CR>
-  au filetype haskell    nmap <leader>rc :!cabal run<CR>
-  au filetype ruby       nmap <leader>r  :!ruby %<CR>
-  au filetype ruby       nmap <leader>rb :!bundle exec ruby %<CR>
-  au filetype php        nmap <leader>r  :!php %<CR>
+  au filetype python     nnoremap <leader>r  :!python3 %<CR>
+  au filetype haskell    nnoremap <leader>r  :!runhaskell %<CR>
+  au filetype javascript nnoremap <leader>r  :!node %<CR>
+  au filetype haskell    nnoremap <leader>rc :!cabal run<CR>
+  au filetype ruby       nnoremap <leader>r  :!ruby %<CR>
+  au filetype ruby       nnoremap <leader>rb :!bundle exec ruby %<CR>
+  au filetype php        nnoremap <leader>r  :!php %<CR>
 
   """ Filetype-specific mappings
   "" Haskell
   " Search hoogle
-  au filetype haskell nmap <leader>h :!hoogle --count=5 ""<Left>
+  au filetype haskell nnoremap <leader>h :!hoogle --count=5 ""<Left>
   " Autocomplete using necoghc
   au filetype haskell setlocal omnifunc=necoghc#omnifunc
   " Get type of expression under cursor
@@ -199,9 +198,9 @@ augroup EditVim
   au FileType haskell nnoremap <buffer> <silent> <leader>/ :noh <bar> GhcModTypeClear<CR>
 
   "" JavaScript
-  au filetype javascript nmap <leader>t :TernType<CR>
-  au filetype javascript nmap <leader>f :TernDef<CR>
-  au filetype javascript nmap K :TernDoc<CR>
+  au filetype javascript nnoremap <leader>t :TernType<CR>
+  au filetype javascript nnoremap <leader>f :TernDef<CR>
+  au filetype javascript nnoremap K :TernDoc<CR>
   au FileType javascript setlocal omnifunc=tern#Complete
 
   "" Other
@@ -224,29 +223,29 @@ augroup END
 
 "" FZF
 " Search buffers
-nmap <leader>n :Buffers<CR>
+nnoremap <leader>n :Buffers<CR>
 " Search tags
-nmap <leader>b :Tags<CR>
+nnoremap <leader>b :Tags<CR>
 " Search files
-nmap <leader>p :Files<CR>
+nnoremap <leader>p :Files<CR>
 " Search lines in current file
-nmap <leader>s :BLines<CR>
+nnoremap <leader>s :BLines<CR>
 
 "" Dash
 " Search dash for current word
-nmap <leader>d :Dash<CR>
+nnoremap <leader>d :Dash<CR>
 " Open command mode to search dash
-nmap <leader>D :Dash 
+nnoremap <leader>D :Dash 
 
 "" Ag
 " Search all files for text
-nmap <leader>aa :Ag ""<left>
+nnoremap <leader>aa :Ag ""<left>
 " Put cursor in field for file include regex
-nmap <leader>ag :Ag -G "" ""<left><left><left><left>
+nnoremap <leader>ag :Ag -G "" ""<left><left><left><left>
 " Only search specific file types
-nmap <leader>agr :Ag -G "\.rb" ""<left>
-nmap <leader>agj :Ag -G "\.js" ""<left>
-nmap <leader>agh :Ag -G "\.hs" ""<left>
+nnoremap <leader>agr :Ag -G "\.rb" ""<left>
+nnoremap <leader>agj :Ag -G "\.js" ""<left>
+nnoremap <leader>agh :Ag -G "\.hs" ""<left>
 " TODO make a mapping to search for only matches that are in the same
 " filetype as the current file
 
@@ -331,7 +330,7 @@ if has('nvim')
     let g:deoplete#omni#input_patterns = {}
   endif
   " Tab for completion
-  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 else
   " Set what keys trigger YouCompleteMe
   let g:ycm_semantic_triggers = {
@@ -343,6 +342,11 @@ else
   " Only require one char to trigger completion
   let g:ycm_min_num_of_chars_for_completion = 1
 endif
+
+"" Ultisnips
+let g:UltiSnipsExpandTrigger="<CR>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 "" Airline
 " Enable powerline fonts
