@@ -70,6 +70,7 @@ alias lf='vim _lf'
 alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
 
 # Functions
+unalias z
 function z () {
   cd $(ds | fzf)
 }
