@@ -363,3 +363,4 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 "" Airline
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
+let g:airline_detect_whitespace=0
