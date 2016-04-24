@@ -35,6 +35,12 @@ export PATH="$PATH:$GOPATH/bin"
 export AWS_KEYPAIR_NAME=marcus
 export NVM_DIR="/Users/marcusbuffett/.nvm"
 
+# Various script evals
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fasd --init auto)"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # Aliases
 alias v="nvim"
 alias vvim="nvim ~/.vimrc"
@@ -123,11 +129,6 @@ setopt NO_BEEP
 HISTSIZE=1000000 
 SAVEHIST=1000000
 
-# Various script evals
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(fasd --init auto)"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Making ctrl-h work in neovim
 infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/$TERM.ti
