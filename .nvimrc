@@ -228,6 +228,8 @@ nnoremap <leader>fn :Buffers<CR>
 nnoremap <leader>fb :Tags<CR>
 " Search files
 nnoremap <leader>fp :Files<CR>
+" Search git files
+nnoremap <leader>fg :GitFiles<CR>
 " Search lines in current file
 nnoremap <leader>fs :BLines<CR>
 
