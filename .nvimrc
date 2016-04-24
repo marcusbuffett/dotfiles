@@ -223,13 +223,13 @@ augroup END
 
 "" FZF
 " Search buffers
-nnoremap <leader>n :Buffers<CR>
+nnoremap <leader>fn :Buffers<CR>
 " Search tags
-nnoremap <leader>b :Tags<CR>
+nnoremap <leader>fb :Tags<CR>
 " Search files
-nnoremap <leader>p :Files<CR>
+nnoremap <leader>fp :Files<CR>
 " Search lines in current file
-nnoremap <leader>s :BLines<CR>
+nnoremap <leader>fs :BLines<CR>
 
 "" Dash
 " Search dash for current word
