@@ -312,7 +312,7 @@ noremap <Leader>gb :Gita blame<CR>
 " Patch current file
 noremap <Leader>gp :Gita patch<CR>
 " Stage the current file
-noremap <Leader>gw :Gita add %<CR>
+noremap <Leader>ga :Gita add %<CR>
 " Commit staged changes
 noremap <Leader>gc :Gita commit<CR>
 
