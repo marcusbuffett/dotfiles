@@ -274,11 +274,8 @@ endfunction
 
 " query, [[ag options], options]
 function! fzf#vim#ag(query, ...)
-  echo a:query
   let args = copy(a:000)
-  echo args
   let ag_opts = len(args) > 1 ? remove(args, 0) : ''
-  echo ag_opts
   echo printf('ag --nogroup --column --color %s',
   \                   empty(a:query) ? '^(?=.)' : a:query)
 
