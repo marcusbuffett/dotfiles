@@ -302,7 +302,7 @@ nnoremap <leader>D :Dash
 " Status without untracked files
 noremap <Leader>gs :Gita status --untracked-files=no<CR>
 " Status with untracked files
-noremap <Leader>ga :Gita status<CR>
+noremap <Leader>gsa :Gita status<CR>
 " Diff current file
 noremap <Leader>gd :Gita diff<CR>
 " Diff current file against cached file
