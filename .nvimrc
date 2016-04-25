@@ -230,6 +230,17 @@ nnoremap <leader>fp :Files<CR>
 nnoremap <leader>fg :GitFiles<CR>
 " Search lines in current file
 nnoremap <leader>fs :BLines<CR>
+" Search all files for text
+nnoremap <leader>aa :Ag ""<left>
+" Put cursor in field for file include regex
+nnoremap <leader>ag :Ag -G
+" Only search specific file types
+nnoremap <leader>agr :Ag -G "\.rb" ""<left>
+nnoremap <leader>agj :Ag -G "\.js" ""<left>
+nnoremap <leader>agh :Ag -G "\.hs" ""<left>
+" TODO make a mapping to search for only matches that are in the same
+" filetype as the current file
+
 
 " Ag with all options supported
 function! s:ag_to_qf(line)
@@ -286,18 +297,6 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, s:w(<bang>0))
 nnoremap <leader>d :Dash<CR>
 " Open command mode to search dash
 nnoremap <leader>D :Dash 
-
-"" Ag
-" Search all files for text
-nnoremap <leader>aa :Ag ""<left>
-" Put cursor in field for file include regex
-nnoremap <leader>ag :Ag -G "" ""<left><left><left><left>
-" Only search specific file types
-nnoremap <leader>agr :Ag -G "\.rb" ""<left>
-nnoremap <leader>agj :Ag -G "\.js" ""<left>
-nnoremap <leader>agh :Ag -G "\.hs" ""<left>
-" TODO make a mapping to search for only matches that are in the same
-" filetype as the current file
 
 "" Gita
 " Status without untracked files
