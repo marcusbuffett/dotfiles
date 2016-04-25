@@ -72,8 +72,6 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 " Coffescript support
 Plug 'kchmck/vim-coffee-script'
-" Silver searcher wrapper
-Plug 'rking/ag.vim'
 " Set cwd to root of git project if exists
 Plug 'airblade/vim-rooter'
 " Needed by other plugins
