@@ -231,6 +231,56 @@ nnoremap <leader>fg :GitFiles<CR>
 " Search lines in current file
 nnoremap <leader>fs :BLines<CR>
 
+" Ag with all options supported
+function! s:ag_to_qf(line)
+  let parts = split(a:line, ':')
+  return {'filename': &acd ? fnamemodify(parts[0], ':p') : parts[0], 'lnum': parts[1], 'col': parts[2],
+        \ 'text': join(parts[3:], ':')}
+endfunction
+
+function! s:ag_handler(lines)
+  if len(a:lines) < 2
+    return
+  endif
+
+  let cmd = get(get(g:, 'fzf_action', s:default_action), a:lines[0], 'e')
+  let list = map(a:lines[1:], 's:ag_to_qf(v:val)')
+
+  let first = list[0]
+  try
+    execute cmd s:escape(first.filename)
+    execute first.lnum
+    execute 'normal!' first.col.'|zz'
+  catch
+  endtry
+
+  if len(list) > 1
+    call setqflist(list)
+    copen
+    wincmd p
+  endif
+endfunction
+
+" query, [[ag options], options]
+function! fzf#vim#ag(query, ...)
+  echo a:query
+  let args = copy(a:000)
+  echo args
+  let ag_opts = len(args) > 1 ? remove(args, 0) : ''
+  echo ag_opts
+  echo printf('ag --nogroup --column --color %s',
+  \                   empty(a:query) ? '^(?=.)' : a:query)
+
+  call fzf#run({
+  \ 'source':  printf('ag --nogroup --column --color %s',
+  \                   empty(a:query) ? '^(?=.)' : a:query),
+  \ 'sink*':    function('s:ag_handler'),
+  \ 'options': '--ansi --delimiter : --nth 4..,.. --prompt "Ag> " '.
+  \            '--multi --bind alt-a:select-all,alt-d:deselect-all '.
+  \            '--color hl:68,hl+:110'})
+endfunction
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, s:w(<bang>0))
+
 "" Dash
 " Search dash for current word
 nnoremap <leader>d :Dash<CR>
