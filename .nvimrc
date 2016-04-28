@@ -231,77 +231,34 @@ nnoremap <leader>fg :GitFiles<CR>
 " Search lines in current file
 nnoremap <leader>fs :BLines<CR>
 " Search all files for text
-nnoremap <leader>aa :Ag ""<left>
+nnoremap <leader>aa :Agp ""<left>
+vnoremap <leader>aa y:Agp ""<left><C-r>0
 " Put cursor in field for file include regex
-nnoremap <leader>ag :Ag -G
+nnoremap <leader>ag :Agp -G
+vnoremap <leader>ag y:Agp -G <C-r>0
 " Only search specific file types
-nnoremap <leader>agr :Ag -G "\.rb" ""<left>
-nnoremap <leader>agj :Ag -G "\.js" ""<left>
-nnoremap <leader>agh :Ag -G "\.hs" ""<left>
-" TODO make a mapping to search for only matches that are in the same
-" filetype as the current file
-
-
-" Ag with all options supported
-function! s:ag_to_qf(line)
-  let parts = split(a:line, ':')
-  return {'filename': &acd ? fnamemodify(parts[0], ':p') : parts[0], 'lnum': parts[1], 'col': parts[2],
-        \ 'text': join(parts[3:], ':')}
-endfunction
-
-function! s:ag_handler(lines)
-  if len(a:lines) < 2
-    return
-  endif
-
-  let cmd = get(get(g:, 'fzf_action', s:default_action), a:lines[0], 'e')
-  let list = map(a:lines[1:], 's:ag_to_qf(v:val)')
-
-  let first = list[0]
-  try
-    execute cmd s:escape(first.filename)
-    execute first.lnum
-    execute 'normal!' first.col.'|zz'
-  catch
-  endtry
-
-  if len(list) > 1
-    call setqflist(list)
-    copen
-    wincmd p
-  endif
-endfunction
-
-" query, [[ag options], options]
-function! fzf#vim#ag(query, ...)
-  let args = copy(a:000)
-  let ag_opts = len(args) > 1 ? remove(args, 0) : ''
-  echo printf('ag --nogroup --column --color %s',
-  \                   empty(a:query) ? '^(?=.)' : a:query)
-
-  call fzf#run({
-  \ 'source':  printf('ag --nogroup --column --color %s',
-  \                   empty(a:query) ? '^(?=.)' : a:query),
-  \ 'sink*':    function('s:ag_handler'),
-  \ 'options': '--ansi --delimiter : --nth 4..,.. --prompt "Ag> " '.
-  \            '--multi --bind alt-a:select-all,alt-d:deselect-all '.
-  \            '--color hl:68,hl+:110'})
-endfunction
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, s:w(<bang>0))
+nnoremap <leader>agr :Agp -G "\.rb" ""<left>
+vnoremap <leader>agr y:Agp -G "\.rb" ""<left><C-r>0
+nnoremap <leader>agj :Agp -G "\.js" ""<left>
+vnoremap <leader>agj y:Agp -G "\.js" ""<left><C-r>0
+nnoremap <leader>agh :Agp -G "\.hs" ""<left>
+vnoremap <leader>agh y:Agp -G "\.hs" ""<left><C-r>0
 
 "" Dash
 " Search dash for current word
-nnoremap <leader>d :Dash<CR>
+noremap <leader>d :Dash<CR>
 " Open command mode to search dash
-nnoremap <leader>D :Dash 
+nnoremap <leader>D :Dash<space>
 
 "" Gita
 " Status without untracked files
 noremap <Leader>gs :Gita status --untracked-files=no<CR>
 " Status with untracked files
 noremap <Leader>gsa :Gita status<CR>
-" Diff current file
+" Diff all files
 noremap <Leader>gd :Gita diff<CR>
+" Diff current file
+noremap <Leader>gd :Gita diff -- %<CR>
 " Diff current file against cached file
 noremap <Leader>gdc :Gita diff --cached<CR>
 " Blame current file
@@ -328,6 +285,8 @@ let g:hardtime_allow_different_key = 1
 let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "n", "w", "b", "W", "B", "e", "E", ";"]
 let g:list_of_visual_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+nnoremap <leader>ho :HardTimeOff<CR>
+nnoremap <leader>ht :HardTimeToggle<CR>
 
 "" NerdTree
 " Toggle nerdtree
