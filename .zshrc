@@ -37,13 +37,14 @@ export NVM_DIR="/Users/marcusbuffett/.nvm"
 
 # Various script evals
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fasd --init auto)"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Aliases
 alias v="nvim"
+alias vi="nvim"
 alias vvim="nvim ~/.vimrc"
+alias nvvim="nvim ~/.config/nvim/init.vim"
 alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
 alias grep='grep --color=auto'
 alias tmux="tmux -2"
@@ -164,7 +165,6 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
-<<<<<<< HEAD
 export ZDOTDIR=$HOME
 export NODE_ENV=development
 
@@ -224,5 +224,3 @@ preexec() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-=======
->>>>>>> 0c7433a... Refactoring .zshrc
