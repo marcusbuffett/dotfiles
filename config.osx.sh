@@ -26,8 +26,6 @@ done
 cat ./brew_packages | xargs brew install
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# ST
-# brew install imagemagick libav phantomjs libtiff
 
 brew link vim
 
