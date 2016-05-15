@@ -363,9 +363,7 @@ augroup pencil
 augroup END
 
 "" Rust racer
-let g:racer_cmd="/Users/marcusbuffett/.cargo/bin/racer"
-let g:deoplete#omni#input_patterns.rust = '[(\.)(::)]'
-
+let g:racer_cmd="/Users/marcusbuffett/Documents/etc/racer/target/release/racer"
 "" NerdTree-git
 let g:NERDTreeIndicatorMapCustom = {
       \ "Modified"  : "●",
