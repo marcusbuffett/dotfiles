@@ -79,6 +79,8 @@ Plug 'wting/rust.vim'
 Plug 'reedes/vim-pencil'
 " Rust autocompletion
 Plug 'racer-rust/vim-racer'
+" Git status symbols for NerdTree
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " " Set cwd to root of git project if exists
 " Plug 'airblade/vim-rooter'
 " Needed by other plugins
