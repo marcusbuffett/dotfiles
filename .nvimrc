@@ -386,3 +386,30 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
 let g:airline_detect_whitespace=0
+
+"" Pencil
+" Make soft wrap the default
+let g:pencil#wrapModeDefault = 'soft'
+" Set types of file to use pencil for
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+
+"" Rust racer
+let g:racer_cmd="/Users/marcusbuffett/.cargo/bin/racer"
+let g:deoplete#omni#input_patterns.rust = '[(\.)(::)]'
+
+"" NerdTree-git
+let g:NERDTreeIndicatorMapCustom = {
+      \ "Modified"  : "●",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "?",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔︎",
+      \ "Unknown"   : "?"
+      \ }
