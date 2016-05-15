@@ -170,7 +170,7 @@ set noautochdir
 runtime macros/matchit.vim
 
 " Set colorscheme
-colorscheme solarized
+colorscheme gruvbox
 
 " General mappings
 nnoremap <leader>w :wa<CR>
