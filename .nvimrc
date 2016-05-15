@@ -163,6 +163,8 @@ filetype on
 filetype indent on
 " Enable filetype-specific plugins
 filetype plugin on
+" Do not automatically change dirs
+set noautochdir
 
 " Enable % to match more than braces
 runtime macros/matchit.vim
