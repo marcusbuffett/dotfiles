@@ -264,10 +264,6 @@ nnoremap <leader>D :Dash<space>
 noremap <Leader>gs :Gstatus<CR>
 " Diff all files
 noremap <Leader>gd :Gdiff<CR>
-" Diff current file
-noremap <Leader>gd :Gdiff -- %<CR>
-" Diff current file against cached file
-noremap <Leader>gdc :Gdiff --cached<CR>
 " Blame current file
 noremap <Leader>gb :Gblame<CR>
 " Patch current file
