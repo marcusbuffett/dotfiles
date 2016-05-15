@@ -234,6 +234,8 @@ augroup END
 "" FZF
 " Search buffers
 nnoremap <leader>fn :Buffers<CR>
+" Search marks
+nnoremap <leader>fm :Marks<CR>
 " Search tags
 nnoremap <leader>fb :Tags<CR>
 " Search files
