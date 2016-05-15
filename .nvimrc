@@ -73,8 +73,14 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 " Coffescript support
 Plug 'kchmck/vim-coffee-script'
-" Set cwd to root of git project if exists
-Plug 'airblade/vim-rooter'
+" Rust syntax highlighting
+Plug 'wting/rust.vim'
+" Plugin for editing plain text files
+Plug 'reedes/vim-pencil'
+" Rust autocompletion
+Plug 'racer-rust/vim-racer'
+" " Set cwd to root of git project if exists
+" Plug 'airblade/vim-rooter'
 " Needed by other plugins
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Dependency of other plugins
