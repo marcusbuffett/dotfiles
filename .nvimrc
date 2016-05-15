@@ -264,25 +264,25 @@ noremap <leader>d :Dash<CR>
 " Open command mode to search dash
 nnoremap <leader>D :Dash<space>
 
-"" Gita
+"" Fugitive
 " Status without untracked files
-noremap <Leader>gs :Gita status --untracked-files=no<CR>
-" Status with untracked files
-noremap <Leader>gsa :Gita status<CR>
+noremap <Leader>gs :Gstatus<CR>
 " Diff all files
-noremap <Leader>gd :Gita diff<CR>
+noremap <Leader>gd :Gdiff<CR>
 " Diff current file
-noremap <Leader>gd :Gita diff -- %<CR>
+noremap <Leader>gd :Gdiff -- %<CR>
 " Diff current file against cached file
-noremap <Leader>gdc :Gita diff --cached<CR>
+noremap <Leader>gdc :Gdiff --cached<CR>
 " Blame current file
-noremap <Leader>gb :Gita blame<CR>
+noremap <Leader>gb :Gblame<CR>
 " Patch current file
-noremap <Leader>gp :Gita patch<CR>
-" Stage the current file
-noremap <Leader>ga :Gita add %<CR>
+noremap <Leader>gp :Gpatch<CR>
 " Commit staged changes
-noremap <Leader>gc :Gita commit<CR>
+noremap <Leader>gc :Gcommit<CR>
+" Reset to head
+noremap <Leader>gr :Gread<CR>
+" Add
+noremap <Leader>gw :Gwrite<CR>
 
 "" ListToggle
 " Toggle location list 
