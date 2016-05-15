@@ -20,7 +20,7 @@ endif
 
 " Fuzzy searching for everything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'marcusbuffett/fzf.vim'
 " Git wrapper
 Plug 'lambdalisue/vim-gita'
 " Commenting
