@@ -194,6 +194,7 @@ augroup EditVim
   au filetype ruby       nnoremap <leader>r  :!ruby %<CR>
   au filetype ruby       nnoremap <leader>rb :!bundle exec ruby %<CR>
   au filetype php        nnoremap <leader>r  :!php %<CR>
+  au filetype rust        nnoremap <leader>r  :!cargo run<CR>
 
   """ Filetype-specific mappings
   "" Haskell
