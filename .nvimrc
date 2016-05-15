@@ -326,6 +326,7 @@ if has('nvim')
   autocmd! BufReadPost * Neomake
   " Only use rubocop for ruby
   let g:neomake_ruby_enabled_makers = ['rubocop']
+  let g:neomake_sh_enabled_makers = ['shellcheck']
 else
   " Check on save
   let g:syntastic_mode_map = { "mode": "active"}
