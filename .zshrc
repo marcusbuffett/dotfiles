@@ -34,11 +34,8 @@ export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
 export AWS_KEYPAIR_NAME=marcus
 export NVM_DIR="/Users/marcusbuffett/.nvm"
-
-# Various script evals
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-eval "$(fasd --init auto)"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export RUST_SRC_PATH="$HOME/Documents/etc/rust/src"
+# export RUBYOPT=-rbumbler/go
 
 # Aliases
 alias v="nvim"
@@ -70,8 +67,54 @@ alias -g _lf='$(fzf)'
 alias lf='vim _lf'
 alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
 
+# Options
+setopt AUTO_CD
+setopt AUTO_LIST
+setopt MENU_COMPLETE
+unsetopt LIST_BEEP
+setopt INC_APPEND_HISTORY
+export KEYTIMEOUT=1
+setopt AUTOPUSHD
+setopt NO_BEEP
+# tons of history
+HISTSIZE=1000000 
+SAVEHIST=1000000
+
+
+# Making ctrl-h work in neovim
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/$TERM.ti
+tic ~/$TERM.ti
+
+# Setting up vim mode for zsh
+bindkey -v
+
+# Prompt related stuff
+precmd() {
+  RPROMPT=""
+  }
+  zle-keymap-select() {
+    RPROMPT=""
+  [[ $KEYMAP = vicmd ]] && RPROMPT="NORMAL"
+    () { return $__prompt_status }
+  zle reset-prompt
+  }
+  zle-line-init() {
+    typeset -g __prompt_status="$?"
+}
+zle -N zle-keymap-select
+zle -N zle-line-init
+
+# Search up and down in history with arrow keys
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
+# PATHS
+export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/Library/Haskell/bin:$PATH
+export PATH=$HOME/.cabal/bin:$PATH
+
 # Functions
-unalias z
 function z () {
   cd $(ds | fzf)
 }
@@ -118,109 +161,35 @@ function cs () {
     cd "$@" && ls
 }
 
-# Options
-setopt AUTO_CD
-setopt AUTO_LIST
-setopt MENU_COMPLETE
-unsetopt LIST_BEEP
-setopt INC_APPEND_HISTORY
-export KEYTIMEOUT=1
-setopt AUTOPUSHD
-setopt NO_BEEP
-# tons of history
-HISTSIZE=1000000 
-SAVEHIST=1000000
-
-
-# Making ctrl-h work in neovim
-infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/$TERM.ti
-tic ~/$TERM.ti
-
-# Setting up vim mode for zsh
-bindkey -v
-
-# Prompt related stuff
-precmd() {
-  RPROMPT=""
-  }
-  zle-keymap-select() {
-    RPROMPT=""
-  [[ $KEYMAP = vicmd ]] && RPROMPT="NORMAL"
-    () { return $__prompt_status }
-  zle reset-prompt
-  }
-  zle-line-init() {
-    typeset -g __prompt_status="$?"
+# Aliases hook
+_aliases="$(alias -Lr 2>/dev/null || alias)"
+alias_for() {
+  [[ $1 =~ '[[:punct:]]' ]] && return
+  local found="$( echo "$_aliases" | sed -nE "/^alias ${1}='?(.+)/s//\\1/p" )"
+  [[ -n $found ]] && echo "${found%\'}"
 }
-zle -N zle-keymap-select
-zle -N zle-line-init
+force_alias_hook() {
+  [[ $# -eq 0 ]] && return         # If there's no input, return. Else... 
+  echo $1
+}
+autoload -U add-zsh-hook
+add-zsh-hook preexec force_alias_hook
 
-# Search up and down in history with arrow keys
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
-
-
-# PATHS
-export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/Library/Haskell/bin:$PATH
-export PATH=$HOME/.cabal/bin:$PATH
-export ZDOTDIR=$HOME
-export NODE_ENV=development
-
-export NVM_DIR="/Users/marcusbuffett/.nvm"
+# Various script evals
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+eval "$(fasd --init auto)"
+# Don't want this alias from fasd
+unalias z
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-function ggrep () {
-  if test $(git grep -c $1 | wc -l) -gt 10;
-  then
-    echo "Too many matches!"
-  else
-    nvim $(git grep --name-only $1)
-  fi
-}
-
-# Really weird fix for Control-H not working in neovim, black magic below
-# infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
-# tic $TERM.ti
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# remove all installed GHC/cabal packages, leaving ~/.cabal binaries and docs in place.
-# When all else fails, use this to get out of dependency hell and start over.
-function ghc-pkg-reset() {
-  read 'ans?Erasing all your user ghc and cabal packages - are you sure (y/N)? '
-
-  [[ x$ans =~ "xy" ]] && ( \
-    echo 'erasing directories under ~/.ghc'; command rm -rf `find ~/.ghc/* -maxdepth 1 -type d`; \
-    echo 'erasing ~/.cabal/lib'; command rm -rf ~/.cabal/lib; \
-  )
+expand-aliases() {
+  unset 'functions[_expand-aliases]'
+  functions[_expand-aliases]=$BUFFER
+  (($+functions[_expand-aliases])) &&
+    BUFFER=${functions[_expand-aliases]#$'\t'} &&
+    CURSOR=$#BUFFER
 }
 
-# source aws_keys.sh
-
-alias cabalupgrades="cabal list --installed  | egrep -iv '(synopsis|homepage|license)'"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-preexec() {
-  date=`date +%s`
-  cmd=$1
-  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
-    branch=$(git branch | grep "* " | awk '{print $2}')
-    repo=$(basename `git rev-parse --show-toplevel`)
-  else
-    branch="N/A"
-    repo="N/A"
-  fi
-  echo "$date\t`pwd`\t$repo\t$branch\t$1" >> ~/.zsh_history_long
-}
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+zle -N expand-aliases
+bindkey '^E' expand-aliases
