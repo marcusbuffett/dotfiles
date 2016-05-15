@@ -119,6 +119,11 @@ function z () {
   cd $(ds | fzf)
 }
 
+function runrust () {
+  name=$(basename $1 .rs)
+  rustc $@ && ./$name && command rm $name
+}
+
 function dkme () {
   eval $(docker-machine env $1)
 }
