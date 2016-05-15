@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 if has('nvim')
   " Autocomplete
   Plug 'Shougo/deoplete.nvim'
+  Plug 'zchee/deoplete-jedi'
   " Syntax checking + linting + static code analysis
   Plug 'benekastah/neomake'
 else
