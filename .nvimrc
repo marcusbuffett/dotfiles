@@ -5,18 +5,11 @@
 " UpdateRemotePlugins to update some neovim plugins
 call plug#begin('~/.vim/plugged')
 
-if has('nvim')
-  " Autocomplete
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'zchee/deoplete-jedi'
-  " Syntax checking + linting + static code analysis
-  Plug 'benekastah/neomake'
-else
-  " Autocomplete
-  Plug 'Valloric/YouCompleteMe'
-  " Syntax checking + linting + static code analysis
-  Plug 'scrooloose/syntastic'
-endif
+" Autocomplete
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-jedi'
+" Syntax checking + linting + static code analysis
+Plug 'benekastah/neomake'
 
 " Fuzzy searching for everything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -321,51 +314,23 @@ let NERDSpaceDelims = 1
 
 "" Syntastic / Neomake
 " Use syntastic for vim, neomake for neovim
-if has('nvim')
-  " Check file after every write
-  autocmd! BufWritePost * Neomake
-  " Check file after every read
-  autocmd! BufReadPost * Neomake
-  " Only use rubocop for ruby
-  let g:neomake_ruby_enabled_makers = ['rubocop']
-  let g:neomake_sh_enabled_makers = ['shellcheck']
-else
-  " Check on save
-  let g:syntastic_mode_map = { "mode": "active"}
-  " Check on open
-  let g:syntastic_check_on_open=1
-  " Populate the location list with warnings/errors
-  let g:syntastic_always_populate_loc_list = 1
-  " Enable language-specific checkers
-  let g:syntastic_javascript_checkers = ['eslint']
-  let g:syntastic_scss_checkers = ['scss_lint']
-  let g:syntastic_ruby_checkers = ['rubocop']
-  let g:syntastic_coffee_checkers = ['coffeelint']
-endif
+" Check file after every write
+autocmd! BufWritePost * Neomake
+" Check file after every read
+autocmd! BufReadPost * Neomake
+" Only use rubocop for ruby
+let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_sh_enabled_makers = ['shellcheck']
 
-
-"" YouCompleteMe and Deoplete
-" Use YouCompleteMe for vim, Deoplete for neovim
-if has('nvim')
-  " Enabel deoplete
-  let g:deoplete#enable_at_startup = 1
-  " If there aren't input patterns set for completion, set it to {}
-  if !exists('g:deoplete#omni#input_patterns')
-    let g:deoplete#omni#input_patterns = {}
-  endif
-  " Tab for completion
-  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-else
-  " Set what keys trigger YouCompleteMe
-  let g:ycm_semantic_triggers = {
-      \   'scss': [ 're!^\s{4}', 're!:\s+' ],
-      \   'css' : [ 're!^\s{4}', 're!:\s+' ],
-      \   'javascript' : ["require"],
-      \   'haskell' : ["."]
-  \ }
-  " Only require one char to trigger completion
-  let g:ycm_min_num_of_chars_for_completion = 1
+"" Deoplete
+" Enable deoplete
+let g:deoplete#enable_at_startup = 1
+" If there aren't input patterns set for completion, set it to {}
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
 endif
+" Tab for completion
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 "" Ultisnips
 let g:UltiSnipsExpandTrigger = "<nop>"
