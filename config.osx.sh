@@ -1,3 +1,5 @@
+# NOTE: have to take care of racer + rust src stuff
+
 for f in ".jshintrc" ".tmux.conf" ".nvimrc" ".vimrc" ".ycm_extra_conf.py" ".ycm_extra_conf.pyc" ".zshrc" ".tmux-osx.conf" ".weechat" ".gitignore"
 do
     rm ~/$f
