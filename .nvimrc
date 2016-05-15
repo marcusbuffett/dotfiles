@@ -22,7 +22,7 @@ endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'marcusbuffett/fzf.vim'
 " Git wrapper
-Plug 'lambdalisue/vim-gita'
+Plug 'lambdalisue/vim-fugitive'
 " Commenting
 Plug 'scrooloose/nerdcommenter'
 " Status line
