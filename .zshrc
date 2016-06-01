@@ -198,3 +198,5 @@ expand-aliases() {
 
 zle -N expand-aliases
 bindkey '^E' expand-aliases
+
+source .zshinit.private
