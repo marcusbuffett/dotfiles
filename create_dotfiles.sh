@@ -4,6 +4,8 @@ do
     ln -s ~/dotfiles/$f ~/$f
 done
 
+ln -s ~/dotfiles/.zshinit.private.encrypted ~/.zshinit.private
+
 mkdir -p $HOME/.config
 ln -s ~/.vim $HOME/.config/nvim
 ln -s ~/.vimrc $HOME/.config/nvim/init.vim
