@@ -326,8 +326,7 @@ let NERDTreeMapHelp='<f1>'
 " Put one space after the comment character
 let NERDSpaceDelims = 1
 
-"" Syntastic / Neomake
-" Use syntastic for vim, neomake for neovim
+"" Neomake
 " Check file after every write
 autocmd! BufWritePost * Neomake
 " Check file after every read
