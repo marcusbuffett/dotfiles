@@ -60,6 +60,7 @@ alias gfs='git ls-files -m $(git rev-parse --show-toplevel)'
 alias gcmu='git ls-files --exclude-standard --others| fzf -m | xargs git add'
 alias gcmum='gfs | fzf -m | xargs git add'
 alias gbzf='git checkout $(git branch --list | cut -c 3- | fzf)'
+alias grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)'"
 # function grmu() {
   # git status --short | awk "$0 ~ '^M' {print $2}" | fzf -m | xargs git reset HEAD
 # }
