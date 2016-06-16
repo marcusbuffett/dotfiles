@@ -26,8 +26,6 @@ Plug 'mattn/emmet-vim'
 Plug 'flazz/vim-colorschemes'
 " GHCMod for completion, linting, etc. of Haskell
 Plug 'eagletmt/ghcmod-vim'
-" Send ctrl-h, ctrl-j, ctrl-k, ctrl-l to tmux if there is no window
-Plug 'christoomey/vim-tmux-navigator'
 " Aligning of text using :Tabularize
 Plug 'godlygeek/tabular'
 " Lots of snippets
@@ -51,6 +49,13 @@ Plug 'tpope/vim-abolish'
 " Highlight matching HTML tag
 Plug 'gregsexton/MatchTag'
 " " File explorer
+" Plug 'scrooloose/nerdtree'
+" File explorer
+Plug 'Shougo/vimfiler.vim'
+" I knew I would be forced to install this one eventually...
+Plug 'Shougo/unite.vim'
+" Send ctrl-h, ctrl-j, ctrl-k, ctrl-l to tmux if there is no window
+" Must be after vimfiler
 Plug 'scrooloose/nerdtree'
 " Allows other plugins to support the repeat command (.)
 Plug 'tpope/vim-repeat'
@@ -73,7 +78,7 @@ Plug 'reedes/vim-pencil'
 " Rust autocompletion
 Plug 'racer-rust/vim-racer'
 " Git status symbols for NerdTree
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 " " Set cwd to root of git project if exists
 " Plug 'airblade/vim-rooter'
 " Needed by other plugins
