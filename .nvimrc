@@ -176,6 +176,8 @@ filetype indent on
 filetype plugin on
 " Do not automatically change dirs
 set noautochdir
+" Don't save twice
+set nowritebackup
 
 " Enable % to match more than braces
 runtime macros/matchit.vim
