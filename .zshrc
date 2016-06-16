@@ -193,6 +193,7 @@ eval "$(fasd --init posix-alias zsh-hook)"
 unalias z
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
 
 expand-aliases() {
   unset 'functions[_expand-aliases]'
