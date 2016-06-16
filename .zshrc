@@ -41,6 +41,7 @@ export RUST_SRC_PATH="$HOME/Documents/etc/rust/src"
 alias v="nvim"
 alias vi="nvim"
 alias vvim="nvim ~/.vimrc"
+alias vzshrc="nvim ~/.zshrc"
 alias nvvim="nvim ~/.config/nvim/init.vim"
 alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
 alias grep='grep --color=auto'
