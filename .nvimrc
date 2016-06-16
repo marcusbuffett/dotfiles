@@ -289,7 +289,7 @@ noremap <Leader>gb :Gblame<CR>
 " Patch current file
 noremap <Leader>gp :Gpatch<CR>
 " Commit staged changes
-noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gc :Gcommit --verbose<CR>
 " Reset to head
 noremap <Leader>gr :Gread<CR>
 " Add
