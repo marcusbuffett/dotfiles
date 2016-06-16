@@ -84,6 +84,8 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'xolox/vim-misc'
 " Easy motion
 Plug 'easymotion/vim-easymotion'
+" Send code to tmux panes
+Plug 'epeli/slimux'
 call plug#end()
 
 """ Options
@@ -401,3 +403,12 @@ let g:NERDTreeIndicatorMapCustom = {
 "" Sneak-like movement with easymotion
 nmap s <Plug>(easymotion-s2)
 nmap t <Plug>(easymotion-t2)
+
+"" Slimux
+map <Leader>sl :SlimuxREPLSendLine<CR>
+vmap <Leader>ss :SlimuxREPLSendSelection<CR>
+map <Leader>sk :SlimuxSendKeysPrompt<CR>
+map <Leader>skr :SlimuxSendKeysLast<CR>
+map <Leader>sh :SlimuxShellPrompt<CR>
+map <Leader>sr :SlimuxShellLast<CR>
+let g:slimux_select_from_current_window = 1
