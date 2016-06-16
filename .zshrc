@@ -73,6 +73,7 @@ alias lf='vim _lf'
 alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
 alias dt='dasht'
 alias pe='path-extractor'
+alias c='cat'
 
 # Options
 setopt AUTO_CD
