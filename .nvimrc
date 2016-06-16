@@ -387,13 +387,13 @@ augroup END
 let g:racer_cmd="/Users/marcusbuffett/Documents/etc/racer/target/release/racer"
 "" NerdTree-git
 let g:NERDTreeIndicatorMapCustom = {
-      \ "Modified"  : "●",
-      \ "Staged"    : "✚",
-      \ "Untracked" : "?",
-      \ "Renamed"   : "➜",
-      \ "Unmerged"  : "═",
-      \ "Deleted"   : "✖",
-      \ "Dirty"     : "✗",
-      \ "Clean"     : "✔︎",
-      \ "Unknown"   : "?"
-      \ }
+    \ "Modified"  : "●",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "?",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
