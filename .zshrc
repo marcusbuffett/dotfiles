@@ -74,6 +74,7 @@ alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
 alias dt='dasht'
 alias pe='path-extractor'
 alias c='cat'
+alias rld='source ~/.zshrc'
 
 # Options
 setopt AUTO_CD
