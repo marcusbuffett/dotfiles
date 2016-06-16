@@ -206,4 +206,16 @@ expand-aliases() {
 zle -N expand-aliases
 bindkey '^E' expand-aliases
 
+preexec() {
+  date=`date +%s`
+  cmd=$1
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    branch=$(git branch | grep "* " | awk '{print $2}')
+    repo=$(basename `git rev-parse --show-toplevel`)
+  else
+    branch="N/A"
+    repo="N/A"
+  fi
+  echo "$date, `pwd`, $repo, $branch, $1" >> ~/.zsh_history_long
+}
 source .zshinit.private
