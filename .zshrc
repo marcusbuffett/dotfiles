@@ -78,6 +78,7 @@ alias rld='source ~/.zshrc'
 alias ghmine='ghi list --mine'
 
 alias -g F='| fzf -m'
+alias -g E='| pe'
 
 # Options
 setopt AUTO_CD
