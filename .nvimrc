@@ -41,7 +41,7 @@ Plug 'takac/vim-hardtime'
 " Better JavaScript support (indentation, syntax highlighting, etc)
 Plug 'pangloss/vim-javascript'
 " Tern for some (minimal) static code analysis for JavaScript
-Plug 'marijnh/tern_for_vim'
+Plug 'ternjs/tern_for_vim'
 " Toggle location list / quickfix list
 Plug 'Valloric/ListToggle'
 " Substitute command that intelligently changes case, plurality,etc.
