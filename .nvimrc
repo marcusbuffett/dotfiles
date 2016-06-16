@@ -378,9 +378,9 @@ let g:airline_detect_whitespace=0
 let g:pencil#wrapModeDefault = 'soft'
 " Set types of file to use pencil for
 augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
+" autocmd!
+" autocmd FileType markdown,mkd call pencil#init()
+" autocmd FileType text         call pencil#init()
 augroup END
 
 "" Rust racer
