@@ -75,6 +75,7 @@ alias dt='dasht'
 alias pe='path-extractor'
 alias c='cat'
 alias rld='source ~/.zshrc'
+alias ghmine='ghi list --mine'
 
 # Options
 setopt AUTO_CD
