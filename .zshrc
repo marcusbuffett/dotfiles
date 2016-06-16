@@ -79,6 +79,9 @@ alias ghmine='ghi list --mine'
 
 alias -g F='| fzf -m'
 alias -g E='| pe'
+alias -g X='| xargs'
+alias -g EF='| pe | fzf -m'
+alias -g P='| pbcopy'
 
 # Options
 setopt AUTO_CD
