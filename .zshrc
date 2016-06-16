@@ -186,20 +186,6 @@ function cs () {
     cd "$@" && ls
 }
 
-# Aliases hook
-_aliases="$(alias -Lr 2>/dev/null || alias)"
-alias_for() {
-  [[ $1 =~ '[[:punct:]]' ]] && return
-  local found="$( echo "$_aliases" | sed -nE "/^alias ${1}='?(.+)/s//\\1/p" )"
-  [[ -n $found ]] && echo "${found%\'}"
-}
-force_alias_hook() {
-  [[ $# -eq 0 ]] && return         # If there's no input, return. Else... 
-  echo $1
-}
-autoload -U add-zsh-hook
-add-zsh-hook preexec force_alias_hook
-
 # Various script evals
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 eval "$(fasd --init auto)"
