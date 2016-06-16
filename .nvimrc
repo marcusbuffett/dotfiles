@@ -341,6 +341,10 @@ let g:deoplete#enable_at_startup = 1
 " If there aren't input patterns set for completion, set it to {}
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
+  let g:deoplete#omni#input_patterns.javascript =
+  \ ['[^. *\t]\.\w*']
+  let g:deoplete#omni#input_patterns.ruby =
+  \ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
 endif
 " Tab for completion
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
