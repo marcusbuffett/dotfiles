@@ -82,6 +82,7 @@ alias -g E='| pe'
 alias -g X='| xargs'
 alias -g EF='| pe | fzf -m'
 alias -g P='| pbcopy'
+alias googler='googler -n5'
 
 # Options
 setopt AUTO_CD
