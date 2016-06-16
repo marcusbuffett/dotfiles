@@ -85,6 +85,8 @@ Plug 'racer-rust/vim-racer'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Dependency of other plugins
 Plug 'xolox/vim-misc'
+" Easy motion
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 """ Options
