@@ -49,14 +49,11 @@ Plug 'tpope/vim-abolish'
 " Highlight matching HTML tag
 Plug 'gregsexton/MatchTag'
 " " File explorer
-" Plug 'scrooloose/nerdtree'
-" File explorer
-Plug 'Shougo/vimfiler.vim'
+Plug 'scrooloose/nerdtree'
 " I knew I would be forced to install this one eventually...
 Plug 'Shougo/unite.vim'
 " Send ctrl-h, ctrl-j, ctrl-k, ctrl-l to tmux if there is no window
-" Must be after vimfiler
-Plug 'scrooloose/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
 " Allows other plugins to support the repeat command (.)
 Plug 'tpope/vim-repeat'
 " CSS3 syntax support
@@ -78,7 +75,7 @@ Plug 'reedes/vim-pencil'
 " Rust autocompletion
 Plug 'racer-rust/vim-racer'
 " Git status symbols for NerdTree
-" Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " " Set cwd to root of git project if exists
 " Plug 'airblade/vim-rooter'
 " Needed by other plugins
