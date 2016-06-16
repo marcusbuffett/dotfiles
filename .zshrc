@@ -123,6 +123,8 @@ zle -N zle-keymap-select
 zle -N zle-line-init
 
 # Search up and down in history with arrow keys
+bindkey '^p' up-line-or-search
+bindkey '^n' down-line-or-search
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
