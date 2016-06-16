@@ -77,6 +77,8 @@ alias c='cat'
 alias rld='source ~/.zshrc'
 alias ghmine='ghi list --mine'
 
+alias -g F='| fzf -m'
+
 # Options
 setopt AUTO_CD
 setopt AUTO_LIST
