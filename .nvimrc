@@ -348,6 +348,10 @@ if !exists('g:deoplete#omni#input_patterns')
 endif
 " Tab for completion
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['buffer', 'tag', 'omni']
+" ST directory generates a *lot* of tags
+let g:deoplete#tag#cache_limit_size = 100000000
 
 "" Ultisnips
 let g:UltiSnipsExpandTrigger = "<nop>"
