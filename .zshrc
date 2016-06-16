@@ -188,7 +188,7 @@ function cs () {
 
 # Various script evals
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-eval "$(fasd --init auto)"
+eval "$(fasd --init posix-alias zsh-hook)"
 # Don't want this alias from fasd
 unalias z
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
