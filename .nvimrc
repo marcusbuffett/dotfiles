@@ -190,7 +190,7 @@ nnoremap <leader>w :wa<CR>
 nnoremap <leader>q :wq<CR>
 nnoremap <leader>/ :noh<CR>
 nnoremap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
-nnoremap <tab> :b#<CR>
+nnoremap <tab> :b#<CR>`"
 nnoremap <leader>bp :bprev<CR>
 nnoremap <leader>bn :bnext<CR>
 
