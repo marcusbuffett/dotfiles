@@ -71,6 +71,7 @@ alias gwe='git commit -a --fixup'
 # alias z='_gf | xargs cd'
 alias lf='vim _lf'
 alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
+alias dt='dasht'
 
 # Options
 setopt AUTO_CD
