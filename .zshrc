@@ -28,7 +28,7 @@ fi
 
 # Exports
 export EDITOR="nvim"
-export PATH="$PATH:~/.cargo/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 export GOPATH="$HOME/go"
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
