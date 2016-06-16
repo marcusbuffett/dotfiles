@@ -159,7 +159,7 @@ set guioptions-=r
 " Intercept mouse events
 set mouse=a
 " Timeout for mappings
-set timeoutlen=500 
+set timeoutlen=800 
 " Timeout for key sequences
 set ttimeoutlen=10
 " Use tags file relative to cwd, not current file's directory
