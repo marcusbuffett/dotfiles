@@ -129,8 +129,14 @@ set smartcase
 set undolevels=1000
 " Allow vim to set the title of the shell
 set title
+" Set text width (used for comments)
+set textwidth=60
 " When hitting enter on a commented line, continue the comment
-set formatoptions-=cr
+set formatoptions+=r
+" Don't auto-wrap text with textwidth
+set formatoptions-=t
+" Auto-wrap comments using textwidth
+set formatoptions+=c
 " No scroll offset
 set scrolloff=0
 " Always have a status line
