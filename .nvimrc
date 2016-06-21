@@ -138,8 +138,6 @@ set textwidth=60
 set formatoptions+=r
 " Don't auto-wrap text with textwidth
 set formatoptions-=t
-" Auto-wrap comments using textwidth
-set formatoptions+=c
 " Don't insert comment leader when hitting `o`/`O` on commented line 
 " NOTE: overriden by NerdTree
 set formatoptions-=o
