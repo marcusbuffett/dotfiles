@@ -244,4 +244,5 @@ preexec() {
   fi
   echo "$date, `pwd`, $repo, $branch, $1" >> ~/.zsh_history_long
 }
-source .zshinit.private
+
+source $HOME/.zshinit.private
