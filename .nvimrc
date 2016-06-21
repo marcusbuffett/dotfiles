@@ -84,6 +84,8 @@ Plug 'xolox/vim-misc'
 Plug 'easymotion/vim-easymotion'
 " Send code to tmux panes
 Plug 'epeli/slimux'
+" Scala syntax highlighting + indentation
+Plug 'derekwyatt/vim-scala'
 " Show modified/added/removed lines in gutter
 Plug 'airblade/vim-gitgutter'
 call plug#end()
