@@ -65,8 +65,6 @@ alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(ref
 alias gsm='git ls-files -m | fzf -m | xargs'
 alias gwe='git commit -a --fixup'
 
-# alias -g _gf='$(fasd -d | awk fzf)'
-# alias z='_gf | xargs cd'
 alias lf='vim _lf'
 alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
 alias dt='dasht'
