@@ -78,7 +78,7 @@ alias ghmine='ghi list --mine'
 alias -g F='| fzf -m'
 alias -g E='| pe'
 alias -g X='| xargs'
-alias -g EF='| pe | fzf -m'
+alias -g EFX='| pe | fzf -m | xargs'
 alias -g P='| pbcopy'
 alias googler='googler -n5'
 
