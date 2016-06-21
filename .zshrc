@@ -158,13 +158,9 @@ function ua () {
   alias $1 | awk -F "'" '$0=$2'
 }
 
-function ggrep () {
-  if test $(git grep -c $1 | wc -l) -gt 10;
-  then
-    echo "Too many matches!"
-  else
-    nvim $(git grep --name-only $1)
-  fi
+function gpr () {
+ git fetch origin pull/$1/head:pr-$1
+ git checkout pr-$1
 }
 
 function ghc-pkg-reset() {
