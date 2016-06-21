@@ -62,9 +62,6 @@ alias gcmum='gfs | fzf -m | xargs git add'
 alias gbzf='git checkout $(git branch --list | cut -c 3- | fzf)'
 alias grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)'"
 alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)' | gtac | fzf --no-sort | xargs git checkout"
-# function grmu() {
-  # git status --short | awk "$0 ~ '^M' {print $2}" | fzf -m | xargs git reset HEAD
-# }
 alias gsm='git ls-files -m | fzf -m | xargs'
 alias gwe='git commit -a --fixup'
 
