@@ -88,6 +88,8 @@ Plug 'epeli/slimux'
 Plug 'derekwyatt/vim-scala'
 " Show modified/added/removed lines in gutter
 Plug 'airblade/vim-gitgutter'
+" Swift syntax highlighting + indentation
+Plug 'keith/swift.vim'
 call plug#end()
 
 """ Options
