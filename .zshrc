@@ -49,6 +49,7 @@ alias tmux="tmux -2"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias dk='docker'
 alias dkm='docker-machine'
+
 alias gpoh='git push origin head'
 alias gau='ga -u'
 alias gpfoh='git push --force origin head'
@@ -66,6 +67,7 @@ alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(ref
 # }
 alias gsm='git ls-files -m | fzf -m | xargs'
 alias gwe='git commit -a --fixup'
+
 # alias -g _gf='$(fasd -d | awk fzf)'
 # alias z='_gf | xargs cd'
 alias lf='vim _lf'
