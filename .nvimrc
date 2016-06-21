@@ -70,8 +70,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kchmck/vim-coffee-script'
 " Rust syntax highlighting
 Plug 'wting/rust.vim'
-" Plugin for editing plain text files
-Plug 'reedes/vim-pencil'
 " Rust autocompletion
 Plug 'racer-rust/vim-racer'
 " Git status symbols for NerdTree
@@ -376,16 +374,6 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
 let g:airline_detect_whitespace=0
-
-"" Pencil
-" Make soft wrap the default
-let g:pencil#wrapModeDefault = 'soft'
-" Set types of file to use pencil for
-augroup pencil
-" autocmd!
-" autocmd FileType markdown,mkd call pencil#init()
-" autocmd FileType text         call pencil#init()
-augroup END
 
 "" Rust racer
 let g:racer_cmd="/Users/marcusbuffett/Documents/etc/racer/target/release/racer"
