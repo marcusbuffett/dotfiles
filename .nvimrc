@@ -412,3 +412,6 @@ let g:slimux_select_from_current_window = 1
 "" GitGutter
 let g:gitgutter_realtime = 1
 let g:gitgutter_eager = 1
+nmap <Leader>ggm :let g:gitgutter_diff_base = 'head' \| GitGutter<CR>
+nmap <Leader>ggi :let g:gitgutter_diff_base = '' \| GitGutter<CR>
+nmap <Leader>ggb :let g:gitgutter_diff_base = system("git merge-base master $(git rev-parse head)") \| GitGutter<CR>
