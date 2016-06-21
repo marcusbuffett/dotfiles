@@ -84,6 +84,8 @@ Plug 'xolox/vim-misc'
 Plug 'easymotion/vim-easymotion'
 " Send code to tmux panes
 Plug 'epeli/slimux'
+" Show modified/added/removed lines in gutter
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 """ Options
@@ -402,3 +404,7 @@ map <Leader>skr :SlimuxSendKeysLast<CR>
 map <Leader>sh :SlimuxShellPrompt<CR>
 map <Leader>sr :SlimuxShellLast<CR>
 let g:slimux_select_from_current_window = 1
+
+"" GitGutter
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
