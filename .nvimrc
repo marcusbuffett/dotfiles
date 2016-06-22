@@ -395,6 +395,8 @@ let g:airline_section_a = airline#section#create_left(['crypt', 'paste', 'spell'
 " rarely useful
 let g:airline_section_x = ''
 let g:airline_section_y = ''
+" Make section z (line number, column, etc) less cluttered
+let g:airline_section_z = '%l:%c'
 
 "" Rust racer
 let g:racer_cmd="/Users/marcusbuffett/Documents/etc/racer/target/release/racer"
