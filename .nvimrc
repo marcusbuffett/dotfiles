@@ -387,6 +387,9 @@ let g:airline_powerline_fonts = 1
 let g:airline_detect_whitespace=0
 " Disable showing changed hunks in airline
 let g:airline#extensions#hunks#enabled = 0
+" Use default for section_a, *but* without mode because it's
+" obvious what mode you're in
+let g:airline_section_a = airline#section#create_left(['crypt', 'paste', 'spell', 'iminsert'])
 
 "" Rust racer
 let g:racer_cmd="/Users/marcusbuffett/Documents/etc/racer/target/release/racer"
