@@ -382,6 +382,8 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 "" Airline
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
+" Disable detecting whitespace because that's what linters
+" are for
 let g:airline_detect_whitespace=0
 
 "" Rust racer
