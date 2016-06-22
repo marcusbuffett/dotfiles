@@ -385,6 +385,8 @@ let g:airline_powerline_fonts = 1
 " Disable detecting whitespace because that's what linters
 " are for
 let g:airline_detect_whitespace=0
+" Disable showing changed hunks in airline
+let g:airline#extensions#hunks#enabled = 0
 
 "" Rust racer
 let g:racer_cmd="/Users/marcusbuffett/Documents/etc/racer/target/release/racer"
