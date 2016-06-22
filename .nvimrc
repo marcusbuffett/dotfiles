@@ -390,6 +390,11 @@ let g:airline#extensions#hunks#enabled = 0
 " Use default for section_a, *but* without mode because it's
 " obvious what mode you're in
 let g:airline_section_a = airline#section#create_left(['crypt', 'paste', 'spell', 'iminsert'])
+" Disable section x (tagbar, filetype, virtualenv) and
+" section y (fileencoding and fileformat) because they are
+" rarely useful
+let g:airline_section_x = ''
+let g:airline_section_y = ''
 
 "" Rust racer
 let g:racer_cmd="/Users/marcusbuffett/Documents/etc/racer/target/release/racer"
