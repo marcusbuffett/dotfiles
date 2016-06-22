@@ -196,6 +196,8 @@ nnoremap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
 nnoremap <tab> :b#<CR>`"
 nnoremap <leader>bp :bprev<CR>
 nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>ose :set spell<CR>
+nnoremap <leader>osd :set nospell<CR>
 
 " Augroup for editing
 augroup EditVim
