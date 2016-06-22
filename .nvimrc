@@ -179,6 +179,8 @@ filetype plugin on
 set noautochdir
 " Don't save twice
 set nowritebackup
+" Set spelling language to us english
+set spelllang=en_us
 
 " Enable % to match more than braces
 runtime macros/matchit.vim
