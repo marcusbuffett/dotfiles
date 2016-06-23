@@ -420,7 +420,7 @@ nmap t <Plug>(easymotion-t2)
 "" Slimux
 map <Leader>sl :SlimuxREPLSendLine<CR>
 vmap <Leader>ss :SlimuxREPLSendSelection<CR>
-map <Leader>sa maggVG:SlimuxREPLSendSelection<CR>`a
+map <Leader>sa mzggVG:SlimuxREPLSendSelection<CR>`z
 map <Leader>sk :SlimuxSendKeysPrompt<CR>
 map <Leader>skr :SlimuxSendKeysLast<CR>
 map <Leader>sh :SlimuxShellPrompt<CR>
