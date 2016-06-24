@@ -6,6 +6,7 @@ cmake
 coreutils
 ctags
 dasht
+exercism
 fasd
 fzf
 ghc
