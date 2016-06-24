@@ -26,6 +26,7 @@ python
 python3
 ranger
 redis
+rename
 tmux
 trash
 tree
