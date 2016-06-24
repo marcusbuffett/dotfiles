@@ -24,6 +24,7 @@ openssl
 phantomjs
 python
 python3
+ranger
 redis
 tmux
 trash
