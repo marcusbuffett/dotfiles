@@ -15,6 +15,7 @@ git
 git-crypt
 gpg
 haskell-stack
+htop
 mongo
 mongodb
 node
