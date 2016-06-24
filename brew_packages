@@ -30,6 +30,7 @@ rename
 sbt
 scala
 shellcheck
+the_silver_searcher
 tmux
 trash
 tree
