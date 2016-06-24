@@ -16,6 +16,7 @@ git-crypt
 gpg
 haskell-stack
 htop
+lynx
 mongo
 mongodb
 node
