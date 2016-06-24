@@ -5,6 +5,7 @@ cloc
 cmake
 coreutils
 ctags
+dasht
 fasd
 fzf
 ghc
