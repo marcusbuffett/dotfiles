@@ -346,7 +346,7 @@ autocmd! BufReadPost * Neomake
 " Only use rubocop for ruby
 let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_sh_enabled_makers = ['shellcheck']
-let g:neomake_python_enabled_makers = ['flake8']
+let g:neomake_python_enabled_makers = ['flake8', 'mypy']
 
 "" Deoplete
 " Enable deoplete
