@@ -92,6 +92,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'keith/swift.vim'
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
+" Haskell syntax highlighting + indentation
+Plug 'neovimhaskell/haskell-vim'
 call plug#end()
 
 """ Options
