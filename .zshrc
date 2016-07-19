@@ -51,6 +51,7 @@ alias dk='docker'
 alias dkm='docker-machine'
 
 alias gpoh='git push origin head'
+alias glf='git ls-files'
 alias gau='git add -u'
 alias gpfoh='git push --force origin head'
 alias grbom='git rebase origin/master'
