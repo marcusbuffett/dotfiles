@@ -202,6 +202,8 @@ nnoremap <leader>bp :bprev<CR>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>ose :set spell<CR>
 nnoremap <leader>osd :set nospell<CR>
+nnoremap <leader>ej :%!python -m json.tool<CR>
+vnoremap <leader>ej :!python -m json.tool<CR>
 
 " Augroup for editing
 augroup EditVim
