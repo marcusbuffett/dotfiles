@@ -173,6 +173,17 @@ function ghc-pkg-reset() {
   )
 }
 
+function exsg() {
+  file=$1
+  exercism submit $file
+  gtmp $file
+}
+
+function gtmp() {
+  file=$1
+  git add $file && git commit -m "Finish iteration of $(basename $(pwd))"
+}
+
 function mcd () {
     mkdir "$@" && cd "$@"
 }
