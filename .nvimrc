@@ -449,3 +449,7 @@ let g:multi_cursor_start_key='<C-e>'
 let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_quit_key='<Esc>'
+" <Esc>  doesn't exit multiple cursor mode when in insert or
+" visual mode
+let g:multi_cursor_exit_from_insert_mode = 0
+let g:multi_cursor_exit_from_visual_mode = 0
