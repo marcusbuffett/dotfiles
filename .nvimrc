@@ -462,3 +462,9 @@ let g:multi_cursor_quit_key='<Esc>'
 " visual mode
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
+
+"" Unite
+" Yank history in unite
+let g:unite_source_history_yank_enable = 1
+" 
+nnoremap <leader>uy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
