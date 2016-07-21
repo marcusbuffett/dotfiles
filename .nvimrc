@@ -409,6 +409,7 @@ let g:airline_section_a = airline#section#create_left(['crypt', 'paste', 'spell'
 " Disable section x (tagbar, filetype, virtualenv) and
 " section y (fileencoding and fileformat) because they are
 " rarely useful
+let g:airline_section_c = '%t'
 let g:airline_section_x = ''
 let g:airline_section_y = ''
 " Make section z (line number, column, etc) less cluttered
