@@ -98,6 +98,10 @@ Plug 'keith/swift.vim'
 Plug 'terryma/vim-multiple-cursors'
 " Haskell syntax highlighting + indentation
 Plug 'neovimhaskell/haskell-vim'
+" Create gists from vim
+Plug 'mattn/gist-vim'
+" Dependency of gist-vim
+Plug 'mattn/webapi-vim'
 call plug#end()
 
 """ Options
