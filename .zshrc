@@ -75,6 +75,7 @@ alias pe='path-extractor'
 alias c='cat'
 alias rld='source ~/.zshrc'
 alias ghmine='ghi list --mine'
+alias ghmine_w='ghi list --mine --web'
 
 alias -g F='| fzf -m'
 alias -g E='| pe'
