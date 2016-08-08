@@ -102,6 +102,8 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'mattn/gist-vim'
 " Dependency of gist-vim
 Plug 'mattn/webapi-vim'
+" Distraction-free writing for prose
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 """ Options
