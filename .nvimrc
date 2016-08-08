@@ -104,6 +104,8 @@ Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 " Distraction-free writing for prose
 Plug 'junegunn/goyo.vim'
+" Better markdown support
+Plug 'plasticboy/vim-markdown'
 call plug#end()
 
 """ Options
