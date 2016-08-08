@@ -480,3 +480,5 @@ let g:unite_source_history_yank_enable = 1
 nnoremap <leader>uy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
 nnoremap <leader>ue :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr> 
 nnoremap <leader>uq :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffer<cr>
+
+let g:vim_markdown_new_list_item_indent = 2
