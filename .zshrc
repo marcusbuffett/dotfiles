@@ -49,6 +49,9 @@ alias tmux="tmux -2"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias dk='docker'
 alias dkm='docker-machine'
+alias sp='spotify'
+alias nxt='spotify next'
+alias prv='spotify prev'
 
 alias gpoh='git push origin head'
 alias glf='git ls-files'
