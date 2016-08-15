@@ -501,11 +501,13 @@ nnoremap <leader>uq :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffe
 function! s:goyo_enter()
   set wrap
   set linebreak
+  Limelight
 endfunction
 
 function! s:goyo_leave()
   set nowrap
   set nolinebreak
+  Limelight!
 endfunction
 
 let g:vim_markdown_new_list_item_indent = 2
