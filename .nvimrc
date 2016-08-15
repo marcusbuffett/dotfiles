@@ -393,6 +393,8 @@ if !exists('g:deoplete#omni#input_patterns')
   \ ['[^. *\t]\.\w*']
   let g:deoplete#omni#input_patterns.ruby =
   \ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
+  let g:deoplete#omni#input_patterns.swift =
+  \ ['[a-zA-Z_]{3,}']
 endif
 " Tab for completion
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
