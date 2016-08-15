@@ -402,6 +402,10 @@ let g:deoplete#sources = {}
 let g:deoplete#sources._ = ['buffer', 'tag', 'omni', 'ultisnips']
 " ST directory generates a *lot* of tags
 let g:deoplete#tag#cache_limit_size = 100000000
+" Manual completion when wanted
+inoremap <silent><expr> <C-x><Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ deoplete#mappings#manual_complete()
 
 "" Ultisnips
 let g:UltiSnipsExpandTrigger = "<nop>"
