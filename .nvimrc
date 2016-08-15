@@ -106,6 +106,8 @@ Plug 'mattn/webapi-vim'
 Plug 'junegunn/goyo.vim'
 " Better markdown support
 Plug 'plasticboy/vim-markdown'
+" Focus on current line
+Plug 'junegunn/limelight.vim'
 call plug#end()
 
 """ Options
