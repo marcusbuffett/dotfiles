@@ -374,6 +374,12 @@ let g:neomake_sh_enabled_makers = ['shellcheck']
 let g:neomake_python_enabled_makers = ['flake8', 'mypy']
 let g:neomake_rust_enabled_makers = ['rustc']
 autocmd! BufWritePost *.rs :Neomake! cargo
+let g:neomake_swift_swiftlint_maker = {
+      \ 'args': ['lint', '--config', './.swiftlint.yml', '--quiet'],
+      \ 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %tarning: %m,%f:%l: %trror: %m',
+      \ 'append_file': 0,
+      \ }
+" let g:neomake_swift_enabled_makers = ['swiftlint']
 
 "" Deoplete
 " Enable deoplete
