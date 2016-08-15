@@ -498,4 +498,12 @@ nnoremap <leader>uy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
 nnoremap <leader>ue :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr> 
 nnoremap <leader>uq :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffer<cr>
 
+function! s:goyo_enter()
+  set wrap
+endfunction
+
+function! s:goyo_leave()
+  set nowrap
+endfunction
+
 let g:vim_markdown_new_list_item_indent = 2
