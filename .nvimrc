@@ -340,6 +340,7 @@ let g:lt_quickfix_list_toggle_map = '<leader>tq'
 let g:hardtime_default_on = 1
 " Only activate for repeated presses of the same key
 let g:hardtime_allow_different_key = 1
+let g:hardtime_maxcount = 2
 " Set what keys hardtime will throttle
 let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "n", "w", "b", "W", "B", "e", "E", ";", "{", "}", "<C-d>", "<C-u>"]
 let g:list_of_visual_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
