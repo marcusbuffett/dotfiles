@@ -108,6 +108,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'plasticboy/vim-markdown'
 " Focus on current line
 Plug 'junegunn/limelight.vim'
+" Swift autocomplete
+Plug 'mitsuse/autocomplete-swift'
 call plug#end()
 
 """ Options
