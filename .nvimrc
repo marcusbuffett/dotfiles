@@ -379,7 +379,8 @@ let g:neomake_swift_swiftlint_maker = {
       \ 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %tarning: %m,%f:%l: %trror: %m',
       \ 'append_file': 0,
       \ }
-" let g:neomake_swift_enabled_makers = ['swiftlint']
+let g:neomake_swift_enabled_makers = ['swiftlint']
+autocmd! BufWritePost *.swift :NeomakeSh swift build
 
 "" Deoplete
 " Enable deoplete
