@@ -494,10 +494,7 @@ let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
 
 "" Unite
-" Yank history in unite
-let g:unite_source_history_yank_enable = 1
-" 
-nnoremap <leader>uy :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>uy :<C-u>Unite -no-split -buffer-name=tags    outline<cr>
 nnoremap <leader>ue :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr> 
 nnoremap <leader>uq :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffer<cr>
 
