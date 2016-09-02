@@ -108,6 +108,8 @@ Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/limelight.vim'
 " Swift autocomplete
 Plug 'mitsuse/autocomplete-swift'
+" Sidebar with buffer tags
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 """ Options
