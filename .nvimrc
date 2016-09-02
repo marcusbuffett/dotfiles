@@ -110,6 +110,8 @@ Plug 'junegunn/limelight.vim'
 Plug 'mitsuse/autocomplete-swift'
 " Sidebar with buffer tags
 Plug 'majutsushi/tagbar'
+" Tagbar with unite
+Plug 'Shougo/unite-outline'
 call plug#end()
 
 """ Options
