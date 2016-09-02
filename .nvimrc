@@ -54,8 +54,6 @@ Plug 'gregsexton/MatchTag'
 Plug 'scrooloose/nerdtree'
 " I knew I would be forced to install this one eventually...
 Plug 'Shougo/unite.vim'
-" Save yank history to unite source
-Plug 'Shougo/neoyank.vim'
 " Send ctrl-h, ctrl-j, ctrl-k, ctrl-l to tmux if there is no window
 Plug 'christoomey/vim-tmux-navigator'
 " Allows other plugins to support the repeat command (.)
