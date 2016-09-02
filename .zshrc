@@ -53,10 +53,11 @@ alias sp='spotify'
 alias nxt='spotify next'
 alias prv='spotify prev'
 
-alias gpoh='git push origin head'
+# Git aliases
+alias fusro='git push origin head'
+alias fusrodah='git push --force origin head'
 alias glf='git ls-files'
 alias gau='git add -u'
-alias gpfoh='git push --force origin head'
 alias grbom='git rebase origin/master'
 alias todo='nvim ~/.todo.md'
 alias gsuno='git status -uno -s'
