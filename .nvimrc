@@ -212,7 +212,7 @@ colorscheme gruvbox
 
 " General mappings
 nnoremap <leader>w :wa<CR>
-nnoremap <leader>q :wq<CR>
+nnoremap <leader>q :q<CR>
 nnoremap <leader>/ :noh<CR>
 nnoremap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
 nnoremap <tab> :b#<CR>`"
