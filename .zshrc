@@ -78,7 +78,6 @@ alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
 alias fs="fasd -f | tr -s ' ' | cut -d ' ' -f 2"
 alias dt='dasht'
 alias pe='path-extractor'
-alias c='cat'
 alias rld='source ~/.zshrc'
 alias ghmine='ghi list --mine'
 alias ghmine_w='ghi list --mine --web'
