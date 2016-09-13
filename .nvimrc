@@ -161,6 +161,8 @@ set title
 set textwidth=60
 " When hitting enter on a commented line, continue the comment
 set formatoptions+=r
+" When hitting o/O on a commented line, continue the comment
+set formatoptions+=o
 " Don't auto-wrap text with textwidth
 set formatoptions-=t
 " Don't insert comment leader when hitting `o`/`O` on commented line 
