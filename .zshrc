@@ -75,6 +75,7 @@ alias exf="exercism fetch"
 alias exs="exercism submit"
 alias lf='vim _lf'
 alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
+alias fs="fasd -f | tr -s ' ' | cut -d ' ' -f 2"
 alias dt='dasht'
 alias pe='path-extractor'
 alias c='cat'
