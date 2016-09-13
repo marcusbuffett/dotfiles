@@ -165,9 +165,6 @@ set formatoptions+=r
 set formatoptions+=o
 " Don't auto-wrap text with textwidth
 set formatoptions-=t
-" Don't insert comment leader when hitting `o`/`O` on commented line 
-" NOTE: overriden by NerdTree
-set formatoptions-=o
 " No scroll offset
 set scrolloff=0
 " Always have a status line
