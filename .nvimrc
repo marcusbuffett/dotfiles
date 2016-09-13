@@ -250,7 +250,7 @@ augroup EditVim
   au filetype rust        nnoremap <leader>r  :!cargo run<CR>
 
   au Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
-  au Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
+  au Syntax * call matchadd('Debug', '\W\zs\(REVIEW\|NOTE\|INFO\|IDEA\)')
 
   """ Filetype-specific mappings
   "" Haskell
