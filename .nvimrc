@@ -11,8 +11,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Shougo/deoplete.nvim'
 " Python completion
 Plug 'zchee/deoplete-jedi'
-" (Bad) Ruby completion
-Plug 'osyo-manga/vim-monster'
 " Syntax checking + linting + static code analysis
 Plug 'benekastah/neomake'
 
@@ -414,14 +412,6 @@ let g:deoplete#tag#cache_limit_size = 100000000
 inoremap <silent><expr> <C-x><C-o>
       \ pumvisible() ? "\<C-n>" :
       \ deoplete#mappings#manual_complete()
-
-"" Monster (ruby completion)
-" Set async backend
-" let g:monster#completion#rcodetools#backend = "async_rct_complete"
-
-let g:deoplete#sources#omni#input_patterns = {
-\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-\}
 
 "" Ultisnips
 let g:UltiSnipsExpandTrigger = "<nop>"
