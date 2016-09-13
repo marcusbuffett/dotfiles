@@ -52,6 +52,7 @@ alias dkm='docker-machine'
 alias sp='spotify'
 alias nxt='spotify next'
 alias prv='spotify prev'
+alias c='clear'
 
 # Git aliases
 alias fusro='git push origin head'
