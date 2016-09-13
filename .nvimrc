@@ -415,6 +415,14 @@ inoremap <silent><expr> <C-x><C-o>
       \ pumvisible() ? "\<C-n>" :
       \ deoplete#mappings#manual_complete()
 
+"" Monster (ruby completion)
+" Set async backend
+" let g:monster#completion#rcodetools#backend = "async_rct_complete"
+
+let g:deoplete#sources#omni#input_patterns = {
+\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+\}
+
 "" Ultisnips
 let g:UltiSnipsExpandTrigger = "<nop>"
 let g:ulti_expand_or_jump_res = 0
