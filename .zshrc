@@ -144,6 +144,10 @@ function z () {
   cd $(ds | fzf)
 }
 
+function f () {
+  cd $(fs | fzf)
+}
+
 function runrust () {
   name=$(basename $1 .rs)
   rustc $@ && ./$name && command rm $name
