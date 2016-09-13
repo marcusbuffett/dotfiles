@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim'
+" Python completion
 Plug 'zchee/deoplete-jedi'
 " Syntax checking + linting + static code analysis
 Plug 'benekastah/neomake'
