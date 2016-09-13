@@ -11,6 +11,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'Shougo/deoplete.nvim'
 " Python completion
 Plug 'zchee/deoplete-jedi'
+" (Bad) Ruby completion
+Plug 'osyo-manga/vim-monster'
 " Syntax checking + linting + static code analysis
 Plug 'benekastah/neomake'
 
