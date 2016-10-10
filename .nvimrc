@@ -51,7 +51,7 @@ Plug 'Valloric/ListToggle'
 Plug 'tpope/vim-abolish'
 " Highlight matching HTML tag
 Plug 'gregsexton/MatchTag'
-" " File explorer
+" File explorer
 Plug 'scrooloose/nerdtree'
 " I knew I would be forced to install this one eventually...
 Plug 'Shougo/unite.vim'
