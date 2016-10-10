@@ -491,7 +491,7 @@ nmap <Leader>ggb :let g:gitgutter_diff_base = system("git merge-base master $(gi
 "" Multiple cursors
 " Don't hijack my keys
 let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_key='<C-e>'
+let g:multi_cursor_start_key='<C-n>'
 let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_quit_key='<Esc>'
