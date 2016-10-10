@@ -505,6 +505,7 @@ let g:multi_cursor_exit_from_visual_mode = 0
 nnoremap <leader>uy :<C-u>Unite -start-insert -no-split -buffer-name=tags    outline<cr>
 nnoremap <leader>ue :<C-u>Unite -start-insert -no-split -buffer-name=buffer  buffer<cr> 
 nnoremap <leader>uq :<C-u>Unite -start_insert -no-split -buffer-name=buffer -quick-match buffer<cr>
+nnoremap <leader>um :<C-u>Unite -start-insert -no-split -buffer-name=marks -quick-match mark<cr>
 
 function! s:goyo_enter()
   set wrap
