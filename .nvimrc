@@ -529,3 +529,4 @@ let g:markology_textother="\t"
 highlight MarkologyHLl guifg=#D688AF guibg=#3A3A3A
 highlight MarkologyHLu guifg=#D688AF guibg=#3A3A3A
 highlight MarkologyHLo guifg=#D688AF guibg=#3A3A3A
+set updatetime=100
