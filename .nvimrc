@@ -113,6 +113,8 @@ Plug 'majutsushi/tagbar'
 Plug 'Shougo/unite-outline'
 " Colorscheme unite source
 Plug 'ujihisa/unite-colorscheme'
+" Marks unite source
+Plug 'tacroe/unite-mark'
 call plug#end()
 
 """ Options
