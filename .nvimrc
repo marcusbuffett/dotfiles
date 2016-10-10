@@ -520,3 +520,8 @@ function! s:goyo_leave()
 endfunction
 
 let g:vim_markdown_new_list_item_indent = 2
+
+"" Markology
+let g:markology_textlower="\t"
+let g:markology_textupper="\t"
+let g:markology_textother="\t"
