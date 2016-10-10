@@ -111,6 +111,8 @@ Plug 'mitsuse/autocomplete-swift'
 Plug 'majutsushi/tagbar'
 " Tagbar with unite
 Plug 'Shougo/unite-outline'
+" Colorscheme unite source
+Plug 'ujihisa/unite-colorscheme'
 call plug#end()
 
 """ Options
