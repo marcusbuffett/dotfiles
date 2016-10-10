@@ -145,7 +145,7 @@ function z () {
 }
 
 function f () {
-  cd $(fs | fzf)
+  v $(fs | fzf)
 }
 
 function runrust () {
