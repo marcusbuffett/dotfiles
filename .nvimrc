@@ -525,3 +525,7 @@ let g:vim_markdown_new_list_item_indent = 2
 let g:markology_textlower="\t"
 let g:markology_textupper="\t"
 let g:markology_textother="\t"
+
+highlight MarkologyHLl guifg=#D688AF guibg=#3A3A3A
+highlight MarkologyHLu guifg=#D688AF guibg=#3A3A3A
+highlight MarkologyHLo guifg=#D688AF guibg=#3A3A3A
