@@ -502,9 +502,9 @@ let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
 
 "" Unite
-nnoremap <leader>uy :<C-u>Unite -no-split -buffer-name=tags    outline<cr>
-nnoremap <leader>ue :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr> 
-nnoremap <leader>uq :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffer<cr>
+nnoremap <leader>uy :<C-u>Unite -start-insert -no-split -buffer-name=tags    outline<cr>
+nnoremap <leader>ue :<C-u>Unite -start-insert -no-split -buffer-name=buffer  buffer<cr> 
+nnoremap <leader>uq :<C-u>Unite -start_insert -no-split -buffer-name=buffer -quick-match buffer<cr>
 
 function! s:goyo_enter()
   set wrap
