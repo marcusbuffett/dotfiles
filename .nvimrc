@@ -115,6 +115,8 @@ Plug 'Shougo/unite-outline'
 Plug 'ujihisa/unite-colorscheme'
 " Marks unite source
 Plug 'tacroe/unite-mark'
+" Display marks in the sidebar
+Plug 'jeetsukumaran/vim-markology'
 call plug#end()
 
 """ Options
