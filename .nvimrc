@@ -53,7 +53,7 @@ Plug 'tpope/vim-abolish'
 Plug 'gregsexton/MatchTag'
 " File explorer
 Plug 'scrooloose/nerdtree'
-" I knew I would be forced to install this one eventually...
+" Interactive, customizable buffer
 Plug 'Shougo/unite.vim'
 " Send ctrl-h, ctrl-j, ctrl-k, ctrl-l to tmux if there is no window
 Plug 'christoomey/vim-tmux-navigator'
