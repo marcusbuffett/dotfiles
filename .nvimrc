@@ -303,18 +303,19 @@ nnoremap <leader>fg :GitFiles<CR>
 " Search lines in current file
 nnoremap <leader>fs :BLines<CR>
 " Search all files for text
-nnoremap <leader>aa :Agp ""<left>
-vnoremap <leader>aa y:Agp ""<left><C-r>0
+autocmd! VimEnter * command! -nargs=* -complete=file AgRaw :call fzf#vim#ag_raw(<q-args>)
+nnoremap <leader>aa :AgRaw ""<left>
+vnoremap <leader>aa y:AgRaw ""<left><C-r>0
 " Put cursor in field for file include regex
-nnoremap <leader>ag :Agp -G
-vnoremap <leader>ag y:Agp -G <C-r>0
+nnoremap <leader>ag :AgRaw -G
+vnoremap <leader>ag y:AgRaw -G <C-r>0
 " Only search specific file types
-nnoremap <leader>agr :Agp -G "\.rb" ""<left>
-vnoremap <leader>agr y:Agp -G "\.rb" ""<left><C-r>0
-nnoremap <leader>agj :Agp -G "\.js" ""<left>
-vnoremap <leader>agj y:Agp -G "\.js" ""<left><C-r>0
-nnoremap <leader>agh :Agp -G "\.hs" ""<left>
-vnoremap <leader>agh y:Agp -G "\.hs" ""<left><C-r>0
+nnoremap <leader>agr :AgRaw -G "\.rb" ""<left>
+vnoremap <leader>agr y:AgRaw -G "\.rb" ""<left><C-r>0
+nnoremap <leader>agj :AgRaw -G "\.js" ""<left>
+vnoremap <leader>agj y:AgRaw -G "\.js" ""<left><C-r>0
+nnoremap <leader>agh :AgRaw -G "\.hs" ""<left>
+vnoremap <leader>agh y:AgRaw -G "\.hs" ""<left><C-r>0
 
 "" Dash
 " Search dash for current word
