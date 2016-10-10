@@ -39,7 +39,7 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-surround'
 " Dash support (documentation app for OS X)
 Plug 'rizzatti/dash.vim'
-" Makes vim hard
+" Prevent repetitive key use in vim
 Plug 'takac/vim-hardtime'
 " Better JavaScript support (indentation, syntax highlighting, etc)
 Plug 'pangloss/vim-javascript'
