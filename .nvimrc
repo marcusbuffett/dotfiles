@@ -91,8 +91,6 @@ Plug 'derekwyatt/vim-scala'
 Plug 'airblade/vim-gitgutter'
 " Swift syntax highlighting + indentation
 Plug 'keith/swift.vim'
-" Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
 " Haskell syntax highlighting + indentation
 Plug 'neovimhaskell/haskell-vim'
 " Create gists from vim
@@ -488,19 +486,6 @@ let g:gitgutter_eager = 1
 nmap <Leader>ggm :let g:gitgutter_diff_base = 'head' \| GitGutter<CR>
 nmap <Leader>ggi :let g:gitgutter_diff_base = '' \| GitGutter<CR>
 nmap <Leader>ggb :let g:gitgutter_diff_base = system("git merge-base master $(git rev-parse head)") \| GitGutter<CR>
-
-"" Multiple cursors
-" Don't hijack my keys
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_key='<C-n>'
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
-" <Esc>  doesn't exit multiple cursor mode when in insert or
-" visual mode
-let g:multi_cursor_exit_from_insert_mode = 0
-let g:multi_cursor_exit_from_visual_mode = 0
 
 "" Unite
 nnoremap <leader>uy :<C-u>Unite -start-insert -no-split -buffer-name=tags    outline<cr>
