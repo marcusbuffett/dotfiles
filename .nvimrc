@@ -409,6 +409,7 @@ endif
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = ['buffer', 'tag', 'omni', 'ultisnips']
+let g:deoplete#sources.ruby = ['buffer', 'tag', 'ultisnips']
 " ST directory generates a *lot* of tags
 let g:deoplete#tag#cache_limit_size = 100000000
 " Manual completion when wanted
