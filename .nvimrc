@@ -19,6 +19,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Git wrapper
 Plug 'tpope/vim-fugitive'
+" *Another* git wrapper
+Plug 'lambdalisue/vim-gita'
 " Commenting
 Plug 'scrooloose/nerdcommenter'
 " Status line
