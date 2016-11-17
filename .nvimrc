@@ -531,7 +531,7 @@ highlight MarkologyHLl guifg=#D688AF guibg=#3A3A3A
 highlight MarkologyHLu guifg=#D688AF guibg=#3A3A3A
 highlight MarkologyHLo guifg=#D688AF guibg=#3A3A3A
 highlight MarkologyHLm guifg=#D688AF guibg=#3A3A3A
-set updatetime=100
+set updatetime=1000
 
 "" Unite mark
 let g:unite_source_mark_marks =
