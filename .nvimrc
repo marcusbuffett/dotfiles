@@ -214,6 +214,8 @@ set spelllang=en_us
 " Some plugin is setting virtualedit to one more (allows
 " cursor to go one past the last character)
 set virtualedit=""
+" Use vertical splits for diffs
+set diffopt=filler,vertical
 
 " Enable % to match more than braces
 runtime macros/matchit.vim
