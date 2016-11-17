@@ -175,6 +175,8 @@ set scrolloff=0
 set laststatus=2
 " Show line numbers
 set number
+" Show relative line numbers
+set relativenumber
 " Don't store swap files
 set noswapfile
 " No limit to syntax highlighting
