@@ -57,6 +57,7 @@ alias c='clear'
 # Git aliases
 alias fusro='git push origin head'
 alias fusrodah='git push --force origin head'
+alias fuck_it_lets_do_it_live='git add -u && git commit --amend --no-edit && git push --force origin head'
 alias glf='git ls-files'
 alias gau='git add -u'
 alias grbom='git rebase origin/master'
