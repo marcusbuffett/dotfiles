@@ -117,6 +117,8 @@ Plug 'ujihisa/unite-colorscheme'
 Plug 'tacroe/unite-mark'
 " Display marks in the sidebar
 Plug 'jeetsukumaran/vim-markology'
+" Scratch buffer for notes / todos
+Plug 'mtth/scratch.vim'
 call plug#end()
 
 """ Options
