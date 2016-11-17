@@ -18,7 +18,7 @@ Plug 'benekastah/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Git wrapper
-Plug 'lambdalisue/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Commenting
 Plug 'scrooloose/nerdcommenter'
 " Status line
