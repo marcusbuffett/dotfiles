@@ -347,6 +347,10 @@ noremap <Leader>gr :Gread<CR>
 " Add
 noremap <Leader>gw :Gwrite<CR>
 
+"" Gita
+" Status without untracked files
+noremap <Leader>gs :Gita status --untracked-files=no<CR>
+
 "" ListToggle
 " Toggle location list 
 let g:lt_location_list_toggle_map = '<leader>tl'
