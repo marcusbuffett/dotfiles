@@ -16,7 +16,7 @@ Plug 'benekastah/neomake'
 
 " Fuzzy searching for everything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'marcusbuffett/fzf.vim'
+Plug 'junegunn/fzf.vim'
 " Git wrapper
 Plug 'lambdalisue/vim-fugitive'
 " Commenting
