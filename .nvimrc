@@ -551,3 +551,9 @@ let g:monster#completion#rcodetools#backend = "async_rct_complete"
 let g:deoplete#sources#omni#input_patterns = {
 \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
 \}
+
+"" Scratch
+let g:scratch_insert_autohide = 0
+let g:scratch_filetype = "markdown"
+let g:scratch_persistence_file = "/tmp/scratch.vim"
+let g:scratch_height = 20
