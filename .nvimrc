@@ -225,7 +225,7 @@ runtime macros/matchit.vim
 " Set colorscheme
 colorscheme gruvbox
 
-" General mappings
+"" General mappings
 nnoremap <leader>w :wa<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>/ :noh<CR>
