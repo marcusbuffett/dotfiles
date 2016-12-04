@@ -229,12 +229,9 @@ colorscheme gruvbox
 nnoremap <leader>/ :noh<CR>
 nnoremap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
 nnoremap <tab> :b#<CR>`"
-" <alt-h>
-nnoremap ˙ :tabp<CR>
-" <alt-l>
-nnoremap ¬ :tabn<CR>
-" <alt-q>
-nnoremap œ :tabclose<CR>
+nnoremap <A-h> :tabp<CR>
+nnoremap <A-l> :tabn<CR>
+nnoremap <A-q> :tabclose<CR>
 nnoremap <leader>bp :bprev<CR>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>ose :set spell<CR>
