@@ -557,3 +557,7 @@ let g:scratch_insert_autohide = 0
 let g:scratch_filetype = "markdown"
 let g:scratch_persistence_file = "/tmp/scratch.vim"
 let g:scratch_height = 20
+
+"" vim-notes
+let g:notes_directories = ['~/Documents/notes/v-notes']
+" let g:notes_smart_quotes = 0
