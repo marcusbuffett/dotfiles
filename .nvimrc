@@ -119,6 +119,8 @@ Plug 'tacroe/unite-mark'
 Plug 'jeetsukumaran/vim-markology'
 " Scratch buffer for notes / todos
 Plug 'mtth/scratch.vim'
+" Note taking plugin
+Plug 'xolox/vim-notes'
 call plug#end()
 
 """ Options
