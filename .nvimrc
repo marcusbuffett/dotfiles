@@ -506,6 +506,7 @@ nnoremap <leader>uy :<C-u>Unite -start-insert -no-split -buffer-name=tags    out
 nnoremap <leader>ue :<C-u>Unite -start-insert -no-split -buffer-name=buffer  buffer<cr> 
 nnoremap <leader>uq :<C-u>Unite -start_insert -no-split -buffer-name=buffer -quick-match buffer<cr>
 nnoremap <leader>um :<C-u>Unite -start-insert -no-split -buffer-name=marks -quick-match mark<cr>
+nnoremap <leader>up :<C-u>Unite -start-insert -no-split -buffer-name=mappings -quick-match mapping<cr>
 
 function! s:goyo_enter()
   set wrap
