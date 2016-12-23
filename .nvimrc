@@ -121,6 +121,10 @@ Plug 'jeetsukumaran/vim-markology'
 Plug 'mtth/scratch.vim'
 " Note taking plugin
 Plug 'xolox/vim-notes'
+" Java autocomplete source
+Plug 'artur-shaik/vim-javacomplete2'
+" Java checkstyle plugin
+Plug 'vim-scripts/java_checkstyle.vim'
 call plug#end()
 
 """ Options
@@ -277,6 +281,9 @@ augroup EditVim
   au filetype javascript nnoremap <leader>f :TernDef<CR>
   au filetype javascript nnoremap K :TernDoc<CR>
   au FileType javascript setlocal omnifunc=tern#Complete
+	set omnifunc=syntaxcomplete#Complete
+  au FileType java setlocal omnifunc=javacomplete#Complete
+  let g:neomake_java_javac_classpath = '/Users/marcusbuffett/Documents/projects/btl-java/build/classes/main/btl:/Users/marcusbuffett/Documents/projects/btl-java/build/libs/btl-0.1.0.jar:/Users/marcusbuffett/Documents/projects/btl-java/build/libs/btl-java.jar'
 
   "" Other
   " 4-spaces for python
@@ -417,6 +424,7 @@ if !exists('g:deoplete#omni#input_patterns')
   \ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
   let g:deoplete#omni#input_patterns.swift =
   \ ['[^. *\t]\.\w*']
+	let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
 endif
 " Tab for completion
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
