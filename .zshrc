@@ -204,7 +204,6 @@ function cs () {
 }
 
 # Various script evals
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 eval "$(fasd --init posix-alias zsh-hook)"
 # Don't want these aliases from fasd
 unalias z
