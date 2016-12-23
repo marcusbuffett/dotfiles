@@ -14,6 +14,7 @@ ghi
 git
 git-crypt
 gpg
+gradle
 haskell-stack
 htop
 lynx
