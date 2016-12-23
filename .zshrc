@@ -250,6 +250,4 @@ preexec() {
 }
 
 source $HOME/.zshinit.private
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
