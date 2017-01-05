@@ -121,6 +121,8 @@ Plug 'jeetsukumaran/vim-markology'
 Plug 'mtth/scratch.vim'
 " Note taking plugin
 Plug 'xolox/vim-notes'
+" Vimwiki
+Plug 'vimwiki/vimwiki'
 " Java autocomplete source
 Plug 'artur-shaik/vim-javacomplete2'
 " Java checkstyle plugin
