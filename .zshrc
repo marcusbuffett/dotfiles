@@ -250,3 +250,9 @@ preexec() {
 }
 
 export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
+
+# Agnoster theme overrides
+prompt_context() {}
+prompt_dir() {
+  prompt_segment blue black '%1~'
+}
