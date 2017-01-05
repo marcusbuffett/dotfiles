@@ -571,3 +571,17 @@ let g:scratch_height = 20
 "" vim-notes
 let g:notes_directories = ['~/Documents/notes/v-notes']
 " let g:notes_smart_quotes = 0
+
+"" vimwiki
+nmap <Leader>wf <Plug>VimwikiFollowLink
+vmap <Leader>wf <Plug>VimwikiFollowLink
+nmap <Leader>we <Plug>VimwikiSplitLink
+nmap <Leader>wq <Plug>VimwikiVSplitLink
+nmap <Leader>wb <Plug>VimwikiGoBackLink
+nmap <Leader>wp <Plug>VimwikiPrevLink
+
+nmap <Leader>w= <Plug>VimwikiAddHeaderLevel
+nmap <Leader>w- <Plug>VimwikiRemoveHeaderLevel
+nmap <Leader>w+ <Plug>VimwikiNormalizeLink
+vmap <Leader>w+ <Plug>VimwikiNormalizeLinkVisual
+map  <Leader>wl <Plug>VimwikiToggleListItem
