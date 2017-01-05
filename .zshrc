@@ -249,5 +249,4 @@ preexec() {
   echo "$date, `pwd`, $repo, $branch, $1" >> ~/.zsh_history_long
 }
 
-source $HOME/.zshinit.private
 export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
