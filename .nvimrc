@@ -432,11 +432,9 @@ if !exists('g:deoplete#omni#input_patterns')
 	let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
 endif
 " Tab for completion
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['buffer', 'tag', 'omni', 'ultisnips']
-" let g:deoplete#sources.ruby = ['buffer', 'tag', 'ultisnips']
-" ST directory generates a *lot* of tags
+" inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" let g:deoplete#sources = {}
+" let g:deoplete#sources._ = ['omni', 'snippet', 'tag', 'buffer']
 let g:deoplete#tag#cache_limit_size = 100000000
 " Manual completion when wanted
 inoremap <silent><expr> <C-x><C-o>
