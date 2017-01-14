@@ -35,10 +35,10 @@ Plug 'eagletmt/ghcmod-vim'
 Plug 'godlygeek/tabular'
 " Buffers in tabline
 Plug 'ap/vim-buftabline'
-" Lots of snippets
-Plug 'honza/vim-snippets'
 " Snippet engine
-Plug 'SirVer/ultisnips'
+Plug 'Shougo/neosnippet.vim'
+" Snippets source
+Plug 'Shougo/neosnippet-snippets'
 " Adds operations like cs]) to change [test] to (test)
 Plug 'tpope/vim-surround'
 " Dash support (documentation app for OS X)
