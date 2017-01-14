@@ -323,6 +323,7 @@ nnoremap <leader>fs :BLines<CR>
 " Search all files for text
 autocmd! VimEnter * command! -nargs=* -complete=file AgRaw :call fzf#vim#ag_raw(<q-args>)
 nnoremap <leader>aa :AgRaw ""<left>
+nnoremap <leader>au :AgRaw -s ""<left>\b<C-r><C-w>\b<CR>
 vnoremap <leader>aa y:AgRaw ""<left><C-r>0
 " Put cursor in field for file include regex
 nnoremap <leader>ag :AgRaw -G
