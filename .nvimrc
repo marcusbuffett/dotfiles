@@ -441,21 +441,6 @@ inoremap <silent><expr> <C-x><C-o>
       \ pumvisible() ? "\<C-n>" :
       \ deoplete#mappings#manual_complete()
 
-"" Ultisnips
-let g:UltiSnipsExpandTrigger = "<nop>"
-let g:ulti_expand_or_jump_res = 0
-function! ExpandSnippetOrCarriageReturn()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-        return "\<CR>"
-    endif
-endfunction
-inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-
 "" Airline
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
