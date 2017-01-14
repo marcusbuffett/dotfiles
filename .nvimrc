@@ -287,7 +287,6 @@ augroup EditVim
   au FileType javascript setlocal omnifunc=tern#Complete
 	set omnifunc=syntaxcomplete#Complete
   au FileType java setlocal omnifunc=javacomplete#Complete
-  let g:neomake_java_javac_classpath = '/Users/marcusbuffett/Documents/projects/btl-java/build/classes/main/btl:/Users/marcusbuffett/Documents/projects/btl-java/build/libs/btl-0.1.0.jar:/Users/marcusbuffett/Documents/projects/btl-java/build/libs/btl-java.jar'
 
   "" Other
   " 4-spaces for python
