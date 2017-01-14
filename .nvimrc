@@ -289,8 +289,9 @@ augroup EditVim
   au FileType java setlocal omnifunc=javacomplete#Complete
 
   "" Other
-  " 4-spaces for python
+  " 4-spaces for python and java
   au filetype python setlocal ts=4 sts=4 sw=4
+  au filetype java   setlocal ts=4 sts=4 sw=4
   " Autocomplete css
   au FileType css     set omnifunc=csscomplete#CompleteCSS
   " Autocomplete scss
