@@ -33,6 +33,8 @@ Plug 'flazz/vim-colorschemes'
 Plug 'eagletmt/ghcmod-vim'
 " Aligning of text using :Tabularize
 Plug 'godlygeek/tabular'
+" Buffers in tabline
+Plug 'ap/vim-buftabline'
 " Lots of snippets
 Plug 'honza/vim-snippets'
 " Snippet engine
