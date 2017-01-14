@@ -571,3 +571,14 @@ nmap <Leader>w- <Plug>VimwikiRemoveHeaderLevel
 nmap <Leader>w+ <Plug>VimwikiNormalizeLink
 vmap <Leader>w+ <Plug>VimwikiNormalizeLinkVisual
 map  <Leader>wl <Plug>VimwikiToggleListItem
+
+"" neosnippet / deoplete
+imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><CR> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<CR>"
+imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
