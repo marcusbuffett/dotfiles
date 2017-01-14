@@ -237,8 +237,8 @@ colorscheme gruvbox
 nnoremap <leader>/ :noh<CR>
 nnoremap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
 nnoremap <tab> :b#<CR>`"
-nnoremap <A-h> :tabp<CR>
-nnoremap <A-l> :tabn<CR>
+nnoremap <A-h> :bp<CR>
+nnoremap <A-l> :bn<CR>
 nnoremap <A-q> :tabclose<CR>
 nnoremap <leader>bp :bprev<CR>
 nnoremap <leader>bn :bnext<CR>
