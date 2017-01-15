@@ -44,7 +44,7 @@ sudo mkdir -p /data/db
 
 sudo chown 777 /data/db
 
-echo "/usr/local/bin/zsh" >> /etc/shells
+echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/zsh
 
 \curl -sSL https://get.rvm.io | bash
