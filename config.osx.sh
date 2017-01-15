@@ -26,6 +26,8 @@ do
   fi
 done
 
+# java must be installed to install gradle (one of the brew packages)
+brew cask install java
 cat ./brew_packages | xargs brew install
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
