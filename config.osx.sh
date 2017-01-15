@@ -7,7 +7,7 @@ do
 done
 
 mkdir -p ~/.config/nvim
-ln -s ~/.vim ~/.nvim
+ln -s ~/.vim ~/.config/nvim/init.vim
 
 curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > antigen.zsh
 source antigen.zsh
