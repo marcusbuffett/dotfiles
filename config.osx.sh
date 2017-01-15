@@ -9,8 +9,9 @@ done
 mkdir -p ~/.config/nvim
 ln -s ~/.vim ~/.config/nvim/init.vim
 
-curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > antigen.zsh
-source antigen.zsh
+mkdir -p ~/antigen
+curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/antigen/antigen.zsh
+source ~/antigen/antigen.zsh
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
