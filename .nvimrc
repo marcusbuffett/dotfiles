@@ -562,6 +562,7 @@ nmap <Leader>we <Plug>VimwikiSplitLink
 nmap <Leader>wq <Plug>VimwikiVSplitLink
 nmap <Leader>wb <Plug>VimwikiGoBackLink
 nmap <Leader>wp <Plug>VimwikiPrevLink
+nmap <Leader>wn <Plug>VimwikiNextLink
 
 nmap <Leader>w= <Plug>VimwikiAddHeaderLevel
 nmap <Leader>w- <Plug>VimwikiRemoveHeaderLevel
