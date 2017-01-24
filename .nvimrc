@@ -4,14 +4,12 @@
 " PlugUpdate to update installed plugins
 " UpdateRemotePlugins to update some neovim plugins
 call plug#begin('~/.vim/plugged')
-
 " Autocomplete
 Plug 'Shougo/deoplete.nvim'
 " Python completion
 Plug 'zchee/deoplete-jedi'
 " Syntax checking + linting + static code analysis
 Plug 'benekastah/neomake'
-
 " Fuzzy searching for everything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
