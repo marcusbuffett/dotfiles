@@ -1,5 +1,3 @@
-set termguicolors
-
 """ vim-plug
 " PlugInstall to install plugins
 " PlugClean to remove unused plugins
@@ -133,6 +131,8 @@ call plug#end()
 
 """ Options
 
+" True color support
+set termguicolors
 " Set leader to space
 let mapleader="\<Space>"
 " Enable syntax highlighting
