@@ -476,7 +476,6 @@ let g:NERDTreeIndicatorMapCustom = {
 
 "" Sneak-like movement with easymotion
 nmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
 
 "" Slimux
 map <Leader>sl :SlimuxREPLSendLine<CR>
