@@ -36,7 +36,7 @@ brew link vim
 
 npm install -g bower grunt-cli babel eslint gh grunt gulp how2 http-server js-beautify jshint nodemon mocha uglify
 
-pip install thefuck simplewatch chess-cli
+pip3 install thefuck simpleWatch chess-cli flake8 mypy
 
 gem install sass
 
