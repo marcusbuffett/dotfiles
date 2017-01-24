@@ -247,7 +247,7 @@ nnoremap <leader>opd :set nopaste<CR>
 nnoremap <leader>ej :%!python -m json.tool<CR>
 vnoremap <leader>ej :!python -m json.tool<CR>
 " Delete current buffer, go to last
-nnoremap <leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
+nnoremap <leader>bd :bp<bar>bd #<CR>
 
 " Augroup for editing
 augroup EditVim
