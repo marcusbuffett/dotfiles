@@ -187,8 +187,6 @@ set laststatus=2
 set number
 " Show relative line numbers
 set relativenumber
-" Don't store swap files
-set noswapfile
 " No limit to syntax highlighting
 set synmaxcol=0
 " use g flag for substitute by default
