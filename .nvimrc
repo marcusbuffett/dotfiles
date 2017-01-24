@@ -125,6 +125,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'artur-shaik/vim-javacomplete2'
 " Java checkstyle plugin
 Plug 'vim-scripts/java_checkstyle.vim'
+" Close all other buffers
+Plug 'schickling/vim-bufonly'
 call plug#end()
 
 """ Options
@@ -580,3 +582,6 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+
+"" bufonly
+nmap <Leader>bo :BufOnly<CR>
