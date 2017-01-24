@@ -580,7 +580,7 @@ inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+  set conceallevel=2
 endif
 
 "" bufonly
