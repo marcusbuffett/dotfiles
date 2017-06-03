@@ -255,3 +255,8 @@ prompt_context() {}
 prompt_dir() {
   prompt_segment blue black '%1~'
 }
+
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
