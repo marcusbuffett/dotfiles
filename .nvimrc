@@ -458,7 +458,7 @@ let g:airline_section_y = ''
 let g:airline_section_z = '%l:%c'
 
 "" Rust racer
-let g:racer_cmd="/Users/marcusbuffett/Documents/etc/racer/target/release/racer"
+let g:racer_cmd="/Users/marcusbuffett/.cargo/bin/racer"
 "" NerdTree-git
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "●",
