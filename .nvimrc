@@ -399,8 +399,10 @@ autocmd! BufReadPost * Neomake
 let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_sh_enabled_makers = ['shellcheck']
 let g:neomake_python_enabled_makers = ['flake8', 'mypy']
-let g:neomake_rust_enabled_makers = ['rustc']
-autocmd! BufWritePost *.rs :Neomake! cargo
+let g:neomake_rust_enabled_makers = ['cargo']
+let g:neomake_javascript_enabled_makers = ['flow', 'eslint']
+let g:neomake_jsx_enabled_makers = ['flow', 'eslint']
+autocmd! BufWritePost *.rs :Neomake cargo
 let g:neomake_swift_swiftlint_maker = {
       \ 'args': ['lint', '--config', './.swiftlint.yml', '--quiet'],
       \ 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %tarning: %m,%f:%l: %trror: %m',
