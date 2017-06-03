@@ -244,6 +244,8 @@ nnoremap <leader>ej :%!python -m json.tool<CR>
 vnoremap <leader>ej :!python -m json.tool<CR>
 " Delete current buffer, go to last
 nnoremap <leader>bd :bp<bar>bd #<CR>
+" Copy filepath:line_number to clipboard
+nnoremap <leader>yc :let @+ = expand("%:p") . ":" . line(".")<CR>
 
 " Augroup for editing
 augroup EditVim
