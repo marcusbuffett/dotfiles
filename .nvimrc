@@ -342,23 +342,19 @@ nnoremap <leader>D :Dash<space>
 
 "" Fugitive
 " Status without untracked files
-noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gs :Gina status<CR>
 " Diff all files
-noremap <Leader>gd :Gdiff<CR>
+noremap <Leader>gd :Gina compare :<CR>
 " Blame current file
-noremap <Leader>gb :Gblame<CR>
-" Patch current file
-noremap <Leader>gp :Gpatch<CR>
-" Commit staged changes
-noremap <Leader>gc :Gcommit --verbose<CR>
+noremap <Leader>gb :Gina blame : --width=40<CR>
+" 3-way patch current file
+noremap <Leader>gp :Gina patch<CR>
+" Commit changes (in a new tab)
+noremap <Leader>gc :Gina commit -v<CR><C-W>T
 " Reset to head
-noremap <Leader>gr :Gread<CR>
+noremap <Leader>gr :Gina checkout -- %<CR>:e<CR>
 " Add
-noremap <Leader>gw :Gwrite<CR>
-
-"" Gita
-" Status without untracked files
-noremap <Leader>gs :Gita status --untracked-files=no<CR>
+noremap <Leader>gw :Gina add %<CR>
 
 "" ListToggle
 " Toggle location list 
