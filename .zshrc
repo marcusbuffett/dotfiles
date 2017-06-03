@@ -248,6 +248,7 @@ preexec() {
 }
 
 export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
+export PATH="./node_modules/.bin:$PATH"
 
 # Agnoster theme overrides
 prompt_context() {}
