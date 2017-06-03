@@ -577,3 +577,6 @@ endif
 
 "" bufonly
 nmap <Leader>bo :BufOnly<CR>
+
+" Rust src path
+let $RUST_SRC_PATH = "/Users/marcusbuffett/.multirust/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src"
