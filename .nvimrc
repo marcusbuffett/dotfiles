@@ -288,6 +288,8 @@ augroup EditVim
   " 4-spaces for python and java
   au filetype python setlocal ts=4 sts=4 sw=4
   au filetype java   setlocal ts=4 sts=4 sw=4
+  au filetype coffee setlocal ts=4 sts=4 sw=4 noexpandtab
+  au filetype jade   setlocal ts=4 sts=4 sw=4 noexpandtab
   " Autocomplete css
   au FileType css     set omnifunc=csscomplete#CompleteCSS
   " Autocomplete scss
