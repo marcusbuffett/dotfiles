@@ -34,7 +34,7 @@ export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
 export AWS_KEYPAIR_NAME=Marcus
 export NVM_DIR="/Users/marcusbuffett/.nvm"
-export RUST_SRC_PATH="$HOME/Documents/etc/rust/src"
+export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src
 # export RUBYOPT=-rbumbler/go
 
 # Aliases
