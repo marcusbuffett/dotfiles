@@ -59,8 +59,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-repeat'
 " CSS3 syntax support
 Plug 'hail2u/vim-css3-syntax'
-" Jade support
-Plug 'digitaltoad/vim-jade'
 " JSX support
 Plug 'mxw/vim-jsx'
 " SCSS support
