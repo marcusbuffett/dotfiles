@@ -217,6 +217,7 @@ expand-aliases() {
     BUFFER=${functions[_expand-aliases]#$'\t'} &&
     CURSOR=$#BUFFER
 }
+zle -N expand-aliases; bindkey '^E' expand-aliases
 
 #####################
 ## ZSH force alias ##
