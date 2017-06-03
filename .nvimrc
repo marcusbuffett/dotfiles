@@ -121,6 +121,8 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'vim-scripts/java_checkstyle.vim'
 " Close all other buffers
 Plug 'schickling/vim-bufonly'
+" Add more mappings for jumps
+Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 """ Options
