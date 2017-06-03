@@ -105,10 +105,6 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 
 
-# Making ctrl-h work in neovim
-infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/$TERM.ti
-tic ~/$TERM.ti
-
 # Setting up vim mode for zsh
 bindkey -v
 
