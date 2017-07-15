@@ -228,7 +228,7 @@ set diffopt=filler,vertical
 runtime macros/matchit.vim
 
 " Set colorscheme
-colorscheme gruvbox
+colorscheme deus
 
 "" General mappings
 nnoremap <leader>/ :noh<CR>
