@@ -123,6 +123,7 @@ Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-unimpaired'
 Plug 'statianzo/vim-jade'
 " Language server client
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 """ Options
