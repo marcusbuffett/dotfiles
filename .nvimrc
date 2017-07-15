@@ -591,3 +591,6 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 let g:LanguageClient_autoStart = 1
+
+" vim-jsx
+let g:jsx_ext_required = 0
