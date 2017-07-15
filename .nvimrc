@@ -27,8 +27,6 @@ Plug 'flazz/vim-colorschemes'
 Plug 'eagletmt/ghcmod-vim'
 " Aligning of text using :Tabularize
 Plug 'godlygeek/tabular'
-" Buffers in tabline
-Plug 'ap/vim-buftabline'
 " Snippet engine
 Plug 'Shougo/neosnippet.vim'
 " Snippets source
