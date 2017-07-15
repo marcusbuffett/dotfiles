@@ -121,6 +121,8 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'schickling/vim-bufonly'
 " Add more mappings for jumps
 Plug 'tpope/vim-unimpaired'
+Plug 'statianzo/vim-jade'
+" Language server client
 call plug#end()
 
 """ Options
