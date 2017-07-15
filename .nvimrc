@@ -345,7 +345,7 @@ nnoremap <leader>D :Dash<space>
 
 "" Fugitive
 " Status without untracked files
-noremap <Leader>gs :Gina status<CR>
+noremap <Leader>gs :Gina status --untracked=no<CR>
 " Diff all files
 noremap <Leader>gd :Gina compare :<CR>
 " Blame current file
