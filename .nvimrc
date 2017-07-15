@@ -124,6 +124,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'statianzo/vim-jade'
 " Language server client
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+" Dark color scheme
+Plug 'ajmwagar/vim-deus'
 call plug#end()
 
 """ Options
