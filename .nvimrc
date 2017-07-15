@@ -116,7 +116,7 @@ Plug 'vimwiki/vimwiki'
 " Java autocomplete source
 Plug 'artur-shaik/vim-javacomplete2'
 " Java checkstyle plugin
-Plug 'vim-scripts/java_checkstyle.vim'
+" Plug 'vim-scripts/java_checkstyle.vim'
 " Close all other buffers
 Plug 'schickling/vim-bufonly'
 " Add more mappings for jumps
