@@ -126,6 +126,8 @@ Plug 'statianzo/vim-jade'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 " Dark color scheme
 Plug 'ajmwagar/vim-deus'
+" Scratch buffer
+Plug 'mtth/scratch.vim'
 call plug#end()
 
 """ Options
@@ -285,14 +287,15 @@ augroup EditVim
   au filetype javascript nnoremap K :TernDoc<CR>
   au FileType javascript setlocal omnifunc=tern#Complete
 	set omnifunc=syntaxcomplete#Complete
-  au FileType java setlocal omnifunc=javacomplete#Complete
+  " au FileType java setlocal omnifunc=javacomplete#Complete
 
   "" Other
   " 4-spaces for python and java
   au filetype python setlocal ts=4 sts=4 sw=4
   au filetype java   setlocal ts=4 sts=4 sw=4
   au filetype coffee setlocal ts=4 sts=4 sw=4 noexpandtab
-  au filetype jade   setlocal ts=4 sts=4 sw=4 noexpandtab
+  au filetype jade   setlocal ts=4 sts=4 sw=4
+  au filetype swift   setlocal ts=4 sts=4 sw=4
   " Autocomplete css
   au FileType css     set omnifunc=csscomplete#CompleteCSS
   " Autocomplete scss
@@ -343,9 +346,9 @@ noremap <leader>d :Dash<CR>
 " Open command mode to search dash
 nnoremap <leader>D :Dash<space>
 
-"" Fugitive
+"" Gina
 " Status without untracked files
-noremap <Leader>gs :Gina status --untracked=no<CR>
+noremap <Leader>gs :Gina status --untracked=no -s<CR>
 " Diff all files
 noremap <Leader>gd :Gina compare :<CR>
 " Blame current file
@@ -358,6 +361,7 @@ noremap <Leader>gc :Gina commit -v<CR><C-W>T
 noremap <Leader>gr :Gina checkout -- %<CR>:e<CR>
 " Add
 noremap <Leader>gw :Gina add %<CR>
+let g:gina#command#blame#formatter#format = "%au%=on %ti %ma%in"
 
 "" ListToggle
 " Toggle location list 
@@ -405,6 +409,7 @@ let g:neomake_python_enabled_makers = ['flake8', 'mypy']
 let g:neomake_rust_enabled_makers = ['cargo']
 let g:neomake_javascript_enabled_makers = ['flow', 'eslint']
 let g:neomake_jsx_enabled_makers = ['flow', 'eslint']
+let g:neomake_java_enabled_makers = []
 autocmd! BufWritePost *.rs :Neomake cargo
 let g:neomake_swift_swiftlint_maker = {
       \ 'args': ['lint', '--config', './.swiftlint.yml', '--quiet'],

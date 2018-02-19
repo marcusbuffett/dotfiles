@@ -141,6 +141,7 @@ function z () {
   cd $(ds | fzf)
 }
 
+
 function f () {
   v $(fs | fzf)
 }
@@ -249,6 +250,9 @@ preexec() {
 
 export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
 export PATH="./node_modules/.bin:$PATH"
+
+sonarScannerPath="$HOME/Documents/sonar-scanner/bin"
+export PATH="$PATH:$sonarScannerPath"
 
 # Agnoster theme overrides
 prompt_context() {}
