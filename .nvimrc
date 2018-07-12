@@ -9,12 +9,14 @@ Plug 'Shougo/deoplete.nvim'
 " Python completion
 Plug 'zchee/deoplete-jedi'
 " Syntax checking + linting + static code analysis
-Plug 'benekastah/neomake'
+" Plug 'benekastah/neomake'
+" Syntax checking + linting + static code analysis
+Plug 'w0rp/ale'
 " Fuzzy searching for everything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Git wrapper
-Plug 'lambdalisue/gina.vim'
+Plug 'tpope/vim-fugitive'
 " Commenting
 Plug 'scrooloose/nerdcommenter'
 " Status line
@@ -128,6 +130,13 @@ Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ajmwagar/vim-deus'
 " Scratch buffer
 Plug 'mtth/scratch.vim'
+" XCode project file syntax
+Plug 'cfdrake/vim-pbxproj'
+Plug 'itchyny/vim-qfedit'
+" Regenerate tag files all the time
+Plug 'ludovicchabant/vim-gutentags'
+" Typescript syntax
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 """ Options
@@ -173,7 +182,7 @@ set undolevels=1000
 " Allow vim to set the title of the shell
 set title
 " Set text width (used for comments)
-set textwidth=60
+set textwidth=80
 " When hitting enter on a commented line, continue the comment
 set formatoptions+=r
 " When hitting o/O on a commented line, continue the comment
@@ -251,6 +260,9 @@ vnoremap <leader>ej :!python -m json.tool<CR>
 nnoremap <leader>bd :bp<bar>bd #<CR>
 " Copy filepath:line_number to clipboard
 nnoremap <leader>yc :let @+ = expand("%:p") . ":" . line(".")<CR>
+nnoremap <leader>ym :let @+ = expand("%:t:r") . "#" . "<C-r><C-w>"<CR>
+" Perform last subtitution on the current line ( or selected area )
+map <Leader>br :s/\<<C-r>-\>/<C-r>.<CR>
 
 " Augroup for editing
 augroup EditVim
@@ -291,11 +303,14 @@ augroup EditVim
 
   "" Other
   " 4-spaces for python and java
+  " TODO: 4 spaces the default
   au filetype python setlocal ts=4 sts=4 sw=4
   au filetype java   setlocal ts=4 sts=4 sw=4
-  au filetype coffee setlocal ts=4 sts=4 sw=4 noexpandtab
+  au filetype coffee setlocal ts=4 sts=4 sw=4
   au filetype jade   setlocal ts=4 sts=4 sw=4
-  au filetype swift   setlocal ts=4 sts=4 sw=4
+  au filetype swift  setlocal ts=4 sts=4 sw=4
+  au filetype rust   setlocal ts=4 sts=4 sw=4
+  au filetype yaml   setlocal ts=4 sts=4 sw=4
   " Autocomplete css
   au FileType css     set omnifunc=csscomplete#CompleteCSS
   " Autocomplete scss
@@ -348,9 +363,9 @@ nnoremap <leader>D :Dash<space>
 
 "" Gina
 " Status without untracked files
-noremap <Leader>gs :Gina status --untracked=no -s<CR>
+noremap <Leader>gs :Gina status -s<CR>
 " Diff all files
-noremap <Leader>gd :Gina compare :<CR>
+noremap <Leader>gd :Gina compare<CR>
 " Blame current file
 noremap <Leader>gb :Gina blame : --width=40<CR>
 " 3-way patch current file
@@ -399,25 +414,31 @@ let NERDSpaceDelims = 1
 
 "" Neomake
 " Check file after every write
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
 " Check file after every read
-autocmd! BufReadPost * Neomake
+" autocmd! BufReadPost * Neomake
 " Only use rubocop for ruby
-let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_sh_enabled_makers = ['shellcheck']
-let g:neomake_python_enabled_makers = ['flake8', 'mypy']
-let g:neomake_rust_enabled_makers = ['cargo']
-let g:neomake_javascript_enabled_makers = ['flow', 'eslint']
-let g:neomake_jsx_enabled_makers = ['flow', 'eslint']
-let g:neomake_java_enabled_makers = []
-autocmd! BufWritePost *.rs :Neomake cargo
-let g:neomake_swift_swiftlint_maker = {
-      \ 'args': ['lint', '--config', './.swiftlint.yml', '--quiet'],
-      \ 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %tarning: %m,%f:%l: %trror: %m',
-      \ 'append_file': 0,
-      \ }
-let g:neomake_swift_enabled_makers = ['swiftlint']
-autocmd! BufWritePost *.swift :NeomakeSh swift build
+" let g:neomake_ruby_enabled_makers = ['rubocop']
+" let g:neomake_sh_enabled_makers = ['shellcheck']
+" let g:neomake_python_enabled_makers = ['flake8', 'mypy']
+" let g:neomake_rust_enabled_makers = ['cargo']
+" let g:neomake_javascript_enabled_makers = ['flow', 'eslint']
+" let g:neomake_jsx_enabled_makers = ['flow', 'eslint']
+" let g:neomake_java_enabled_makers = []
+" let g:neomake_swift_swiftlint_maker = {
+      " \ 'args': ['lint', '--config', './.swiftlint.yml', '--quiet'],
+      " \ 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %tarning: %m,%f:%l: %trror: %m',
+      " \ 'append_file': 0,
+      " \ }
+" let g:neomake_swift_enabled_makers = ['swiftlint']
+" autocmd! BufWritePost *.rs :Neomake! cargo
+" let g:neomake_swift_swiftlint_maker = {
+      " \ 'args': ['lint', '--config', './.swiftlint.yml', '--quiet'],
+      " \ 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %tarning: %m,%f:%l: %trror: %m',
+      " \ 'append_file': 0,
+      " \ }
+" let g:neomake_swift_enabled_makers = []
+" autocmd! BufWritePost *.swift :NeomakeSh swift build
 
 "" Deoplete
 " Enable deoplete
@@ -438,7 +459,7 @@ endif
 " Tab for completion
 " inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['omni', 'snippet', 'tag', 'buffer']
+let g:deoplete#sources._ = ['neosnippet', 'tag', 'buffer']
 let g:deoplete#tag#cache_limit_size = 100000000
 " Manual completion when wanted
 inoremap <silent><expr> <C-x><C-o>
@@ -467,6 +488,11 @@ let g:airline_section_z = '%l:%c'
 
 "" Rust racer
 let g:racer_cmd="/Users/marcusbuffett/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+au FileType rust nmap <leader>rd <Plug>(rust-def)
+au FileType rust nmap <leader>rs <Plug>(rust-def-split)
+au FileType rust nmap <leader>rx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>ro <Plug>(rust-doc)
 "" NerdTree-git
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "●",
@@ -571,16 +597,22 @@ nmap <Leader>w- <Plug>VimwikiRemoveHeaderLevel
 nmap <Leader>w+ <Plug>VimwikiNormalizeLink
 vmap <Leader>w+ <Plug>VimwikiNormalizeLinkVisual
 map  <Leader>wl <Plug>VimwikiToggleListItem
+let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path': '~/vimwiki/templates/',
+          \ 'template_default': 'default', 'syntax': 'markdown', 'ext': '.md',
+          \ 'path_html': '~/vimwiki/site_html/', 'custom_wiki2html': 'vimwiki_markdown',
+          \ 'template_ext': '.tpl'}]
+autocmd BufEnter,BufRead,BufNewFile *.md set filetype=markdown
 
 "" neosnippet / deoplete
-imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-imap <expr><CR> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<CR>"
-imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+smap <C-s>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-s>     <Plug>(neosnippet_expand_target)
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+let g:neosnippet#snippets_directory='~/dotfiles/snippets'
+
 if has('conceal')
-  set conceallevel=2
+  set conceallevel=0 concealcursor=niv
 endif
 
 "" bufonly

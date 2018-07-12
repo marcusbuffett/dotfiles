@@ -34,7 +34,7 @@ export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
 export AWS_KEYPAIR_NAME=Marcus
 export NVM_DIR="/Users/marcusbuffett/.nvm"
-export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 # export RUBYOPT=-rbumbler/go
 
 # Aliases
@@ -222,16 +222,16 @@ zle -N expand-aliases; bindkey '^E' expand-aliases
 
 #####################
 ## ZSH force alias ##
-(force-alias-server > /dev/null &) > /dev/null 2>&1
-if [[ -z "$NO_CHECK" ]]; then force-alias-client --init --pid $$; fi
-function force_alias_hook() {
-  if [[ -n "$NO_CHECK" ]]; then zle accept-line; return; fi
-  force-alias-client --pid $$ -- $BUFFER
-  if [[ $? -eq 1 ]]; then BUFFER=""; fi
-  zle accept-line
-}
-autoload -U add-zsh-hook; zle -N force_alias_hook;
-bindkey '^J' force_alias_hook; bindkey '^M' force_alias_hook;
+# (force-alias-server > /dev/null &) > /dev/null 2>&1
+# if [[ -z "$NO_CHECK" ]]; then force-alias-client --init --pid $$; fi
+# function force_alias_hook() {
+  # if [[ -n "$NO_CHECK" ]]; then zle accept-line; return; fi
+  # force-alias-client --pid $$ -- $BUFFER
+  # if [[ $? -eq 1 ]]; then BUFFER=""; fi
+  # zle accept-line
+# }
+# autoload -U add-zsh-hook; zle -N force_alias_hook;
+# bindkey '^J' force_alias_hook; bindkey '^M' force_alias_hook;
 ## End ZSH force alias ##
 #########################
 
@@ -263,4 +263,7 @@ prompt_dir() {
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -e "/usr/local/bin/virtualenvwrapper.sh" ]
+then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
