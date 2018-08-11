@@ -17,6 +17,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Git wrapper
 Plug 'tpope/vim-fugitive'
+" Git wrapper
+Plug 'lambdalisue/gina.vim'
+" Short git status
+Plug 'alexdavid/vim-min-git-status'
 " Commenting
 Plug 'scrooloose/nerdcommenter'
 " Status line

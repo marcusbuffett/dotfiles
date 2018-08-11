@@ -58,14 +58,16 @@ alias c='clear'
 alias fusro='git push origin head'
 alias fusrodah='git push --force origin head'
 alias fuck_it_lets_do_it_live='git add -u && git commit --amend --no-edit && git push --force origin head'
+alias glg='git log'
+alias glgo='git log --date=relative --pretty="format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D"'
 alias glf='git ls-files'
 alias gau='git add -u'
 alias grbom='git rebase origin/master'
 alias td='nvim ~/.todo.md'
-alias gsuno='git status -uno -s'
+# alias gsuno='git status -uno -s'
 alias gfs='git ls-files -m $(git rev-parse --show-toplevel)'
 alias gcmu='git ls-files --exclude-standard --others| fzf -m | xargs git add'
-alias gcmum='gfs | fzf -m | xargs git add'
+alias gcmum='gfs | fzf -m | gxargs -L1 -I{} git add "{}"'
 alias gbzf='git checkout $(git branch --list | cut -c 3- | fzf)'
 alias grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)'"
 alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)' | gtac | fzf --no-sort | xargs git checkout"
@@ -151,6 +153,14 @@ function runrust () {
   rustc $@ && ./$name && command rm $name
 }
 
+# fd - cd to selected directory
+function fcd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
 function dkme () {
   eval $(docker-machine env $1)
 }
@@ -208,8 +218,6 @@ unalias f
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
-export FZF_DEFAULT_COMMAND='ag -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 expand-aliases() {
   unset 'functions[_expand-aliases]'
