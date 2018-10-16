@@ -263,7 +263,7 @@ vnoremap <leader>ej :!python -m json.tool<CR>
 " Delete current buffer, go to last
 nnoremap <leader>bd :bp<bar>bd #<CR>
 " Copy filepath:line_number to clipboard
-nnoremap <leader>yc :let @+ = expand("%:p") . ":" . line(".")<CR>
+nnoremap <leader>yc :let @+ = expand("%:t") . ":" . line(".")<CR>
 nnoremap <leader>ym :let @+ = expand("%:t:r") . "#" . "<C-r><C-w>"<CR>
 " Perform last subtitution on the current line ( or selected area )
 map <Leader>br :s/\<<C-r>-\>/<C-r>.<CR>
@@ -390,9 +390,7 @@ let g:lt_quickfix_list_toggle_map = '<leader>tq'
 
 "" Hardtime
 " Enable hardtime
-let g:hardtime_default_on = 1
-" Only activate for repeated presses of the same key
-let g:hardtime_allow_different_key = 1
+let g:hardtime_default_on = 0
 let g:hardtime_maxcount = 2
 " Set what keys hardtime will throttle
 let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "n", "w", "b", "W", "B", "e", "E", ";", "{", "}", "<C-d>", "<C-u>"]
@@ -463,31 +461,34 @@ endif
 " Tab for completion
 " inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['neosnippet', 'tag', 'buffer']
+let g:deoplete#sources._ = ['omni', 'neosnippet', 'tag', 'buffer']
 let g:deoplete#tag#cache_limit_size = 100000000
 " Manual completion when wanted
-inoremap <silent><expr> <C-x><C-o>
-      \ pumvisible() ? "\<C-n>" :
-      \ deoplete#mappings#manual_complete()
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <silent><expr> <C-x><C-o>
+      " \ pumvisible() ? "\<C-n>" :
+      " \ deoplete#mappings#manual_complete()
 
 "" Airline
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
-" Disable detecting whitespace because that's what linters
-" are for
-let g:airline_detect_whitespace=0
-" Disable showing changed hunks in airline
+" " Disable detecting whitespace because that's what linters
+" " are for
+let g:airline#extensions#whitespace#enabled = 0
+" " Disable showing changed hunks in airline
 let g:airline#extensions#hunks#enabled = 0
-" Use default for section_a, *but* without mode because it's
-" obvious what mode you're in
+" " Use default for section_a, *but* without mode because it's
+" " obvious what mode you're in
 let g:airline_section_a = airline#section#create_left(['crypt', 'paste', 'spell', 'iminsert'])
-" Disable section x (tagbar, filetype, virtualenv) and
-" section y (fileencoding and fileformat) because they are
-" rarely useful
+" " Disable section x (tagbar, filetype, virtualenv) and
+" " section y (fileencoding and fileformat) because they are
+" " rarely useful
+let g:airline_section_b = ''
 let g:airline_section_c = '%t'
 let g:airline_section_x = ''
 let g:airline_section_y = ''
-" Make section z (line number, column, etc) less cluttered
+" " Make section z (line number, column, etc) less cluttered
 let g:airline_section_z = '%l:%c'
 
 "" Rust racer
@@ -512,13 +513,15 @@ let g:NERDTreeIndicatorMapCustom = {
 
 "" Sneak-like movement with easymotion
 nmap s <Plug>(easymotion-s2)
+nmap <Leader>j <Plug>(easymotion-j)
+nmap <Leader>k <Plug>(easymotion-k)
 
 "" Slimux
 map <Leader>sl :SlimuxREPLSendLine<CR>
 vmap <Leader>ss :SlimuxREPLSendSelection<CR>
 map <Leader>sa mzggVG:SlimuxREPLSendSelection<CR>`z
-map <Leader>sk :SlimuxSendKeysPrompt<CR>
-map <Leader>skr :SlimuxSendKeysLast<CR>
+" map <Leader>sk :SlimuxSendKeysPrompt<CR>
+" map <Leader>skr :SlimuxSendKeysLast<CR>
 map <Leader>sh :SlimuxShellPrompt<CR>
 map <Leader>sr :SlimuxShellLast<CR>
 let g:slimux_select_from_current_window = 1
@@ -606,6 +609,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path': '~/vimwiki/template
           \ 'path_html': '~/vimwiki/site_html/', 'custom_wiki2html': 'vimwiki_markdown',
           \ 'template_ext': '.tpl'}]
 autocmd BufEnter,BufRead,BufNewFile *.md set filetype=markdown
+let g:vimwiki_conceallevel = 0
 
 "" neosnippet / deoplete
 imap <C-s>     <Plug>(neosnippet_expand_or_jump)
@@ -635,3 +639,6 @@ let g:LanguageClient_autoStart = 1
 
 " vim-jsx
 let g:jsx_ext_required = 0
+
+" autocomplete-swift
+" autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
