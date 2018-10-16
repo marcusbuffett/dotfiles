@@ -23,8 +23,6 @@ Plug 'lambdalisue/gina.vim'
 Plug 'alexdavid/vim-min-git-status'
 " Commenting
 Plug 'scrooloose/nerdcommenter'
-" Status line
-Plug 'bling/vim-airline'
 " HTML and CSS abbreviation expansion using Emmet
 Plug 'mattn/emmet-vim'
 " Lots of color schemes
@@ -469,27 +467,6 @@ inoremap <silent><expr> <Tab>
 " inoremap <silent><expr> <C-x><C-o>
       " \ pumvisible() ? "\<C-n>" :
       " \ deoplete#mappings#manual_complete()
-
-"" Airline
-" Enable powerline fonts
-let g:airline_powerline_fonts = 1
-" " Disable detecting whitespace because that's what linters
-" " are for
-let g:airline#extensions#whitespace#enabled = 0
-" " Disable showing changed hunks in airline
-let g:airline#extensions#hunks#enabled = 0
-" " Use default for section_a, *but* without mode because it's
-" " obvious what mode you're in
-let g:airline_section_a = airline#section#create_left(['crypt', 'paste', 'spell', 'iminsert'])
-" " Disable section x (tagbar, filetype, virtualenv) and
-" " section y (fileencoding and fileformat) because they are
-" " rarely useful
-let g:airline_section_b = ''
-let g:airline_section_c = '%t'
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-" " Make section z (line number, column, etc) less cluttered
-let g:airline_section_z = '%l:%c'
 
 "" Rust racer
 let g:racer_cmd="/Users/marcusbuffett/.cargo/bin/racer"
