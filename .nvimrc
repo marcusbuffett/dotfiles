@@ -5,13 +5,13 @@
 " UpdateRemotePlugins to update some neovim plugins
 call plug#begin('~/.vim/plugged')
 " Autocomplete
-Plug 'Shougo/deoplete.nvim'
+" Plug 'Shougo/deoplete.nvim'
 " Python completion
 " Plug 'zchee/deoplete-jedi'
 " Syntax checking + linting + static code analysis
 " Plug 'benekastah/neomake'
 " Syntax checking + linting + static code analysis
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 " Fuzzy searching for everything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -31,10 +31,6 @@ Plug 'flazz/vim-colorschemes'
 Plug 'eagletmt/ghcmod-vim'
 " Aligning of text using :Tabularize
 Plug 'godlygeek/tabular'
-" Snippet engine
-Plug 'Shougo/neosnippet.vim'
-" Snippets source
-Plug 'Shougo/neosnippet-snippets'
 " Adds operations like cs]) to change [test] to (test)
 Plug 'tpope/vim-surround'
 " Dash support (documentation app for OS X)
@@ -109,7 +105,7 @@ Plug 'Shougo/unite-outline'
 " Colorscheme unite source
 Plug 'ujihisa/unite-colorscheme'
 " Marks unite source
-Plug 'tacroe/unite-mark'
+" Plug 'tacroe/unite-mark'
 " Display marks in the sidebar
 Plug 'kshenoy/vim-signature'
 " Note taking plugin
@@ -138,12 +134,28 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'leafgarland/typescript-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'connorholyday/vim-snazzy'
-Plug 'bfredl/nvim-ipy'
+" Plug 'bfredl/nvim-ipy'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'lambdalisue/vim-pyenv'
+" Plug 'lambdalisue/vim-pyenv'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+" ncm2 sources
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-tagprefix'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-jedi'
+" Plug 'ncm2/ncm2-jedi'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'ryanolsonx/vim-lsp-python'
+Plug 'jeetsukumaran/vim-indentwise'
+Plug 'Shougo/denite.nvim'
 call plug#end()
 
 """ Options
@@ -447,35 +459,6 @@ let NERDSpaceDelims = 1
 " let g:neomake_swift_enabled_makers = []
 " autocmd! BufWritePost *.swift :NeomakeSh swift build
 
-"" Deoplete
-" Enable deoplete
-let g:deoplete#enable_at_startup = 1
-" If there aren't input patterns set for completion, set it to {}
-let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-let g:deoplete#omni#input_patterns.python =
-\ ['[^. *\t]\.\w*']
-let g:deoplete#omni#input_patterns.javascript =
-\ ['[^. *\t]\.\w*']
-let g:deoplete#omni#input_patterns.ruby =
-\ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
-let g:deoplete#omni#input_patterns.swift =
-\ ['[^. *\t]\.\w*']
-let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['LanguageClient', 'omni', 'neosnippet', 'tag', 'buffer']
-call deoplete#custom#option('num_processes', 1)
-" call deoplete#custom#option('sources', {
-    " \ '_': ['LanguageClient'],
-" \})
-let g:deoplete#tag#cache_limit_size = 100000000
-" Manual completion when wanted
-" inoremap <silent><expr> <Tab>
-      " \ pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr> <C-x><C-o>
-      \ pumvisible() ? "\<C-n>" :
-      \ deoplete#mappings#manual_complete()
-
 "" Rust racer
 let g:racer_cmd="/Users/marcusbuffett/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
@@ -519,11 +502,11 @@ nmap <Leader>ggi :let g:gitgutter_diff_base = '' \| GitGutter<CR>
 nmap <Leader>ggb :let g:gitgutter_diff_base = system("git merge-base master $(git rev-parse head)") \| GitGutter<CR>
 
 "" Unite
-nnoremap <leader>uy :<C-u>Unite -start-insert -no-split -buffer-name=tags    outline<cr>
-nnoremap <leader>ue :<C-u>Unite -start-insert -no-split -buffer-name=buffer  buffer<cr> 
-nnoremap <leader>uq :<C-u>Unite -start_insert -no-split -buffer-name=buffer -quick-match buffer<cr>
-nnoremap <leader>um :<C-u>Unite -start-insert -no-split -buffer-name=marks -quick-match mark<cr>
-nnoremap <leader>up :<C-u>Unite -start-insert -no-split -buffer-name=mappings -quick-match mapping<cr>
+nnoremap <leader>uy :<C-u>Denite -mode=insert -no-split -buffer-name=tags    unite:outline<cr>
+nnoremap <leader>ue :<C-u>Denite -mode=insert -no-split -buffer-name=buffer  buffer<cr> 
+nnoremap <leader>uq :<C-u>Denite -mode=insert -no-split -buffer-name=buffer -quick-match buffer<cr>
+nnoremap <leader>um :<C-u>Denite -mode=insert -no-split -buffer-name=marks -quick-match mark<cr>
+nnoremap <leader>up :<C-u>Denite -mode=insert -no-split -buffer-name=mappings -quick-match mapping<cr>
 
 function! s:goyo_enter()
   set wrap
@@ -586,11 +569,11 @@ autocmd BufEnter,BufRead,BufNewFile *.md set filetype=markdown
 let g:vimwiki_conceallevel = 0
 
 "" neosnippet / deoplete
-imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-smap <C-s>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-s>     <Plug>(neosnippet_expand_target)
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-s>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-s>     <Plug>(neosnippet_expand_target)
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 let g:neosnippet#snippets_directory='~/dotfiles/snippets'
 
 if has('conceal')
@@ -632,3 +615,27 @@ let g:jsx_ext_required = 0
     " \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     " \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     " \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+
+" ncm2 
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+imap <C-g> <Plug>(ncm2_manual_trigger)
+let ncm2#popup_delay = 5
+let ncm2#complete_length = [[1, 1]]
+
+" Indentwise
+map <Leader>ih <Plug>(IndentWisePreviousLesserIndent)
+map <Leader>ik <Plug>(IndentWisePreviousEqualIndent)
+map <Leader>ip <Plug>(IndentWisePreviousGreaterIndent)
+map <Leader>in <Plug>(IndentWiseNextLesserIndent)
+map <Leader>ij <Plug>(IndentWiseNextEqualIndent)
+map <Leader>il <Plug>(IndentWiseNextGreaterIndent)
+
+" Disable jedi completions since we have ncm2
+let g:jedi#auto_initialization = 1
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_command = ""
+let g:jedi#show_call_signatures = "1"
