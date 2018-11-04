@@ -7,7 +7,7 @@ call plug#begin('~/.vim/plugged')
 " Autocomplete
 Plug 'Shougo/deoplete.nvim'
 " Python completion
-Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-jedi'
 " Syntax checking + linting + static code analysis
 " Plug 'benekastah/neomake'
 " Syntax checking + linting + static code analysis
@@ -85,8 +85,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'epeli/slimux'
 " Scala syntax highlighting + indentation
 Plug 'derekwyatt/vim-scala'
-" Show modified/added/removed lines in gutter
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 " Swift syntax highlighting + indentation
 Plug 'keith/swift.vim'
 " Haskell syntax highlighting + indentation
@@ -112,7 +111,7 @@ Plug 'ujihisa/unite-colorscheme'
 " Marks unite source
 Plug 'tacroe/unite-mark'
 " Display marks in the sidebar
-Plug 'jeetsukumaran/vim-markology'
+Plug 'kshenoy/vim-signature'
 " Note taking plugin
 Plug 'xolox/vim-notes'
 " Vimwiki
@@ -126,8 +125,6 @@ Plug 'schickling/vim-bufonly'
 " Add more mappings for jumps
 Plug 'tpope/vim-unimpaired'
 Plug 'statianzo/vim-jade'
-" Language server client
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 " Dark color scheme
 Plug 'ajmwagar/vim-deus'
 " Scratch buffer
@@ -139,6 +136,14 @@ Plug 'itchyny/vim-qfedit'
 Plug 'ludovicchabant/vim-gutentags'
 " Typescript syntax
 Plug 'leafgarland/typescript-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'connorholyday/vim-snazzy'
+Plug 'bfredl/nvim-ipy'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'lambdalisue/vim-pyenv'
 call plug#end()
 
 """ Options
@@ -241,7 +246,7 @@ set diffopt=filler,vertical
 runtime macros/matchit.vim
 
 " Set colorscheme
-colorscheme deus
+colorscheme gruvbox
 
 "" General mappings
 nnoremap <leader>/ :noh<CR>
@@ -249,6 +254,8 @@ nnoremap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
 nnoremap <tab> :b#<CR>`"
 nnoremap <A-h> :bp<CR>
 nnoremap <A-l> :bn<CR>
+nnoremap <A-j> :tabnext<CR>
+nnoremap <A-k> :tabprevious<CR>
 nnoremap <A-q> :tabclose<CR>
 nnoremap <leader>bp :bprev<CR>
 nnoremap <leader>bn :bnext<CR>
@@ -272,7 +279,7 @@ augroup EditVim
   " Detect jade files
   au BufRead,BufNewFile *.jade setlocal ft=jade
   " Run files using <leader>r, respecting file type
-  au filetype python     nnoremap <leader>r  :!python3 %<CR>
+  au filetype python     nnoremap <leader>r  :!python %<CR>
   au filetype haskell    nnoremap <leader>r  :!runhaskell %<CR>
   au filetype javascript nnoremap <leader>r  :!node %<CR>
   au filetype haskell    nnoremap <leader>rc :!cabal run<CR>
@@ -444,29 +451,30 @@ let NERDSpaceDelims = 1
 " Enable deoplete
 let g:deoplete#enable_at_startup = 1
 " If there aren't input patterns set for completion, set it to {}
-if !exists('g:deoplete#omni#input_patterns')
-  let g:deoplete#omni#input_patterns = {}
-  let g:deoplete#omni#input_patterns.python =
-  \ ['[^. *\t]\.\w*']
-  let g:deoplete#omni#input_patterns.javascript =
-  \ ['[^. *\t]\.\w*']
-  let g:deoplete#omni#input_patterns.ruby =
-  \ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
-  let g:deoplete#omni#input_patterns.swift =
-  \ ['[^. *\t]\.\w*']
-	let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
-endif
-" Tab for completion
-" inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+let g:deoplete#omni#input_patterns.python =
+\ ['[^. *\t]\.\w*']
+let g:deoplete#omni#input_patterns.javascript =
+\ ['[^. *\t]\.\w*']
+let g:deoplete#omni#input_patterns.ruby =
+\ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
+let g:deoplete#omni#input_patterns.swift =
+\ ['[^. *\t]\.\w*']
+let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['omni', 'neosnippet', 'tag', 'buffer']
+let g:deoplete#sources._ = ['LanguageClient', 'omni', 'neosnippet', 'tag', 'buffer']
+call deoplete#custom#option('num_processes', 1)
+" call deoplete#custom#option('sources', {
+    " \ '_': ['LanguageClient'],
+" \})
 let g:deoplete#tag#cache_limit_size = 100000000
 " Manual completion when wanted
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <silent><expr> <C-x><C-o>
-      " \ pumvisible() ? "\<C-n>" :
-      " \ deoplete#mappings#manual_complete()
+" inoremap <silent><expr> <Tab>
+      " \ pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <C-x><C-o>
+      \ pumvisible() ? "\<C-n>" :
+      \ deoplete#mappings#manual_complete()
 
 "" Rust racer
 let g:racer_cmd="/Users/marcusbuffett/.cargo/bin/racer"
@@ -530,17 +538,6 @@ function! s:goyo_leave()
 endfunction
 
 let g:vim_markdown_new_list_item_indent = 2
-
-"" Markology
-let g:markology_textlower="\t"
-let g:markology_textupper="\t"
-let g:markology_textother="\t"
-
-highlight MarkologyHLl guifg=#D688AF guibg=#3A3A3A
-highlight MarkologyHLu guifg=#D688AF guibg=#3A3A3A
-highlight MarkologyHLo guifg=#D688AF guibg=#3A3A3A
-highlight MarkologyHLm guifg=#D688AF guibg=#3A3A3A
-set updatetime=1000
 
 "" Unite mark
 let g:unite_source_mark_marks =
@@ -607,15 +604,31 @@ nmap <Leader>bo :BufOnly<CR>
 let $RUST_SRC_PATH = "/Users/marcusbuffett/.multirust/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src"
 
 " LanguageClient
-
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls']
+    \ 'python': ['python', '-m', 'pyls', '--log-file', './pyls_logs.txt'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'swift': ['/Users/marcusbuffett/Documents/sources/langserver-swift/.build/x86_64-apple-macosx10.10/debug/langserver-swift']
     \ }
 
+let g:LanguageClient_rootMarkers = {                                      
+         \ 'swift': ['AirCam.xcodeproj']                                          
+         \ }   
+
+
 let g:LanguageClient_autoStart = 1
+
+nnoremap <leader>gc :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " vim-jsx
 let g:jsx_ext_required = 0
 
 " autocomplete-swift
 " autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
+
+" Language server setup
+    " \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    " \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    " \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
