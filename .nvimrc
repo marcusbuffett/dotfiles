@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
 " Syntax checking + linting + static code analysis
 " Plug 'benekastah/neomake'
 " Syntax checking + linting + static code analysis
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 " Fuzzy searching for everything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -28,19 +28,15 @@ Plug 'mattn/emmet-vim'
 " Lots of color schemes
 Plug 'flazz/vim-colorschemes'
 " GHCMod for completion, linting, etc. of Haskell
-Plug 'eagletmt/ghcmod-vim'
+" Plug 'eagletmt/ghcmod-vim'
 " Aligning of text using :Tabularize
 Plug 'godlygeek/tabular'
 " Adds operations like cs]) to change [test] to (test)
 Plug 'tpope/vim-surround'
 " Dash support (documentation app for OS X)
-Plug 'rizzatti/dash.vim'
+" Plug 'rizzatti/dash.vim'
 " Prevent repetitive key use in vim
 Plug 'takac/vim-hardtime'
-" Better JavaScript support (indentation, syntax highlighting, etc)
-Plug 'pangloss/vim-javascript'
-" Tern for some (minimal) static code analysis for JavaScript
-Plug 'ternjs/tern_for_vim'
 " Toggle location list / quickfix list
 Plug 'Valloric/ListToggle'
 " Substitute command that intelligently changes case, plurality,etc.
@@ -50,98 +46,67 @@ Plug 'gregsexton/MatchTag'
 " File explorer
 Plug 'scrooloose/nerdtree'
 " Interactive, customizable buffer
-Plug 'Shougo/unite.vim'
+" Plug 'Shougo/unite.vim'
 " Send ctrl-h, ctrl-j, ctrl-k, ctrl-l to tmux if there is no window
 Plug 'christoomey/vim-tmux-navigator'
 " Allows other plugins to support the repeat command (.)
 Plug 'tpope/vim-repeat'
 " CSS3 syntax support
-Plug 'hail2u/vim-css3-syntax'
+" Plug 'hail2u/vim-css3-syntax'
 " JSX support
 Plug 'mxw/vim-jsx'
 " SCSS support
 Plug 'cakebaker/scss-syntax.vim'
 " Indent guides, useful for callback-hell and HTML
 Plug 'nathanaelkane/vim-indent-guides'
-" Coffescript support
-Plug 'kchmck/vim-coffee-script'
 " Rust syntax highlighting
 Plug 'wting/rust.vim'
 " Rust autocompletion
-Plug 'racer-rust/vim-racer'
+" Plug 'racer-rust/vim-racer'
 " Git status symbols for NerdTree
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Needed by other plugins
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" Dependency of other plugins
-Plug 'xolox/vim-misc'
+" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Easy motion
 Plug 'easymotion/vim-easymotion'
 " Send code to tmux panes
 Plug 'epeli/slimux'
-" Scala syntax highlighting + indentation
-Plug 'derekwyatt/vim-scala'
 Plug 'mhinz/vim-signify'
 " Swift syntax highlighting + indentation
 Plug 'keith/swift.vim'
 " Haskell syntax highlighting + indentation
 Plug 'neovimhaskell/haskell-vim'
-" Create gists from vim
-Plug 'mattn/gist-vim'
-" Dependency of gist-vim
-Plug 'mattn/webapi-vim'
-" Distraction-free writing for prose
-Plug 'junegunn/goyo.vim'
 " Better markdown support
-Plug 'plasticboy/vim-markdown'
-" Focus on current line
-Plug 'junegunn/limelight.vim'
-" Swift autocomplete
-Plug 'mitsuse/autocomplete-swift'
+" Plug 'plasticboy/vim-markdown'
+Plug 'gabrielelana/vim-markdown'
 " Sidebar with buffer tags
 Plug 'majutsushi/tagbar'
-" Tagbar with unite
-Plug 'Shougo/unite-outline'
-" Colorscheme unite source
-Plug 'ujihisa/unite-colorscheme'
-" Marks unite source
-" Plug 'tacroe/unite-mark'
 " Display marks in the sidebar
 Plug 'kshenoy/vim-signature'
-" Note taking plugin
-Plug 'xolox/vim-notes'
 " Vimwiki
 Plug 'vimwiki/vimwiki'
-" Java autocomplete source
-Plug 'artur-shaik/vim-javacomplete2'
-" Java checkstyle plugin
-" Plug 'vim-scripts/java_checkstyle.vim'
 " Close all other buffers
 Plug 'schickling/vim-bufonly'
 " Add more mappings for jumps
 Plug 'tpope/vim-unimpaired'
-Plug 'statianzo/vim-jade'
-" Dark color scheme
-Plug 'ajmwagar/vim-deus'
 " Scratch buffer
-Plug 'mtth/scratch.vim'
+" Plug 'mtth/scratch.vim'
 " XCode project file syntax
 Plug 'cfdrake/vim-pbxproj'
-Plug 'itchyny/vim-qfedit'
 " Regenerate tag files all the time
 Plug 'ludovicchabant/vim-gutentags'
 " Typescript syntax
 Plug 'leafgarland/typescript-vim'
+" Airline but better (faster)
 Plug 'itchyny/lightline.vim'
-Plug 'connorholyday/vim-snazzy'
-" Plug 'bfredl/nvim-ipy'
+" Language client
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-" Plug 'lambdalisue/vim-pyenv'
-Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
+" Completion
+Plug 'ncm2/ncm2'
 " ncm2 sources
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-tmux'
@@ -149,13 +114,9 @@ Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-tagprefix'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-jedi'
-" Plug 'ncm2/ncm2-jedi'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'ryanolsonx/vim-lsp-python'
 Plug 'jeetsukumaran/vim-indentwise'
-Plug 'Shougo/denite.nvim'
 call plug#end()
 
 """ Options
@@ -168,8 +129,6 @@ let mapleader="\<Space>"
 syntax enable
 " Copy indent from current line when inserting new line
 set autoindent
-" Smart indenting based on language
-set smartindent
 " Dark background
 set background=dark
 " Make backspace work as expected
@@ -266,8 +225,8 @@ nnoremap <leader>x :pclose<CR>:ccl<CR>:helpclose<CR>
 nnoremap <tab> :b#<CR>`"
 nnoremap <A-h> :bp<CR>
 nnoremap <A-l> :bn<CR>
-nnoremap <A-j> :tabnext<CR>
-nnoremap <A-k> :tabprevious<CR>
+nnoremap <A-p> :tabnext<CR>
+nnoremap <A-n> :tabprevious<CR>
 nnoremap <A-q> :tabclose<CR>
 nnoremap <leader>bp :bprev<CR>
 nnoremap <leader>bn :bnext<CR>
@@ -284,6 +243,7 @@ nnoremap <leader>yc :let @+ = expand("%:t") . ":" . line(".")<CR>
 nnoremap <leader>ym :let @+ = expand("%:t:r") . "#" . "<C-r><C-w>"<CR>
 " Perform last subtitution on the current line ( or selected area )
 map <Leader>br :s/\<<C-r>-\>/<C-r>.<CR>
+map <leader>gf :e <cfile><cr>
 
 " Augroup for editing
 augroup EditVim
@@ -332,6 +292,7 @@ augroup EditVim
   au filetype swift  setlocal ts=4 sts=4 sw=4
   au filetype rust   setlocal ts=4 sts=4 sw=4
   au filetype yaml   setlocal ts=4 sts=4 sw=4
+  au filetype objc   setlocal ts=4 sts=4 sw=4
   " Autocomplete css
   au FileType css     set omnifunc=csscomplete#CompleteCSS
   " Autocomplete scss
@@ -376,12 +337,6 @@ vnoremap <leader>agj y:AgRaw -G "\.js" ""<left><C-r>0
 nnoremap <leader>agh :AgRaw -G "\.hs" ""<left>
 vnoremap <leader>agh y:AgRaw -G "\.hs" ""<left><C-r>0
 
-"" Dash
-" Search dash for current word
-noremap <leader>d :Dash<CR>
-" Open command mode to search dash
-nnoremap <leader>D :Dash<space>
-
 "" Gina
 " Status without untracked files
 noremap <Leader>gs :Gina status -s<CR>
@@ -394,7 +349,7 @@ noremap <Leader>gp :Gina patch<CR>
 " Commit changes (in a new tab)
 noremap <Leader>gc :Gina commit -v<CR><C-W>T
 " Reset to head
-noremap <Leader>gr :Gina checkout -- %<CR>:e<CR>
+" noremap <Leader>gr :Gina checkout -- %<CR>:e<CR>
 " Add
 noremap <Leader>gw :Gina add %<CR>
 let g:gina#command#blame#formatter#format = "%au%=on %ti %ma%in"
@@ -431,41 +386,6 @@ let NERDTreeMapHelp='<f1>'
 " Put one space after the comment character
 let NERDSpaceDelims = 1
 
-"" Neomake
-" Check file after every write
-" autocmd! BufWritePost * Neomake
-" Check file after every read
-" autocmd! BufReadPost * Neomake
-" Only use rubocop for ruby
-" let g:neomake_ruby_enabled_makers = ['rubocop']
-" let g:neomake_sh_enabled_makers = ['shellcheck']
-" let g:neomake_python_enabled_makers = ['flake8', 'mypy']
-" let g:neomake_rust_enabled_makers = ['cargo']
-" let g:neomake_javascript_enabled_makers = ['flow', 'eslint']
-" let g:neomake_jsx_enabled_makers = ['flow', 'eslint']
-" let g:neomake_java_enabled_makers = []
-" let g:neomake_swift_swiftlint_maker = {
-      " \ 'args': ['lint', '--config', './.swiftlint.yml', '--quiet'],
-      " \ 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %tarning: %m,%f:%l: %trror: %m',
-      " \ 'append_file': 0,
-      " \ }
-" let g:neomake_swift_enabled_makers = ['swiftlint']
-" autocmd! BufWritePost *.rs :Neomake! cargo
-" let g:neomake_swift_swiftlint_maker = {
-      " \ 'args': ['lint', '--config', './.swiftlint.yml', '--quiet'],
-      " \ 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %tarning: %m,%f:%l: %trror: %m',
-      " \ 'append_file': 0,
-      " \ }
-" let g:neomake_swift_enabled_makers = []
-" autocmd! BufWritePost *.swift :NeomakeSh swift build
-
-"" Rust racer
-let g:racer_cmd="/Users/marcusbuffett/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
-au FileType rust nmap <leader>rd <Plug>(rust-def)
-au FileType rust nmap <leader>rs <Plug>(rust-def-split)
-au FileType rust nmap <leader>rx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>ro <Plug>(rust-doc)
 "" NerdTree-git
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "●",
@@ -485,57 +405,21 @@ nmap <Leader>j <Plug>(easymotion-j)
 nmap <Leader>k <Plug>(easymotion-k)
 
 "" Slimux
-map <Leader>sl :SlimuxREPLSendLine<CR>
-vmap <Leader>ss :SlimuxREPLSendSelection<CR>
-map <Leader>sa mzggVG:SlimuxREPLSendSelection<CR>`z
+nmap <Leader>ll :SlimuxREPLSendLine<CR>
+vmap <Leader>ll :SlimuxREPLSendSelection<CR>
+" map <Leader>sa mzggVG:SlimuxREPLSendSelection<CR>`z
 " map <Leader>sk :SlimuxSendKeysPrompt<CR>
 " map <Leader>skr :SlimuxSendKeysLast<CR>
-map <Leader>sh :SlimuxShellPrompt<CR>
-map <Leader>sr :SlimuxShellLast<CR>
+" map <Leader>sh :SlimuxShellPrompt<CR>
+" map <Leader>sr :SlimuxShellLast<CR>
 let g:slimux_select_from_current_window = 1
 
 "" GitGutter
 let g:gitgutter_realtime = 1
 let g:gitgutter_eager = 1
-nmap <Leader>ggm :let g:gitgutter_diff_base = 'head' \| GitGutter<CR>
-nmap <Leader>ggi :let g:gitgutter_diff_base = '' \| GitGutter<CR>
-nmap <Leader>ggb :let g:gitgutter_diff_base = system("git merge-base master $(git rev-parse head)") \| GitGutter<CR>
 
-"" Unite
-nnoremap <leader>uy :<C-u>Denite -mode=insert -no-split -buffer-name=tags    unite:outline<cr>
-nnoremap <leader>ue :<C-u>Denite -mode=insert -no-split -buffer-name=buffer  buffer<cr> 
-nnoremap <leader>uq :<C-u>Denite -mode=insert -no-split -buffer-name=buffer -quick-match buffer<cr>
-nnoremap <leader>um :<C-u>Denite -mode=insert -no-split -buffer-name=marks -quick-match mark<cr>
-nnoremap <leader>up :<C-u>Denite -mode=insert -no-split -buffer-name=mappings -quick-match mapping<cr>
-
-function! s:goyo_enter()
-  set wrap
-  set linebreak
-  Limelight
-endfunction
-
-function! s:goyo_leave()
-  set nowrap
-  set nolinebreak
-  Limelight!
-endfunction
-
+" vim markdown
 let g:vim_markdown_new_list_item_indent = 2
-
-"" Unite mark
-let g:unite_source_mark_marks =
-\   "abcdefghijklmnopqrstuvwxyz"
-\ . "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-\ . "0123456789.'`^<>[]{}()\""
-
-"" Monster
-" Set async completion.
-let g:monster#completion#rcodetools#backend = "async_rct_complete"
-" With deoplete.nvim
-let g:monster#completion#rcodetools#backend = "async_rct_complete"
-let g:deoplete#sources#omni#input_patterns = {
-\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-\}
 
 "" Scratch
 let g:scratch_insert_autohide = 0
@@ -549,7 +433,6 @@ let g:notes_directories = ['~/Documents/notes/v-notes']
 
 "" vimwiki
 nmap <Leader>wf <Plug>VimwikiFollowLink
-vmap <Leader>wf <Plug>VimwikiFollowLink
 nmap <Leader>we <Plug>VimwikiSplitLink
 nmap <Leader>wq <Plug>VimwikiVSplitLink
 nmap <Leader>wb <Plug>VimwikiGoBackLink
@@ -565,16 +448,9 @@ let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path': '~/vimwiki/template
           \ 'template_default': 'default', 'syntax': 'markdown', 'ext': '.md',
           \ 'path_html': '~/vimwiki/site_html/', 'custom_wiki2html': 'vimwiki_markdown',
           \ 'template_ext': '.tpl'}]
-autocmd BufEnter,BufRead,BufNewFile *.md set filetype=markdown
+" autocmd BufEnter,BufRead,BufNewFile *.md set filetype=markdown
 let g:vimwiki_conceallevel = 0
-
-"" neosnippet / deoplete
-" imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-" smap <C-s>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-s>     <Plug>(neosnippet_expand_target)
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-let g:neosnippet#snippets_directory='~/dotfiles/snippets'
+let g:vimwiki_global_ext = 0
 
 if has('conceal')
   set conceallevel=0 concealcursor=niv
@@ -592,12 +468,9 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'swift': ['/Users/marcusbuffett/Documents/sources/langserver-swift/.build/x86_64-apple-macosx10.10/debug/langserver-swift']
     \ }
-
 let g:LanguageClient_rootMarkers = {                                      
          \ 'swift': ['AirCam.xcodeproj']                                          
          \ }   
-
-
 let g:LanguageClient_autoStart = 1
 
 nnoremap <leader>gc :call LanguageClient_contextMenu()<CR>
@@ -608,20 +481,18 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 " vim-jsx
 let g:jsx_ext_required = 0
 
-" autocomplete-swift
-" autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
-
-" Language server setup
-    " \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    " \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    " \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-
 " ncm2 
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 imap <C-g> <Plug>(ncm2_manual_trigger)
-let ncm2#popup_delay = 5
-let ncm2#complete_length = [[1, 1]]
+let ncm2#popup_delay = 60
+" let ncm2#complete_length = [[1, 1]]
+
+" ncm2 ultisnips
+" autocmd VimEnter * iunmap <C-s>
+" let g:UltiSnipsJumpForwardTrigger	= "<C-s>"
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+" let g:UltiSnipsJumpBackwardTrigger	= "<C-S>"
 
 " Indentwise
 map <Leader>ih <Plug>(IndentWisePreviousLesserIndent)
@@ -631,11 +502,10 @@ map <Leader>in <Plug>(IndentWiseNextLesserIndent)
 map <Leader>ij <Plug>(IndentWiseNextEqualIndent)
 map <Leader>il <Plug>(IndentWiseNextGreaterIndent)
 
-" Disable jedi completions since we have ncm2
-let g:jedi#auto_initialization = 1
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#completions_command = ""
-let g:jedi#show_call_signatures = "1"
+" Tagbar
+" let g:tagbar_autoclose = 1
+let g:tagbar_map_showproto = ""
+nnoremap <Leader>ft :exec 'TagbarAutoClose' <Bar> BLines<CR>
+
+" Ultisnips
+set runtimepath+=~/dotfiles/snippets/
