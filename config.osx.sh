@@ -30,6 +30,8 @@ done
 brew cask install java
 cat ./brew_packages | xargs brew install
 
+brew install grep --with-default-names
+
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 brew link vim
@@ -48,3 +50,10 @@ echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/zsh
 
 \curl -sSL https://get.rvm.io | bash
+
+## TODO:
+# Install diff-so-fancy
+# Copy git config over
+# Install marker
+# Install fzf-marker
+# Move .txt files from ~/.marker/ to ~/.config/marker/
