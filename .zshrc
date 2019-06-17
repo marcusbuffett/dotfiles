@@ -1,15 +1,5 @@
-source ~/antigen/antigen.zsh
-
-antigen use oh-my-zsh
-
-antigen bundle git
-antigen bundle common-aliases
-antigen bundle wd
-
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle ehamberg/zsh-cabal-completion
-antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
-antigen apply
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
 
 # Completion inits
 autoload -Uz compinit && compinit
@@ -33,6 +23,7 @@ export GOPATH="$HOME/go"
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
 export AWS_KEYPAIR_NAME=Marcus
+export HISTFILE="$HOME/.zsh_history"
 # export NVM_DIR="/Users/marcusbuffett/.nvm"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 # export RUBYOPT=-rbumbler/go
@@ -66,8 +57,22 @@ alias grbom='git rebase origin/master'
 alias td='nvim ~/.todo.md'
 # alias gsuno='git status -uno -s'
 alias gfs='git ls-files -m "$(git rev-parse --show-toplevel)"'
-alias gcmu='git ls-files --exclude-standard --others| fzf -m | xargs git add'
-alias gcmum='gfs | fzf -m | gxargs -L1 -I{} git add "{}"'
+alias gcd='git checkout develop'
+alias gl='git pull'
+alias gcb="git checkout -B" 
+alias grb="git rebase"
+alias grba="git rebase --abort"
+alias grbs="git rebase --skip"
+alias gcp="git cherry-pick"
+alias gf="git fetch"
+alias gco='git checkout'
+alias gss='git status --short'
+alias gs='git status'
+alias gcm='git checkout master'
+alias gsta="git stash"
+alias gstaa="git stash apply"
+alias gcmu='gfs --exclude-standard --others| fzf -m | gxargs -L1 -I{} git add "{}"'
+# alias gcmum='gfs --others --| fzf -m | gxargs -L1 -I{} git add "{}"'
 alias gbzf='git checkout $(git branch --list -a | cut -c 3- | fzf)'
 alias grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)'"
 alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)' | gtac | fzf --no-sort | xargs git checkout"
@@ -307,9 +312,46 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-ulimit -S -n 2048
-
 export NVM_DIR=$HOME/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 export _FASD_MAX=10000
+
+SPACESHIP_PROMPT_ORDER=(
+  time          # Time stamps section
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  hg            # Mercurial section (hg_branch  + hg_status)
+  package       # Package version
+  node          # Node.js section
+  ruby          # Ruby section
+  elixir        # Elixir section
+  xcode         # Xcode section
+  swift         # Swift section
+  golang        # Go section
+  php           # PHP section
+  rust          # Rust section
+  haskell       # Haskell Stack section
+  julia         # Julia section
+  docker        # Docker section
+  aws           # Amazon Web Services section
+  venv          # virtualenv section
+  conda         # conda virtualenv section
+  pyenv         # Pyenv section
+  dotnet        # .NET section
+  ember         # Ember.js section
+  kubecontext   # Kubectl context section
+  # terraform     # Terraform workspace section
+  exec_time     # Execution time
+  line_sep      # Line break
+  # battery       # Battery level and status
+  vi_mode       # Vi-mode indicator
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
+
+ulimit -u 2048
+ulimit -n 2048

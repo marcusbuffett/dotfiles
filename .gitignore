@@ -4,3 +4,5 @@ tmp/
 spec/tmp/
 tags
 ignored/
+.python-version
+.mypy_cache

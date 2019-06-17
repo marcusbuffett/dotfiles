@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
 " Syntax checking + linting + static code analysis
 " Plug 'benekastah/neomake'
 " Syntax checking + linting + static code analysis
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 " Fuzzy searching for everything
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -54,13 +54,13 @@ Plug 'tpope/vim-repeat'
 " CSS3 syntax support
 " Plug 'hail2u/vim-css3-syntax'
 " JSX support
-Plug 'mxw/vim-jsx'
+" Plug 'mxw/vim-jsx'
 " SCSS support
-Plug 'cakebaker/scss-syntax.vim'
+" Plug 'cakebaker/scss-syntax.vim'
 " Indent guides, useful for callback-hell and HTML
 Plug 'nathanaelkane/vim-indent-guides'
 " Rust syntax highlighting
-Plug 'wting/rust.vim'
+" Plug 'wting/rust.vim'
 " Rust autocompletion
 " Plug 'racer-rust/vim-racer'
 " Git status symbols for NerdTree
@@ -70,7 +70,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Easy motion
 Plug 'easymotion/vim-easymotion'
 " Send code to tmux panes
-Plug 'epeli/slimux'
+" Plug 'epeli/slimux'
 Plug 'mhinz/vim-signify'
 " Swift syntax highlighting + indentation
 Plug 'keith/swift.vim'
@@ -78,7 +78,7 @@ Plug 'keith/swift.vim'
 Plug 'neovimhaskell/haskell-vim'
 " Better markdown support
 " Plug 'plasticboy/vim-markdown'
-Plug 'gabrielelana/vim-markdown'
+" Plug 'gabrielelana/vim-markdown'
 " Sidebar with buffer tags
 Plug 'majutsushi/tagbar'
 " Display marks in the sidebar
@@ -88,7 +88,7 @@ Plug 'vimwiki/vimwiki'
 " Close all other buffers
 Plug 'schickling/vim-bufonly'
 " Add more mappings for jumps
-Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-unimpaired'
 " Scratch buffer
 " Plug 'mtth/scratch.vim'
 " XCode project file syntax
@@ -100,23 +100,29 @@ Plug 'leafgarland/typescript-vim'
 " Airline but better (faster)
 Plug 'itchyny/lightline.vim'
 " Language client
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+    " \ 'branch': 'next',
+    " \ 'do': 'bash install.sh',
+    " \ }
 Plug 'roxma/nvim-yarp'
 " Completion
-Plug 'ncm2/ncm2'
+" Plug 'ncm2/ncm2'
 " ncm2 sources
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-tmux'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-tagprefix'
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'ncm2/ncm2-jedi'
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-tmux'
+" Plug 'ncm2/ncm2-path'
+" Plug 'ncm2/ncm2-tagprefix'
+" Plug 'ncm2/ncm2-ultisnips'
+" Plug 'ncm2/ncm2-jedi'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jeetsukumaran/vim-indentwise'
+Plug 'kassio/neoterm'
+Plug 'mtikekar/nvim-send-to-term'
+Plug 'moll/vim-bbye'
+Plug 'tommcdo/vim-exchange'
+Plug 'reedes/vim-pencil'
 Plug 'idanarye/vim-merginal'
 call plug#end()
 
@@ -213,6 +219,8 @@ set spelllang=en_us
 set virtualedit=""
 " Use vertical splits for diffs
 set diffopt=filler,vertical
+" cause more trouble than they're worth
+set noswapfile
 
 " Enable % to match more than braces
 runtime macros/matchit.vim
@@ -245,6 +253,7 @@ nnoremap <leader>ym :let @+ = expand("%:t:r") . "#" . "<C-r><C-w>"<CR>
 " Perform last subtitution on the current line ( or selected area )
 map <Leader>br :s/\<<C-r>-\>/<C-r>.<CR>
 map <leader>gf :e <cfile><cr>
+tnoremap <Esc> <C-\><C-n>
 
 " Augroup for editing
 augroup EditVim
@@ -271,12 +280,11 @@ augroup EditVim
   " Autocomplete using necoghc
   au filetype haskell setlocal omnifunc=necoghc#omnifunc
   " Get type of expression under cursor
-  au FileType haskell nnoremap <buffer> <leader>t :GhcModType<CR>
+  " au FileType haskell nnoremap <buffer> <leader>t :GhcModType<CR>
   " Clear highlighting of expression
   au FileType haskell nnoremap <buffer> <silent> <leader>/ :noh <bar> GhcModTypeClear<CR>
 
   "" JavaScript
-  au filetype javascript nnoremap <leader>t :TernType<CR>
   au filetype javascript nnoremap <leader>f :TernDef<CR>
   au filetype javascript nnoremap K :TernDoc<CR>
   au FileType javascript setlocal omnifunc=tern#Complete
@@ -294,6 +302,7 @@ augroup EditVim
   au filetype rust   setlocal ts=4 sts=4 sw=4
   au filetype yaml   setlocal ts=4 sts=4 sw=4
   au filetype objc   setlocal ts=4 sts=4 sw=4
+  au filetype html   setlocal ts=4 sts=4 sw=4
   " Autocomplete css
   au FileType css     set omnifunc=csscomplete#CompleteCSS
   " Autocomplete scss
@@ -317,26 +326,44 @@ nnoremap <leader>fm :Marks<CR>
 " Search tags
 nnoremap <leader>fb :Tags<CR>
 " Search files
-nnoremap <leader>fp :Files<CR>
+" nnoremap <leader>fp :Files getcwd()<CR>
+nnoremap <leader>fp :FilesWithWorkspace<CR>
+" echo { 'source': '{ git ls-files; find /Users/marcusbuffett/Documents/workspace; }' }
 " Search git files
-nnoremap <leader>fg :GitFiles<CR>
+nnoremap <leader>fg :GitFilesWithWorkspace<CR>
 " Search lines in current file
 nnoremap <leader>fs :BLines<CR>
 " Search all files for text
 autocmd! VimEnter * command! -nargs=* -complete=file AgRaw :call fzf#vim#ag_raw(<q-args>)
-nnoremap <leader>aa :AgRaw ""<left>
-nnoremap <leader>au :AgRaw -s ""<left>\b<C-r><C-w>\b<CR>
-vnoremap <leader>aa y:AgRaw ""<left><C-r>0
+nnoremap <leader>al :Rg<CR>
+nnoremap <leader>aa :Rg 
+nnoremap <leader>aw :RgWorkspace
+nnoremap <leader>au :Rg -s \b<C-r><C-w>\b<CR>
+vnoremap <leader>aa y:Rg <C-r>0
+command! -bang GitFilesWithWorkspace call fzf#run(fzf#wrap({ 'source': '{ git ls-files; find /Users/marcusbuffett/Documents/workspace; }' }, <bang>0))
+command! -bang FilesWithWorkspace call fzf#run(fzf#wrap({ 'source': '{ find .; find /Users/marcusbuffett/Documents/workspace; }' }, <bang>0))
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>).' /Users/marcusbuffett/Documents/workspace .', 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%'),
+  \   <bang>0)
+" command! -bang -nargs=* Rg
+  " \ call fzf#vim#grep(
+  " \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  " \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  " \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  " \   <bang>0)
 " Put cursor in field for file include regex
-nnoremap <leader>ag :AgRaw -G
-vnoremap <leader>ag y:AgRaw -G <C-r>0
+" nnoremap <leader>ag :AgRaw -G
+" vnoremap <leader>ag y:AgRaw -G <C-r>0
 " Only search specific file types
-nnoremap <leader>agr :AgRaw -G "\.rb" ""<left>
-vnoremap <leader>agr y:AgRaw -G "\.rb" ""<left><C-r>0
-nnoremap <leader>agj :AgRaw -G "\.js" ""<left>
-vnoremap <leader>agj y:AgRaw -G "\.js" ""<left><C-r>0
-nnoremap <leader>agh :AgRaw -G "\.hs" ""<left>
-vnoremap <leader>agh y:AgRaw -G "\.hs" ""<left><C-r>0
+" nnoremap <leader>agr :AgRaw -G "\.rb" ""<left>
+" vnoremap <leader>agr y:AgRaw -G "\.rb" ""<left><C-r>0
+" nnoremap <leader>agj :AgRaw -G "\.js" ""<left>
+" vnoremap <leader>agj y:AgRaw -G "\.js" ""<left><C-r>0
+" nnoremap <leader>agh :AgRaw -G "\.hs" ""<left>
+" vnoremap <leader>agh y:AgRaw -G "\.hs" ""<left><C-r>0
 
 "" Fugitive
 " Status without untracked files
@@ -408,14 +435,35 @@ nmap <Leader>j <Plug>(easymotion-j)
 nmap <Leader>k <Plug>(easymotion-k)
 
 "" Slimux
-nmap <Leader>ll :SlimuxREPLSendLine<CR>
-vmap <Leader>ll :SlimuxREPLSendSelection<CR>
+" nmap <Leader>ll :SlimuxREPLSendLine<CR>
+" vmap <Leader>ll :SlimuxREPLSendSelection<CR>
 " map <Leader>sa mzggVG:SlimuxREPLSendSelection<CR>`z
 " map <Leader>sk :SlimuxSendKeysPrompt<CR>
 " map <Leader>skr :SlimuxSendKeysLast<CR>
 " map <Leader>sh :SlimuxShellPrompt<CR>
 " map <Leader>sr :SlimuxShellLast<CR>
-let g:slimux_select_from_current_window = 1
+" let g:slimux_select_from_current_window = 1
+
+"" NeoTerm
+" nmap <Leader>tf :TREPLSendFile<CR>
+" vmap <Leader>tl :TREPLSendSelection<CR>
+" nmap <Leader>tl :TREPLSendLine<CR>
+" map <Leader>sa mzggVG:SlimuxREPLSendSelection<CR>`z
+" map <Leader>sk :SlimuxSendKeysPrompt<CR>
+" map <Leader>skr :SlimuxSendKeysLast<CR>
+" map <Leader>sh :SlimuxShellPrompt<CR>
+" map <Leader>sr :SlimuxShellLast<CR>
+" let g:neoterm_term_per_tab = 1
+
+"" mtikekar/nvim-send-to-term
+nmap <Leader>ts :SendHere<CR>
+nmap <Leader>tu <Plug>SendLine
+nmap <Leader>te <Plug>Send
+vmap <Leader>te <Plug>Send
+
+let g:send_disable_mapping = 1
+
+
 
 "" GitGutter
 let g:gitgutter_realtime = 1
@@ -466,35 +514,37 @@ nmap <Leader>bo :BufOnly<CR>
 let $RUST_SRC_PATH = "/Users/marcusbuffett/.multirust/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src"
 
 " LanguageClient
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['python', '-m', 'pyls', '--log-file', './pyls_logs.txt'],
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'swift': ['/Users/marcusbuffett/Documents/sources/langserver-swift/.build/x86_64-apple-macosx10.10/debug/langserver-swift']
-    \ }
-let g:LanguageClient_rootMarkers = {                                      
-         \ 'swift': ['AirCam.xcodeproj']                                          
-         \ }   
-let g:LanguageClient_autoStart = 1
+" \ 'python': ['python', '-m', 'pyls', '--log-file', './pyls_logs.txt'],
+" let g:LanguageClient_serverCommands = {
+    " \ 'python': ['python', '-m', 'pyls'],
+    " \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    " \ 'swift': ['/Users/marcusbuffett/Documents/sources/langserver-swift/.build/x86_64-apple-macosx10.10/debug/langserver-swift']
+    " \ }
+" let g:LanguageClient_rootMarkers = {                                      
+         " \ 'swift': ['AirCam.xcodeproj']                                          
+         " \ }   
+" let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_diagnosticsEnable = 0
 
-nnoremap <leader>gc :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" nnoremap <leader>gc :call LanguageClient_contextMenu()<CR>
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " vim-jsx
 let g:jsx_ext_required = 0
 
 " ncm2 
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-imap <C-g> <Plug>(ncm2_manual_trigger)
-let ncm2#popup_delay = 60
+" autocmd BufEnter * call ncm2#enable_for_buffer()
+" set completeopt=noinsert,menuone,noselect
+" imap <C-g> <Plug>(ncm2_manual_trigger)
+" let ncm2#popup_delay = 60
 " let ncm2#complete_length = [[1, 1]]
 
 " ncm2 ultisnips
 " autocmd VimEnter * iunmap <C-s>
 " let g:UltiSnipsJumpForwardTrigger	= "<C-s>"
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+" inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 " let g:UltiSnipsJumpBackwardTrigger	= "<C-S>"
 
 " Indentwise
@@ -512,3 +562,44 @@ nnoremap <Leader>ft :exec 'TagbarAutoClose' <Bar> BLines<CR>
 
 " Ultisnips
 set runtimepath+=~/dotfiles/snippets/
+
+" Python 3 stuff
+let g:python_host_prog="/Users/marcusbuffett/.pyenv/versions/3.7.0/bin/python" 
+
+" coc
+" :CocInstall coc-python  coc-rls coc-pairs coc-html coc-lists coc-ultisnips coc-tag coc-css
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction<Paste>
+
+nmap <leader>rn <Plug>(coc-rename)
+
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
+
+nnoremap <silent> [e <Plug>(coc-diagnostic-prev)
+nnoremap <silent> ]e <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Ale 
+" let g:ale_linters = {'python': []}
+nnoremap <Leader>q :Bdelete<CR>
