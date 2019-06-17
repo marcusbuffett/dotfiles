@@ -117,6 +117,7 @@ Plug 'ncm2/ncm2-jedi'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jeetsukumaran/vim-indentwise'
+Plug 'idanarye/vim-merginal'
 call plug#end()
 
 """ Options
@@ -337,22 +338,24 @@ vnoremap <leader>agj y:AgRaw -G "\.js" ""<left><C-r>0
 nnoremap <leader>agh :AgRaw -G "\.hs" ""<left>
 vnoremap <leader>agh y:AgRaw -G "\.hs" ""<left><C-r>0
 
-"" Gina
+"" Fugitive
 " Status without untracked files
-noremap <Leader>gs :Gina status -s<CR>
+noremap <Leader>gs :Gstatus<CR>
 " Diff all files
-noremap <Leader>gd :Gina compare<CR>
+noremap <Leader>gd :Gdiff<CR>
 " Blame current file
-noremap <Leader>gb :Gina blame : --width=40<CR>
-" 3-way patch current file
-noremap <Leader>gp :Gina patch<CR>
-" Commit changes (in a new tab)
-noremap <Leader>gc :Gina commit -v<CR><C-W>T
+noremap <Leader>gb :Gblame<CR>
+" Patch current file
+noremap <Leader>gp :Gpatch<CR>
+" Commit staged changes
+noremap <Leader>gc :Gcommit --verbose<CR>
 " Reset to head
-" noremap <Leader>gr :Gina checkout -- %<CR>:e<CR>
+noremap <Leader>gr :Gread<CR>
 " Add
-noremap <Leader>gw :Gina add %<CR>
-let g:gina#command#blame#formatter#format = "%au%=on %ti %ma%in"
+noremap <Leader>gw :Gwrite<CR>
+
+"" Merginal
+noremap <Leader>ga :Merginal<CR>
 
 "" ListToggle
 " Toggle location list 
