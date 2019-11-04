@@ -1,4 +1,4 @@
-for f in ".jshintrc" ".tmux.conf" ".nvimrc" ".vimrc" ".ycm_extra_conf.py" ".ycm_extra_conf.pyc" ".zshrc" ".tmux-osx.conf" ".weechat" ".gitignore" "./agnoster.zsh-theme"
+for f in ".jshintrc" ".tmux.conf" ".nvimrc" ".vimrc" ".ycm_extra_conf.py" ".ycm_extra_conf.pyc" ".zshrc" ".tmux-osx.conf" ".gitignore" ".zprofile"
 do
     rm ~/$f
     ln -s ~/dotfiles/$f ~/$f

@@ -1,9 +1,21 @@
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+# zmodload zsh/datetime
+# setopt PROMPT_SUBST
+# PS4='+$EPOCHREALTIME %N:%i> '
 
-# Completion inits
-autoload -Uz compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
+# logfile=zsh_profile.log
+# echo "Logging to $logfile"
+# exec 3>&2 2>$logfile
+
+# setopt XTRACE
+
+autoload -Uz compinit
+if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
+
+# autoload -U +X bashcompinit && bashcompinit
 
 # OS-specific stuff
 if [[ "$OSTYPE" == *"darwin"* ]]
@@ -24,8 +36,6 @@ export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH/bin"
 export AWS_KEYPAIR_NAME=Marcus
 export HISTFILE="$HOME/.zsh_history"
-# export NVM_DIR="/Users/marcusbuffett/.nvm"
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 # export RUBYOPT=-rbumbler/go
 
 # Aliases
@@ -49,6 +59,9 @@ alias c='clear'
 alias fusro='git push origin head'
 alias fusrodah='git push --force origin head'
 alias fuck_it_lets_do_it_live='git add -u && git commit --amend --no-edit && git push --force origin head'
+alias g='git'
+alias gm='git merge'
+alias gc!="git commit --amend"
 alias glg='git log'
 alias glgo='git log --date=relative --pretty="format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D"'
 alias glf='git ls-files'
@@ -61,8 +74,14 @@ alias gcd='git checkout develop'
 alias gl='git pull'
 alias gcb="git checkout -B" 
 alias grb="git rebase"
+alias grbi="git rebase -i"
 alias grba="git rebase --abort"
 alias grbs="git rebase --skip"
+alias grbc="git rebase --continue"
+alias gd="git diff"
+alias gdca="git diff --cached"
+alias ga="git add"
+alias gc="git commit"
 alias gcp="git cherry-pick"
 alias gf="git fetch"
 alias gco='git checkout'
@@ -151,7 +170,6 @@ bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
 # PATHS
-export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
@@ -234,11 +252,9 @@ function countdown() {
 
 
 # Various script evals
-eval "$(fasd --init posix-alias zsh-hook)"
 # Don't want these aliases from fasd
-unalias z
-unalias f
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+unalias z &>/dev/null
+unalias f &>/dev/null
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
 
@@ -308,50 +324,23 @@ export MARKER_KEY_NEXT_PLACEHOLDER="blah"
 FZF_MARKER_PLUGIN="$HOME/Documents/sources/fzf-marker/fzf-marker.plugin.zsh"
 source $FZF_MARKER_PLUGIN
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
 export NVM_DIR=$HOME/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 export _FASD_MAX=10000
 
-SPACESHIP_PROMPT_ORDER=(
-  time          # Time stamps section
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
-  package       # Package version
-  node          # Node.js section
-  ruby          # Ruby section
-  elixir        # Elixir section
-  xcode         # Xcode section
-  swift         # Swift section
-  golang        # Go section
-  php           # PHP section
-  rust          # Rust section
-  haskell       # Haskell Stack section
-  julia         # Julia section
-  docker        # Docker section
-  aws           # Amazon Web Services section
-  venv          # virtualenv section
-  conda         # conda virtualenv section
-  pyenv         # Pyenv section
-  dotnet        # .NET section
-  ember         # Ember.js section
-  kubecontext   # Kubectl context section
-  # terraform     # Terraform workspace section
-  exec_time     # Execution time
-  line_sep      # Line break
-  # battery       # Battery level and status
-  vi_mode       # Vi-mode indicator
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
-
 ulimit -u 2048
 ulimit -n 2048
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
+
+# source $HOME/.nix-profile/etc/profile.d/nix.sh
+export PATH="$HOME/.nix_profile/bin:$PATH"
+
+alias blender='/Applications/blender.app/Contents/MacOS/blender'
+
+eval "$(starship init zsh)"
+
+# unsetopt XTRACE
+# exec 2>&3 3>&-
+

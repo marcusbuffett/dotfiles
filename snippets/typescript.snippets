@@ -1,0 +1,18 @@
+snippet fc "Functional component" b
+interface ${1}Props {
+}
+
+const ${1}: FC<Props> = (props) => {
+	const {} = props;
+  return (
+    <div className="">
+    </div>
+  );
+};
+endsnippet
+
+snippet reactimports "Common react imports" b
+import * as React from 'react';
+import { FC } from 'react';
+import styled from 'styled-components';
+endsnippet

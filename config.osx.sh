@@ -37,6 +37,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 brew link vim
 
 npm install -g bower grunt-cli babel eslint gh grunt gulp how2 http-server js-beautify jshint nodemon mocha uglify
+npm install -g spaceship-prompt
 
 pip3 install thefuck simpleWatch chess-cli flake8 mypy
 

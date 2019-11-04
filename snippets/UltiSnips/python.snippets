@@ -1,0 +1,20 @@
+snippet bayes_init "Bayesian boilerplate" b
+import pymc3 as pm
+import matplotlib.pyplot as plt
+import numpy as np
+import mpld3
+# Size of vertically split browser window :(
+plt.figure(figsize=(6,8))
+
+model = pm.Model()
+with model:
+    # Create model variables
+
+    step = pm.Metropolis(model.free_RVs)
+    trace = pm.sample(1000, tune=500, step=step)
+
+    html = mpld3.fig_to_html(plt.gcf())
+    with open("output.html", 'w') as f:
+        f.write(html)
+        f.close()
+endsnippet
