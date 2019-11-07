@@ -9,9 +9,6 @@ done
 mkdir -p ~/.config/nvim
 ln -s ~/.vim ~/.config/nvim/init.vim
 
-mkdir -p ~/antigen
-curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/antigen/antigen.zsh
-source ~/antigen/antigen.zsh
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -36,7 +33,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 brew link vim
 
-npm install -g bower grunt-cli babel eslint gh grunt gulp how2 http-server js-beautify jshint nodemon mocha uglify
+npm install -g eslint gh how2 http-server js-beautify jshint nodemon
 npm install -g spaceship-prompt
 
 pip3 install thefuck simpleWatch chess-cli flake8 mypy
@@ -58,3 +55,5 @@ chsh -s /usr/local/bin/zsh
 # Install marker
 # Install fzf-marker
 # Move .txt files from ~/.marker/ to ~/.config/marker/
+
+ git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack

@@ -316,14 +316,6 @@ then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
 
-export MARKER_KEY_NEXT_PLACEHOLDER="blah"
-[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
-
-# fzf-marker
-
-FZF_MARKER_PLUGIN="$HOME/Documents/sources/fzf-marker/fzf-marker.plugin.zsh"
-source $FZF_MARKER_PLUGIN
-
 export NVM_DIR=$HOME/.nvm
 
 export _FASD_MAX=10000
@@ -339,8 +331,17 @@ export PATH="$HOME/.nix_profile/bin:$PATH"
 
 alias blender='/Applications/blender.app/Contents/MacOS/blender'
 
-eval "$(starship init zsh)"
-
 # unsetopt XTRACE
 # exec 2>&3 3>&-
 
+
+eval "$(starship init zsh)"
+
+zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
+
+export PATH="/Users/marcusbuffett/.pyenv/bin:$PATH"
+
+eval "$(rbenv init -)"
+
+# Cataline issue with Pillow: https://github.com/python-pillow/Pillow/issues/3438
+export CPATH=`xcrun --show-sdk-path`/usr/include

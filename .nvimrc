@@ -17,7 +17,7 @@ Plug 'tpope/vim-surround'
 " Prevent repetitive key use in vim
 Plug 'takac/vim-hardtime'
 " Toggle location list / quickfix list
-Plug 'Valloric/ListToggle'
+" Plug 'Valloric/ListToggle'
 " Substitute command that intelligently changes case, plurality,etc.
 Plug 'tpope/vim-abolish'
 " Highlight matching HTML tag
@@ -51,7 +51,7 @@ Plug 'honza/vim-snippets'
 Plug 'mlaursen/vim-react-snippets'
 " Navigation by indent level
 Plug 'jeetsukumaran/vim-indentwise'
-Plug 'mtikekar/nvim-send-to-term'
+" Plug 'mtikekar/nvim-send-to-term'
 " Exchange operator
 Plug 'tommcdo/vim-exchange'
 " Get path to a json key
@@ -59,7 +59,7 @@ Plug 'mogelbrod/vim-jsonpath'
 " Correct syntax highlighting for styled components
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " GHCi REPL for Haskell
-Plug 'parsonsmatt/intero-neovim'
+" Plug 'parsonsmatt/intero-neovim'
 "" Better Haskell syntax highlighting / indentation
 Plug 'neovimhaskell/haskell-vim'
 call plug#end()
@@ -134,6 +134,10 @@ set foldlevelstart=20
 " JSX highlighting gets screwed up in long files, this makes vim detect syntax
 " from the beginning of the file
 autocmd BufEnter * :syntax sync fromstart
+" When wrap is on, break more reasonably
+set linebreak
+" Python 3
+set pyx=3
 
 " Enable % to match more than braces
 runtime macros/matchit.vim
@@ -147,6 +151,8 @@ nnoremap <leader>ose :set spell<CR>
 nnoremap <leader>osd :set nospell<CR>
 nnoremap <leader>ope :set paste<CR>
 nnoremap <leader>opd :set nopaste<CR>
+nnoremap <leader>owe :set wrap<CR>
+nnoremap <leader>owd :set nowrap<CR>
 nnoremap <leader>ej :%!python -m json.tool<CR>
 vnoremap <leader>ej :!python -m json.tool<CR>
 " Copy filepath:line_number to clipboard
@@ -211,18 +217,17 @@ nnoremap <leader>fp :GitFilesWithWorkspace<CR>
 " Search lines in current file
 nnoremap <leader>fs :BLines<CR>
 " Search all files for text
-autocmd! VimEnter * command! -nargs=* -complete=file AgRaw :call fzf#vim#ag_raw(<q-args>)
 nnoremap <leader>aa :RgText<CR>
 nnoremap <leader>al :RgText<CR>
 nnoremap <leader>an :RgText<CR>
 nnoremap <leader>af :Rg<CR>
 nnoremap <leader>au :RgText \b<C-r><C-w>\b<CR>
 vnoremap <leader>aa y:Rg <C-r>0<CR>
-command! -bang GitFilesWithWorkspace call fzf#run(fzf#wrap({ 'source': '{ git ls-files; find /Users/marcusbuffett/Documents/workspace; }' }, <bang>0))
+command! -bang GitFilesWithWorkspace call fzf#run(fzf#wrap({ 'source': '{ git ls-files -o -c --exclude-standard .; }' }, <bang>0))
 command! -bang FilesWithWorkspace call fzf#run(fzf#wrap({ 'source': '{ find .; find /Users/marcusbuffett/Documents/workspace; }' }, <bang>0))
 command! -bang -nargs=* RgText
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>).' /Users/marcusbuffett/Documents/workspace .', 1,
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>).' $( git ls-files -o -c --exclude-standard | xargs)', 1,
   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%'),
   \   1)
 command! -bang -nargs=* Rg
@@ -293,6 +298,7 @@ map <leader>nl :NERDTreeFocus<CR>
 map <leader>nf :NERDTreeFind<CR>
 " Why NERDTree uses '?' as its help command is beyond me...
 let NERDTreeMapHelp='<f1>'
+let NERDTreeAutoDeleteBuffer=1
 
 
 "" NerdCommenter
@@ -410,7 +416,7 @@ set runtimepath+=~/dotfiles/snippets/
 let g:python_host_prog="/Users/marcusbuffett/.pyenv/versions/3.7.0/bin/python" 
 
 " coc
-" :CocInstall coc-python  coc-rls coc-pairs coc-html coc-lists coc-ultisnips coc-tag coc-css coc-emmet
+" :CocInstall coc-python  coc-rls coc-html coc-lists coc-ultisnips coc-css coc-emmet
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -474,9 +480,9 @@ function ExtractMissingStyledComponents()
 endfunction
 " nnoremap <Leader>c :call TransformNodeCallback()^M
 
-nnoremap <Leader>so :split ~/vimwiki/notes/scratch.md<CR>
-nnoremap <Leader>sd :split ~/vimwiki/Daily_TODO.md<CR>
-nnoremap <Leader>sp :1split ~/vimwiki/notes/buffer_scratch.md<CR>
+nnoremap <Leader>so :14split ~/vimwiki/notes/scratch.md<CR>
+nnoremap <Leader>sd :14split ~/vimwiki/Daily_TODO.md<CR>
+nnoremap <Leader>sp :141split ~/vimwiki/notes/buffer_scratch.md<CR>
 
 " Intero
 augroup interoMaps
@@ -492,3 +498,7 @@ augroup interoMaps
   " Automatically reload on save
   au BufWritePost *.hs InteroReload
 augroup END
+
+nnoremap <Leader>tl :CocList diagnostics<CR>
+
+tnoremap <Esc> <C-\><C-n>

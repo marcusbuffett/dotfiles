@@ -6,14 +6,11 @@ cmake
 coreutils
 ctags
 dasht
-exercism
 fasd
 fzf
-ghc
 git
 git-crypt
 gpg
-gradle
 haskell-stack
 htop
 lynx
@@ -21,9 +18,6 @@ mongo
 mongodb
 node
 openssl
-phantomjs
-python
-python3
 ranger
 redis
 rename
@@ -38,4 +32,6 @@ vim
 webp
 weechat
 wget
+zsh
+ripgrep
 zsh
