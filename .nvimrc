@@ -128,7 +128,7 @@ set diffopt=filler,vertical
 " cause more trouble than they're worth
 set noswapfile
 " Indent folding works better in most file types
-set foldmethod=indent
+" set foldmethod=indent
 " Don't start folded
 set foldlevelstart=20
 " JSX highlighting gets screwed up in long files, this makes vim detect syntax
@@ -321,8 +321,11 @@ let g:NERDTreeIndicatorMapCustom = {
 "" Sneak-like movement with easymotion
 let g:EasyMotion_smartcase = 1
 nmap s <Plug>(easymotion-s2)
+vmap s <Plug>(easymotion-s2)
 nmap <Leader>j <Plug>(easymotion-j)
+vmap <Leader>j <Plug>(easymotion-j)
 nmap <Leader>k <Plug>(easymotion-k)
+vmap <Leader>k <Plug>(easymotion-k)
 
 "" mtikekar/nvim-send-to-term
 nmap <Leader>ts :SendHere<CR>
@@ -484,21 +487,16 @@ nnoremap <Leader>so :14split ~/vimwiki/notes/scratch.md<CR>
 nnoremap <Leader>sd :14split ~/vimwiki/Daily_TODO.md<CR>
 nnoremap <Leader>sp :141split ~/vimwiki/notes/buffer_scratch.md<CR>
 
-" Intero
-augroup interoMaps
-  au!
-  " Background process and window management
-  au FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
-  au FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
-
-  " Open intero/GHCi split horizontally
-  au FileType haskell nnoremap <silent> <leader>ioh :InteroOpen<CR>
-  " Open intero/GHCi split vertically
-  au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
-  " Automatically reload on save
-  au BufWritePost *.hs InteroReload
-augroup END
-
-nnoremap <Leader>tl :CocList diagnostics<CR>
-
 tnoremap <Esc> <C-\><C-n>
+
+xmap <leader>cf  <Plug>(coc-format-selected)
+nmap <leader>cf  <Plug>(coc-format-selected)
+nmap <leader>ca :CocAction<CR>
+nmap <leader>cc :CocCommand<CR>
+nmap <Leader>cd :CocList diagnostics<CR>
+
+" Nerd Commenter
+let g:NERDCreateDefaultMappings = 0
+nmap <leader>c<space> <Plug>NERDCommenterToggle
+vmap <leader>c<space> <Plug>NERDCommenterToggle
+

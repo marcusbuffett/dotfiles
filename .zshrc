@@ -54,6 +54,7 @@ alias sp='spotify'
 alias nxt='spotify next'
 alias prv='spotify prev'
 alias c='clear'
+alias ENV='env $(cat .env | xargs)'
 
 # Git aliases
 alias fusro='git push origin head'
@@ -345,3 +346,5 @@ eval "$(rbenv init -)"
 
 # Cataline issue with Pillow: https://github.com/python-pillow/Pillow/issues/3438
 export CPATH=`xcrun --show-sdk-path`/usr/include
+
+export PATH=$(stack path --compiler-bin):$PATH
