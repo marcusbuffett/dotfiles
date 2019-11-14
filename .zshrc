@@ -8,13 +8,6 @@
 
 # setopt XTRACE
 
-autoload -Uz compinit
-if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
-fi
-
 # autoload -U +X bashcompinit && bashcompinit
 
 # OS-specific stuff
@@ -254,6 +247,7 @@ function countdown() {
 
 # Various script evals
 # Don't want these aliases from fasd
+eval "$(fasd --init auto)"
 unalias z &>/dev/null
 unalias f &>/dev/null
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -317,14 +311,13 @@ then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
 
-export NVM_DIR=$HOME/.nvm
-
 export _FASD_MAX=10000
 
 ulimit -u 2048
 ulimit -n 2048
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/node_modules:$PATH"
 export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
 
 # source $HOME/.nix-profile/etc/profile.d/nix.sh
@@ -342,9 +335,11 @@ zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
 
 export PATH="/Users/marcusbuffett/.pyenv/bin:$PATH"
 
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 # Cataline issue with Pillow: https://github.com/python-pillow/Pillow/issues/3438
 export CPATH=`xcrun --show-sdk-path`/usr/include
 
 export PATH=$(stack path --compiler-bin):$PATH
+# export CPATH=`xcrun --show-sdk-path`/usr/include
+fpath=($fpath "/home/marcus/.zfunctions")

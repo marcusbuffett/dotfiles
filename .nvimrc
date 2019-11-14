@@ -138,6 +138,7 @@ autocmd BufEnter * :syntax sync fromstart
 set linebreak
 " Python 3
 set pyx=3
+let g:python3_host_prog = '~/.pyenv/shims/python'
 
 " Enable % to match more than braces
 runtime macros/matchit.vim
