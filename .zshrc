@@ -50,9 +50,9 @@ alias c='clear'
 alias ENV='env $(cat .env | xargs)'
 
 # Git aliases
-alias fusro='git push origin head'
-alias fusrodah='git push --force origin head'
-alias fuck_it_lets_do_it_live='git add -u && git commit --amend --no-edit && git push --force origin head'
+alias fusro='git push origin HEAD'
+alias fusrodah='git push --force origin HEAD'
+alias fuck_it_lets_do_it_live='git add -u && git commit --amend --no-edit && git push --force origin HEAD'
 alias g='git'
 alias gm='git merge'
 alias gc!="git commit --amend"
@@ -338,8 +338,12 @@ export PATH="/Users/marcusbuffett/.pyenv/bin:$PATH"
 # eval "$(rbenv init -)"
 
 # Cataline issue with Pillow: https://github.com/python-pillow/Pillow/issues/3438
-export CPATH=`xcrun --show-sdk-path`/usr/include
+if type "xcrun" > /dev/null; then
+  export CPATH=`xcrun --show-sdk-path`/usr/include
+fi
 
-export PATH=$(stack path --compiler-bin):$PATH
+if type "stack" > /dev/null; then
+  export PATH=$(stack path --compiler-bin):$PATH
+fi
 # export CPATH=`xcrun --show-sdk-path`/usr/include
 fpath=($fpath "/home/marcus/.zfunctions")
