@@ -325,10 +325,6 @@ export PATH="$HOME/.nix_profile/bin:$PATH"
 
 alias blender='/Applications/blender.app/Contents/MacOS/blender'
 
-# unsetopt XTRACE
-# exec 2>&3 3>&-
-
-
 eval "$(starship init zsh)"
 
 zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
@@ -342,8 +338,12 @@ if type "xcrun" > /dev/null; then
   export CPATH=`xcrun --show-sdk-path`/usr/include
 fi
 
-if type "stack" > /dev/null; then
-  export PATH=$(stack path --compiler-bin):$PATH
-fi
+# if type "stack" > /dev/null; then
+  # export PATH=$(stack path --compiler-bin):$PATH
+# fi
 # export CPATH=`xcrun --show-sdk-path`/usr/include
 fpath=($fpath "/home/marcus/.zfunctions")
+export PATH=$():$PATH
+
+# unsetopt XTRACE
+# exec 2>&3 3>&-

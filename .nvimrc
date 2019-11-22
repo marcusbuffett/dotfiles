@@ -216,7 +216,7 @@ nnoremap <leader>fa :FilesWithWorkspace<CR>
 " Search git files
 nnoremap <leader>fp :GitFilesWithWorkspace<CR>
 " Search lines in current file
-nnoremap <leader>fs :BLines<CR>
+nnoremap <leader>ab :BLines<CR>
 " Search all files for text
 nnoremap <leader>aa :RgText<CR>
 nnoremap <leader>al :RgText<CR>
@@ -468,7 +468,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Ale 
 " let g:ale_linters = {'python': []}
-nnoremap <Leader>q :Bdelete<CR>
 
 " Vista
 let g:vista_default_executive = 'coc'
@@ -501,3 +500,6 @@ let g:NERDCreateDefaultMappings = 0
 nmap <leader>c<space> <Plug>NERDCommenterToggle
 vmap <leader>c<space> <Plug>NERDCommenterToggle
 
+" Base mappings
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>w :w<CR>
