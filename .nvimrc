@@ -62,13 +62,15 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Plug 'parsonsmatt/intero-neovim'
 "" Better Haskell syntax highlighting / indentation
 Plug 'neovimhaskell/haskell-vim'
+Plug 'liuchengxu/vim-clap'
+Plug 'sbdchd/neoformat'
 call plug#end()
 
 """ Options
 
 " True color support
 set termguicolors
-set shellcmdflag=-ic
+" set shellcmdflag=-ic
 " Set leader to space
 let mapleader="\<Space>"
 " Copy indent from current line when inserting new line
@@ -216,7 +218,23 @@ nnoremap <leader>fa :FilesWithWorkspace<CR>
 " Search git files
 nnoremap <leader>fp :GitFilesWithWorkspace<CR>
 " Search lines in current file
-nnoremap <leader>ab :BLines<CR>
+nnoremap ,l :Clap blines<CR>
+nnoremap ,c :Clap bcommits<CR>
+nnoremap ,b :Clap buffers<CR>
+" nnoremap , :Clap colors<CR>
+nnoremap ,c :Clap command<CR>
+" nnoremap , :Clap commits<CR>
+nnoremap ,f :Clap files<CR>
+nnoremap ,g :Clap gfiles<CR>
+nnoremap ,d :Clap git_diff_files<CR>
+nnoremap ,a :Clap grep<CR>
+nnoremap ,j :Clap jumps<CR>
+nnoremap ,s :Clap lines<CR>
+nnoremap ,m :Clap marks<CR>
+nnoremap ,r :Clap registers<CR>
+nnoremap ,t :Clap tags<CR>
+nnoremap ,y :Clap yanks<CR>
+nnoremap ,w :Clap windows<CR>
 " Search all files for text
 nnoremap <leader>aa :RgText<CR>
 nnoremap <leader>al :RgText<CR>
@@ -503,3 +521,10 @@ vmap <leader>c<space> <Plug>NERDCommenterToggle
 " Base mappings
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>w :w<CR>
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
+let g:neoformat_enabled_javascript = ['prettier']

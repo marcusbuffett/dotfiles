@@ -8,7 +8,9 @@
 
 # setopt XTRACE
 
-# autoload -U +X bashcompinit && bashcompinit
+autoload -U +X bashcompinit && bashcompinit
+autoload -Uz compinit
+compinit
 
 # OS-specific stuff
 if [[ "$OSTYPE" == *"darwin"* ]]
