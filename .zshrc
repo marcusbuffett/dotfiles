@@ -20,7 +20,7 @@ then
 elif [[ "$OSTYPE" == *"linux"* ]]
 then
     alias ls="ls --color=auto"
-    alias t=gvfs-trash
+    alias t=gio trash
 fi
 
 # Exports
@@ -345,7 +345,6 @@ fi
 # fi
 # export CPATH=`xcrun --show-sdk-path`/usr/include
 fpath=($fpath "/home/marcus/.zfunctions")
-export PATH=$():$PATH
+export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
-# unsetopt XTRACE
-# exec 2>&3 3>&-
+export TERM=xterm-256color

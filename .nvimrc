@@ -35,7 +35,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Easy motion
 Plug 'easymotion/vim-easymotion'
 " Moving between hunks, sigss for changed lines
-Plug 'mhinz/vim-signify'
+" Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
 " Delete other buffers
 Plug 'schickling/vim-bufonly'
 " JSX/Javascript stuff
@@ -63,8 +64,11 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 "" Better Haskell syntax highlighting / indentation
 Plug 'neovimhaskell/haskell-vim'
 Plug 'liuchengxu/vim-clap'
+Plug 'Chiel92/vim-autoformat'
+Plug 'raichoo/purescript-vim'
 Plug 'sbdchd/neoformat'
 call plug#end()
+
 
 """ Options
 
@@ -517,6 +521,14 @@ nmap <Leader>cd :CocList diagnostics<CR>
 let g:NERDCreateDefaultMappings = 0
 nmap <leader>c<space> <Plug>NERDCommenterToggle
 vmap <leader>c<space> <Plug>NERDCommenterToggle
+nmap <leader>cm <Plug>NERDCommenterMinimal
+vmap <leader>cm <Plug>NERDCommenterMinimal
+
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
 
 " Base mappings
 nnoremap <Leader>q :q<CR>
@@ -528,3 +540,4 @@ augroup fmt
 augroup END
 
 let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_haskell = ['hfmt']
