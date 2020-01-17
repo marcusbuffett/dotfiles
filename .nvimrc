@@ -28,10 +28,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 " Allows other plugins to support the repeat command (.)
 Plug 'tpope/vim-repeat'
-" JSX support
-Plug 'MaxMEllon/vim-jsx-pretty'
-" Indent guides, useful for callback-hell and HTML
-Plug 'nathanaelkane/vim-indent-guides'
 " Easy motion
 Plug 'easymotion/vim-easymotion'
 " Moving between hunks, sigss for changed lines
@@ -39,34 +35,43 @@ Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 " Delete other buffers
 Plug 'schickling/vim-bufonly'
-" JSX/Javascript stuff
+" Delete current buffer, maintain layout
+Plug 'moll/vim-bbye'
+" JSX/Javascript stuff, there's way too many of these
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
-" Airline but faster
+" Nice status bar
 Plug 'itchyny/lightline.vim'
 " Completion
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'honza/vim-snippets'
-" Coc-snippets needs a Snippets source
+" Coc-snippets needs snippet sources
 Plug 'mlaursen/vim-react-snippets'
+Plug 'honza/vim-snippets'
 " Navigation by indent level
 Plug 'jeetsukumaran/vim-indentwise'
 " Plug 'mtikekar/nvim-send-to-term'
 " Exchange operator
 Plug 'tommcdo/vim-exchange'
-" Get path to a json key
-Plug 'mogelbrod/vim-jsonpath'
 " Correct syntax highlighting for styled components
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-" GHCi REPL for Haskell
-" Plug 'parsonsmatt/intero-neovim'
 "" Better Haskell syntax highlighting / indentation
 Plug 'neovimhaskell/haskell-vim'
+" Some nice movement stuff
 Plug 'liuchengxu/vim-clap'
-Plug 'Chiel92/vim-autoformat'
-Plug 'raichoo/purescript-vim'
+" File formatting, on save
 Plug 'sbdchd/neoformat'
+" Purescript syntax / indentation
+Plug 'purescript-contrib/purescript-vim'
+" Git log for files
+Plug 'int3/vim-extradite'
+" Undo tree
+Plug 'simnalamburt/vim-mundo'
+" Symbol outliner
+Plug 'liuchengxu/vista.vim'
+" Layout manager
+Plug 'paroxayte/vwm.vim'
 call plug#end()
 
 
@@ -134,9 +139,12 @@ set diffopt=filler,vertical
 " cause more trouble than they're worth
 set noswapfile
 " Indent folding works better in most file types
-" set foldmethod=indent
+set foldmethod=indent
 " Don't start folded
-set foldlevelstart=20
+set foldmethod=indent
+set foldnestmax=5
+set foldlevelstart=99
+set foldcolumn=0
 " JSX highlighting gets screwed up in long files, this makes vim detect syntax
 " from the beginning of the file
 autocmd BufEnter * :syntax sync fromstart
@@ -145,6 +153,14 @@ set linebreak
 " Python 3
 set pyx=3
 let g:python3_host_prog = '~/.pyenv/shims/python'
+set autoread
+" No ex mode
+nnoremap Q <nop>
+set undofile
+set undodir=~/.vim/undo
+set lazyredraw
+set magic
+
 
 " Enable % to match more than braces
 runtime macros/matchit.vim
@@ -154,6 +170,7 @@ colorscheme onedark
 
 "" General mappings
 nnoremap <tab> :b#<CR>`"
+nnoremap <leader>bi <C-w>o
 nnoremap <leader>ose :set spell<CR>
 nnoremap <leader>osd :set nospell<CR>
 nnoremap <leader>ope :set paste<CR>
@@ -165,6 +182,9 @@ vnoremap <leader>ej :!python -m json.tool<CR>
 " Copy filepath:line_number to clipboard
 nnoremap <leader>yc :let @+ = expand("%") . ":" . line(".")<CR>
 nnoremap <leader>ym :let @+ = expand("%:t:r") . "#" . "<C-r><C-w>"<CR>
+" Clipboard
+nmap <leader>y "*y
+vmap <leader>y "*y
 " Perform last subtitution on the current line ( or selected area )
 map <Leader>br :s/\<<C-r>-\>/<C-r>.<CR>
 
@@ -295,6 +315,9 @@ noremap <Leader>gw :Gwrite<CR>
 "" Merginal
 noremap <Leader>ga :Merginal<CR>
 
+"" Extradite
+noremap <Leader>ge :Extradite<CR>
+
 "" ListToggle
 " Toggle location list 
 let g:lt_location_list_toggle_map = '<leader>tl'
@@ -314,7 +337,7 @@ let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 "" NerdTree
 " Toggle nerdtree
-map <leader>n :NERDTreeToggle<CR>
+map <leader>nn :NERDTreeToggle<CR>
 " Move cursor to nerdtree
 map <leader>nl :NERDTreeFocus<CR>
 " Find the current file in nerdtree and move cursor
@@ -322,6 +345,13 @@ map <leader>nf :NERDTreeFind<CR>
 " Why NERDTree uses '?' as its help command is beyond me...
 let NERDTreeMapHelp='<f1>'
 let NERDTreeAutoDeleteBuffer=1
+" Because this messes with ctrl-j/k
+let g:NERDTreeMapJumpNextSibling = '<Nop>'
+let g:NERDTreeMapJumpPrevSibling = '<Nop>'
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeIgnore = []
+let g:NERDTreeStatusline = ''
 
 
 "" NerdCommenter
@@ -383,43 +413,11 @@ endif
 "" bufonly
 nmap <Leader>bo :BufOnly<CR>
 
-" Rust src path
-let $RUST_SRC_PATH = "/Users/marcusbuffett/.multirust/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src"
-
-" LanguageClient
-" \ 'python': ['python', '-m', 'pyls', '--log-file', './pyls_logs.txt'],
-" let g:LanguageClient_serverCommands = {
-    " \ 'python': ['python', '-m', 'pyls'],
-    " \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    " \ 'swift': ['/Users/marcusbuffett/Documents/sources/langserver-swift/.build/x86_64-apple-macosx10.10/debug/langserver-swift']
-    " \ }
-" let g:LanguageClient_rootMarkers = {                                      
-         " \ 'swift': ['AirCam.xcodeproj']                                          
-         " \ }   
-" let g:LanguageClient_autoStart = 1
-" let g:LanguageClient_diagnosticsEnable = 0
-
-" nnoremap <leader>gc :call LanguageClient_contextMenu()<CR>
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+""bbye
+nmap <Leader>bq :Bwipeout<CR>
 
 " vim-jsx
 let g:jsx_ext_required = 0
-
-" ncm2 
-" autocmd BufEnter * call ncm2#enable_for_buffer()
-" set completeopt=noinsert,menuone,noselect
-" imap <C-g> <Plug>(ncm2_manual_trigger)
-" let ncm2#popup_delay = 60
-" let ncm2#complete_length = [[1, 1]]
-
-" ncm2 ultisnips
-" autocmd VimEnter * iunmap <C-s>
-" let g:UltiSnipsJumpForwardTrigger	= "<C-s>"
-" inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-" let g:UltiSnipsJumpBackwardTrigger	= "<C-S>"
-let g:UltiSnipsExpandTrigger = '<f5>'
 
 
 " Indentwise
@@ -442,8 +440,8 @@ set runtimepath+=~/dotfiles/snippets/
 let g:python_host_prog="/Users/marcusbuffett/.pyenv/versions/3.7.0/bin/python" 
 
 " coc
-" :CocInstall coc-python  coc-rls coc-html coc-lists coc-ultisnips coc-css coc-emmet
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+let g:coc_global_extensions = ['coc-ultisnips', "coc-tabnine", "coc-snippets", "coc-lists", "coc-emmet", "coc-diagnostic", "coc-tsserver", "coc-rls", "coc-python", "coc-json", "coc-html", "coc-css", "coc-pairs"]
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -540,4 +538,25 @@ augroup fmt
 augroup END
 
 let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_haskell = ['hfmt']
+let g:neoformat_enabled_haskell = ['ormolu']
+
+"Mundo
+nnoremap <Leader>mu :MundoToggle<CR>
+
+"vwm
+let s:dev_panel = {
+      \  'name': 'dev_panel',
+      \  'openAftr': ['edit'],
+      \  'left':
+      \  {
+      \    'v_sz': 33,
+      \    'init': ['NERDTree'],
+      \    'bot': {
+      \      'init': ['Vista', 'sleep 1500ms']
+      \    }
+      \  }
+      \}
+
+let g:vwm#layouts = [s:dev_panel]
+
+nnoremap <leader>ld :VwmOpen dev_panel<CR>
