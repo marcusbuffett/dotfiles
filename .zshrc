@@ -8,9 +8,9 @@
 
 # setopt XTRACE
 
-autoload -U +X bashcompinit && bashcompinit
-autoload -Uz compinit
-compinit
+# autoload -U +X bashcompinit && bashcompinit
+# autoload -Uz compinit
+# compinit
 
 # OS-specific stuff
 if [[ "$OSTYPE" == *"darwin"* ]]
@@ -347,4 +347,6 @@ fi
 fpath=($fpath "/home/marcus/.zfunctions")
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
-export TERM=xterm-256color
+# export TERM=xterm-256color
+
+# No bold starship prompt

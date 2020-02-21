@@ -1,0 +1,7 @@
+python.setInterpreter
+snippets.editSnippets
+editor.action.organizeImport
+tsserver.organizeImports
+snippets.openSnippetFiles
+python.setLinter
+workspace.diagnosticRelated

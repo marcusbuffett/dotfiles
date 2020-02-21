@@ -1,7 +1,7 @@
 " Plugins
 call plug#begin('~/.vim/plugged')
 " Fuzzy searching for everything
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " Git wrapper
 Plug 'tpope/vim-fugitive'
@@ -72,6 +72,8 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'liuchengxu/vista.vim'
 " Layout manager
 Plug 'paroxayte/vwm.vim'
+" floating terminals
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 
@@ -166,7 +168,7 @@ set magic
 runtime macros/matchit.vim
 
 " Set colorscheme
-colorscheme onedark
+colorscheme afterglow
 
 "" General mappings
 nnoremap <tab> :b#<CR>`"
@@ -441,7 +443,7 @@ let g:python_host_prog="/Users/marcusbuffett/.pyenv/versions/3.7.0/bin/python"
 
 " coc
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-let g:coc_global_extensions = ['coc-ultisnips', "coc-tabnine", "coc-snippets", "coc-lists", "coc-emmet", "coc-diagnostic", "coc-tsserver", "coc-rls", "coc-python", "coc-json", "coc-html", "coc-css", "coc-pairs"]
+let g:coc_global_extensions = ['coc-ultisnips', "coc-snippets", "coc-lists", "coc-emmet", "coc-diagnostic", "coc-tsserver", "coc-rls", "coc-python", "coc-json", "coc-html", "coc-css", "coc-pairs"]
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -560,3 +562,4 @@ let s:dev_panel = {
 let g:vwm#layouts = [s:dev_panel]
 
 nnoremap <leader>ld :VwmOpen dev_panel<CR>
+noremap <Leader>gs :FloatermNew lazygit<CR>

@@ -1,0 +1,38 @@
+{
+  "css.filetypes": ["css", "less", "wxss", "scss", "typescript"],
+  "diagnostic-languageserver.filetypes": {
+    "markdown": "vale --output=JSON"
+  },
+  "emmet.includeLangueses": {
+    "vue-html": "html",
+    "javascript": "javascriptreact",
+    "typescript": "javascriptreact"
+  },
+  "languageserver": {
+    "purescript": {
+      "command": "purescript-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["purescript"],
+      "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"]
+    },
+    "haskell": {
+      "command": "hie-wrapper",
+      "rootPatterns": [
+        ".stack.yaml",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ],
+      "initializationOptions": {
+        "languageServerHaskell": {}
+      },
+    }
+  },
+  "snippets.ultisnips.enable": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.pylintEnabled": true
+}

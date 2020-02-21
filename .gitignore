@@ -6,3 +6,16 @@ tags
 ignored/
 .python-version
 .mypy_cache
+
+config/coc/extensions/coc-tabnine-data
+config/coc/extensions/node_modules
+config/coc/extensions/db.json
+
+config/coc/history.json
+config/coc/mru
+config/coc/snippets-mru
+config/coc/memos.json
+config/configstore/nodemon.json
+config/configstore/update-notifier-nodemon.json
+config/configstore/update-notifier-npm.json
+config/yarn/global
