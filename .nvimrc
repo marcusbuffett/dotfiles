@@ -74,6 +74,9 @@ Plug 'liuchengxu/vista.vim'
 Plug 'paroxayte/vwm.vim'
 " floating terminals
 Plug 'voldikss/vim-floaterm'
+Plug 'chrisbra/unicode.vim'
+Plug '907th/vim-auto-save'
+Plug 'evanleck/vim-svelte'
 call plug#end()
 
 
@@ -134,6 +137,7 @@ filetype indent on
 filetype plugin on
 " Don't save twice, messes up some programs that watch for file changes
 set nowritebackup
+set nobackup
 " Set spelling language to us english
 set spelllang=en_us
 " Use vertical splits for diffs
@@ -527,17 +531,12 @@ vmap <leader>cm <Plug>NERDCommenterMinimal
 
 augroup fmt
   autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
+  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
 
 " Base mappings
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>w :w<CR>
-
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
 
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_haskell = ['ormolu']
@@ -562,4 +561,4 @@ let s:dev_panel = {
 let g:vwm#layouts = [s:dev_panel]
 
 nnoremap <leader>ld :VwmOpen dev_panel<CR>
-noremap <Leader>gs :FloatermNew lazygit<CR>
+" noremap <Leader>gs :FloatermNew lazygit<CR>

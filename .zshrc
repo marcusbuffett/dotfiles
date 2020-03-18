@@ -20,7 +20,7 @@ then
 elif [[ "$OSTYPE" == *"linux"* ]]
 then
     alias ls="ls --color=auto"
-    alias t=gio trash
+    alias t="gio trash"
 fi
 
 # Exports
@@ -349,5 +349,3 @@ fpath=($fpath "/home/marcus/.zfunctions")
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
 # export TERM=xterm-256color
-
-# No bold starship prompt
