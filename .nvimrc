@@ -497,6 +497,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Vista
 let g:vista_default_executive = 'coc'
+inoremap <Leader>vo :Vista
 
 augroup SyntaxSettings
     autocmd!
@@ -515,9 +516,12 @@ nnoremap <Leader>sp :141split ~/vimwiki/notes/buffer_scratch.md<CR>
 
 tnoremap <Esc> <C-\><C-n>
 
-xmap <leader>cf  <Plug>(coc-format-selected)
-nmap <leader>cf  <Plug>(coc-format-selected)
+xmap <leader>cf <Plug>(coc-format-selected)
+nmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>ca :CocAction<CR>
+vmap <leader>ca :CocAction<CR>
+nmap <leader>cn <Plug>(coc-diagnostic-next-error)
+nmap <leader>cp <Plug>(coc-diagnostic-prev-error)
 nmap <leader>cc :CocCommand<CR>
 nmap <Leader>cd :CocList diagnostics<CR>
 
