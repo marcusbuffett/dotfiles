@@ -1,38 +1,43 @@
 {
-  "css.filetypes": ["css", "less", "wxss", "scss", "typescript"],
+  "coc.source.ultisnips.priority": 100,
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnTypeFiletypes": ["rust"],
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.format.enabled": false,
+  "python.formatting.provider": "black",
+  "typescript.format.enabled": true,
+  "prettier.trailingComma": "all",
+  "coc.preferences.formatOnSaveFiletypes": ["*"],
+  "python.analysis.typeCheckingMode": "off",
+  "python.jediEnabled": false,
+  "rust-analyzer.inlayHints.chainingHints": false,
+  "suggest.enablePreselect": false,
   "diagnostic-languageserver.filetypes": {
     "markdown": "vale --output=JSON"
   },
-  "emmet.includeLangueses": {
-    "vue-html": "html",
-    "javascript": "javascriptreact",
-    "typescript": "javascriptreact"
-  },
+  "diagnostic.messageTarget": "echo",
+  "snippets.priority": 110,
+  "suggest.highPrioritySourceLimit": 50,
   "languageserver": {
     "purescript": {
       "command": "purescript-language-server",
-      "args": ["--stdio"],
+      "args": ["--stdio", "--censorWarnings=MissingTypeDeclaration"],
       "filetypes": ["purescript"],
       "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"]
     },
     "haskell": {
       "command": "hie-wrapper",
-      "rootPatterns": [
-        ".stack.yaml",
-        "cabal.config",
-        "package.yaml"
-      ],
-      "filetypes": [
-        "hs",
-        "lhs",
-        "haskell"
-      ],
-      "initializationOptions": {
-        "languageServerHaskell": {}
-      },
+      "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
+      "filetypes": ["hs", "lhs", "haskell"],
+      "args": ["--lsp"],
+      "initializationOptions": {}
     }
   },
   "snippets.ultisnips.enable": true,
   "python.linting.mypyEnabled": true,
-  "python.linting.pylintEnabled": true
+  "python.linting.pylintEnabled": false,
+  "rust-analyzer.checkOnSave.extraArgs": [
+    "--target-dir",
+    "/tmp/rust-analyzer-check"
+  ]
 }

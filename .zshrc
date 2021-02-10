@@ -9,8 +9,8 @@
 # setopt XTRACE
 
 # autoload -U +X bashcompinit && bashcompinit
-# autoload -Uz compinit
-# compinit
+autoload -Uz compinit
+compinit
 
 # OS-specific stuff
 if [[ "$OSTYPE" == *"darwin"* ]]
@@ -36,7 +36,7 @@ export HISTFILE="$HOME/.zsh_history"
 # Aliases
 alias v="nvim"
 alias vi="nvim"
-alias vvim="nvim ~/.vimrc"
+alias vvim="nvim ~/.config/nvim/init.vim"
 alias vzshrc="nvim ~/.zshrc"
 alias nvvim="nvim ~/.config/nvim/init.vim"
 alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
@@ -50,6 +50,7 @@ alias nxt='spotify next'
 alias prv='spotify prev'
 alias c='clear'
 alias ENV='env $(cat .env | xargs)'
+alias clip="xclip -i -selection clipboard"
 
 # Git aliases
 alias fusro='git push origin HEAD'
@@ -57,6 +58,7 @@ alias fusrodah='git push --force origin HEAD'
 alias fuck_it_lets_do_it_live='git add -u && git commit --amend --no-edit && git push --force origin HEAD'
 alias g='git'
 alias gm='git merge'
+alias gcl='git clone'
 alias gc!="git commit --amend"
 alias glg='git log'
 alias glgo='git log --date=relative --pretty="format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D"'
@@ -91,11 +93,12 @@ alias gcmu='gfs --exclude-standard --others| fzf -m | gxargs -L1 -I{} git add "{
 # alias gcmum='gfs --others --| fzf -m | gxargs -L1 -I{} git add "{}"'
 alias gbzf='git checkout $(git branch --list -a | cut -c 3- | fzf)'
 alias grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)'"
-alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)' | gtac | fzf --no-sort | xargs git checkout"
+alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)' | tac | fzf --no-sort | xargs git checkout"
 alias gsm='git ls-files -m | fzf -m | xargs'
 alias f_gl="git log --color=always --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an %Creset%s' --date=short | fzf --tiebreak=index --ansi | cut -d ' ' -f 1"
 alias f_glp="git log --color=always --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an %Creset%s' --date=short | fzf --tiebreak=index --ansi --preview \"echo {} | cut -d ' ' -f 1 | xargs git show --color=always --stat -p\" | cut -d ' ' -f 1"
 alias gwe='git commit -a --fixup'
+alias k="kubectl"
 
 # Aircam
 alias ac_bc="git log --color=always --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short \
@@ -145,20 +148,20 @@ SAVEHIST=1000000
 bindkey -v
 
 # Prompt related stuff
-precmd() {
-  RPROMPT=""
-  }
-  zle-keymap-select() {
-    RPROMPT=""
-  [[ $KEYMAP = vicmd ]] && RPROMPT="NORMAL"
-    () { return $__prompt_status }
-  zle reset-prompt
-  }
-  zle-line-init() {
-    typeset -g __prompt_status="$?"
-}
-zle -N zle-keymap-select
-zle -N zle-line-init
+# precmd() {
+  # RPROMPT=""
+  # }
+  # zle-keymap-select() {
+    # RPROMPT=""
+  # [[ $KEYMAP = vicmd ]] && RPROMPT="NORMAL"
+    # () { return $__prompt_status }
+  # zle reset-prompt
+  # }
+  # zle-line-init() {
+    # typeset -g __prompt_status="$?"
+# }
+# zle -N zle-keymap-select
+# zle -N zle-line-init
 
 # Search up and down in history with arrow keys
 bindkey '^p' up-line-or-search
@@ -253,6 +256,7 @@ function countdown() {
 eval "$(fasd --init auto)"
 unalias z &>/dev/null
 unalias f &>/dev/null
+unalias sd &>/dev/null
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
 
@@ -328,11 +332,13 @@ export PATH="$HOME/.nix_profile/bin:$PATH"
 
 alias blender='/Applications/blender.app/Contents/MacOS/blender'
 
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
 
-export PATH="/Users/marcusbuffett/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # eval "$(rbenv init -)"
 
@@ -349,3 +355,32 @@ fpath=($fpath "/home/marcus/.zfunctions")
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
 # export TERM=xterm-256color
+
+NPM_PACKAGES="${HOME}/.npm-packages"
+
+export PATH="$PATH:$NPM_PACKAGES/bin"
+export PATH="$PATH:${HOME}/.ghcup/bin"
+
+# fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+eval "$(starship init zsh)"
+
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/marcus/google-cloud-sdk/path.zsh.inc' ]; then . '/home/marcus/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/marcus/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/marcus/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH=$PATH:$HOME/.linkerd2/bin
+export CG_CLIF=$HOME/Documents/sources/rustc_codegen_cranelift
+
+# Title, use cwd
+precmd () {print -Pn "\e]0;%~\a"}
+
+complete -F __start_kubectl k
+source <(kubectl completion zsh)
