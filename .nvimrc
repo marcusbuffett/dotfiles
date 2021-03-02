@@ -17,7 +17,7 @@ Plug 'tpope/vim-surround'
 " Prevent repetitive key use in vim
 Plug 'takac/vim-hardtime'
 " Toggle location list / quickfix list
-" Plug 'Valloric/ListToggle'
+Plug 'Valloric/ListToggle'
 " Substitute command that intelligently changes case, plurality,etc.
 Plug 'tpope/vim-abolish'
 " Highlight matching HTML tag
@@ -61,7 +61,7 @@ Plug 'neovimhaskell/haskell-vim'
 " Some nice movement stuff
 Plug 'liuchengxu/vim-clap'
 " File formatting, on save
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 " Purescript syntax / indentation
 Plug 'purescript-contrib/purescript-vim'
 " Git log for files
@@ -77,6 +77,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'chrisbra/unicode.vim'
 Plug '907th/vim-auto-save'
 Plug 'evanleck/vim-svelte'
+Plug 'vn-ki/coc-clap'
 call plug#end()
 
 
@@ -484,12 +485,30 @@ let g:lightline = {
       \ }
       \ }
 
-nnoremap <silent> [e <Plug>(coc-diagnostic-prev)
-nnoremap <silent> ]e <Plug>(coc-diagnostic-next)
+nnoremap <silent> [e <Plug>(coc-diagnostic-prev-error)
+nnoremap <silent> ]e <Plug>(coc-diagnostic-next-error)
+nmap <silent> ]d :call CocAction('diagnosticNext')<cr>
+nmap <silent> [d :call CocAction('diagnosticPrevious')<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <leader>cn <Plug>(coc-rename)
+
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+
+
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Ale 
@@ -518,12 +537,43 @@ tnoremap <Esc> <C-\><C-n>
 
 xmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>cf <Plug>(coc-format-selected)
-nmap <leader>ca :CocAction<CR>
-vmap <leader>ca :CocAction<CR>
-nmap <leader>cn <Plug>(coc-diagnostic-next-error)
-nmap <leader>cp <Plug>(coc-diagnostic-prev-error)
-nmap <leader>cc :CocCommand<CR>
-nmap <Leader>cd :CocList diagnostics<CR>
+nmap <leader>.  <Plug>(coc-fix-current) \| :w<CR>
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+vmap <leader>as  <Plug>(coc-codeaction-line)
+nmap <silent> <leader>af :call CocAction('fixAll')<cr>
+nmap <silent> <leader>ar :call CocAction('doQuickfix')<cr>
+nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>xq  :q<CR>
+nmap <leader>xw  :wq<CR>
+nmap <Leader>cd :CocDiagnostics<CR>
+nnoremap <silent><nowait> <leader>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>cc  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <space>cr  :<C-u>CocListResume<CR>
+nmap <Leader>cp :CocConfig<CR>
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 
 " Nerd Commenter
 let g:NERDCreateDefaultMappings = 0
@@ -533,10 +583,12 @@ nmap <leader>cm <Plug>NERDCommenterMinimal
 vmap <leader>cm <Plug>NERDCommenterMinimal
 
 
-augroup fmt
-  autocmd!
-  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-augroup END
+" augroup fmt
+  " autocmd!
+  " autocmd FileType typescript.tsx autocmd BufWritePre <buffer> call CocAction('runCommand', 'prettier.formatFile')
+" augroup END
+
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Base mappings
 nnoremap <Leader>q :q<CR>
@@ -566,3 +618,50 @@ let g:vwm#layouts = [s:dev_panel]
 
 nnoremap <leader>ld :VwmOpen dev_panel<CR>
 " noremap <Leader>gs :FloatermNew lazygit<CR>
+
+" function! s:fuzzyfind(dir) abort
+    " " Ignore .git directories
+    " let items = printf('find %s -name .git -prune -o -type f -print', a:dir)
+    " return fzy#start(items, {i -> execute('edit ' . fnameescape(i))}, {
+            " \ 'statusline': printf(':edit {fname} [directory: %s]', a:dir)
+            " \ })
+" endfunction
+
+" command! -bar -nargs=? -complete=dir Find
+        " \ call s:fuzzyfind(empty(<q-args>) ? getcwd() : <q-args>)
+
+" Ale 
+" let g:ale_linters = {'python': []}
+" let g:ale_list_vertical = 0
+" let g:ale_open_list = 1
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+" let g:ale_purescript_ls_config = {
+		" \  'purescript': {
+		" \    'addSpagoSources': v:true,
+		" \    'addNpmPath': v:true,
+		" \    'buildCommand': 'spago build --purs-args --json-errors --purs-args --stash --purs-args --censor-codes=MissingTypeDeclaration,UnusedImport'
+		" \  }
+		" \}
+" nmap <leader>cn :ALENextWrap<CR>
+" nmap <leader>cp :ALEPreviousWrap<CR>
+"
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",     -- one of "all", "language", or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c", "tsx", "typescript" },  -- list of language that will be disabled
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+EOF
