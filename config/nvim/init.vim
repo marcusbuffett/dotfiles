@@ -548,6 +548,7 @@ xmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>.  <Plug>(coc-fix-current) \| :w<CR>
 nmap <leader>a  <Plug>(coc-codeaction-selected)
+vmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>af :call CocAction('fixAll')<cr>
 nmap <silent> <leader>ar :call CocAction('doQuickfix')<cr>
 nmap <leader>ac  <Plug>(coc-codeaction)
