@@ -259,6 +259,8 @@ unalias f &>/dev/null
 unalias sd &>/dev/null
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
+export FZF_DEFAULT_COMMAND='rg --files'
+
 
 expand-aliases() {
   unset 'functions[_expand-aliases]'

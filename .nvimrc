@@ -275,16 +275,7 @@ nnoremap <leader>au :RgText \b<C-r><C-w>\b<CR>
 vnoremap <leader>aa y:Rg <C-r>0<CR>
 command! -bang GitFilesWithWorkspace call fzf#run(fzf#wrap({ 'source': '{ git ls-files -o -c --exclude-standard .; }' }, <bang>0))
 command! -bang FilesWithWorkspace call fzf#run(fzf#wrap({ 'source': '{ find .; find /Users/marcusbuffett/Documents/workspace; }' }, <bang>0))
-command! -bang -nargs=* RgText
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>).' $( git ls-files -o -c --exclude-standard | xargs)', 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%'),
-  \   1)
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>).' /Users/marcusbuffett/Documents/workspace .', 1,
-  \   fzf#vim#with_preview('up:60%'),
-  \   1)
+command! -bang -nargs=* RgText call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " command! -bang -nargs=* Rg
   " \ call fzf#vim#grep(
   " \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
