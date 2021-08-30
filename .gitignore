@@ -19,3 +19,4 @@ config/configstore/nodemon.json
 config/configstore/update-notifier-nodemon.json
 config/configstore/update-notifier-npm.json
 config/yarn/global
+config/fish/fish_variables
