@@ -69,6 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["FixCursorHold.nvim"] = {
+    loaded = true,
+    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/FixCursorHold.nvim"
+  },
   ["barbar.nvim"] = {
     config = { "\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20core.bufferline\frequire\0" },
     loaded = false,
@@ -81,10 +85,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/opt/dashboard-nvim"
   },
-  ["diffview.nvim"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/diffview.nvim"
-  },
   ["friendly-snippets"] = {
     loaded = false,
     needs_bufread = false,
@@ -96,30 +96,10 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/opt/gitsigns.nvim"
   },
-  ["hop.nvim"] = {
-    config = { "\27LJ\2\n‡\1\0\0\6\0\t\0\0146\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0'\4\5\0004\5\0\0B\0\5\0016\0\6\0'\2\a\0B\0\2\0029\0\b\0B\0\1\1K\0\1\0\nsetup\bhop\frequire\22:HopLineStart<CR>\14<Leader>z\6n\20nvim_set_keymap\bapi\bvim\0" },
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/hop.nvim"
-  },
-  ["lightspeed.nvim"] = {
-    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/lightspeed.nvim"
-  },
   ["lualine.nvim"] = {
     config = { "\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17core.lualine\frequire\0" },
     loaded = true,
     path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/lualine.nvim"
-  },
-  neoformat = {
-    config = { "\27LJ\2\nˆ\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0i    augroup fmt\n    autocmd!\n    autocmd BufWritePre *.tsx undojoin | Neoformat\n    augroup END\n    \bcmd\bvim\0" },
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/neoformat"
-  },
-  neogit = {
-    config = { "\27LJ\2\n]\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\17integrations\1\0\0\1\0\1\rdiffview\2\nsetup\vneogit\frequire\0" },
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/neogit"
   },
   ["nlsp-settings.nvim"] = {
     loaded = true,
@@ -128,10 +108,6 @@ _G.packer_plugins = {
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/null-ls.nvim"
-  },
-  ["nvcode-color-schemes.vim"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/nvcode-color-schemes.vim"
   },
   ["nvim-autopairs"] = {
     config = { "\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19core.autopairs\frequire\0" },
@@ -166,6 +142,12 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/opt/nvim-lspinstall"
   },
+  ["nvim-toggleterm.lua"] = {
+    config = { "\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18core.terminal\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/opt/nvim-toggleterm.lua"
+  },
   ["nvim-tree.lua"] = {
     config = { "\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18core.nvimtree\frequire\0" },
     loaded = true,
@@ -175,19 +157,6 @@ _G.packer_plugins = {
     config = { "\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20core.treesitter\frequire\0" },
     loaded = true,
     path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/nvim-treesitter"
-  },
-  ["nvim-treesitter-textobjects"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/nvim-treesitter-textobjects"
-  },
-  ["nvim-treesitter-textsubjects"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/nvim-treesitter-textsubjects"
-  },
-  ["nvim-ts-autotag"] = {
-    config = { "\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20nvim-ts-autotag\frequire\0" },
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/nvim-ts-autotag"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -210,57 +179,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/project.nvim"
   },
-  ["surround.nvim"] = {
-    config = { "\27LJ\2\nj\0\0\3\0\a\0\v6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rsurround\frequire\14<Space>ms\20surround_prefix\6g\bvim\0" },
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/surround.nvim"
-  },
   ["telescope.nvim"] = {
     config = { "\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19core.telescope\frequire\0" },
     loaded = true,
     path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/telescope.nvim"
-  },
-  ["tmux.nvim"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/tmux.nvim"
-  },
-  ["tokyonight.nvim"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/tokyonight.nvim"
-  },
-  ["vim-abolish"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/vim-abolish"
-  },
-  ["vim-clap"] = {
-    config = { "\27LJ\2\n`\0\0\6\0\6\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0'\4\5\0004\5\0\0B\0\5\1K\0\1\0\20:Clap yanks<CR>\15<Leader>my\6n\20nvim_set_keymap\bapi\bvim\0" },
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/vim-clap"
-  },
-  ["vim-exchange"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/vim-exchange"
-  },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/vim-fugitive"
-  },
-  ["vim-indentwise"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/vim-indentwise"
-  },
-  ["vim-mundo"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/vim-mundo"
-  },
-  ["vim-react-snippets"] = {
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/vim-react-snippets"
-  },
-  ["vim-tmux-navigator"] = {
-    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
-    loaded = true,
-    path = "/Users/marcusbuffett/.local/share/lunarvim/site/pack/packer/start/vim-tmux-navigator"
   },
   ["vim-vsnip"] = {
     loaded = false,
@@ -276,6 +198,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18core.nvimtree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19core.telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17core.lualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20core.treesitter\frequire\0", "config", "nvim-treesitter")
@@ -284,59 +218,15 @@ time([[Config for nvim-treesitter]], false)
 time([[Config for project.nvim]], true)
 try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17core.project\frequire\0", "config", "project.nvim")
 time([[Config for project.nvim]], false)
--- Config for: hop.nvim
-time([[Config for hop.nvim]], true)
-try_loadstring("\27LJ\2\n‡\1\0\0\6\0\t\0\0146\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0'\4\5\0004\5\0\0B\0\5\0016\0\6\0'\2\a\0B\0\2\0029\0\b\0B\0\1\1K\0\1\0\nsetup\bhop\frequire\22:HopLineStart<CR>\14<Leader>z\6n\20nvim_set_keymap\bapi\bvim\0", "config", "hop.nvim")
-time([[Config for hop.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18core.nvimtree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
--- Config for: surround.nvim
-time([[Config for surround.nvim]], true)
-try_loadstring("\27LJ\2\nj\0\0\3\0\a\0\v6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rsurround\frequire\14<Space>ms\20surround_prefix\6g\bvim\0", "config", "surround.nvim")
-time([[Config for surround.nvim]], false)
--- Config for: vim-tmux-navigator
-time([[Config for vim-tmux-navigator]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "vim-tmux-navigator")
-time([[Config for vim-tmux-navigator]], false)
--- Config for: lightspeed.nvim
-time([[Config for lightspeed.nvim]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "lightspeed.nvim")
-time([[Config for lightspeed.nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19core.telescope\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-ts-autotag
-time([[Config for nvim-ts-autotag]], true)
-try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20nvim-ts-autotag\frequire\0", "config", "nvim-ts-autotag")
-time([[Config for nvim-ts-autotag]], false)
--- Config for: neoformat
-time([[Config for neoformat]], true)
-try_loadstring("\27LJ\2\nˆ\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0i    augroup fmt\n    autocmd!\n    autocmd BufWritePre *.tsx undojoin | Neoformat\n    augroup END\n    \bcmd\bvim\0", "config", "neoformat")
-time([[Config for neoformat]], false)
--- Config for: vim-clap
-time([[Config for vim-clap]], true)
-try_loadstring("\27LJ\2\n`\0\0\6\0\6\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0'\4\5\0004\5\0\0B\0\5\1K\0\1\0\20:Clap yanks<CR>\15<Leader>my\6n\20nvim_set_keymap\bapi\bvim\0", "config", "vim-clap")
-time([[Config for vim-clap]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17core.lualine\frequire\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
--- Config for: neogit
-time([[Config for neogit]], true)
-try_loadstring("\27LJ\2\n]\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\17integrations\1\0\0\1\0\1\rdiffview\2\nsetup\vneogit\frequire\0", "config", "neogit")
-time([[Config for neogit]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim', 'nvim-comment'}, { event = "BufRead *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertCharPre * ++once lua require("packer.load")({'friendly-snippets'}, { event = "InsertCharPre *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-comment', 'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'barbar.nvim', 'dashboard-nvim', 'which-key.nvim', 'nvim-toggleterm.lua'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-compe', 'vim-vsnip'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'nvim-lspinstall'}, { event = "VimEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'which-key.nvim', 'barbar.nvim', 'dashboard-nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'vim-vsnip', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

@@ -44,6 +44,7 @@ fish_vi_key_bindings
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/Library/Haskell/bin
 fish_add_path $HOME/.cabal/bin
+fish_add_path /opt/homebrew/bin
 
 function zd
   cd (z -l | fzf | tr -s ' ' | cut -d ' ' -f 2)
