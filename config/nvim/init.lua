@@ -37,21 +37,24 @@ vim.api.nvim_set_keymap("n", "T", "<cmd>only<CR>", {})
 
 
 require("packer").startup(function(use)
+  -- use { "catppuccin/nvim", as = "catppuccin", config = function()
+  --   vim.cmd.colorscheme "catppuccin"
+  -- end }
   use({ "kazhala/close-buffers.nvim" })
-  -- use({ "ggandor/flit.nvim",
-  --   requires = "ggandor/leap.nvim",
-  --   config = function()
-  --     require('flit').setup {
-  --       -- keys = { f = 'f', F = 'F', t = 't', T = 'T' },
-  --       -- -- A string like "nv", "nvo", "o", etc.
-  --       -- labeled_modes = "v",
-  --       -- multiline = true,
-  --       -- -- Like `leap`s similar argument (call-specific overrides).
-  --       -- -- E.g.: opts = { equivalence_classes = {} }
-  --       -- opts = {}
-  --     }
-  --   end,
-  -- })
+  use({ "ggandor/flit.nvim",
+    requires = "ggandor/leap.nvim",
+    config = function()
+      require('flit').setup {
+        keys = { f = 'f', t = 'ø', T = 'ø', F = 'F' },
+        -- -- A string like "nv", "nvo", "o", etc.
+        -- labeled_modes = "v",
+        -- multiline = true,
+        -- -- Like `leap`s similar argument (call-specific overrides).
+        -- -- E.g.: opts = { equivalence_classes = {} }
+        -- opts = {}
+      }
+    end,
+  })
   use({
     "amarakon/nvim-cmp-buffer-lines",
     config = function()
@@ -63,15 +66,15 @@ require("packer").startup(function(use)
       require 'window-picker'.setup()
     end,
   }
-  -- use({
-  --   "navarasu/onedark.nvim",
-  --   config = function()
-  --     require('onedark').setup {
-  --       style = 'darker'
-  --     }
-  --     require('onedark').load()
-  --   end,
-  -- })
+  use({
+    "navarasu/onedark.nvim",
+    config = function()
+      require('onedark').setup {
+        style = 'warmer'
+      }
+      require('onedark').load()
+    end,
+  })
   -- use({
   --   "folke/tokyonight.nvim",
   --   config = function()
@@ -127,12 +130,12 @@ require("packer").startup(function(use)
       require("copilot_cmp").setup()
     end
   }
-  use({
-    'glepnir/zephyr-nvim',
-    config = function()
-      vim.cmd([[colorscheme zephyr]])
-    end
-  })
+  -- use({
+  --   'glepnir/zephyr-nvim',
+  --   config = function()
+  --     vim.cmd([[colorscheme zephyr]])
+  --   end
+  -- })
   use("wbthomason/packer.nvim")
   use({ "tpope/vim-fugitive" })
   use({ "tpope/vim-abolish" })
@@ -158,7 +161,7 @@ require("packer").startup(function(use)
   use({ "simnalamburt/vim-mundo" })
   use({ "epilande/vim-react-snippets" })
   use({ "nvim-treesitter/nvim-treesitter-textobjects" })
-  use({ "p00f/nvim-ts-rainbow" })
+  -- use({ "p00f/nvim-ts-rainbow" })
   use({ "RRethy/nvim-treesitter-textsubjects" })
   -- use({
   --   "stevearc/aerial.nvim",
