@@ -1,73 +1,132 @@
-# zmodload zsh/datetime
-# setopt PROMPT_SUBST
-# PS4='+$EPOCHREALTIME %N:%i> '
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# logfile=zsh_profile.log
-# echo "Logging to $logfile"
-# exec 3>&2 2>$logfile
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-# setopt XTRACE
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
-# autoload -U +X bashcompinit && bashcompinit
-autoload -Uz compinit
-compinit
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# OS-specific stuff
-if [[ "$OSTYPE" == *"darwin"* ]]
-then
-    alias ls="ls -G"
-    alias t="trash"
-elif [[ "$OSTYPE" == *"linux"* ]]
-then
-    alias ls="ls --color=auto"
-    alias t="gio trash"
-fi
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-# Exports
-export EDITOR="nvim"
-export PATH="$PATH:$HOME/.cargo/bin"
-export GOPATH="$HOME/go"
-export GOBIN=$GOPATH/bin
-export PATH="$PATH:$GOPATH/bin"
-export AWS_KEYPAIR_NAME=Marcus
-export HISTFILE="$HOME/.zsh_history"
-# export RUBYOPT=-rbumbler/go
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-# Aliases
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+plugins+=(zsh-vi-mode)
+function my_init() {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
+zvm_after_init_commands+=(my_init)
+
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# zi is from zoxide, but I'm used to zd
+alias zd=zi
+
+
 alias v="nvim"
-alias vi="nvim"
-alias vvim="nvim ~/.config/nvim/init.vim"
-alias vzshrc="nvim ~/.zshrc"
-alias nvvim="nvim ~/.config/nvim/init.vim"
-alias cabal-world="cabal --no-require-sandbox --ignore-sandbox"
-alias grep='grep --color=auto'
 alias tmux="tmux -2"
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-alias dk='docker'
-alias dkm='docker-machine'
-alias sp='spotify'
-alias nxt='spotify next'
-alias prv='spotify prev'
-alias c='clear'
-alias ENV='env $(cat .env | xargs)'
-alias clip="xclip -i -selection clipboard"
 
 # Git aliases
 alias fusro='git push origin HEAD'
 alias fusrodah='git push --force origin HEAD'
 alias fuck_it_lets_do_it_live='git add -u && git commit --amend --no-edit && git push --force origin HEAD'
 alias g='git'
+alias k='kubectl'
+alias lk='kubectl -n local-dev'
 alias gm='git merge'
 alias gcl='git clone'
 alias gc!="git commit --amend"
 alias glg='git log'
-alias glgo='git log --date=relative --pretty="format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D"'
 alias glf='git ls-files'
 alias gau='git add -u'
 alias grbom='git rebase origin/master'
-alias td='nvim ~/.todo.md'
-# alias gsuno='git status -uno -s'
-alias gfs='git ls-files -m "$(git rev-parse --show-toplevel)"'
 alias gcd='git checkout develop'
 alias gl='git pull'
 alias gcb="git checkout -B" 
@@ -89,300 +148,30 @@ alias gs='git status'
 alias gcm='git checkout master'
 alias gsta="git stash"
 alias gstaa="git stash apply"
-alias gcmu='gfs --exclude-standard --others| fzf -m | gxargs -L1 -I{} git add "{}"'
-# alias gcmum='gfs --others --| fzf -m | gxargs -L1 -I{} git add "{}"'
-alias gbzf='git checkout $(git branch --list -a | cut -c 3- | fzf)'
-alias grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)'"
 alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)' | tac | fzf --no-sort | xargs git checkout"
-alias gsm='git ls-files -m | fzf -m | xargs'
-alias f_gl="git log --color=always --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an %Creset%s' --date=short | fzf --tiebreak=index --ansi | cut -d ' ' -f 1"
-alias f_glp="git log --color=always --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an %Creset%s' --date=short | fzf --tiebreak=index --ansi --preview \"echo {} | cut -d ' ' -f 1 | xargs git show --color=always --stat -p\" | cut -d ' ' -f 1"
-alias gwe='git commit -a --fixup'
-alias k="kubectl"
+alias prsb='gh pr list --author "@me" -w --repo "https://github.com/ProjectOpenSea/opensea-api"'
+alias prsf='gh pr list --author "@me" -w --repo "https://github.com/ProjectOpenSea/opensea-next"'
 
-# Aircam
-alias ac_bc="git log --color=always --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short \
-| fzf +i --ansi -q 'The build version is incremented ' | cut -d ' ' -f 1"
-# Given a jira ticket, checkout a branch named appropriately
-function ac_gb () {
-  git checkout -b $(al ji show -f branch $1)
-}
-# When on a branch generated by the previous command, create a commit message
-# and open the editor
-alias ac_gc="git rev-parse --abbrev-ref HEAD | cut -d / -f1 | xargs al ji show -f commit | git commit --verbose -e -F -"
+eval "$(fnm env --use-on-cd)"
 
-alias exf="exercism fetch"
-alias exs="exercism submit"
-alias lf='vim _lf'
-alias ds="fasd -d | tr -s ' ' | cut -d ' ' -f 2"
-alias fs="fasd -f | tr -s ' ' | cut -d ' ' -f 2"
-alias dt='dasht'
-alias pe='path-extractor'
-alias rld='source ~/.zshrc'
-alias ghmine='ghi list --mine'
-alias ghmine_w='ghi list --mine --web'
+source "/opt/homebrew/opt/spaceship/spaceship.zsh"
 
-alias -g F='| fzf -m'
-alias -g E='| pe'
-alias -g X='| xargs'
-alias -g EFX='| pe | fzf -m | xargs'
-alias -g P='| pbcopy'
-alias gglr='googler -n5'
-
-# Options
-setopt AUTO_CD
-setopt AUTO_LIST
-setopt MENU_COMPLETE
-unsetopt LIST_BEEP
-setopt INC_APPEND_HISTORY
-export KEYTIMEOUT=1
-setopt AUTOPUSHD
-setopt NO_BEEP
-setopt HISTIGNORESPACE
-# tons of history
-HISTSIZE=1000000 
-SAVEHIST=1000000
-
-
-# Setting up vim mode for zsh
-bindkey -v
-
-# Prompt related stuff
-# precmd() {
-  # RPROMPT=""
-  # }
-  # zle-keymap-select() {
-    # RPROMPT=""
-  # [[ $KEYMAP = vicmd ]] && RPROMPT="NORMAL"
-    # () { return $__prompt_status }
-  # zle reset-prompt
-  # }
-  # zle-line-init() {
-    # typeset -g __prompt_status="$?"
-# }
-# zle -N zle-keymap-select
-# zle -N zle-line-init
-
-# Search up and down in history with arrow keys
-bindkey '^p' up-line-or-search
-bindkey '^n' down-line-or-search
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
-
-# PATHS
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/Library/Haskell/bin:$PATH
-export PATH=$HOME/.cabal/bin:$PATH
-
-# Functions
-function z () {
-  cd $(ds | fzf)
-}
-
-
-function f () {
-  v $(fs | fzf)
-}
-
-function runrust () {
-  name=$(basename $1 .rs)
-  rustc $@ && ./$name && command rm $name
-}
-
-# fd - cd to selected directory
-function fcd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
-
-function dkme () {
-  eval $(docker-machine env $1)
-}
-
-function dkrm () {
-  docker rm -f $(docker ps -aq)
-}
-
-function faid () {
-  open "https://itunes.apple.com/app/id$1"
-}
-
-function ua () {
-  alias $1 | awk -F "'" '$0=$2'
-}
-
-function gpr () {
- git fetch origin pull/$1/head:pr-$1
- git checkout pr-$1
-}
-
-function ghc-pkg-reset() {
-  read 'ans?Erasing all your user ghc and cabal packages - are you sure (y/N)? '
-
-  [[ x$ans =~ "xy" ]] && ( \
-    echo 'erasing directories under ~/.ghc'; command rm -rf `find ~/.ghc/* -maxdepth 1 -type d`; \
-    echo 'erasing ~/.cabal/lib'; command rm -rf ~/.cabal/lib; \
-  )
-}
-
-function exsg() {
-  file=$1
-  exercism submit $file
-  gtmp $file
-}
-
-function gtmp() {
-  file=$1
-  git add $file && git commit -m "Finish iteration of $(basename $(pwd))"
-}
-
-function mcd () {
-    mkdir "$@" && cd "$@"
-}
-
-function cs () {
-    cd "$@" && ls
-}
-
-function countdown() {
-  termdown "$1" && osascript -e 'display notification "Stop working." with title "Time is up"'
-}
-
-
-# Various script evals
-# Don't want these aliases from fasd
-eval "$(fasd --init auto)"
-unalias z &>/dev/null
-unalias f &>/dev/null
-unalias sd &>/dev/null
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
-export FZF_DEFAULT_COMMAND='rg --files'
-
-
-expand-aliases() {
-  unset 'functions[_expand-aliases]'
-  functions[_expand-aliases]=$BUFFER
-  (($+functions[_expand-aliases])) &&
-    BUFFER=${functions[_expand-aliases]#$'\t'} &&
-    CURSOR=$#BUFFER
-}
-zle -N expand-aliases; bindkey '^E' expand-aliases
-
-
-#####################
-## ZSH force alias ##
-# (force-alias-server > /dev/null &) > /dev/null 2>&1
-# if [[ -z "$NO_CHECK" ]]; then force-alias-client --init --pid $$; fi
-# function force_alias_hook() {
-  # if [[ -n "$NO_CHECK" ]]; then zle accept-line; return; fi
-  # force-alias-client --pid $$ -- $BUFFER
-  # if [[ $? -eq 1 ]]; then BUFFER=""; fi
-  # zle accept-line
-# }
-# autoload -U add-zsh-hook; zle -N force_alias_hook;
-# bindkey '^J' force_alias_hook; bindkey '^M' force_alias_hook;
-## End ZSH force alias ##
-#########################
-
-preexec() {
-  date=`date +%s`
-  cmd=$1
-  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
-    branch=$(git branch | grep "* " | awk '{print $2}')
-    repo=$(basename `git rev-parse --show-toplevel`)
-  else
-    branch="N/A"
-    repo="N/A"
-  fi
-  echo "$date, `pwd`, $repo, $branch, $1" >> ~/.zsh_history_long
-}
-
-export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
-export PATH="./node_modules/.bin:$PATH"
-
-sonarScannerPath="$HOME/Documents/sonar-scanner/bin"
-export PATH="$PATH:$sonarScannerPath"
-
-# Agnoster theme overrides
-prompt_context() {}
-prompt_dir() {
-  prompt_segment blue black '%1~'
-}
-
-
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-if [ -e "/usr/local/bin/virtualenvwrapper.sh" ]
-then
-  source /usr/local/bin/virtualenvwrapper.sh
-fi
-
-export _FASD_MAX=10000
-
-ulimit -u 2048
-ulimit -n 2048
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$HOME/node_modules:$PATH"
-export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
-
-# source $HOME/.nix-profile/etc/profile.d/nix.sh
-export PATH="$HOME/.nix_profile/bin:$PATH"
-
-alias blender='/Applications/blender.app/Contents/MacOS/blender'
-
-# eval "$(starship init zsh)"
-
-zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
-
-export PATH="$HOME/.pyenv/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
-# eval "$(rbenv init -)"
-
-# Cataline issue with Pillow: https://github.com/python-pillow/Pillow/issues/3438
-if type "xcrun" > /dev/null; then
-  export CPATH=`xcrun --show-sdk-path`/usr/include
-fi
-
-# if type "stack" > /dev/null; then
-  # export PATH=$(stack path --compiler-bin):$PATH
-# fi
-# export CPATH=`xcrun --show-sdk-path`/usr/include
-fpath=($fpath "/home/marcus/.zfunctions")
-export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-
-# export TERM=xterm-256color
-
-NPM_PACKAGES="${HOME}/.npm-packages"
-
-export PATH="$PATH:$NPM_PACKAGES/bin"
-export PATH="$PATH:${HOME}/.ghcup/bin"
-
-# fpath+=$HOME/.zsh/pure
-autoload -U promptinit; promptinit
-eval "$(starship init zsh)"
+export PATH="$HOME/.local/bin:$PATH"
 
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source ~/.secrets.zsh
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/marcus/google-cloud-sdk/path.zsh.inc' ]; then . '/home/marcus/google-cloud-sdk/path.zsh.inc'; fi
+export ADOBE_CONTENT_AUTHENTICITY_CLAIM_TOOL_PATH="packages/adobe-cai-cli/macos"
+export RSVG_CONVERT_PATH=/usr/local/bin
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/marcus/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/marcus/google-cloud-sdk/completion.zsh.inc'; fi
-export PATH=$PATH:$HOME/.linkerd2/bin
-export CG_CLIF=$HOME/Documents/sources/rustc_codegen_cranelift
+pyenv activate opensea
+eval "$(zoxide init zsh)"
 
-# Title, use cwd
-precmd () {print -Pn "\e]0;%~\a"}
-
-complete -F __start_kubectl k
+export PATH="$PATH:/Users/marcusbuffett/.foundry/bin"
 source <(kubectl completion zsh)

@@ -38,20 +38,20 @@ vim.api.nvim_set_keymap("n", "T", "<cmd>only<CR>", {})
 
 require("packer").startup(function(use)
   use({ "kazhala/close-buffers.nvim" })
-  use({ "ggandor/flit.nvim",
-    requires = "ggandor/leap.nvim",
-    config = function()
-      require('flit').setup {
-        -- keys = { f = 'f', F = 'F', t = 't', T = 'T' },
-        -- -- A string like "nv", "nvo", "o", etc.
-        -- labeled_modes = "v",
-        -- multiline = true,
-        -- -- Like `leap`s similar argument (call-specific overrides).
-        -- -- E.g.: opts = { equivalence_classes = {} }
-        -- opts = {}
-      }
-    end,
-  })
+  -- use({ "ggandor/flit.nvim",
+  --   requires = "ggandor/leap.nvim",
+  --   config = function()
+  --     require('flit').setup {
+  --       -- keys = { f = 'f', F = 'F', t = 't', T = 'T' },
+  --       -- -- A string like "nv", "nvo", "o", etc.
+  --       -- labeled_modes = "v",
+  --       -- multiline = true,
+  --       -- -- Like `leap`s similar argument (call-specific overrides).
+  --       -- -- E.g.: opts = { equivalence_classes = {} }
+  --       -- opts = {}
+  --     }
+  --   end,
+  -- })
   use({
     "amarakon/nvim-cmp-buffer-lines",
     config = function()
@@ -419,6 +419,7 @@ require("packer").startup(function(use)
         capabilities = capabilities
       }
       lspconfig.rust_analyzer.setup(opts)
+      lspconfig.relay_lsp.setup(opts)
       lspconfig.sumneko_lua.setup(opts)
       lspconfig.pyright.setup(opts)
       lspconfig.tsserver.setup {
@@ -521,8 +522,8 @@ require("packer").startup(function(use)
     config = function()
       require("project_nvim").setup({
         patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "Cargo.toml" },
-        -- silent_chdir = false,
-        ignore_lsp = { "null-ls" },
+        silent_chdir = false,
+        ignore_lsp = { "null-ls", "tsserver" },
         manual_mode = false,
       })
     end,
@@ -752,7 +753,12 @@ require("packer").startup(function(use)
         sources = {
           -- require("null-ls").builtins.formatting.stylua,
           require("null-ls").builtins.formatting.fixjson,
-          require("null-ls").builtins.formatting.prettier,
+          -- require("null-ls").builtins.formatting.prettier,
+          -- require("null-ls").builtins.formatting.black,
+          require("null-ls").builtins.formatting.isort,
+          require("null-ls").builtins.formatting.eslint_d.with({
+            -- extra_args = { "--fix" },
+          }),
           -- require("null-ls").builtins.diagnostics.sqlfluff.with({
           --   extra_args = { "--dialect", "postgres" }, -- change to your dialect
           -- }),
@@ -760,18 +766,23 @@ require("packer").startup(function(use)
           -- require("null-ls").builtins.diagnostics.eslint,
           -- require("null-ls").builtins.completion.spell,
         },
-        on_attach = function(client)
-          print("In the on_attach thing for this client")
-          print(vim.inspect(client.server_capabilities))
-          if client.server_capabilities.documentFormattingProvider then
-            print("Yup can format")
-            vim.cmd([[
-							    augroup LspFormatting
-	                autocmd! * <buffer>
-	                autocmd BufWritePre <buffer> lua vim.lsp.buf.format { async = false }
-							    augroup END
-						    ]] )
+        debug = true,
+        on_attach = function(client, bufnr)
+          -- print("In the on_attach thing for this client")
+          -- print(vim.inspect(client.server_capabilities))
+          if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = augroup,
+              buffer = bufnr,
+              callback = function()
+                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                -- vim.lsp.buf.formatting_sync()
+                vim.lsp.buf.format({ bufnr = bufnr })
+              end,
+            })
           end
+
         end,
       })
     end,
@@ -1087,6 +1098,7 @@ wk.register({
     c = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
     y = { ":Telescope neoclip<CR>", "Neoclip" },
     s = { ":ScribeOpen<CR>", "Scribe" },
+    j = { ":ScribeOpen journal.md<CR>", "Scribe Journal" },
     -- s = { ":AerialOpen<CR>", "Symbols" },
   },
   h = { "ino!", "Clear highlights" },
