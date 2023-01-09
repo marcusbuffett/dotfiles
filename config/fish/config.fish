@@ -1,7 +1,6 @@
 set -g EDITOR nvim
 set -g PATH $HOME/.cargo/bin $PATH
 set -g AWS_KEYPAIR_NAME Marcus
-set -g OPENAI_API_KEY "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"
 set -g NPM_HOME "$HOME/.npm/"
 set -g PQ_LIB_DIR "$(brew --prefix libpq)/lib"
 
