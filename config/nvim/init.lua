@@ -20,7 +20,7 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({
+require("lazy").setup {
 
   { "kazhala/close-buffers.nvim" },
   {
@@ -47,7 +47,12 @@ require("lazy").setup({
         -- multiline = true,
         -- -- Like `leap`s similar argument (call-specific overrides).
         -- -- E.g.: opts = { equivalence_classes = {} }
-        -- opts = {}
+        opts = {
+
+          -- case_insensitive = true,
+          safe_labels = {},
+          labels = { "d", "s", "t", "n", "e", "a", "i" },
+        }
       }
     end,
   },
@@ -62,15 +67,21 @@ require("lazy").setup({
       require 'window-picker'.setup()
     end,
   },
-  {
-    "navarasu/onedark.nvim",
+  { "EdenEast/nightfox.nvim",
     config = function()
-      require('onedark').setup {
-        style = 'warmer'
-      }
-      require('onedark').load()
-    end,
-  },
+      vim.cmd("colorscheme nightfox")
+
+    end },
+
+  -- {
+  --   "navarasu/onedark.nvim",
+  --   config = function()
+  --     require('onedark').setup {
+  --       style = 'warmer'
+  --     }
+  --     require('onedark').load()
+  --   end,
+  -- },
   { 'Ostralyan/scribe.nvim', config = function()
     require("scribe").setup({})
   end
@@ -195,9 +206,9 @@ require("lazy").setup({
         mode = "x"
       })
       require('leap').setup {
-        case_insensitive = true,
-        safe_labels = nil,
-        labels = nil,
+        -- case_insensitive = true,
+        safe_labels = {},
+        labels = { "d", "s", "t", "n", "e", "a", "i" },
         special_keys = {
           repeat_search = '<enter>',
           next_target   = '<enter>',
@@ -213,38 +224,33 @@ require("lazy").setup({
     end
   },
   {
-    "ggandor/lightspeed.nvim",
-    config = function()
-      vim.cmd([[
-         nmap s <Plug>Lightspeed_omni_s
-       ]])
-      require("lightspeed").setup({
-        ignore_case = true,
-        jump_to_unique_chars = false,
-        safe_labels = {},
-      })
-    end,
-    event = "BufRead",
-  },
-  {
     "monaqa/dial.nvim",
     event = "BufRead",
     config = function()
     end,
   },
+  { "ethanholz/nvim-lastplace", config = function()
+    require 'nvim-lastplace'.setup {}
+
+  end },
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
   {
     "tpope/vim-surround",
     keys = { "c", "d", "y" },
   },
+  -- { "sunjon/shade.nvim", config = function()
+  --   require 'shade'.setup({
+  --     overlay_opacity = 50,
+  --     opacity_step = 1,
+  --     keys = {
+  --       brightness_up   = '<C-Up>',
+  --       brightness_down = '<C-Down>',
+  --       -- toggle          = '<Leader>s',
+  --     }
+  --   })
+  --
+  -- end },
 
-  {
-    "phaazon/mind.nvim",
-    config = function()
-      require("mind").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
-  },
   {
     "kylechui/nvim-surround",
     config = function()
@@ -272,12 +278,12 @@ require("lazy").setup({
       })
     end,
   },
-  { "anuvyklack/windows.nvim",
-    dependencies = "anuvyklack/middleclass",
-    config = function()
-      require('windows').setup()
-    end
-  },
+  -- { "anuvyklack/windows.nvim",
+  --   dependencies = "anuvyklack/middleclass",
+  --   config = function()
+  --     require('windows').setup()
+  --   end
+  -- },
   { "stefandtw/quickfix-reflector.vim" },
   {
     "windwp/nvim-spectre",
@@ -295,12 +301,12 @@ require("lazy").setup({
     end,
   },
   { "akinsho/toggleterm.nvim" },
-  {
-    "glepnir/dashboard-nvim",
-    config = function()
-      vim.g.dashboard_default_executive = "telescope"
-    end,
-  },
+  -- {
+  --   "glepnir/dashboard-nvim",
+  --   config = function()
+  --     vim.g.dashboard_default_executive = "telescope"
+  --   end,
+  -- },
   {
     "folke/which-key.nvim",
     config = function()
@@ -374,11 +380,11 @@ require("lazy").setup({
           if client.server_capabilities.documentFormattingProvider then
             -- print("Yup it can format!")
             vim.cmd([[
-             augroup LspFormatting
-             autocmd! * <buffer>
-             autocmd BufWritePre <buffer> lua vim.lsp.buf.format { async = false }
-             augroup END
-             ]])
+                                  augroup LspFormatting
+                                  autocmd! * <buffer>
+                                  autocmd BufWritePre <buffer> lua vim.lsp.buf.format { async = false }
+                                  augroup END
+                                  ]])
           end
         end,
         capabilities = capabilities
@@ -424,6 +430,25 @@ require("lazy").setup({
       }
     end
   },
+  { "https://gitlab.com/yorickpeterse/nvim-window.git", config = function()
+    require('nvim-window').setup({
+      -- The characters available for hinting windows.
+      chars = { "s", "t", "n", "e", "a", "i" },
+
+      -- A group to use for overwriting the Normal highlight group in the floating
+      -- window. This can be used to change the background color.
+      normal_hl = 'Normal',
+
+      -- The highlight group to apply to the line that contains the hint characters.
+      -- This is used to make them stand out more.
+      hint_hl = 'Bold',
+
+      -- The border style to use for the floating window.
+      border = 'single'
+    })
+
+
+  end },
   {
     "nvim-treesitter/nvim-treesitter",
     run = ':TSUpdate',
@@ -438,6 +463,10 @@ require("lazy").setup({
             return true
           end
         end,
+
+        context_commentstring = {
+          enable = true
+        },
 
         highlight = {
           enable = true,
@@ -533,6 +562,74 @@ require("lazy").setup({
       require("nvim_comment").setup()
     end,
   },
+  { "beauwilliams/focus.nvim", config = function() require("focus").setup() end },
+  { "nanozuki/tabby.nvim", config = function()
+    vim.api.nvim_set_keymap("n", "<leader>ta", ":$tabnew<CR>", { noremap = true })
+    vim.api.nvim_set_keymap("n", "<leader>tc", ":tabclose<CR>", { noremap = true })
+    vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { noremap = true })
+    vim.api.nvim_set_keymap("n", "<leader>tn", ":tabn<CR>", { noremap = true })
+    vim.api.nvim_set_keymap("n", "<leader>tp", ":tabp<CR>", { noremap = true })
+    -- move current tab to previous position
+    vim.api.nvim_set_keymap("n", "<leader>tmp", ":-tabmove<CR>", { noremap = true })
+    -- move current tab to next position
+    vim.api.nvim_set_keymap("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
+    local theme = {
+      fill = 'TabLineFill',
+      -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
+      head = 'TabLine',
+      current_tab = 'TabLineSel',
+      tab = 'TabLine',
+      win = 'TabLine',
+      tail = 'TabLine',
+    }
+    require('tabby.tabline').set(function(line)
+      return {
+        {
+          { '  ', hl = theme.head },
+          line.sep('', theme.head, theme.fill),
+        },
+        line.tabs().foreach(function(tab)
+          local hl = tab.is_current() and theme.current_tab or theme.tab
+          return {
+            line.sep('', hl, theme.fill),
+            tab.is_current() and '' or '',
+            tab.number(),
+            tab.name(),
+            tab.close_btn(''),
+            line.sep('', hl, theme.fill),
+            hl = hl,
+            margin = ' ',
+          }
+        end),
+        line.spacer(),
+        line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
+          return {
+            line.sep('', theme.win, theme.fill),
+            win.is_current() and '' or '',
+            win.buf_name(),
+            line.sep('', theme.win, theme.fill),
+            hl = theme.win,
+            margin = ' ',
+          }
+        end),
+        {
+          line.sep('', theme.tail, theme.fill),
+          { '  ', hl = theme.tail },
+        },
+        hl = theme.fill,
+      }
+    end)
+
+  end },
+  {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      }
+    end
+  },
   {
     "kyazdani42/nvim-tree.lua",
     config = function()
@@ -547,11 +644,19 @@ require("lazy").setup({
     config = function()
       require("project_nvim").setup({
         patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "Cargo.toml" },
-        silent_chdir = false,
+        -- silent_chdir = false,
         ignore_lsp = { "null-ls", "tsserver" },
         manual_mode = false,
       })
     end,
+  },
+  {
+    'nvim-telescope/telescope-ui-select.nvim',
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("telescope").load_extension("ui-select")
+
+    end
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -561,6 +666,12 @@ require("lazy").setup({
 
       require("telescope").setup({
         extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+              -- more options
+            },
+          },
+
           lsp_handlers = {
             disable = {},
             location = {
@@ -792,6 +903,7 @@ require("lazy").setup({
       })
     end,
   },
+  { "stevearc/dressing.nvim" },
 
   -- TODO: neotest
   {
@@ -811,8 +923,48 @@ require("lazy").setup({
       require("debugprint").setup()
     end,
   },
+  {
+    'phaazon/mind.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require 'mind'.setup {
+        persistence = {
+          state_path = '~/mind/mind.json',
+          data_dir = '~/mind/data',
+        },
 
-})
+        ui = {
+          width = 40,
+
+          highlight = {
+            node_root = 'Number',
+          }
+        },
+
+        keymaps = {
+          normal = {
+            T = function(args)
+              require 'mind.ui'.with_cursor(function(line)
+                local tree = args.get_tree()
+                local node = require 'mind.node'.get_node_by_line(tree, line)
+
+                if node.icon == nil or node.icon == ' ' then
+                  node.icon = ' '
+                elseif node.icon == ' ' then
+                  node.icon = ' '
+                end
+
+                args.save_tree()
+                require 'mind.ui'.rerender(tree, args.opts)
+              end)
+            end,
+          }
+        }
+      }
+    end,
+  }
+
+}
 
 
 
@@ -1085,10 +1237,78 @@ wk.register({
     c = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
     y = { ":Telescope neoclip<CR>", "Neoclip" },
     s = { ":ScribeOpen<CR>", "Scribe" },
-    j = { ":ScribeOpen journal.md<CR>", "Scribe Journal" },
+    -- j = { ":ScribeOpen journal.md<CR>", "Scribe Journal" },
+    -- z = {
+    --   function()
+    --     require 'mind'.wrap_smart_project_tree_fn(function(args)
+    --       require 'mind.commands'.create_node_index(
+    --         args.get_tree(),
+    --         require 'mind.node'.MoveDir.INSIDE_END,
+    --         args.save_tree,
+    --         args.opts
+    --       )
+    --     end)
+    --   end
+    -- },
+    x = {
+      function()
+        require 'mind'.wrap_main_tree_fn(function(args)
+          require 'mind.commands'.create_node_index(
+            args.get_tree(),
+            require 'mind.node'.MoveDir.INSIDE_END,
+            args.save_tree,
+            args.opts
+          )
+        end)
+      end, "Create node index"
+    },
+    d = {
+      function()
+        require 'mind'.wrap_main_tree_fn(function(args)
+          require 'mind.commands'.commands.open_data_index(args)
+        end)
+      end, "search mind notes"
+    },
+    f = {
+      function()
+        require 'mind'.wrap_main_tree_fn(function(args)
+          require 'mind.commands'.open_data_index(args.get_tree(), args.data_dir, args.save_tree, args.opts)
+        end)
+      end, "search mind"
+    },
+
+    j = {
+      function()
+        require 'mind'.wrap_main_tree_fn(function(args)
+          local tree = args.get_tree()
+          local path = vim.fn.strftime('/Journal/%Y/%b/%b %d')
+          local _, node = require 'mind.node'.get_node_by_path(tree, path, true)
+
+          if node == nil then
+            vim.notify('cannot open journal 🙁', vim.log.levels.WARN)
+            return
+          end
+
+          require 'mind.commands'.open_data(tree, node, args.data_dir, args.save_tree, args.opts)
+          args.save_tree()
+        end)
+      end,
+      "journal"
+    },
+    m = {
+      ':MindOpenMain<CR>', "Mind main"
+    },
+    -- M = {
+    --   function()
+    --     require 'mind'.wrap_main_tree_fn(function(args)
+    --       require 'mind.commands'.open_data_index(args.get_tree(), args.data_dir, args.save_tree, args.opts)
+    --     end)
+    --   end
+    -- },
     -- s = { ":AerialOpen<CR>", "Symbols" },
   },
   h = { "ino!", "Clear highlights" },
+  d = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
   s = {
     name = "Searching",
     e = { "<cmd>Telescope find_files<cr>", "Find File" },
@@ -1098,8 +1318,8 @@ wk.register({
       ":Telescope current_buffer_fuzzy_find<CR>",
       "Fuzzy in buffer",
     },
-    r = { "<cmd>Mru<cr>", "MRU Files, Current Repo" },
-    p = { "<cmd>MruRepo<cr>", "MRU Repos" },
+    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    p = { "<cmd>Telescope projects<CR>", "Projects" },
     -- p = { "<cmd>Telescope projects<CR>", "Projects" },
     a = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Symbols" },
     d = {
@@ -1116,7 +1336,7 @@ wk.register({
 
     p = { ":Git push<CR>", "Fugitive push" },
     d = { "<cmd>Gvdiffsplit<CR>", "diffview" },
-    a = { "<cmd>Diffview<CR>", "Diffview" },
+    a = { "<cmd>Diffview<CR>", "DiffviewOpen" },
   },
   z = {
     "<cmd>HopLineStart<CR>",
@@ -1124,11 +1344,11 @@ wk.register({
   },
   n = { "<cmd>w<CR>:noh<CR>", "Save" },
   -- q = { "<cmd>q<CR>", "quit" },
-  t = {
-    e = { ":UltestNearest<CR>", "Run nearest test" },
-    u = { ":UltestSummary<CR>", "Open summary of test results" },
-    a = { ":UltestClear<CR>", "Clear test results" },
-  },
+  -- t = {
+  --   e = { ":UltestNearest<CR>", "Run nearest test" },
+  --   u = { ":UltestSummary<CR>", "Open summary of test results" },
+  --   a = { ":UltestClear<CR>", "Clear test results" },
+  -- },
   l = {
     -- t = { ":call v:lua.toggle_diagnostics()<CR>", "Toggle virtualtext" },
     j = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
