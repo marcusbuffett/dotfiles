@@ -341,20 +341,20 @@ require("lazy").setup {
           end, { expr = true })
 
           -- Actions
-          map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-          map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-          map('n', '<leader>hS', gs.stage_buffer)
-          map('n', '<leader>hu', gs.undo_stage_hunk)
-          map('n', '<leader>hR', gs.reset_buffer)
-          map('n', '<leader>hp', gs.preview_hunk)
-          map('n', '<leader>hb', function() gs.blame_line { full = true } end)
-          map('n', '<leader>tb', gs.toggle_current_line_blame)
-          map('n', '<leader>hd', gs.diffthis)
-          map('n', '<leader>hD', function() gs.diffthis('~') end)
-          map('n', '<leader>td', gs.toggle_deleted)
+          -- map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
+          -- map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+          -- map('n', '<leader>hS', gs.stage_buffer)
+          -- map('n', '<leader>hu', gs.undo_stage_hunk)
+          -- map('n', '<leader>hR', gs.reset_buffer)
+          -- map('n', '<leader>hp', gs.preview_hunk)
+          -- map('n', '<leader>hb', function() gs.blame_line { full = true } end)
+          -- map('n', '<leader>tb', gs.toggle_current_line_blame)
+          -- map('n', '<leader>hd', gs.diffthis)
+          -- map('n', '<leader>hD', function() gs.diffthis('~') end)
+          -- map('n', '<leader>td', gs.toggle_deleted)
 
           -- Text object
-          map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+          -- map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
         end
       })
     end,
@@ -564,11 +564,6 @@ require("lazy").setup {
   },
   { "beauwilliams/focus.nvim", config = function() require("focus").setup() end },
   { "nanozuki/tabby.nvim", config = function()
-    vim.api.nvim_set_keymap("n", "<leader>ta", ":$tabnew<CR>", { noremap = true })
-    vim.api.nvim_set_keymap("n", "<leader>tc", ":tabclose<CR>", { noremap = true })
-    vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { noremap = true })
-    vim.api.nvim_set_keymap("n", "<leader>tn", ":tabn<CR>", { noremap = true })
-    vim.api.nvim_set_keymap("n", "<leader>tp", ":tabp<CR>", { noremap = true })
     -- move current tab to previous position
     vim.api.nvim_set_keymap("n", "<leader>tmp", ":-tabmove<CR>", { noremap = true })
     -- move current tab to next position
@@ -764,7 +759,7 @@ require("lazy").setup {
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         sources = cmp.config.sources({
           { name = "copilot" },
@@ -829,7 +824,7 @@ require("lazy").setup {
           -- require("null-ls").builtins.formatting.stylua,
           require("null-ls").builtins.formatting.fixjson,
           require("null-ls").builtins.formatting.prettier,
-          -- require("null-ls").builtins.formatting.black,
+          require("null-ls").builtins.formatting.black,
           require("null-ls").builtins.formatting.isort,
           require("null-ls").builtins.formatting.eslint_d.with({
             -- extra_args = { "--fix" },
@@ -997,7 +992,30 @@ require("lazy").setup {
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
     }
+  },
+  {
+    "danielfalk/smart-open.nvim",
+    -- branch = "0.1.x",
+    config = function()
+      require "telescope".load_extension("smart_open")
+    end,
+    dependencies = { "kkharji/sqlite.lua" }
+  },
+  -- {
+  --   "nvim-zh/colorful-winsep.nvim",
+  --   config = function()
+  --     require('colorful-winsep').setup()
+  --   end
+  -- },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    }
   }
+
 
 }
 
@@ -1268,164 +1286,299 @@ local add_snippets = function()
 end
 
 add_snippets()
---
 local wk = require("which-key")
-wk.register({
-  m = {
-    name = "+file",
-    n = { ":NvimTreeFindFileToggle<CR>", "Nvim tree" },
-    a = { ":ChatGPT<CR>", "ChatGPT" },
-    i = { "<Esc>:ChatGPTEditWithInstructions<CR>", "ChatGPT w/ last selection" },
-    e = { require("react-extract").extract_to_current_file, "Extract to current file" },
-    c = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
-    y = { ":Telescope neoclip<CR>", "Neoclip" },
-    s = { ":ScribeOpen<CR>", "Scribe" },
-    -- j = { ":ScribeOpen journal.md<CR>", "Scribe Journal" },
-    -- z = {
-    --   function()
-    --     require 'mind'.wrap_smart_project_tree_fn(function(args)
-    --       require 'mind.commands'.create_node_index(
-    --         args.get_tree(),
-    --         require 'mind.node'.MoveDir.INSIDE_END,
-    --         args.save_tree,
-    --         args.opts
-    --       )
-    --     end)
-    --   end
-    -- },
-    x = {
-      function()
-        require 'mind'.wrap_main_tree_fn(function(args)
-          require 'mind.commands'.create_node_index(
-            args.get_tree(),
-            require 'mind.node'.MoveDir.INSIDE_END,
-            args.save_tree,
-            args.opts
-          )
-        end)
-      end, "Create node index"
+
+local new_mappings = true
+if new_mappings then
+  wk.register({
+    i = {
+      r = { "<Esc>:ChatGPTEditWithInstructions<CR>", "ChatGPT w/ last selection" },
+    },
+  }, { prefix = "<leader>", mode = "v" })
+
+  wk.register({
+    s = {
+      name = "search",
+      a = { "<cmd>Telescope find_files<cr>", "Find File" },
+      n = { "<cmd>Rg<CR>", "Fuzzy search" },
+      d = { "<cmd>Easypick changed_files<CR>", "Search changed files" },
+      t = {
+        ":Telescope current_buffer_fuzzy_find<CR>",
+        "Fuzzy in buffer",
+      },
+      r = { "<cmd>Telescope smart_open<cr>", "Open Recent File" },
+      i = { "<cmd>Telescope projects<CR>", "Projects" },
+      e = {
+        function()
+          require 'mind'.wrap_main_tree_fn(function(args)
+            require 'mind.commands'.commands.open_data_index(args)
+          end)
+        end, "search mind notes"
+      },
     },
     d = {
-      function()
-        require 'mind'.wrap_main_tree_fn(function(args)
-          require 'mind.commands'.commands.open_data_index(args)
-        end)
-      end, "search mind notes"
-    },
-    f = {
-      function()
-        require 'mind'.wrap_main_tree_fn(function(args)
-          require 'mind.commands'.open_data_index(args.get_tree(), args.data_dir, args.save_tree, args.opts)
-        end)
-      end, "search mind"
-    },
 
-    j = {
-      function()
-        require 'mind'.wrap_main_tree_fn(function(args)
-          local tree = args.get_tree()
-          local path = vim.fn.strftime('/Journal/%Y/%b/%b %d')
-          local _, node = require 'mind.node'.get_node_by_path(tree, path, true)
+      name = "Git",
+      t = { ":Git commit<CR>", "Fugitive commit" },
+      s = { ":DiffviewOpen<CR>", "Diffview" },
 
-          if node == nil then
-            vim.notify('cannot open journal 🙁', vim.log.levels.WARN)
-            return
-          end
-
-          require 'mind.commands'.open_data(tree, node, args.data_dir, args.save_tree, args.opts)
-          args.save_tree()
-        end)
-      end,
-      "journal"
+      a = { ":Git push<CR>", "Fugitive push" },
+      n = { "<cmd>Gvdiffsplit<CR>", "diffview" },
+      i = { "<cmd>DiffviewFileHistory %<CR>", "File history" },
+      r = { function() require("gitsigns").blame_line { full = true } end, "Blame line" },
+      e = { function() require("gitsigns").toggle_deleted() end, "Toggle deleted lines" },
+      -- u = { "<cmd>Diffview<CR>", "DiffviewOpen" },
     },
+    n = {
+      name = "Navigation",
+      r = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
+      s = { ":tabn<CR>", "Next tab" },
+      t = { ":$tabnew<CR>", "New tab" },
+      d = { "<cmd>only<CR>", "Close all others" },
+      e = { "<cmd>q<CR>", "Close window" },
+      a = { "<C-w>v", "Split vertically" },
+      i = { "<C-w>s", "Split horizontally" },
+
+
+    },
+    t = {
+      name = "lsp",
+      r = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
+      s = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
+      d = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+      h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+      e = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+      i = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition" },
+      a = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+    },
+    r = {
+      name = "Misc / High Freq",
+      a = { ":CodeActionMenu<CR>", "Code action" },
+      e = { ":Telescope neoclip<CR>", "Neoclip" },
+      n = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" },
+      i = {
+        "<cmd>HopLineStart<CR>",
+        "Hop line",
+      },
+    },
+    a = {
+      name = "Misc / Low Freq",
+      e = { ":Telescope diagnostics<CR>", "Diagnostics" },
+      t = { ":Telescope<CR>", "Just Telescope" },
+      a = { ":Telescope keymaps<CR>", "Telescope Keymaps <Spacr>" },
+    },
+    i = {
+      name = "Openers",
+      e = {
+        function()
+          require 'mind'.wrap_main_tree_fn(function(args)
+            require 'mind.commands'.create_node_index(
+              args.get_tree(),
+              require 'mind.node'.MoveDir.INSIDE_END,
+              args.save_tree,
+              args.opts
+            )
+          end)
+        end, "Create Mind Node"
+      },
+      d = {
+        function()
+          require 'mind'.wrap_main_tree_fn(function(args)
+            local tree = args.get_tree()
+            local path = vim.fn.strftime('/Journal/%Y/%b/%b %d')
+            local _, node = require 'mind.node'.get_node_by_path(tree, path, true)
+
+            if node == nil then
+              vim.notify('cannot open journal 🙁', vim.log.levels.WARN)
+              return
+            end
+
+            require 'mind.commands'.open_data(tree, node, args.data_dir, args.save_tree, args.opts)
+            args.save_tree()
+          end)
+        end,
+        "Mind Journal"
+      },
+      n = {
+        ':MindOpenMain<CR>', "Mind main"
+      },
+      s = { ":Neotree filesystem reveal<CR>", "Nvim toggle" },
+      a = { function()
+        require("spectre").open()
+      end, "Spectre" },
+      r = { ":ChatGPT<CR>", "ChatGPT" },
+      t = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
+    }
+  }, { prefix = "<leader>" })
+
+else
+  wk.register({
     m = {
-      ':MindOpenMain<CR>', "Mind main"
+      name = "+file",
+      n = { ":Neotree filesystem reveal<CR>", "Nvim tree" },
+      a = { ":ChatGPT<CR>", "ChatGPT" },
+      i = { "<Esc>:ChatGPTEditWithInstructions<CR>", "ChatGPT w/ last selection" },
+      e = { require("react-extract").extract_to_current_file, "Extract to current file" },
+      c = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
+      y = { ":Telescope neoclip<CR>", "Neoclip" },
+      s = { ":ScribeOpen<CR>", "Scribe" },
+      -- j = { ":ScribeOpen journal.md<CR>", "Scribe Journal" },
+      -- z = {
+      --   function()
+      --     require 'mind'.wrap_smart_project_tree_fn(function(args)
+      --       require 'mind.commands'.create_node_index(
+      --         args.get_tree(),
+      --         require 'mind.node'.MoveDir.INSIDE_END,
+      --         args.save_tree,
+      --         args.opts
+      --       )
+      --     end)
+      --   end
+      -- },
+      x = {
+        function()
+          require 'mind'.wrap_main_tree_fn(function(args)
+            require 'mind.commands'.create_node_index(
+              args.get_tree(),
+              require 'mind.node'.MoveDir.INSIDE_END,
+              args.save_tree,
+              args.opts
+            )
+          end)
+        end, "Create node index"
+      },
+      d = {
+        function()
+          require 'mind'.wrap_main_tree_fn(function(args)
+            require 'mind.commands'.commands.open_data_index(args)
+          end)
+        end, "search mind notes"
+      },
+      f = {
+        function()
+          require 'mind'.wrap_main_tree_fn(function(args)
+            require 'mind.commands'.open_data_index(args.get_tree(), args.data_dir, args.save_tree, args.opts)
+          end)
+        end, "search mind"
+      },
+
+      j = {
+        function()
+          require 'mind'.wrap_main_tree_fn(function(args)
+            local tree = args.get_tree()
+            local path = vim.fn.strftime('/Journal/%Y/%b/%b %d')
+            local _, node = require 'mind.node'.get_node_by_path(tree, path, true)
+
+            if node == nil then
+              vim.notify('cannot open journal 🙁', vim.log.levels.WARN)
+              return
+            end
+
+            require 'mind.commands'.open_data(tree, node, args.data_dir, args.save_tree, args.opts)
+            args.save_tree()
+          end)
+        end,
+        "journal"
+      },
+      m = {
+        ':MindOpenMain<CR>', "Mind main"
+      },
+      -- M = {
+      --   function()
+      --     require 'mind'.wrap_main_tree_fn(function(args)
+      --       require 'mind.commands'.open_data_index(args.get_tree(), args.data_dir, args.save_tree, args.opts)
+      --     end)
+      --   end
+      -- },
+      -- s = { ":AerialOpen<CR>", "Symbols" },
     },
-    -- M = {
-    --   function()
-    --     require 'mind'.wrap_main_tree_fn(function(args)
-    --       require 'mind.commands'.open_data_index(args.get_tree(), args.data_dir, args.save_tree, args.opts)
-    --     end)
-    --   end
+    h = { "ino!", "Clear highlights" },
+    d = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
+    s = {
+      name = "Searching",
+      e = { "<cmd>Telescope find_files<cr>", "Find File" },
+      g = { "<cmd>Rg<CR>", "Fuzzy search" },
+      c = { "<cmd>Easypick changed_files<CR>", "Search changed files" },
+      o = {
+        ":Telescope current_buffer_fuzzy_find<CR>",
+        "Fuzzy in buffer",
+      },
+      r = { "<cmd>Telescope smart_open<cr>", "Open Recent File" },
+      p = { "<cmd>Telescope projects<CR>", "Projects" },
+      -- p = { "<cmd>Telescope projects<CR>", "Projects" },
+      a = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Symbols" },
+      d = {
+        function()
+          require("dash").search()
+        end,
+        "Search dash app",
+      },
+    },
+    g = {
+      name = "Git",
+      c = { ":Git commit<CR>", "Fugitive commit" },
+      s = { ":Git<CR>", "Fugitive status" },
+
+      p = { ":Git push<CR>", "Fugitive push" },
+      d = { "<cmd>Gvdiffsplit<CR>", "diffview" },
+      a = { "<cmd>Diffview<CR>", "DiffviewOpen -uno" },
+    },
+    z = {
+      "<cmd>HopLineStart<CR>",
+      "Hop line",
+    },
+    n = { "<cmd>w<CR>:noh<CR>", "Save" },
+    -- q = { "<cmd>q<CR>", "quit" },
+    -- t = {
+    --   e = { ":UltestNearest<CR>", "Run nearest test" },
+    --   u = { ":UltestSummary<CR>", "Open summary of test results" },
+    --   a = { ":UltestClear<CR>", "Clear test results" },
     -- },
-    -- s = { ":AerialOpen<CR>", "Symbols" },
-    -- n
-  },
-  h = { "ino!", "Clear highlights" },
-  d = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
-  s = {
-    name = "Searching",
-    e = { "<cmd>Telescope find_files<cr>", "Find File" },
-    g = { "<cmd>Rg<CR>", "Fuzzy search" },
-    c = { "<cmd>Easypick changed_files<CR>", "Search changed files" },
-    o = {
-      ":Telescope current_buffer_fuzzy_find<CR>",
-      "Fuzzy in buffer",
+    l = {
+      -- t = { ":call v:lua.toggle_diagnostics()<CR>", "Toggle virtualtext" },
+      j = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
+      k = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
+      n = { "<cmd>lua vim.diagnostic.goto_next({})<CR>", "Next diagnostic - any" },
+      p = { "<cmd>lua vim.diagnostic.goto_prev({})<CR>", "Prev diagnostic - any" },
+      d = { ":Telescope diagnostics<CR>", "Telescope diagnostics" },
+      r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
     },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-    p = { "<cmd>Telescope projects<CR>", "Projects" },
-    -- p = { "<cmd>Telescope projects<CR>", "Projects" },
-    a = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Symbols" },
-    d = {
-      function()
-        require("dash").search()
-      end,
-      "Search dash app",
+    e = { ":CodeActionMenu<CR>", "Code action" },
+  }, { prefix = "<leader>" })
+
+  wk.register({
+    m = {
+      i = { "<Esc>:ChatGPTEditWithInstructions<CR>", "ChatGPT w/ last selection" },
     },
-  },
-  g = {
-    name = "Git",
-    c = { ":Git commit<CR>", "Fugitive commit" },
-    s = { ":Git<CR>", "Fugitive status" },
+  }, { prefix = "<leader>", mode = "v" })
 
-    p = { ":Git push<CR>", "Fugitive push" },
-    d = { "<cmd>Gvdiffsplit<CR>", "diffview" },
-    a = { "<cmd>Diffview<CR>", "DiffviewOpen" },
-  },
-  z = {
-    "<cmd>HopLineStart<CR>",
-    "Hop line",
-  },
-  n = { "<cmd>silent w<CR>:noh<CR>", "Save" },
-  -- q = { "<cmd>q<CR>", "quit" },
-  -- t = {
-  --   e = { ":UltestNearest<CR>", "Run nearest test" },
-  --   u = { ":UltestSummary<CR>", "Open summary of test results" },
-  --   a = { ":UltestClear<CR>", "Clear test results" },
-  -- },
-  l = {
-    -- t = { ":call v:lua.toggle_diagnostics()<CR>", "Toggle virtualtext" },
-    j = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
-    k = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
-    n = { "<cmd>lua vim.diagnostic.goto_next({})<CR>", "Next diagnostic - any" },
-    p = { "<cmd>lua vim.diagnostic.goto_prev({})<CR>", "Prev diagnostic - any" },
-    d = { ":Telescope diagnostics<CR>", "Telescope diagnostics" },
-    r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-  },
-  e = { ":CodeActionMenu<CR>", "Code action" },
-}, { prefix = "<leader>" })
+  wk.register({
+    m = {
+      e = { require("react-extract").extract_to_current_file, "Extract to current file" },
+    }
+  }, { prefix = "<leader>", mode = "v" })
 
-wk.register({
-  m = {
-    i = { "<Esc>:ChatGPTEditWithInstructions<CR>", "ChatGPT w/ last selection" },
-  },
-}, { prefix = "<leader>", mode = "v" })
+  wk.register({
+    g = {
+      d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
+      D = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
+      r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+    },
+    K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+    ["<C-q>"] = { ":call QuickFixToggle()<CR>", "QF toggle" },
+  }, {})
+
+end
 
 wk.register({
   m = {
     e = { require("react-extract").extract_to_current_file, "Extract to current file" },
+  },
+  r = {
+
+    d = { "\"+y", "Yank to system clioard" },
   }
 }, { prefix = "<leader>", mode = "v" })
-
-wk.register({
-  g = {
-    d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
-    D = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
-    r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
-  },
-  K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
-  ["<C-q>"] = { ":call QuickFixToggle()<CR>", "QF toggle" },
-}, {})
 
 wk.register({
   ["<leader>"] = {
@@ -1435,44 +1588,3 @@ wk.register({
     },
   },
 }, { mode = "x" })
-
-
-
-
-
-
-
-
-
-
-
--- require("lspconfig").rust_analyzer.setup({})
--- require("lspconfig").tsserver.setup()
-
--- vim.g.diagnostics_active = true
--- function _G.toggle_diagnostics()
---   if vim.g.diagnostics_active then
---     vim.g.diagnostics_active = false
---     vim.cmd([[LspRestart]])
---     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
---       virtual_text = true,
---       signs = true,
---       underline = true,
---       update_in_insert = false,
---     })
---   else
---     vim.g.diagnostics_active = true
---     vim.cmd([[LspRestart]])
---     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
---       virtual_text = false,
---       signs = true,
---       underline = true,
---       update_in_insert = false,
---     })
---   end
--- end
-
-
--- vim.cmd([[highlight LightspeedShortcut guibg=NONE guifg=#FF2F87 gui=NONE]])
--- vim.cmd([[highlight LightspeedLabel guibg=NONE guifg=#FF2F87 gui=NONE]])
--- vim.cmd([[highlight LightspeedLabelOverlapped guibg=NONE guifg=#FF2F87 gui=NONE]])
