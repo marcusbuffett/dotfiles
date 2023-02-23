@@ -61,17 +61,44 @@ require("lazy").setup {
     config = function()
     end,
   },
-  {
-    's1n7ax/nvim-window-picker',
-    config = function()
-      require 'window-picker'.setup()
-    end,
-  },
-  { "EdenEast/nightfox.nvim",
-    config = function()
-      vim.cmd("colorscheme nightfox")
+  { "catppuccin/nvim", name = "catppuccin", config = function()
+    require("catppuccin").setup({
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
+      dim_inactive = {
+        enabled = true,
+        shade = "dark",
+        percentage = 0.25,
+      },
+      integrations = {
+        cmp = true,
+        dashboard = true,
+        gitsigns = true,
+        hop = true,
+        leap = true,
+        lsp_trouble = true,
+        markdown = true,
+        noice = true,
+        notify = true,
+        nvimtree = true,
+        telescope = true,
+        treesitter = true,
+        treesitter_context = true,
+        ts_rainbow = true,
+        which_key = true,
 
-    end },
+      },
+    })
+    vim.cmd.colorscheme "catppuccin"
+
+
+  end },
+
+
+  -- { "EdenEast/nightfox.nvim",
+  --   config = function()
+  --     vim.cmd("colorscheme nightfox")
+  --
+  --   end },
 
   -- {
   --   "navarasu/onedark.nvim",
@@ -87,22 +114,26 @@ require("lazy").setup {
   end
   },
 
-  {
-    "zbirenbaum/copilot.lua",
-    event = "VimEnter",
-    config = function()
-      vim.defer_fn(function()
-        require("copilot").setup()
-      end, 100)
-    end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function()
-      require("copilot_cmp").setup()
-    end
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   event = "VimEnter",
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       require("copilot").setup()
+  --     end, 100)
+  --   end,
+  -- },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   after = { "copilot.lua" },
+  --   config = function()
+  --     require("copilot_cmp").setup({
+  --       method = "getCompletionsCycling",
+  --
+  --     })
+  --   end
+  -- },
+  { "Exafunction/codeium.vim" },
   -- use({
   --   'glepnir/zephyr-nvim',
   --   config = function()
@@ -511,7 +542,11 @@ require("lazy").setup {
       require("nvim-autopairs").setup()
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local cmp = require('cmp')
-      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+      )
+
     end,
   },
   {
@@ -720,6 +755,26 @@ require("lazy").setup {
       end
 
       cmp.setup({
+
+        sorting = {
+          -- comparators = {
+          --   -- require("copilot_cmp.comparators").prioritize,
+          --   -- require("copilot_cmp.comparators").score,
+          --
+          --   -- Below is the default comparitor list and order for nvim-cmp
+          --   cmp.config.compare.offset,
+          --   -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+          --   cmp.config.compare.exact,
+          --   cmp.config.compare.score,
+          --   cmp.config.compare.recently_used,
+          --   cmp.config.compare.locality,
+          --   cmp.config.compare.kind,
+          --   cmp.config.compare.sort_text,
+          --   cmp.config.compare.length,
+          --   cmp.config.compare.order,
+          -- },
+
+        },
         snippet = {
           -- REQUIRED - you must specify a snippet engine
           expand = function(args)
@@ -734,35 +789,14 @@ require("lazy").setup {
           -- documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            elseif has_words_before() then
-              cmp.complete()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         sources = cmp.config.sources({
-          { name = "copilot" },
+          -- { name = "copilot" },
           -- { name = "buffer-lines" },
           { name = 'nvim_lsp' },
           -- { name = 'vsnip' }, -- For vsnip users.
