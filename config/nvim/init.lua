@@ -1444,6 +1444,12 @@ if new_mappings then
       t = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
     }
   }, { prefix = "<leader>" })
+  wk.register({
+    ["<F8>"] = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" }
+  }, { mode = "n" })
+  wk.register({
+    ["<F8>"] = { "<esc><cmd>w<CR><cmd>noh<CR>", "Save / Clear Highlights" }
+  }, { mode = "i" })
 
 else
   wk.register({
