@@ -175,3 +175,14 @@ eval "$(zoxide init zsh)"
 
 export PATH="$PATH:/Users/marcusbuffett/.foundry/bin"
 source <(kubectl completion zsh)
+export PATH="./node_modules/.bin/:$PATH"
+
+
+# pnpm
+export PNPM_HOME="/Users/marcusbuffett/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+export ZK_NOTEBOOK_DIR="$HOME/zk-notebook"
+# pnpm end

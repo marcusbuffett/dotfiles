@@ -37,7 +37,8 @@ require("lazy").setup {
     }
   },
   { "ilAYAli/scMRU.nvim" },
-  { "ggandor/flit.nvim",
+  {
+    "ggandor/flit.nvim",
     dependencies = { "ggandor/leap.nvim" },
     config = function()
       require('flit').setup {
@@ -48,7 +49,6 @@ require("lazy").setup {
         -- -- Like `leap`s similar argument (call-specific overrides).
         -- -- E.g.: opts = { equivalence_classes = {} }
         opts = {
-
           -- case_insensitive = true,
           safe_labels = {},
           labels = { "d", "s", "t", "n", "e", "a", "i" },
@@ -61,37 +61,38 @@ require("lazy").setup {
     config = function()
     end,
   },
-  { "catppuccin/nvim", name = "catppuccin", config = function()
-    require("catppuccin").setup({
-      flavour = "mocha", -- latte, frappe, macchiato, mocha
-      dim_inactive = {
-        enabled = true,
-        shade = "dark",
-        percentage = 0.25,
-      },
-      integrations = {
-        cmp = true,
-        dashboard = true,
-        gitsigns = true,
-        hop = true,
-        leap = true,
-        lsp_trouble = true,
-        markdown = true,
-        noice = true,
-        notify = true,
-        nvimtree = true,
-        telescope = true,
-        treesitter = true,
-        treesitter_context = true,
-        ts_rainbow = true,
-        which_key = true,
-
-      },
-    })
-    vim.cmd.colorscheme "catppuccin"
-
-
-  end },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        dim_inactive = {
+          enabled = true,
+          shade = "dark",
+          percentage = 0.25,
+        },
+        integrations = {
+          cmp = true,
+          dashboard = true,
+          gitsigns = true,
+          hop = true,
+          leap = true,
+          lsp_trouble = true,
+          markdown = true,
+          noice = true,
+          notify = true,
+          nvimtree = true,
+          telescope = true,
+          treesitter = true,
+          treesitter_context = true,
+          ts_rainbow = true,
+          which_key = true,
+        },
+      })
+      vim.cmd.colorscheme "catppuccin"
+    end
+  },
 
 
   -- { "EdenEast/nightfox.nvim",
@@ -109,9 +110,11 @@ require("lazy").setup {
   --     require('onedark').load()
   --   end,
   -- },
-  { 'Ostralyan/scribe.nvim', config = function()
-    require("scribe").setup({})
-  end
+  {
+    'Ostralyan/scribe.nvim',
+    config = function()
+      require("scribe").setup({})
+    end
   },
 
   -- {
@@ -150,7 +153,11 @@ require("lazy").setup {
       require("telescope").load_extension("neoclip")
     end,
   },
-  { "christoomey/vim-tmux-navigator", config = function() end },
+  {
+    "christoomey/vim-tmux-navigator",
+    config = function()
+    end
+  },
   {
     "phaazon/hop.nvim",
     config = function()
@@ -198,6 +205,16 @@ require("lazy").setup {
     end,
   },
   {
+    "ggandor/leap-spooky.nvim",
+    config = function()
+      require("leap-spooky").setup({
+
+        paste_on_remote_yank = false,
+
+      })
+    end,
+  },
+  {
     "ggandor/leap.nvim",
     config = function()
       -- local function get_windows_on_tabpage()
@@ -211,7 +228,7 @@ require("lazy").setup {
         S = { function()
           require 'leap'.leap { ['target-windows'] = vim.api.nvim_tabpage_list_wins(0) }
         end
-          , "leap" }
+        , "leap" }
       }, {
         mode = "n"
       })
@@ -251,7 +268,6 @@ require("lazy").setup {
       }
       vim.cmd([[highlight LeapBackdrop guifg=#918474 guibg=none]])
       vim.cmd([[highlight LeapLabelPrimary guifg=#000000 guibg=#EBEDF1]])
-
     end
   },
   {
@@ -260,11 +276,13 @@ require("lazy").setup {
     config = function()
     end,
   },
-  { "ethanholz/nvim-lastplace", config = function()
-    require 'nvim-lastplace'.setup {}
-
-  end },
-  { "JoosepAlviste/nvim-ts-context-commentstring" },
+  {
+    "ethanholz/nvim-lastplace",
+    config = function()
+      require 'nvim-lastplace'.setup {}
+    end
+  },
+  -- { "JoosepAlviste/nvim-ts-context-commentstring" },
   {
     "tpope/vim-surround",
     keys = { "c", "d", "y" },
@@ -296,16 +314,16 @@ require("lazy").setup {
     event = "BufRead",
     config = function()
       require("diffview").setup({
-        key_bindings = {
-          view = {
-            -- other mappings ...
-            -- ["<Leader>q"] = "<CMD>DiffviewClose<CR>",
-          },
-          file_panel = {
-            -- optionally add it to the file panel as well:
-            -- ["<Leader>q"] = "<CMD>DiffviewClose<CR>",
-          },
-        },
+        -- key_bindings = {
+        --   view = {
+        --     -- other mappings ...
+        --     -- ["<Leader>q"] = "<CMD>DiffviewClose<CR>",
+        --   },
+        --   file_panel = {
+        --     -- optionally add it to the file panel as well:
+        --     -- ["<Leader>q"] = "<CMD>DiffviewClose<CR>",
+        --   },
+        -- },
       })
     end,
   },
@@ -394,12 +412,24 @@ require("lazy").setup {
   { "williamboman/mason-lspconfig.nvim" },
   { "williamboman/mason.nvim" },
   {
+    "cbochs/portal.nvim",
+    -- Optional dependencies
+    dependencies = {
+      "cbochs/grapple.nvim",
+    },
+    config = function()
+      require("portal").setup({
+        labels = { "s", "t", "n", "e", "a", "i" },
+      })
+    end,
+  },
+
+  {
     "neovim/nvim-lspconfig",
     config = function()
-
       require("mason").setup({})
       require("mason-lspconfig").setup({
-        ensure_installed = { "sumneko_lua", "rust_analyzer" }
+        ensure_installed = { "lua_ls", "rust_analyzer" }
       })
       local lspconfig = require("lspconfig")
       local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -421,8 +451,11 @@ require("lazy").setup {
         capabilities = capabilities
       }
       lspconfig.rust_analyzer.setup(opts)
-      lspconfig.relay_lsp.setup(opts)
-      lspconfig.sumneko_lua.setup(opts)
+      if vim.fn.executable('relay-compiler') == 1 then
+        lspconfig.relay_lsp.setup(opts)
+      end
+
+      lspconfig.lua_ls.setup(opts)
       lspconfig.pyright.setup(opts)
       lspconfig.tsserver.setup {
         on_attach = function(client, bufnr)
@@ -461,25 +494,23 @@ require("lazy").setup {
       }
     end
   },
-  { "https://gitlab.com/yorickpeterse/nvim-window.git", config = function()
-    require('nvim-window').setup({
-      -- The characters available for hinting windows.
-      chars = { "s", "t", "n", "e", "a", "i" },
-
-      -- A group to use for overwriting the Normal highlight group in the floating
-      -- window. This can be used to change the background color.
-      normal_hl = 'Normal',
-
-      -- The highlight group to apply to the line that contains the hint characters.
-      -- This is used to make them stand out more.
-      hint_hl = 'Bold',
-
-      -- The border style to use for the floating window.
-      border = 'single'
-    })
-
-
-  end },
+  {
+    "https://gitlab.com/yorickpeterse/nvim-window.git",
+    config = function()
+      require('nvim-window').setup({
+        -- The characters available for hinting windows.
+        chars = { "s", "t", "n", "e", "a", "i" },
+        -- A group to use for overwriting the Normal highlight group in the floating
+        -- window. This can be used to change the background color.
+        normal_hl = 'Normal',
+        -- The highlight group to apply to the line that contains the hint characters.
+        -- This is used to make them stand out more.
+        hint_hl = 'Bold',
+        -- The border style to use for the floating window.
+        border = 'single'
+      })
+    end
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     run = ':TSUpdate',
@@ -494,13 +525,12 @@ require("lazy").setup {
             return true
           end
         end,
-
         context_commentstring = {
           enable = true
         },
-
         highlight = {
           enable = true,
+          disable = { "sql" },
           additional_vim_regex_highlighting = false,
         },
         rainbow = {
@@ -525,7 +555,6 @@ require("lazy").setup {
             node_decremental = ";",
           },
         },
-
         textsubjects = {
           enable = false,
           keymaps = {
@@ -546,7 +575,6 @@ require("lazy").setup {
         'confirm_done',
         cmp_autopairs.on_confirm_done()
       )
-
     end,
   },
   {
@@ -588,7 +616,6 @@ require("lazy").setup {
           },
         }
       })
-
     end
   },
   {
@@ -598,75 +625,80 @@ require("lazy").setup {
     end,
   },
   { "beauwilliams/focus.nvim", config = function() require("focus").setup() end },
-  { "nanozuki/tabby.nvim", config = function()
-    -- move current tab to previous position
-    vim.api.nvim_set_keymap("n", "<leader>tmp", ":-tabmove<CR>", { noremap = true })
-    -- move current tab to next position
-    vim.api.nvim_set_keymap("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
-    local theme = {
-      fill = 'TabLineFill',
-      -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
-      head = 'TabLine',
-      current_tab = 'TabLineSel',
-      tab = 'TabLine',
-      win = 'TabLine',
-      tail = 'TabLine',
-    }
-    require('tabby.tabline').set(function(line)
-      return {
-        {
-          { '  ', hl = theme.head },
-          line.sep('', theme.head, theme.fill),
-        },
-        line.tabs().foreach(function(tab)
-          local hl = tab.is_current() and theme.current_tab or theme.tab
-          return {
-            line.sep('', hl, theme.fill),
-            tab.is_current() and '' or '',
-            tab.number(),
-            tab.name(),
-            tab.close_btn(''),
-            line.sep('', hl, theme.fill),
-            hl = hl,
-            margin = ' ',
-          }
-        end),
-        line.spacer(),
-        line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-          return {
-            line.sep('', theme.win, theme.fill),
-            win.is_current() and '' or '',
-            win.buf_name(),
-            line.sep('', theme.win, theme.fill),
-            hl = theme.win,
-            margin = ' ',
-          }
-        end),
-        {
-          line.sep('', theme.tail, theme.fill),
-          { '  ', hl = theme.tail },
-        },
-        hl = theme.fill,
-      }
-    end)
-
-  end },
   {
-    'rmagatti/auto-session',
+    "nanozuki/tabby.nvim",
     config = function()
-      require("auto-session").setup {
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      -- move current tab to previous position
+      vim.api.nvim_set_keymap("n", "<leader>tmp", ":-tabmove<CR>", { noremap = true })
+      -- move current tab to next position
+      vim.api.nvim_set_keymap("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
+      local theme = {
+        fill = 'TabLineFill',
+        -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
+        head = 'TabLine',
+        current_tab = 'TabLineSel',
+        tab = 'TabLine',
+        win = 'TabLine',
+        tail = 'TabLine',
       }
+      require('tabby.tabline').set(function(line)
+        return {
+          {
+            { '  ', hl = theme.head },
+            line.sep('', theme.head, theme.fill),
+          },
+          line.tabs().foreach(function(tab)
+            local hl = tab.is_current() and theme.current_tab or theme.tab
+            return {
+              line.sep('', hl, theme.fill),
+              tab.is_current() and '' or '',
+              tab.number(),
+              tab.name(),
+              tab.close_btn(''),
+              line.sep('', hl, theme.fill),
+              hl = hl,
+              margin = ' ',
+            }
+          end),
+          line.spacer(),
+          line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
+            return {
+              line.sep('', theme.win, theme.fill),
+              win.is_current() and '' or '',
+              win.buf_name(),
+              line.sep('', theme.win, theme.fill),
+              hl = theme.win,
+              margin = ' ',
+            }
+          end),
+          {
+            line.sep('', theme.tail, theme.fill),
+            { '  ', hl = theme.tail },
+          },
+          hl = theme.fill,
+        }
+      end)
     end
   },
+  -- {
+  --   'rmagatti/auto-session',
+  --   config = function()
+  --     require("auto-session").setup {
+  --       log_level = "error",
+  --       auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+  --     }
+  --   end
+  -- },
   {
     "kyazdani42/nvim-tree.lua",
     config = function()
-      require("nvim-tree").setup({ update_cwd = true, update_focused_file = {
-        enable = true,
+      require("nvim-tree").setup({
         update_cwd = true,
-      } })
+        update_focused_file = {
+          enable = true,
+          update_cwd = true,
+        }
+      })
     end,
   },
   {
@@ -685,7 +717,6 @@ require("lazy").setup {
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("telescope").load_extension("ui-select")
-
     end
   },
   {
@@ -698,14 +729,12 @@ require("lazy").setup {
         defaults = {
           path_display = { "smart" }
         },
-
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {
               -- more options
             },
           },
-
           lsp_handlers = {
             disable = {},
             location = {
@@ -740,7 +769,6 @@ require("lazy").setup {
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
     },
-
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_snipmate").lazy_load()
@@ -755,7 +783,6 @@ require("lazy").setup {
       end
 
       cmp.setup({
-
         sorting = {
           -- comparators = {
           --   -- require("copilot_cmp.comparators").prioritize,
@@ -790,6 +817,7 @@ require("lazy").setup {
         },
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
@@ -833,7 +861,6 @@ require("lazy").setup {
           { name = 'cmdline' }
         })
       })
-
     end,
   },
   {
@@ -851,6 +878,65 @@ require("lazy").setup {
     end,
   },
   {
+    "dpayne/CodeGPT.nvim",
+    config = function()
+      require("codegpt.config")
+
+      -- Override the default chat completions url, this is useful to override when testing custom commands
+      -- vim.g["codegpt_chat_completions_url"] = "http://127.0.0.1:800/test"
+
+      vim.g["codegpt_commands"] = {
+        ["complete"] = {
+          -- Overrides the system message template
+          system_message_template = "You are an expert {{language}} developer.",
+
+          -- Overrides the user message template
+          user_message_template =
+          "I have the following {{language}} code: ```{{filetype}}\n{{text_selection}}```\nPlease complete the above code. {{language_instructions}} \n {{command_args}}",
+          language_instructions = {
+            rust =
+            "Use actix web for endpoints, sea orm for the database queries, and EndpointResult instead of the Result type."
+          },
+
+          -- Display the response in a popup window. The popup window filetype will be the filetype of the current buffer.
+          callback_type = "code_popup",
+        },
+        ["4_code_edit"] = {
+          -- Overrides the system message template
+          system_message_template = "You are an expert {{language}} developer.",
+          model = "gpt-4-32k",
+          max_tokens = 32000,
+
+
+          -- Overrides the user message template
+          user_message_template =
+          "I have the following {{language}} code: ```{{filetype}}\n{{text_selection}}```\nEdit the above code. {{language_instructions}} \n {{command_args}}",
+
+          -- Display the response in a popup window. The popup window filetype will be the filetype of the current buffer.
+          callback_type = "code_popup",
+        },
+        ["code_edit"] = {
+          -- Overrides the system message template
+          system_message_template = "You are an expert {{language}} developer.",
+
+          -- Overrides the user message template
+          user_message_template =
+          "I have the following {{language}} code: ```{{filetype}}\n{{text_selection}}```\nEdit the above code. {{language_instructions}} \n {{command_args}}",
+
+          -- Display the response in a popup window. The popup window filetype will be the filetype of the current buffer.
+          callback_type = "code_popup",
+        },
+        -- Custom command
+        -- ["modernize"] = {
+        --   user_message_template = "I have the following {{language}} code: ```{{filetype}}\n{{text_selection}}```\nModernize the above code. Use current best practices. Only return the code snippet and comments. {{language_instructions}}",
+        --   language_instructions = {
+        --     cpp = "Use modern C++ syntax. Use auto where possible. Do not import std. Use trailing return type. Use the c++11, c++14, c++17, and c++20 standards where applicable.",
+        --   },
+        -- }
+      }
+    end
+  },
+  {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       require("null-ls").setup({
@@ -860,14 +946,13 @@ require("lazy").setup {
           require("null-ls").builtins.formatting.prettier,
           require("null-ls").builtins.formatting.black,
           require("null-ls").builtins.formatting.isort,
-          require("null-ls").builtins.formatting.eslint_d.with({
-            -- extra_args = { "--fix" },
-          }),
+          -- require("null-ls").builtins.formatting.eslint_d.with({
+          -- }),
           -- require("null-ls").builtins.diagnostics.sqlfluff.with({
           --   extra_args = { "--dialect", "postgres" }, -- change to your dialect
           -- }),
           -- require("null-ls").builtins.formatting.rustfmt,
-          -- require("null-ls").builtins.diagnostics.eslint,
+          require("null-ls").builtins.diagnostics.eslint_d,
           -- require("null-ls").builtins.completion.spell,
         },
         debug = true,
@@ -886,7 +971,6 @@ require("lazy").setup {
               end,
             })
           end
-
         end,
       })
     end,
@@ -938,6 +1022,51 @@ require("lazy").setup {
   },
   { "stevearc/dressing.nvim" },
 
+  {
+    'mrjones2014/legendary.nvim',
+    config = function()
+      require('legendary').setup({
+        keymaps = {
+          { '<F88>', ':ZkTags<CR>', description = 'zk tags' },
+
+
+        },
+        which_key = {
+          -- Automatically add which-key tables to legendary
+          -- see ./doc/WHICH_KEY.md for more details
+          auto_register = true,
+          -- you can put which-key.nvim tables here,
+          -- or alternatively have them auto-register,
+          -- see ./doc/WHICH_KEY.md
+          mappings = {},
+          opts = {},
+          -- controls whether legendary.nvim actually binds they keymaps,
+          -- or if you want to let which-key.nvim handle the bindings.
+          -- if not passed, true by default
+          do_binding = true,
+        },
+        commands = {
+
+        },
+        funcs = {
+          -- Make arbitrary Lua functions that can be executed via the item finder
+          {
+            function()
+              require('spectre').open()
+            end,
+            description = 'Spectre',
+          },
+        },
+        autocmds = {
+        },
+        extensions = {
+          nvim_tree = true,
+          diffview = true,
+        },
+      })
+    end
+  },
+
   -- TODO: neotest
   {
     "nvim-neotest/neotest",
@@ -957,76 +1086,60 @@ require("lazy").setup {
     end,
   },
   {
-    'phaazon/mind.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "mickael-menu/zk-nvim",
     config = function()
-      require 'mind'.setup {
-        persistence = {
-          state_path = '~/mind/mind.json',
-          data_dir = '~/mind/data',
-        },
-
-        ui = {
-          width = 40,
-
-          highlight = {
-            node_root = 'Number',
-          }
-        },
-
-        keymaps = {
-          normal = {
-            T = function(args)
-              require 'mind.ui'.with_cursor(function(line)
-                local tree = args.get_tree()
-                local node = require 'mind.node'.get_node_by_line(tree, line)
-
-                if node.icon == nil or node.icon == ' ' then
-                  node.icon = ' '
-                elseif node.icon == ' ' then
-                  node.icon = ' '
-                end
-
-                args.save_tree()
-                require 'mind.ui'.rerender(tree, args.opts)
-              end)
-            end,
-          }
-        }
-      }
-    end,
-  },
-  {
-    "folke/noice.nvim",
-    config = function()
-      require("noice").setup({
+      require("zk").setup({
+        -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+        -- it's recommended to use "telescope" or "fzf"
+        picker = "telescope",
         lsp = {
-          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
+          -- `config` is passed to `vim.lsp.start_client(config)`
+          config = {
+            cmd = { "zk", "lsp" },
+            name = "zk",
+            -- on_attach = ...
+            -- etc, see `:h vim.lsp.start_client()`
+          },
+          -- automatically attach buffers in a zk notebook that match the given filetypes
+          auto_attach = {
+            enabled = true,
+            filetypes = { "markdown" },
           },
         },
-        -- you can enable a preset for easier configuration
-        presets = {
-          -- bottom_search = true, -- use a classic bottom cmdline for search
-          command_palette = true, -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false, -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false, -- add a border to hover docs and signature help
-        },
       })
-    end,
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    }
+    end
   },
+  -- {
+  --   "folke/noice.nvim",
+  --   config = function()
+  --     require("noice").setup({
+  --       lsp = {
+  --         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+  --         override = {
+  --           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+  --           ["vim.lsp.util.stylize_markdown"] = true,
+  --           ["cmp.entry.get_documentation"] = true,
+  --         },
+  --       },
+  --       -- you can enable a preset for easier configuration
+  --       presets = {
+  --         -- bottom_search = true, -- use a classic bottom cmdline for search
+  --         command_palette = true, -- position the cmdline and popupmenu together
+  --         long_message_to_split = true, -- long messages will be sent to a split
+  --         inc_rename = false, -- enables an input dialog for inc-rename.nvim
+  --         lsp_doc_border = false, -- add a border to hover docs and signature help
+  --       },
+  --     })
+  --   end,
+  --   dependencies = {
+  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --     "MunifTanjim/nui.nvim",
+  --     -- OPTIONAL:
+  --     --   `nvim-notify` is only needed, if you want to use the notification view.
+  --     --   If not available, we use `mini` as the fallback
+  --     "rcarriga/nvim-notify",
+  --   }
+  -- },
   {
     "danielfalk/smart-open.nvim",
     -- branch = "0.1.x",
@@ -1048,7 +1161,39 @@ require("lazy").setup {
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
     }
-  }
+  },
+  {
+    "chrisgrieser/nvim-spider",
+    config = function()
+      vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+      vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-w" })
+      vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-w" })
+      vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-w" })
+    end
+  },
+  {
+    'echasnovski/mini.nvim',
+    version = false,
+    config = function()
+      require('mini.bracketed').setup()
+      require('mini.ai').setup()
+      require('mini.indentscope').setup()
+      require('mini.surround').setup({
+        mappings = {
+          add = 'ysa',            -- Add surrounding in Normal and Visual modes
+          delete = 'ysd',         -- Delete surrounding
+          find = 'ysf',           -- Find surrounding (to the right)
+          find_left = 'ysF',      -- Find surrounding (to the left)
+          highlight = 'ysh',      -- Highlight surrounding
+          replace = 'ysr',        -- Replace surrounding
+          update_n_lines = 'ysn', -- Update `n_lines`
+        },
+      }
+      )
+    end
+  },
+
+
 
 
 }
@@ -1091,27 +1236,27 @@ vim.api.nvim_set_keymap("n", "T", "<cmd>only<CR>", {})
 
 local opt = vim.opt
 opt.completeopt = { "menu", "menuone", "noselect" } -- Completion options (for deoplete)
-opt.expandtab = true -- Use spaces instead of tabs
-opt.hidden = true -- Enable background buffers
-opt.ignorecase = true -- Ignore case
-opt.joinspaces = false -- No double spaces with join
+opt.expandtab = true                                -- Use spaces instead of tabs
+opt.hidden = true                                   -- Enable background buffers
+opt.ignorecase = true                               -- Ignore case
+opt.joinspaces = false                              -- No double spaces with join
 -- opt.list = true                     -- Show some invisible characters
-opt.number = true -- Show line numbers
-opt.relativenumber = true -- Relative line numbers
-opt.scrolloff = 4 -- Lines of context
-opt.shiftround = true -- Round indent
-opt.shiftwidth = 2 -- Size of an indent
-opt.sidescrolloff = 8 -- Columns of context
+opt.number = true                                   -- Show line numbers
+opt.relativenumber = true                           -- Relative line numbers
+opt.scrolloff = 4                                   -- Lines of context
+opt.shiftround = true                               -- Round indent
+opt.shiftwidth = 2                                  -- Size of an indent
+opt.sidescrolloff = 8                               -- Columns of context
 opt.mouse = "a"
-opt.smartcase = true -- Do not ignore case with capitals
-opt.smartindent = true -- Insert indents automatically
-opt.splitbelow = true -- Put new windows below current
-opt.splitright = true -- Put new windows right of current
-opt.tabstop = 2 -- Number of spaces tabs count for
-opt.termguicolors = true -- True color support
+opt.smartcase = true                                -- Do not ignore case with capitals
+opt.smartindent = true                              -- Insert indents automatically
+opt.splitbelow = true                               -- Put new windows below current
+opt.splitright = true                               -- Put new windows right of current
+opt.tabstop = 2                                     -- Number of spaces tabs count for
+opt.termguicolors = true                            -- True color support
 opt.autowriteall = true
-opt.wildmode = { "longest", "full" } -- Command-line completion mode
-opt.wrap = false -- Disable line wrap
+opt.wildmode = { "longest", "full" }                -- Command-line completion mode
+opt.wrap = false                                    -- Disable line wrap
 opt.updatetime = 300
 opt.timeoutlen = 500
 opt.undofile = true
@@ -1322,309 +1467,99 @@ end
 add_snippets()
 local wk = require("which-key")
 
-local new_mappings = true
-if new_mappings then
-  wk.register({
-    i = {
-      r = { "<Esc>:ChatGPTEditWithInstructions<CR>", "ChatGPT w/ last selection" },
-    },
-  }, { prefix = "<leader>", mode = "v" })
-
-  wk.register({
-    s = {
-      name = "search",
-      a = { "<cmd>Telescope find_files<cr>", "Find File" },
-      n = { "<cmd>Rg<CR>", "Fuzzy search" },
-      d = { "<cmd>Easypick changed_files<CR>", "Search changed files" },
-      t = {
-        ":Telescope current_buffer_fuzzy_find<CR>",
-        "Fuzzy in buffer",
-      },
-      r = { "<cmd>Telescope smart_open<cr>", "Open Recent File" },
-      i = { "<cmd>Telescope projects<CR>", "Projects" },
-      e = {
-        function()
-          require 'mind'.wrap_main_tree_fn(function(args)
-            require 'mind.commands'.commands.open_data_index(args)
-          end)
-        end, "search mind notes"
-      },
-    },
-    d = {
-
-      name = "Git",
-      t = { ":Git commit<CR>", "Fugitive commit" },
-      s = { ":DiffviewOpen<CR>", "Diffview" },
-
-      a = { ":Git push<CR>", "Fugitive push" },
-      n = { "<cmd>Gvdiffsplit<CR>", "diffview" },
-      i = { "<cmd>DiffviewFileHistory %<CR>", "File history" },
-      r = { function() require("gitsigns").blame_line { full = true } end, "Blame line" },
-      e = { function() require("gitsigns").toggle_deleted() end, "Toggle deleted lines" },
-      -- u = { "<cmd>Diffview<CR>", "DiffviewOpen" },
-    },
-    n = {
-      name = "Navigation",
-      r = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
-      s = { ":tabn<CR>", "Next tab" },
-      t = { ":$tabnew<CR>", "New tab" },
-      d = { "<cmd>only<CR>", "Close all others" },
-      e = { "<cmd>q<CR>", "Close window" },
-      a = { "<C-w>v", "Split vertically" },
-      i = { "<C-w>s", "Split horizontally" },
-
-
-    },
-    t = {
-      name = "lsp",
-      r = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
-      s = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
-      d = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-      h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
-      e = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-      i = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition" },
-      a = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
-    },
-    r = {
-      name = "Misc / High Freq",
-      a = { ":CodeActionMenu<CR>", "Code action" },
-      e = { ":Telescope neoclip<CR>", "Neoclip" },
-      n = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" },
-      i = {
-        "<cmd>HopLineStart<CR>",
-        "Hop line",
-      },
-    },
-    a = {
-      name = "Misc / Low Freq",
-      e = { ":Telescope diagnostics<CR>", "Diagnostics" },
-      t = { ":Telescope<CR>", "Just Telescope" },
-      a = { ":Telescope keymaps<CR>", "Telescope Keymaps <Spacr>" },
-    },
-    i = {
-      name = "Openers",
-      e = {
-        function()
-          require 'mind'.wrap_main_tree_fn(function(args)
-            require 'mind.commands'.create_node_index(
-              args.get_tree(),
-              require 'mind.node'.MoveDir.INSIDE_END,
-              args.save_tree,
-              args.opts
-            )
-          end)
-        end, "Create Mind Node"
-      },
-      d = {
-        function()
-          require 'mind'.wrap_main_tree_fn(function(args)
-            local tree = args.get_tree()
-            local path = vim.fn.strftime('/Journal/%Y/%b/%b %d')
-            local _, node = require 'mind.node'.get_node_by_path(tree, path, true)
-
-            if node == nil then
-              vim.notify('cannot open journal 🙁', vim.log.levels.WARN)
-              return
-            end
-
-            require 'mind.commands'.open_data(tree, node, args.data_dir, args.save_tree, args.opts)
-            args.save_tree()
-          end)
-        end,
-        "Mind Journal"
-      },
-      n = {
-        ':MindOpenMain<CR>', "Mind main"
-      },
-      s = { ":Neotree filesystem reveal<CR>", "Nvim toggle" },
-      a = { function()
-        require("spectre").open()
-      end, "Spectre" },
-      r = { ":ChatGPT<CR>", "ChatGPT" },
-      t = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
-    }
-  }, { prefix = "<leader>" })
-  wk.register({
-    ["<F8>"] = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" }
-  }, { mode = "n" })
-  wk.register({
-    ["<F8>"] = { "<esc><cmd>w<CR><cmd>noh<CR>", "Save / Clear Highlights" }
-  }, { mode = "i" })
-
-else
-  wk.register({
-    m = {
-      name = "+file",
-      n = { ":Neotree filesystem reveal<CR>", "Nvim tree" },
-      a = { ":ChatGPT<CR>", "ChatGPT" },
-      i = { "<Esc>:ChatGPTEditWithInstructions<CR>", "ChatGPT w/ last selection" },
-      e = { require("react-extract").extract_to_current_file, "Extract to current file" },
-      c = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
-      y = { ":Telescope neoclip<CR>", "Neoclip" },
-      s = { ":ScribeOpen<CR>", "Scribe" },
-      -- j = { ":ScribeOpen journal.md<CR>", "Scribe Journal" },
-      -- z = {
-      --   function()
-      --     require 'mind'.wrap_smart_project_tree_fn(function(args)
-      --       require 'mind.commands'.create_node_index(
-      --         args.get_tree(),
-      --         require 'mind.node'.MoveDir.INSIDE_END,
-      --         args.save_tree,
-      --         args.opts
-      --       )
-      --     end)
-      --   end
-      -- },
-      x = {
-        function()
-          require 'mind'.wrap_main_tree_fn(function(args)
-            require 'mind.commands'.create_node_index(
-              args.get_tree(),
-              require 'mind.node'.MoveDir.INSIDE_END,
-              args.save_tree,
-              args.opts
-            )
-          end)
-        end, "Create node index"
-      },
-      d = {
-        function()
-          require 'mind'.wrap_main_tree_fn(function(args)
-            require 'mind.commands'.commands.open_data_index(args)
-          end)
-        end, "search mind notes"
-      },
-      f = {
-        function()
-          require 'mind'.wrap_main_tree_fn(function(args)
-            require 'mind.commands'.open_data_index(args.get_tree(), args.data_dir, args.save_tree, args.opts)
-          end)
-        end, "search mind"
-      },
-
-      j = {
-        function()
-          require 'mind'.wrap_main_tree_fn(function(args)
-            local tree = args.get_tree()
-            local path = vim.fn.strftime('/Journal/%Y/%b/%b %d')
-            local _, node = require 'mind.node'.get_node_by_path(tree, path, true)
-
-            if node == nil then
-              vim.notify('cannot open journal 🙁', vim.log.levels.WARN)
-              return
-            end
-
-            require 'mind.commands'.open_data(tree, node, args.data_dir, args.save_tree, args.opts)
-            args.save_tree()
-          end)
-        end,
-        "journal"
-      },
-      m = {
-        ':MindOpenMain<CR>', "Mind main"
-      },
-      -- M = {
-      --   function()
-      --     require 'mind'.wrap_main_tree_fn(function(args)
-      --       require 'mind.commands'.open_data_index(args.get_tree(), args.data_dir, args.save_tree, args.opts)
-      --     end)
-      --   end
-      -- },
-      -- s = { ":AerialOpen<CR>", "Symbols" },
-    },
-    h = { "ino!", "Clear highlights" },
-    d = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
-    s = {
-      name = "Searching",
-      e = { "<cmd>Telescope find_files<cr>", "Find File" },
-      g = { "<cmd>Rg<CR>", "Fuzzy search" },
-      c = { "<cmd>Easypick changed_files<CR>", "Search changed files" },
-      o = {
-        ":Telescope current_buffer_fuzzy_find<CR>",
-        "Fuzzy in buffer",
-      },
-      r = { "<cmd>Telescope smart_open<cr>", "Open Recent File" },
-      p = { "<cmd>Telescope projects<CR>", "Projects" },
-      -- p = { "<cmd>Telescope projects<CR>", "Projects" },
-      a = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Symbols" },
-      d = {
-        function()
-          require("dash").search()
-        end,
-        "Search dash app",
-      },
-    },
-    g = {
-      name = "Git",
-      c = { ":Git commit<CR>", "Fugitive commit" },
-      s = { ":Git<CR>", "Fugitive status" },
-
-      p = { ":Git push<CR>", "Fugitive push" },
-      d = { "<cmd>Gvdiffsplit<CR>", "diffview" },
-      a = { "<cmd>Diffview<CR>", "DiffviewOpen -uno" },
-    },
-    z = {
-      "<cmd>HopLineStart<CR>",
-      "Hop line",
-    },
-    n = { "<cmd>w<CR>:noh<CR>", "Save" },
-    -- q = { "<cmd>q<CR>", "quit" },
-    -- t = {
-    --   e = { ":UltestNearest<CR>", "Run nearest test" },
-    --   u = { ":UltestSummary<CR>", "Open summary of test results" },
-    --   a = { ":UltestClear<CR>", "Clear test results" },
-    -- },
-    l = {
-      -- t = { ":call v:lua.toggle_diagnostics()<CR>", "Toggle virtualtext" },
-      j = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
-      k = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
-      n = { "<cmd>lua vim.diagnostic.goto_next({})<CR>", "Next diagnostic - any" },
-      p = { "<cmd>lua vim.diagnostic.goto_prev({})<CR>", "Prev diagnostic - any" },
-      d = { ":Telescope diagnostics<CR>", "Telescope diagnostics" },
-      r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-    },
-    e = { ":CodeActionMenu<CR>", "Code action" },
-  }, { prefix = "<leader>" })
-
-  wk.register({
-    m = {
-      i = { "<Esc>:ChatGPTEditWithInstructions<CR>", "ChatGPT w/ last selection" },
-    },
-  }, { prefix = "<leader>", mode = "v" })
-
-  wk.register({
-    m = {
-      e = { require("react-extract").extract_to_current_file, "Extract to current file" },
-    }
-  }, { prefix = "<leader>", mode = "v" })
-
-  wk.register({
-    g = {
-      d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
-      D = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
-      r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
-    },
-    K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
-    ["<C-q>"] = { ":call QuickFixToggle()<CR>", "QF toggle" },
-  }, {})
-
-end
-
 wk.register({
-  m = {
-    e = { require("react-extract").extract_to_current_file, "Extract to current file" },
+  i = {
+    e = { ":Chat code_edit ", "ChatGPT w/ last selection" },
+    i = { ":Chat code_edit_4 ", "Chat gpt 4 edit" },
+    a = { ":Chat complete ", "ChatGPT w/ last selection" },
   },
-  r = {
-
-    d = { "\"+y", "Yank to system clioard" },
-  }
 }, { prefix = "<leader>", mode = "v" })
 
 wk.register({
-  ["<leader>"] = {
-    z = {
+  s = {
+    name = "search",
+    a = { "<cmd>Telescope find_files<cr>", "Find File" },
+    n = { "<cmd>Rg<CR>", "Fuzzy search" },
+    d = { "<cmd>Easypick changed_files<CR>", "Search changed files" },
+    t = {
+      ":Telescope current_buffer_fuzzy_find<CR>",
+      "Fuzzy in buffer",
+    },
+    r = { "<cmd>Telescope smart_open<cr>", "Open Recent File" },
+    i = { "<cmd>Telescope projects<CR>", "Projects" },
+    e = { "<cmd>Portal jumplist backward<cr>", "Portal jumplist" }
+  },
+  d = {
+    name = "Git",
+    t = { ":Git commit<CR>", "Fugitive commit" },
+    s = { ":DiffviewOpen<CR>", "Diffview" },
+    a = { ":Git push<CR>", "Fugitive push" },
+    n = { "<cmd>Gvdiffsplit<CR>", "diffview" },
+    i = { "<cmd>DiffviewFileHistory %<CR>", "File history" },
+    r = { function() require("gitsigns").blame_line { full = true } end, "Blame line" },
+    e = { function() require("gitsigns").toggle_deleted() end, "Toggle deleted lines" },
+    -- u = { "<cmd>Diffview<CR>", "DiffviewOpen" },
+  },
+  n = {
+    name = "Navigation",
+    r = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
+    s = { ":tabn<CR>", "Next tab" },
+    t = { ":$tabnew<CR>", "New tab" },
+    d = { "<cmd>only<CR>", "Close all others" },
+    e = { "<cmd>q<CR>", "Close window" },
+    a = { "<C-w>v", "Split vertically" },
+    i = { "<C-w>s", "Split horizontally" },
+  },
+  t = {
+    name = "lsp",
+    r = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
+    s = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
+    d = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+    h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+    e = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+    i = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition" },
+    a = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+  },
+  r = {
+    name = "Misc / High Freq",
+    a = { ":CodeActionMenu<CR>", "Code action" },
+    e = { ":Telescope neoclip<CR>", "Neoclip" },
+    n = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" },
+    i = {
       "<cmd>HopLineStart<CR>",
       "Hop line",
     },
   },
-}, { mode = "x" })
+  a = {
+    name = "Misc / Low Freq",
+    e = { ":Telescope diagnostics<CR>", "Diagnostics" },
+    t = { ":Telescope<CR>", "Just Telescope" },
+    a = { ":Legendary<CR>", "Legendary" },
+  },
+  i = {
+    name = "Openers",
+    n = {
+      "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", "New zk note"
+    },
+    d = {
+      "",
+      ""
+    },
+    e = {
+      "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Search zk notes"
+    },
+    s = { ":Neotree filesystem reveal<CR>", "Nvim toggle" },
+    a = { function()
+      require("spectre").open()
+    end, "Spectre" },
+    r = { ":ChatGPT<CR>", "ChatGPT" },
+    t = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
+  }
+}, { prefix = "<leader>" })
+wk.register({
+  ["<F8>"] = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" }
+
+}, { mode = "n" })
+wk.register({
+  ["<F8>"] = { "<esc><cmd>w<CR><cmd>noh<CR><esc>", "Save / Clear Highlights" }
+}, { mode = "i" })
