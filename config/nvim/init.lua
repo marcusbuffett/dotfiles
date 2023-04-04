@@ -20,6 +20,106 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
+
+local wk = require("which-key")
+
+wk.register({
+  i = {
+    e = { ":Chat code_edit ", "ChatGPT w/ last selection" },
+    i = { ":Chat code_edit_4 ", "Chat gpt 4 edit" },
+    a = { ":Chat complete ", "ChatGPT w/ last selection" },
+  },
+}, { prefix = "<leader>", mode = "v" })
+
+wk.register({
+  s = {
+    name = "search",
+    a = { "<cmd>Telescope find_files<cr>", "Find File" },
+    n = { "<cmd>Rg<CR>", "Fuzzy search" },
+    d = { "<cmd>Easypick changed_files<CR>", "Search changed files" },
+    t = {
+      ":Telescope current_buffer_fuzzy_find<CR>",
+      "Fuzzy in buffer",
+    },
+    r = { "<cmd>Telescope smart_open<cr>", "Open Recent File" },
+    i = { "<cmd>Telescope projects<CR>", "Projects" },
+    e = { "<cmd>Portal jumplist backward<cr>", "Portal jumplist" }
+  },
+  d = {
+    name = "Git",
+    t = { ":Git commit<CR>", "Fugitive commit" },
+    s = { ":DiffviewOpen<CR>", "Diffview" },
+    a = { ":Git push<CR>", "Fugitive push" },
+    n = { "<cmd>Gvdiffsplit<CR>", "diffview" },
+    i = { "<cmd>DiffviewFileHistory %<CR>", "File history" },
+    r = { function() require("gitsigns").blame_line { full = true } end, "Blame line" },
+    e = { function() require("gitsigns").toggle_deleted() end, "Toggle deleted lines" },
+    -- u = { "<cmd>Diffview<CR>", "DiffviewOpen" },
+  },
+  n = {
+    name = "Navigation",
+    r = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
+    s = { ":tabn<CR>", "Next tab" },
+    t = { ":$tabnew<CR>", "New tab" },
+    d = { "<cmd>only<CR>", "Close all others" },
+    e = { "<cmd>q<CR>", "Close window" },
+    a = { "<C-w>v", "Split vertically" },
+    i = { "<C-w>s", "Split horizontally" },
+  },
+  t = {
+    name = "lsp",
+    r = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
+    s = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
+    d = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+    h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+    e = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+    i = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition" },
+    a = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+  },
+  r = {
+    name = "Misc / High Freq",
+    a = { ":CodeActionMenu<CR>", "Code action" },
+    e = { ":Telescope neoclip<CR>", "Neoclip" },
+    n = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" },
+    i = {
+      "<cmd>HopLineStart<CR>",
+      "Hop line",
+    },
+  },
+  a = {
+    name = "Misc / Low Freq",
+    e = { ":Telescope diagnostics<CR>", "Diagnostics" },
+    t = { ":Telescope<CR>", "Just Telescope" },
+    a = { ":Telescope keymaps<CR>", "Keymaps" },
+  },
+  i = {
+    name = "Openers",
+    n = {
+      "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", "New zk note"
+    },
+    d = {
+      "",
+      ""
+    },
+    e = {
+      "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Search zk notes"
+    },
+    s = { ":Neotree filesystem reveal<CR>", "Nvim toggle" },
+    a = { function()
+      require("spectre").open()
+    end, "Spectre" },
+    r = { ":ChatGPT<CR>", "ChatGPT" },
+    t = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
+  }
+}, { prefix = "<leader>" })
+wk.register({
+      ["<F8>"] = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" }
+
+}, { mode = "n" })
+wk.register({
+      ["<F8>"] = { "<esc><cmd>w<CR><cmd>noh<CR><esc>", "Save / Clear Highlights" }
+}, { mode = "i" })
+
 require("lazy").setup {
 
   { "kazhala/close-buffers.nvim" },
@@ -110,13 +210,6 @@ require("lazy").setup {
   --     require('onedark').load()
   --   end,
   -- },
-  {
-    'Ostralyan/scribe.nvim',
-    config = function()
-      require("scribe").setup({})
-    end
-  },
-
   -- {
   --   "zbirenbaum/copilot.lua",
   --   event = "VimEnter",
@@ -143,7 +236,7 @@ require("lazy").setup {
   --     vim.cmd([[colorscheme zephyr]])
   --   end
   -- })
-  { "wbthomason/packer.nvim" },
+  -- { "wbthomason/packer.nvim" },
   { "tpope/vim-fugitive" },
   { "tpope/vim-abolish" },
   {
@@ -169,17 +262,17 @@ require("lazy").setup {
   { "michaeljsmith/vim-indent-object" },
   { "jeetsukumaran/vim-indentwise" },
   { "tommcdo/vim-exchange" },
-  { "simnalamburt/vim-mundo" },
+  -- { "simnalamburt/vim-mundo" },
   { "epilande/vim-react-snippets" },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   -- use({ "p00f/nvim-ts-rainbow" })
   { "RRethy/nvim-treesitter-textsubjects" },
-  -- use({
-  --   "stevearc/aerial.nvim",
-  --   config = function()
-  --     require('aerial').setup({})
-  --   end,
-  -- })
+  {
+    "stevearc/aerial.nvim",
+    config = function()
+      require('aerial').setup({})
+    end,
+  },
   -- use({ "simrat39/symbols-outline.nvim", config = function() end })
   { "junegunn/fzf" },
   { "junegunn/fzf.vim" },
@@ -226,7 +319,10 @@ require("lazy").setup {
 
       require("which-key").register({
         S = { function()
-          require 'leap'.leap { ['target-windows'] = vim.api.nvim_tabpage_list_wins(0) }
+          require('leap').leap { target_windows = vim.tbl_filter(
+            function(win) return vim.api.nvim_win_get_config(win).focusable end,
+            vim.api.nvim_tabpage_list_wins(0)
+          ) }
         end
         , "leap" }
       }, {
@@ -282,11 +378,10 @@ require("lazy").setup {
       require 'nvim-lastplace'.setup {}
     end
   },
-  -- { "JoosepAlviste/nvim-ts-context-commentstring" },
-  {
-    "tpope/vim-surround",
-    keys = { "c", "d", "y" },
-  },
+  -- {
+  --   "tpope/vim-surround",
+  --   keys = { "c", "d", "y" },
+  -- },
   -- { "sunjon/shade.nvim", config = function()
   --   require 'shade'.setup({
   --     overlay_opacity = 50,
@@ -300,14 +395,14 @@ require("lazy").setup {
   --
   -- end },
 
-  {
-    "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
-  },
+  -- {
+  --   "kylechui/nvim-surround",
+  --   config = function()
+  --     require("nvim-surround").setup({
+  --       -- Configuration here, or leave empty to use defaults
+  --     })
+  --   end
+  -- },
   { "aserowy/tmux.nvim" },
   {
     "sindrets/diffview.nvim",
@@ -340,7 +435,7 @@ require("lazy").setup {
     config = function()
       require("spectre").setup({
         mapping = {
-          ["send_to_qf"] = {
+              ["send_to_qf"] = {
             map = "<leader>mqf",
             cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
             desc = "send all item to quickfix",
@@ -464,7 +559,7 @@ require("lazy").setup {
           -- client.server_capabilities.documentFormattingProvider = false
         end,
         handlers = {
-          ["textDocument/definition"] = function(_, result, params)
+              ["textDocument/definition"] = function(_, result, params)
             if result == nil or vim.tbl_isempty(result) then
               local _ = vim.lsp.log.info() and vim.lsp.log.info(params.method, "No location found")
               return nil
@@ -475,7 +570,7 @@ require("lazy").setup {
               if #result > 1 then
                 local isReactDTs = false
                 for key, value in pairs(result) do
-                  if string.match(value.targetUri, "react/index.d.ts") then
+                  if string.match(value.targetUri, "styled-components/index.d.ts") or string.match(value.targetUri, "react/index.d.ts") then
                     isReactDTs = true
                     break
                   end
@@ -516,7 +611,7 @@ require("lazy").setup {
     run = ':TSUpdate',
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = "all",
+        ensure_installed = { "tsx", "json", "rust", "python" },
         sync_install = false,
         disable = function(lang, buf)
           local max_filesize = 100 * 1024 -- 100 KB
@@ -526,15 +621,15 @@ require("lazy").setup {
           end
         end,
         context_commentstring = {
-          enable = true
+          enable = false
         },
         highlight = {
           enable = true,
-          disable = { "sql" },
+          -- disable = { "sql" },
           additional_vim_regex_highlighting = false,
         },
         rainbow = {
-          enable = true,
+          enable = false,
           -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
           extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
           max_file_lines = nil, -- Do not enable for files with more than n lines, int
@@ -547,7 +642,7 @@ require("lazy").setup {
           -- termcolors = {} -- table of colour name strings
         },
         incremental_selection = {
-          enable = true,
+          enable = false,
           keymaps = {
             -- init_selection = "gnn", -- set to `false` to disable one of the mappings
             node_incremental = ".",
@@ -558,8 +653,8 @@ require("lazy").setup {
         textsubjects = {
           enable = false,
           keymaps = {
-            ["."] = "textsubjects-smart",
-            [";"] = "textsubjects-container-outer",
+                ["."] = "textsubjects-smart",
+                [";"] = "textsubjects-container-outer",
           },
         },
       })
@@ -721,16 +816,18 @@ require("lazy").setup {
   },
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { { "nvim-lua/plenary.nvim" } },
+    dependencies = { { "nvim-lua/plenary.nvim" }, { "debugloop/telescope-undo.nvim" } },
     config = function()
       require("telescope").load_extension("projects")
+      require("telescope").load_extension("undo")
+
 
       require("telescope").setup({
         defaults = {
           path_display = { "smart" }
         },
         extensions = {
-          ["ui-select"] = {
+              ["ui-select"] = {
             require("telescope.themes").get_dropdown {
               -- more options
             },
@@ -766,17 +863,17 @@ require("lazy").setup {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
+      -- 'L3MON4D3/LuaSnip',
+      -- 'saadparwaiz1/cmp_luasnip',
     },
     config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_snipmate").lazy_load()
-      require('luasnip').filetype_extend("javascript", { "javascriptreact" })
-      require('luasnip').filetype_extend("javascript", { "typescriptreact" })
-      require('luasnip').filetype_extend("javascript", { "html" })
+      -- require("luasnip.loaders.from_vscode").lazy_load()
+      -- require("luasnip.loaders.from_snipmate").lazy_load()
+      -- require('luasnip').filetype_extend("javascript", { "javascriptreact" })
+      -- require('luasnip').filetype_extend("javascript", { "typescriptreact" })
+      -- require('luasnip').filetype_extend("javascript", { "html" })
       local cmp = require 'cmp'
-      local luasnip = require 'luasnip'
+      -- local luasnip = require 'luasnip'
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -802,26 +899,26 @@ require("lazy").setup {
           -- },
 
         },
-        snippet = {
-          -- REQUIRED - you must specify a snippet engine
-          expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-          end,
-        },
+        -- snippet = {
+        --   -- REQUIRED - you must specify a snippet engine
+        --   expand = function(args)
+        --     -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        --     require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        --     -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        --     -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        --   end,
+        -- },
         window = {
           -- completion = cmp.config.window.bordered(),
           -- documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-n>'] = cmp.mapping.select_next_item(),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+              ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+              ['<C-n>'] = cmp.mapping.select_next_item(),
+              ['<C-f>'] = cmp.mapping.scroll_docs(4),
+              ['<C-Space>'] = cmp.mapping.complete(),
+              ['<C-e>'] = cmp.mapping.abort(),
+              ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         sources = cmp.config.sources({
           -- { name = "copilot" },
@@ -886,7 +983,7 @@ require("lazy").setup {
       -- vim.g["codegpt_chat_completions_url"] = "http://127.0.0.1:800/test"
 
       vim.g["codegpt_commands"] = {
-        ["complete"] = {
+            ["complete"] = {
           -- Overrides the system message template
           system_message_template = "You are an expert {{language}} developer.",
 
@@ -901,7 +998,7 @@ require("lazy").setup {
           -- Display the response in a popup window. The popup window filetype will be the filetype of the current buffer.
           callback_type = "code_popup",
         },
-        ["4_code_edit"] = {
+            ["4_code_edit"] = {
           -- Overrides the system message template
           system_message_template = "You are an expert {{language}} developer.",
           model = "gpt-4-32k",
@@ -915,7 +1012,7 @@ require("lazy").setup {
           -- Display the response in a popup window. The popup window filetype will be the filetype of the current buffer.
           callback_type = "code_popup",
         },
-        ["code_edit"] = {
+            ["code_edit"] = {
           -- Overrides the system message template
           system_message_template = "You are an expert {{language}} developer.",
 
@@ -944,14 +1041,18 @@ require("lazy").setup {
           -- require("null-ls").builtins.formatting.stylua,
           require("null-ls").builtins.formatting.fixjson,
           require("null-ls").builtins.formatting.prettier,
-          require("null-ls").builtins.formatting.black,
+          -- require("null-ls").builtins.formatting.prettier_d_slim,
+          require("null-ls").builtins.formatting.black.with {
+            cwd = function(params)
+              return vim.fn.fnamemodify(params.bufname, ':h')
+            end,
+          },
           require("null-ls").builtins.formatting.isort,
           -- require("null-ls").builtins.formatting.eslint_d.with({
           -- }),
           -- require("null-ls").builtins.diagnostics.sqlfluff.with({
           --   extra_args = { "--dialect", "postgres" }, -- change to your dialect
           -- }),
-          -- require("null-ls").builtins.formatting.rustfmt,
           require("null-ls").builtins.diagnostics.eslint_d,
           -- require("null-ls").builtins.completion.spell,
         },
@@ -961,15 +1062,15 @@ require("lazy").setup {
           -- print(vim.inspect(client.server_capabilities))
           if client.supports_method("textDocument/formatting") then
             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = augroup,
-              buffer = bufnr,
-              callback = function()
-                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                -- vim.lsp.buf.formatting_sync()
-                vim.lsp.buf.format({ bufnr = bufnr })
-              end,
-            })
+            -- vim.api.nvim_create_autocmd("BufWritePre", {
+            --   group = augroup,
+            --   buffer = bufnr,
+            --   callback = function()
+            --     -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+            --     -- vim.lsp.buf.formatting_sync()
+            --     vim.lsp.buf.format({ bufnr = bufnr, async = true, timeout_ms = 5000 })
+            --   end,
+            -- })
           end
         end,
       })
@@ -1015,57 +1116,57 @@ require("lazy").setup {
     config = function()
       require("gitlinker").setup({
         callbacks = {
-          ["gitlab.tula.co"] = require("gitlinker.hosts").get_gitlab_type_url,
+              ["gitlab.tula.co"] = require("gitlinker.hosts").get_gitlab_type_url,
         },
       })
     end,
   },
   { "stevearc/dressing.nvim" },
 
-  {
-    'mrjones2014/legendary.nvim',
-    config = function()
-      require('legendary').setup({
-        keymaps = {
-          { '<F88>', ':ZkTags<CR>', description = 'zk tags' },
-
-
-        },
-        which_key = {
-          -- Automatically add which-key tables to legendary
-          -- see ./doc/WHICH_KEY.md for more details
-          auto_register = true,
-          -- you can put which-key.nvim tables here,
-          -- or alternatively have them auto-register,
-          -- see ./doc/WHICH_KEY.md
-          mappings = {},
-          opts = {},
-          -- controls whether legendary.nvim actually binds they keymaps,
-          -- or if you want to let which-key.nvim handle the bindings.
-          -- if not passed, true by default
-          do_binding = true,
-        },
-        commands = {
-
-        },
-        funcs = {
-          -- Make arbitrary Lua functions that can be executed via the item finder
-          {
-            function()
-              require('spectre').open()
-            end,
-            description = 'Spectre',
-          },
-        },
-        autocmds = {
-        },
-        extensions = {
-          nvim_tree = true,
-          diffview = true,
-        },
-      })
-    end
-  },
+  -- {
+  --   'mrjones2014/legendary.nvim',
+  --   config = function()
+  --     require('legendary').setup({
+  --       keymaps = {
+  --         { '<F88>', ':ZkTags<CR>', description = 'zk tags' },
+  --
+  --
+  --       },
+  --       which_key = {
+  --         -- Automatically add which-key tables to legendary
+  --         -- see ./doc/WHICH_KEY.md for more details
+  --         auto_register = true,
+  --         -- you can put which-key.nvim tables here,
+  --         -- or alternatively have them auto-register,
+  --         -- see ./doc/WHICH_KEY.md
+  --         mappings = {},
+  --         opts = {},
+  --         -- controls whether legendary.nvim actually binds they keymaps,
+  --         -- or if you want to let which-key.nvim handle the bindings.
+  --         -- if not passed, true by default
+  --         do_binding = false,
+  --       },
+  --       commands = {
+  --
+  --       },
+  --       funcs = {
+  --         -- Make arbitrary Lua functions that can be executed via the item finder
+  --         {
+  --           function()
+  --             require('spectre').open()
+  --           end,
+  --           description = 'Spectre',
+  --         },
+  --       },
+  --       autocmds = {
+  --       },
+  --       extensions = {
+  --         nvim_tree = true,
+  --         diffview = true,
+  --       },
+  --     })
+  --   end
+  -- },
 
   -- TODO: neotest
   {
@@ -1109,28 +1210,6 @@ require("lazy").setup {
       })
     end
   },
-  -- {
-  --   "folke/noice.nvim",
-  --   config = function()
-  --     require("noice").setup({
-  --       lsp = {
-  --         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-  --         override = {
-  --           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-  --           ["vim.lsp.util.stylize_markdown"] = true,
-  --           ["cmp.entry.get_documentation"] = true,
-  --         },
-  --       },
-  --       -- you can enable a preset for easier configuration
-  --       presets = {
-  --         -- bottom_search = true, -- use a classic bottom cmdline for search
-  --         command_palette = true, -- position the cmdline and popupmenu together
-  --         long_message_to_split = true, -- long messages will be sent to a split
-  --         inc_rename = false, -- enables an input dialog for inc-rename.nvim
-  --         lsp_doc_border = false, -- add a border to hover docs and signature help
-  --       },
-  --     })
-  --   end,
   --   dependencies = {
   --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
   --     "MunifTanjim/nui.nvim",
@@ -1176,20 +1255,31 @@ require("lazy").setup {
     version = false,
     config = function()
       require('mini.bracketed').setup()
-      require('mini.ai').setup()
-      require('mini.indentscope').setup()
+      require('mini.ai').setup({
+        n_lines = 1000,
+
+      })
+      -- require('mini.indentscope').setup()
       require('mini.surround').setup({
         mappings = {
           add = 'ysa',            -- Add surrounding in Normal and Visual modes
-          delete = 'ysd',         -- Delete surrounding
+          delete = 'ds',          -- Delete surrounding
           find = 'ysf',           -- Find surrounding (to the right)
           find_left = 'ysF',      -- Find surrounding (to the left)
           highlight = 'ysh',      -- Highlight surrounding
           replace = 'ysr',        -- Replace surrounding
           update_n_lines = 'ysn', -- Update `n_lines`
         },
-      }
-      )
+      })
+      vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+    end
+  },
+
+  {
+    'andymass/vim-matchup',
+    setup = function()
+      -- may set any options here
+      -- vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end
   },
 
@@ -1464,102 +1554,22 @@ local add_snippets = function()
   --   ) }))
 end
 
-add_snippets()
-local wk = require("which-key")
-
 wk.register({
-  i = {
-    e = { ":Chat code_edit ", "ChatGPT w/ last selection" },
-    i = { ":Chat code_edit_4 ", "Chat gpt 4 edit" },
-    a = { ":Chat complete ", "ChatGPT w/ last selection" },
+  m = {
+    e = { require("react-extract").extract_to_current_file, "Extract to current file" },
   },
+  r = {
+
+    d = { "\"+y", "Yank to system clioard" },
+  }
 }, { prefix = "<leader>", mode = "v" })
 
 wk.register({
-  s = {
-    name = "search",
-    a = { "<cmd>Telescope find_files<cr>", "Find File" },
-    n = { "<cmd>Rg<CR>", "Fuzzy search" },
-    d = { "<cmd>Easypick changed_files<CR>", "Search changed files" },
-    t = {
-      ":Telescope current_buffer_fuzzy_find<CR>",
-      "Fuzzy in buffer",
-    },
-    r = { "<cmd>Telescope smart_open<cr>", "Open Recent File" },
-    i = { "<cmd>Telescope projects<CR>", "Projects" },
-    e = { "<cmd>Portal jumplist backward<cr>", "Portal jumplist" }
-  },
-  d = {
-    name = "Git",
-    t = { ":Git commit<CR>", "Fugitive commit" },
-    s = { ":DiffviewOpen<CR>", "Diffview" },
-    a = { ":Git push<CR>", "Fugitive push" },
-    n = { "<cmd>Gvdiffsplit<CR>", "diffview" },
-    i = { "<cmd>DiffviewFileHistory %<CR>", "File history" },
-    r = { function() require("gitsigns").blame_line { full = true } end, "Blame line" },
-    e = { function() require("gitsigns").toggle_deleted() end, "Toggle deleted lines" },
-    -- u = { "<cmd>Diffview<CR>", "DiffviewOpen" },
-  },
-  n = {
-    name = "Navigation",
-    r = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
-    s = { ":tabn<CR>", "Next tab" },
-    t = { ":$tabnew<CR>", "New tab" },
-    d = { "<cmd>only<CR>", "Close all others" },
-    e = { "<cmd>q<CR>", "Close window" },
-    a = { "<C-w>v", "Split vertically" },
-    i = { "<C-w>s", "Split horizontally" },
-  },
-  t = {
-    name = "lsp",
-    r = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
-    s = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
-    d = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-    h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
-    e = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-    i = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition" },
-    a = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
-  },
-  r = {
-    name = "Misc / High Freq",
-    a = { ":CodeActionMenu<CR>", "Code action" },
-    e = { ":Telescope neoclip<CR>", "Neoclip" },
-    n = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" },
-    i = {
+      ["<leader>"] = {
+    z = {
       "<cmd>HopLineStart<CR>",
       "Hop line",
     },
   },
-  a = {
-    name = "Misc / Low Freq",
-    e = { ":Telescope diagnostics<CR>", "Diagnostics" },
-    t = { ":Telescope<CR>", "Just Telescope" },
-    a = { ":Legendary<CR>", "Legendary" },
-  },
-  i = {
-    name = "Openers",
-    n = {
-      "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", "New zk note"
-    },
-    d = {
-      "",
-      ""
-    },
-    e = {
-      "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Search zk notes"
-    },
-    s = { ":Neotree filesystem reveal<CR>", "Nvim toggle" },
-    a = { function()
-      require("spectre").open()
-    end, "Spectre" },
-    r = { ":ChatGPT<CR>", "ChatGPT" },
-    t = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
-  }
-}, { prefix = "<leader>" })
-wk.register({
-  ["<F8>"] = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" }
-
-}, { mode = "n" })
-wk.register({
-  ["<F8>"] = { "<esc><cmd>w<CR><cmd>noh<CR><esc>", "Save / Clear Highlights" }
-}, { mode = "i" })
+}, { mode = "x" })
+-- add_snippets()
