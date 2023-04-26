@@ -552,6 +552,8 @@ require("lazy").setup {
 
       lspconfig.lua_ls.setup(opts)
       lspconfig.pyright.setup(opts)
+      lspconfig.gopls.setup {}
+
       lspconfig.tsserver.setup {
         on_attach = function(client, bufnr)
           -- require("aerial").on_attach(client, bufnr)
@@ -625,7 +627,7 @@ require("lazy").setup {
         },
         highlight = {
           enable = true,
-          -- disable = { "sql" },
+          disable = { "sql" },
           additional_vim_regex_highlighting = false,
         },
         rainbow = {
@@ -1047,13 +1049,13 @@ require("lazy").setup {
               return vim.fn.fnamemodify(params.bufname, ':h')
             end,
           },
-          require("null-ls").builtins.formatting.isort,
+          require("null-ls").builtins.formatting.ruff,
           -- require("null-ls").builtins.formatting.eslint_d.with({
           -- }),
           -- require("null-ls").builtins.diagnostics.sqlfluff.with({
           --   extra_args = { "--dialect", "postgres" }, -- change to your dialect
           -- }),
-          require("null-ls").builtins.diagnostics.eslint_d,
+          -- require("null-ls").builtins.diagnostics.eslint_d,
           -- require("null-ls").builtins.completion.spell,
         },
         debug = true,
@@ -1062,15 +1064,15 @@ require("lazy").setup {
           -- print(vim.inspect(client.server_capabilities))
           if client.supports_method("textDocument/formatting") then
             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            -- vim.api.nvim_create_autocmd("BufWritePre", {
-            --   group = augroup,
-            --   buffer = bufnr,
-            --   callback = function()
-            --     -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-            --     -- vim.lsp.buf.formatting_sync()
-            --     vim.lsp.buf.format({ bufnr = bufnr, async = true, timeout_ms = 5000 })
-            --   end,
-            -- })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = augroup,
+              buffer = bufnr,
+              callback = function()
+                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                -- vim.lsp.buf.formatting_sync()
+                vim.lsp.buf.format({ bufnr = bufnr, async = true, timeout_ms = 5000 })
+              end,
+            })
           end
         end,
       })
