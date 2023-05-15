@@ -1,0 +1,41 @@
+layout {
+      cwd "~/projects/chessbook"
+      default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+    }
+
+  tab name="editor" focus=true {
+    pane name="editor" {
+
+    command "zsh"
+    args "-c" "nvim"
+      }
+  }
+  tab name="processes" {
+    pane stacked=true {
+
+    pane {
+      cwd "~/projects/chessbook/server"
+    command "zsh"
+    args "-c" "cargo watch -x run"
+
+    }
+    pane {
+      cwd "~/projects/chessbook/frontend"
+    command "zsh"
+    args "-c" "pnpm dev"
+
+    }
+      }
+  }
+  tab name="misc" {
+    pane stacked=true {
+        pane
+        pane
+      }
+
+  }
+}
