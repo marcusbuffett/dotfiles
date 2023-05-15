@@ -21,108 +21,35 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local wk = require("which-key")
-
-wk.register({
-  i = {
-    e = { ":Chat code_edit ", "ChatGPT w/ last selection" },
-    i = { ":Chat code_edit_4 ", "Chat gpt 4 edit" },
-    a = { ":Chat complete ", "ChatGPT w/ last selection" },
-  },
-}, { prefix = "<leader>", mode = "v" })
-
-wk.register({
-  s = {
-    name = "search",
-    a = { "<cmd>Telescope find_files<cr>", "Find File" },
-    n = { "<cmd>Rg<CR>", "Fuzzy search" },
-    d = { "<cmd>Easypick changed_files<CR>", "Search changed files" },
-    t = {
-      ":Telescope current_buffer_fuzzy_find<CR>",
-      "Fuzzy in buffer",
-    },
-    r = { "<cmd>Telescope smart_open<cr>", "Open Recent File" },
-    i = { "<cmd>Telescope projects<CR>", "Projects" },
-    e = { "<cmd>Portal jumplist backward<cr>", "Portal jumplist" }
-  },
-  d = {
-    name = "Git",
-    t = { ":Git commit<CR>", "Fugitive commit" },
-    s = { ":DiffviewOpen<CR>", "Diffview" },
-    a = { ":Git push<CR>", "Fugitive push" },
-    n = { "<cmd>Gvdiffsplit<CR>", "diffview" },
-    i = { "<cmd>DiffviewFileHistory %<CR>", "File history" },
-    r = { function() require("gitsigns").blame_line { full = true } end, "Blame line" },
-    e = { function() require("gitsigns").toggle_deleted() end, "Toggle deleted lines" },
-    -- u = { "<cmd>Diffview<CR>", "DiffviewOpen" },
-  },
-  n = {
-    name = "Navigation",
-    r = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
-    s = { ":tabn<CR>", "Next tab" },
-    t = { ":$tabnew<CR>", "New tab" },
-    d = { "<cmd>only<CR>", "Close all others" },
-    e = { "<cmd>q<CR>", "Close window" },
-    a = { "<C-w>v", "Split vertically" },
-    i = { "<C-w>s", "Split horizontally" },
-  },
-  t = {
-    name = "lsp",
-    r = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
-    s = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
-    d = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-    h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
-    e = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-    i = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition" },
-    a = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
-  },
-  r = {
-    name = "Misc / High Freq",
-    a = { ":CodeActionMenu<CR>", "Code action" },
-    e = { ":Telescope neoclip<CR>", "Neoclip" },
-    n = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" },
-    i = {
-      "<cmd>HopLineStart<CR>",
-      "Hop line",
-    },
-  },
-  a = {
-    name = "Misc / Low Freq",
-    e = { ":Telescope diagnostics<CR>", "Diagnostics" },
-    t = { ":Telescope<CR>", "Just Telescope" },
-    a = { ":Telescope keymaps<CR>", "Keymaps" },
-  },
-  i = {
-    name = "Openers",
-    n = {
-      "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", "New zk note"
-    },
-    d = {
-      "",
-      ""
-    },
-    e = {
-      "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Search zk notes"
-    },
-    s = { ":Neotree filesystem reveal<CR>", "Nvim toggle" },
-    a = { function()
-      require("spectre").open()
-    end, "Spectre" },
-    r = { ":ChatGPT<CR>", "ChatGPT" },
-    t = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
-  }
-}, { prefix = "<leader>" })
-wk.register({
-      ["<F8>"] = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" }
-
-}, { mode = "n" })
-wk.register({
-      ["<F8>"] = { "<esc><cmd>w<CR><cmd>noh<CR><esc>", "Save / Clear Highlights" }
-}, { mode = "i" })
-
 require("lazy").setup {
 
   { "kazhala/close-buffers.nvim" },
+  {
+    "Bryley/neoai.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    cmd = {
+      "NeoAI",
+      "NeoAIOpen",
+      "NeoAIClose",
+      "NeoAIToggle",
+      "NeoAIContext",
+      "NeoAIContextOpen",
+      "NeoAIContextClose",
+      "NeoAIInject",
+      "NeoAIInjectCode",
+      "NeoAIInjectContext",
+      "NeoAIInjectContextCode",
+    },
+    keys = {
+    },
+    config = function()
+      require("neoai").setup({
+        -- Options go here
+      })
+    end,
+  },
   {
     "jackMort/ChatGPT.nvim",
     config = function()
@@ -435,7 +362,7 @@ require("lazy").setup {
     config = function()
       require("spectre").setup({
         mapping = {
-              ["send_to_qf"] = {
+          ["send_to_qf"] = {
             map = "<leader>mqf",
             cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
             desc = "send all item to quickfix",
@@ -561,7 +488,7 @@ require("lazy").setup {
           -- client.server_capabilities.documentFormattingProvider = false
         end,
         handlers = {
-              ["textDocument/definition"] = function(_, result, params)
+          ["textDocument/definition"] = function(_, result, params)
             if result == nil or vim.tbl_isempty(result) then
               local _ = vim.lsp.log.info() and vim.lsp.log.info(params.method, "No location found")
               return nil
@@ -655,8 +582,8 @@ require("lazy").setup {
         textsubjects = {
           enable = false,
           keymaps = {
-                ["."] = "textsubjects-smart",
-                [";"] = "textsubjects-container-outer",
+            ["."] = "textsubjects-smart",
+            [";"] = "textsubjects-container-outer",
           },
         },
       })
@@ -829,7 +756,7 @@ require("lazy").setup {
           path_display = { "smart" }
         },
         extensions = {
-              ["ui-select"] = {
+          ["ui-select"] = {
             require("telescope.themes").get_dropdown {
               -- more options
             },
@@ -865,8 +792,8 @@ require("lazy").setup {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
-      -- 'L3MON4D3/LuaSnip',
-      -- 'saadparwaiz1/cmp_luasnip',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
     },
     config = function()
       -- require("luasnip.loaders.from_vscode").lazy_load()
@@ -901,26 +828,26 @@ require("lazy").setup {
           -- },
 
         },
-        -- snippet = {
-        --   -- REQUIRED - you must specify a snippet engine
-        --   expand = function(args)
-        --     -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        --     require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        --     -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        --     -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-        --   end,
-        -- },
+        snippet = {
+          -- REQUIRED - you must specify a snippet engine
+          expand = function(args)
+            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+          end,
+        },
         window = {
           -- completion = cmp.config.window.bordered(),
           -- documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-              ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-              ['<C-n>'] = cmp.mapping.select_next_item(),
-              ['<C-f>'] = cmp.mapping.scroll_docs(4),
-              ['<C-Space>'] = cmp.mapping.complete(),
-              ['<C-e>'] = cmp.mapping.abort(),
-              ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-n>'] = cmp.mapping.select_next_item(),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         sources = cmp.config.sources({
           -- { name = "copilot" },
@@ -963,8 +890,13 @@ require("lazy").setup {
     end,
   },
   {
+    "L3MON4D3/LuaSnip",
+    build = "make install_jsregexp"
+  },
+
+  {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons", opt = true },
+    dependencies = { "kyazdani42/nvim-web-devicons", },
     config = function()
       -- local gps = require("nvim-gps")
       require("lualine").setup({
@@ -985,7 +917,7 @@ require("lazy").setup {
       -- vim.g["codegpt_chat_completions_url"] = "http://127.0.0.1:800/test"
 
       vim.g["codegpt_commands"] = {
-            ["complete"] = {
+        ["complete"] = {
           -- Overrides the system message template
           system_message_template = "You are an expert {{language}} developer.",
 
@@ -1000,7 +932,7 @@ require("lazy").setup {
           -- Display the response in a popup window. The popup window filetype will be the filetype of the current buffer.
           callback_type = "code_popup",
         },
-            ["4_code_edit"] = {
+        ["4_code_edit"] = {
           -- Overrides the system message template
           system_message_template = "You are an expert {{language}} developer.",
           model = "gpt-4-32k",
@@ -1014,7 +946,7 @@ require("lazy").setup {
           -- Display the response in a popup window. The popup window filetype will be the filetype of the current buffer.
           callback_type = "code_popup",
         },
-            ["code_edit"] = {
+        ["code_edit"] = {
           -- Overrides the system message template
           system_message_template = "You are an expert {{language}} developer.",
 
@@ -1118,7 +1050,7 @@ require("lazy").setup {
     config = function()
       require("gitlinker").setup({
         callbacks = {
-              ["gitlab.tula.co"] = require("gitlinker.hosts").get_gitlab_type_url,
+          ["gitlab.tula.co"] = require("gitlinker.hosts").get_gitlab_type_url,
         },
       })
     end,
@@ -1556,6 +1488,8 @@ local add_snippets = function()
   --   ) }))
 end
 
+local wk = require("which-key")
+
 wk.register({
   m = {
     e = { require("react-extract").extract_to_current_file, "Extract to current file" },
@@ -1567,11 +1501,107 @@ wk.register({
 }, { prefix = "<leader>", mode = "v" })
 
 wk.register({
-      ["<leader>"] = {
+  ["<leader>"] = {
     z = {
       "<cmd>HopLineStart<CR>",
       "Hop line",
     },
   },
 }, { mode = "x" })
--- add_snippets()
+
+wk.register({
+  i = {
+    e = { ":Chat code_edit ", "ChatGPT w/ last selection" },
+    i = { ":Chat code_edit_4 ", "Chat gpt 4 edit" },
+    a = { ":Chat complete ", "ChatGPT w/ last selection" },
+  },
+}, { prefix = "<leader>", mode = "v" })
+
+wk.register({
+  s = {
+    name = "search",
+    a = { "<cmd>Telescope find_files<cr>", "Find File" },
+    n = { "<cmd>Rg<CR>", "Fuzzy search" },
+    d = { "<cmd>Easypick changed_files<CR>", "Search changed files" },
+    t = {
+      ":Telescope current_buffer_fuzzy_find<CR>",
+      "Fuzzy in buffer",
+    },
+    r = { "<cmd>Telescope smart_open<cr>", "Open Recent File" },
+    i = { "<cmd>Telescope projects<CR>", "Projects" },
+    e = { "<cmd>Portal jumplist backward<cr>", "Portal jumplist" }
+  },
+  d = {
+    name = "Git",
+    t = { ":Git commit<CR>", "Fugitive commit" },
+    s = { ":DiffviewOpen<CR>", "Diffview" },
+    a = { ":Git push<CR>", "Fugitive push" },
+    n = { "<cmd>Gvdiffsplit<CR>", "diffview" },
+    i = { "<cmd>DiffviewFileHistory %<CR>", "File history" },
+    r = { function() require("gitsigns").blame_line { full = true } end, "Blame line" },
+    e = { function() require("gitsigns").toggle_deleted() end, "Toggle deleted lines" },
+    -- u = { "<cmd>Diffview<CR>", "DiffviewOpen" },
+  },
+  n = {
+    name = "Navigation",
+    r = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
+    s = { ":tabn<CR>", "Next tab" },
+    t = { ":$tabnew<CR>", "New tab" },
+    d = { "<cmd>only<CR>", "Close all others" },
+    e = { "<cmd>q<CR>", "Close window" },
+    a = { "<C-w>v", "Split vertically" },
+    i = { "<C-w>s", "Split horizontally" },
+  },
+  t = {
+    name = "lsp",
+    r = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
+    s = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
+    d = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+    h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+    e = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+    i = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition" },
+    a = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+  },
+  r = {
+    name = "Misc / High Freq",
+    a = { ":CodeActionMenu<CR>", "Code action" },
+    e = { ":Telescope neoclip<CR>", "Neoclip" },
+    n = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" },
+    i = {
+      "<cmd>HopLineStart<CR>",
+      "Hop line",
+    },
+  },
+  a = {
+    name = "Misc / Low Freq",
+    e = { ":Telescope diagnostics<CR>", "Diagnostics" },
+    t = { ":Telescope<CR>", "Just Telescope" },
+    a = { ":Telescope keymaps<CR>", "Keymaps" },
+  },
+  i = {
+    name = "Openers",
+    n = {
+      "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", "New zk note"
+    },
+    d = {
+      "",
+      ""
+    },
+    e = {
+      "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Search zk notes"
+    },
+    s = { ":Neotree filesystem reveal<CR>", "Nvim toggle" },
+    a = { function()
+      require("spectre").open()
+    end, "Spectre" },
+    r = { ":ChatGPT<CR>", "ChatGPT" },
+    t = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
+  }
+}, { prefix = "<leader>" })
+wk.register({
+  ["<F8>"] = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" }
+
+}, { mode = "n" })
+wk.register({
+  ["<F8>"] = { "<esc><cmd>w<CR><cmd>noh<CR><esc>", "Save / Clear Highlights" }
+}, { mode = "i" })

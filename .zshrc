@@ -71,11 +71,13 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
+KEYTIMEOUT=1
 plugins+=(zsh-vi-mode)
 function my_init() {
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 }
 zvm_after_init_commands+=(my_init)
+
 
 
 source $ZSH/oh-my-zsh.sh
@@ -152,7 +154,7 @@ alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(ref
 alias prsb='gh pr list --author "@me" -w --repo "https://github.com/ProjectOpenSea/opensea-api"'
 alias prsf='gh pr list --author "@me" -w --repo "https://github.com/ProjectOpenSea/opensea-next"'
 
-# eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd)"
 
 source "/opt/homebrew/opt/spaceship/spaceship.zsh"
 
@@ -193,3 +195,14 @@ export NVM_DIR="$HOME/.nvm"
 export GOPATH=$HOME/projects
 export PATH=$PATH:$GOPATH/bin
 
+
+# pnpm
+export PNPM_HOME="/Users/marcusbuffett/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+spaceship add --before char vi_mode
