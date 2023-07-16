@@ -22,7 +22,30 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup {
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        keymaps = {
+          insert = "<C-g>s",
+          insert_line = "<C-g>S",
+          normal = "ys",
+          normal_cur = "yss",
+          normal_line = "yS",
+          normal_cur_line = "ySS",
+          visual = "<C-s>",
+          visual_line = "gS",
+          delete = "ds",
+          change = "cs",
+          change_line = "cS",
+        },
 
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
   { "kazhala/close-buffers.nvim" },
   {
     "Bryley/neoai.nvim",
@@ -200,6 +223,7 @@ require("lazy").setup {
       require('aerial').setup({})
     end,
   },
+
   -- use({ "simrat39/symbols-outline.nvim", config = function() end })
   { "junegunn/fzf" },
   { "junegunn/fzf.vim" },
@@ -225,74 +249,74 @@ require("lazy").setup {
     end,
   },
   {
-    "ggandor/leap-spooky.nvim",
+    "folke/flash.nvim",
+    event = "VeryLazy",
     config = function()
-      require("leap-spooky").setup({
-
-        paste_on_remote_yank = false,
-
-      })
+      require("flash").setup(
+        {
+          labels = "dstrneaibuqmpvkw",
+          modes = {
+            char = {
+              keys = { "f", "F", "t", "T", ";" },
+            },
+            search = {
+              enabled = false,
+            }
+          },
+        })
     end,
+    ---@type Flash.Config
+    opts = {},
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump({
+            search = {
+              mode = function(str)
+                return "\\<" .. str
+              end,
+            },
+          })
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Flash Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
+    },
   },
-  {
-    "ggandor/leap.nvim",
-    config = function()
-      -- local function get_windows_on_tabpage()
-      --   local t = {}
-      --   local ids = string.gmatch(vim.fn.string(vim.fn.winlayout()), "%d+")
-      --   for id in ids do t[#t + 1] = id end
-      --   return vim.tbl_map(function(id) return vim.fn.getwininfo(id)[1] end, t)
-      -- end
 
-      require("which-key").register({
-        S = { function()
-          require('leap').leap { target_windows = vim.tbl_filter(
-            function(win) return vim.api.nvim_win_get_config(win).focusable end,
-            vim.api.nvim_tabpage_list_wins(0)
-          ) }
-        end
-        , "leap" }
-      }, {
-        mode = "n"
-      })
-
-      require("which-key").register({
-        t = { "<Plug>(leap-backward)", "leap" }
-      }, {
-        mode = "n"
-      })
-      require("which-key").register({
-        s = { "<Plug>(leap-forward)", "leap" }
-      }, {
-        mode = "n"
-      })
-      require("which-key").register({
-        t = { "<Plug>(leap-backward)", "leap" }
-      }, {
-        mode = "x"
-      })
-      require("which-key").register({
-        s = { "<Plug>(leap-forward)", "leap" }
-      }, {
-        mode = "x"
-      })
-      require('leap').setup {
-        -- case_insensitive = true,
-        safe_labels = {},
-        labels = { "d", "s", "t", "n", "e", "a", "i" },
-        special_keys = {
-          repeat_search = '<enter>',
-          next_target   = '<enter>',
-          prev_target   = '<tab>',
-          next_group    = '<space>',
-          prev_group    = '<tab>',
-          eol           = '<space>',
-        },
-      }
-      vim.cmd([[highlight LeapBackdrop guifg=#918474 guibg=none]])
-      vim.cmd([[highlight LeapLabelPrimary guifg=#000000 guibg=#EBEDF1]])
-    end
-  },
   {
     "monaqa/dial.nvim",
     event = "BufRead",
@@ -305,31 +329,6 @@ require("lazy").setup {
       require 'nvim-lastplace'.setup {}
     end
   },
-  -- {
-  --   "tpope/vim-surround",
-  --   keys = { "c", "d", "y" },
-  -- },
-  -- { "sunjon/shade.nvim", config = function()
-  --   require 'shade'.setup({
-  --     overlay_opacity = 50,
-  --     opacity_step = 1,
-  --     keys = {
-  --       brightness_up   = '<C-Up>',
-  --       brightness_down = '<C-Down>',
-  --       -- toggle          = '<Leader>s',
-  --     }
-  --   })
-  --
-  -- end },
-
-  -- {
-  --   "kylechui/nvim-surround",
-  --   config = function()
-  --     require("nvim-surround").setup({
-  --       -- Configuration here, or leave empty to use defaults
-  --     })
-  --   end
-  -- },
   { "aserowy/tmux.nvim" },
   {
     "sindrets/diffview.nvim",
@@ -571,7 +570,7 @@ require("lazy").setup {
           -- termcolors = {} -- table of colour name strings
         },
         incremental_selection = {
-          enable = false,
+          enable = true,
           keymaps = {
             -- init_selection = "gnn", -- set to `false` to disable one of the mappings
             node_incremental = ".",
@@ -743,12 +742,17 @@ require("lazy").setup {
       require("telescope").load_extension("ui-select")
     end
   },
+  { 'liuchengxu/vim-clap',     build = 'cargo build --release' },
+
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { { "nvim-lua/plenary.nvim" }, { "debugloop/telescope-undo.nvim" } },
+    dependencies = { { "nvim-lua/plenary.nvim" }, { "debugloop/telescope-undo.nvim" },
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' } },
     config = function()
       require("telescope").load_extension("projects")
       require("telescope").load_extension("undo")
+      require('telescope').load_extension('fzf')
+
 
 
       require("telescope").setup({
@@ -1193,19 +1197,6 @@ require("lazy").setup {
         n_lines = 1000,
 
       })
-      -- require('mini.indentscope').setup()
-      require('mini.surround').setup({
-        mappings = {
-          add = 'ysa',            -- Add surrounding in Normal and Visual modes
-          delete = 'ds',          -- Delete surrounding
-          find = 'ysf',           -- Find surrounding (to the right)
-          find_left = 'ysF',      -- Find surrounding (to the left)
-          highlight = 'ysh',      -- Highlight surrounding
-          replace = 'ysr',        -- Replace surrounding
-          update_n_lines = 'ysn', -- Update `n_lines`
-        },
-      })
-      vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
     end
   },
 
@@ -1290,6 +1281,8 @@ opt.writebackup = true
 opt.backup = false
 opt.backupcopy = "auto"
 opt.autoread = true
+opt.foldmethod = "indent"
+opt.foldlevel = 99
 
 -- local formatters = require "lvim.lsp.null-ls.formatters"
 -- formatters.setup {

@@ -93,7 +93,7 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+  export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -206,3 +206,8 @@ esac
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 spaceship add --before char vi_mode
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

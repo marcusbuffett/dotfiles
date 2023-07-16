@@ -10,29 +10,29 @@ layout {
   tab name="editor" focus=true {
     pane name="editor" {
 
-    command "zsh"
+    command "nu"
     args "-c" "nvim"
       }
   }
   tab name="processes" {
-    pane stacked=true {
+    pane {
 
     pane {
       cwd "~/projects/chessbook/server"
-    command "zsh"
+    command "nu"
     args "-c" "cargo watch -x run"
 
     }
     pane {
       cwd "~/projects/chessbook/frontend"
-    command "zsh"
+    command "nu"
     args "-c" "pnpm dev"
 
     }
       }
   }
   tab name="misc" {
-    pane stacked=true {
+    pane {
         pane
         pane
       }
