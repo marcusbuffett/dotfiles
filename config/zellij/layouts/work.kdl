@@ -1,0 +1,45 @@
+layout {
+  cwd "~/projects/opensea-next"
+    default_tab_template {
+      pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+      }
+      children
+    }
+
+  tab name="editor" focus=true {
+    pane name="editor" {
+
+      command "zsh"
+        args "-c" "nvim"
+    }
+  }
+  tab name="processes" {
+    pane {
+
+      pane {
+        cwd "~/projects/opensea-next"
+          command "zsh"
+
+      }
+      pane {
+        cwd "~/projects/opensea-next"
+          command "zsh"
+          args "-c" "yarn nodemon --watch src/lib/graphql --exec \"yarn sign-queries\""
+
+      }
+      pane {
+        cwd "~/projects/opensea-api"
+          command "zsh"
+          // args "-c" ""
+
+      }
+    }
+  }
+  tab name="misc" {
+    pane stacked=true {
+      pane
+        pane
+    }
+  }
+}
