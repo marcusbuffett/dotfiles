@@ -147,7 +147,7 @@ alias gf="git fetch"
 alias gco='git checkout'
 alias gss='git status --short'
 alias gs='git status'
-alias gcm='git checkout master'
+alias gcm='git checkout main'
 alias gsta="git stash"
 alias gstaa="git stash apply"
 alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)' | tac | fzf --no-sort | xargs git checkout"
@@ -188,9 +188,9 @@ case ":$PATH:" in
 esac
 export ZK_NOTEBOOK_DIR="$HOME/zk-notebook"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export GOPATH=$HOME/projects
 export PATH=$PATH:$GOPATH/bin

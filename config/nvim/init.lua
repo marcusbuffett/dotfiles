@@ -725,6 +725,12 @@ require("lazy").setup {
     end,
   },
   {
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup()
+    end
+  },
+  {
     "ahmedkhalf/project.nvim",
     config = function()
       require("project_nvim").setup({
