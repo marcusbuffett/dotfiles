@@ -8,6 +8,8 @@ vim.g.python3_host_prog = "/Library/Frameworks/Python.framework/Versions/3.10/bi
 
 -- vim.cmd([[packadd packer.nvim]])
 
+local work = vim.env.WORK or false
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -88,25 +90,6 @@ require("lazy").setup {
   },
   { "ilAYAli/scMRU.nvim" },
   {
-    "ggandor/flit.nvim",
-    dependencies = { "ggandor/leap.nvim" },
-    config = function()
-      require('flit').setup {
-        keys = { f = 'f', t = 'ø', T = 'ø', F = 'F' },
-        -- -- A string like "nv", "nvo", "o", etc.
-        -- labeled_modes = "v",
-        -- multiline = true,
-        -- -- Like `leap`s similar argument (call-specific overrides).
-        -- -- E.g.: opts = { equivalence_classes = {} }
-        opts = {
-          -- case_insensitive = true,
-          safe_labels = {},
-          labels = { "d", "s", "t", "n", "e", "a", "i" },
-        }
-      }
-    end,
-  },
-  {
     "amarakon/nvim-cmp-buffer-lines",
     config = function()
     end,
@@ -127,7 +110,6 @@ require("lazy").setup {
           dashboard = true,
           gitsigns = true,
           hop = true,
-          leap = true,
           lsp_trouble = true,
           markdown = true,
           noice = true,
@@ -450,7 +432,7 @@ require("lazy").setup {
     config = function()
       require("mason").setup({})
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "rust_analyzer" }
+        ensure_installed = { "lua", "rust_analyzer" }
       })
       local lspconfig = require("lspconfig")
       local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -479,6 +461,20 @@ require("lazy").setup {
       lspconfig.lua_ls.setup(opts)
       lspconfig.pyright.setup(opts)
       lspconfig.gopls.setup {}
+      if work then
+        require 'lspconfig'.eslint.setup({
+          settings = {
+            packageManager = 'yarn'
+          },
+          on_attach = function(client, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              command = "EslintFixAll",
+            })
+          end,
+        })
+      end
+
 
       lspconfig.tsserver.setup {
         on_attach = function(client, bufnr)
@@ -748,8 +744,6 @@ require("lazy").setup {
       require("telescope").load_extension("ui-select")
     end
   },
-  { 'liuchengxu/vim-clap',     build = 'cargo build --release' },
-
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { { "nvim-lua/plenary.nvim" }, { "debugloop/telescope-undo.nvim" },
@@ -992,12 +986,15 @@ require("lazy").setup {
             end,
           },
           require("null-ls").builtins.formatting.ruff,
-          -- require("null-ls").builtins.formatting.eslint_d.with({
-          -- }),
+          -- require("null-ls").builtins.diagnostics.eslint.with {
+          --   extra_args = { "--rule", "'import/no-unused-modules: off'" },
+          -- },
           -- require("null-ls").builtins.diagnostics.sqlfluff.with({
           --   extra_args = { "--dialect", "postgres" }, -- change to your dialect
           -- }),
-          -- require("null-ls").builtins.diagnostics.eslint_d,
+          -- require("null-ls").builtins.diagnostics.eslint_d.with {
+          --   extra_args = { "--rule 'import/no-unused-modules: off'" },
+          -- },
           -- require("null-ls").builtins.completion.spell,
         },
         debug = true,
@@ -1010,9 +1007,7 @@ require("lazy").setup {
               group = augroup,
               buffer = bufnr,
               callback = function()
-                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                -- vim.lsp.buf.formatting_sync()
-                vim.lsp.buf.format({ bufnr = bufnr, async = true, timeout_ms = 5000 })
+                vim.lsp.buf.format({ bufnr = bufnr, async = false, timeout_ms = 20000 })
               end,
             })
           end
@@ -1347,145 +1342,145 @@ opt.foldlevel = 99
 --
 -- lvim.builtin.treesitter.highlight.enabled = true
 --
-local add_snippets = function()
-  local ls = require "luasnip"
-  local s = ls.snippet
-  local sn = ls.snippet_node
-  local isn = ls.indent_snippet_node
-  local t = ls.text_node
-  local i = ls.insert_node
-  local f = ls.function_node
-  local c = ls.choice_node
-  local d = ls.dynamic_node
-  local r = ls.restore_node
-  local events = require("luasnip.util.events")
-  local ai = require("luasnip.nodes.absolute_indexer")
-  local fmt = require("luasnip.extras.fmt").fmt
-  local m = require("luasnip.extras").m
-  local lambda = require("luasnip.extras").l
-  ls.add_snippets("rust", {
-    ls.parser.parse_snippet(
-      { trig = "rs" },
-      "\"${1}\".to_string()"
-    ),
-    ls.parser.parse_snippet(
-      { trig = "mte" },
-      [[
-      let start = std::time::Instant::now();
-      eprintln!("Elapsed: {:?}", start.elapsed());
-      ]]
-    ),
-    ls.parser.parse_snippet(
-      { trig = "ps" },
-      [[
-      #[derive(Debug, Clone, Eq, PartialEq)]
-      pub struct ${1} {
-        pub ${2}: ${3},
-      }
-      ]]
-    ),
-  })
-  ls.add_snippets("all", {
-    s("uuid", {
-      f(function(args, snip, user_arg_1)
-        return vim.fn.trim(vim.fn.system([[uuidgen | tr '[:upper:]' '[:lower:]']]))
-      end), -- callback (args, parent, user_args) -> string
-    })
-  })
-
-  ls.add_snippets("typescriptreact", {
-    -- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
-    ls.parser.parse_snippet(
-      { trig = "msd" },
-      "<div style={s(${1})}>${2}</div>"
-    ),
-    ls.parser.parse_snippet(
-      { trig = "msv" },
-      "<View style={s(${1})}>${2}</View>"
-    ),
-    ls.parser.parse_snippet(
-      { trig = "mst" },
-      "<CMText style={s(${1})}>${2}</CMText>"
-    ),
-    ls.parser.parse_snippet(
-      { trig = "mhm" },
-      "const isMobile = useIsMobile()"
-    ),
-    ls.parser.parse_snippet(
-      { trig = "mht" },
-      "const track = useTrack()"
-    ),
-    ls.parser.parse_snippet(
-      { trig = "msh" },
-      "<Spacer height={${1}}/>"
-    ),
-    ls.parser.parse_snippet(
-      { trig = "cl" },
-      "console.log('${1}', ${2})"
-    ),
-
-    ls.parser.parse_snippet(
-      { trig = "jsxc" },
-      [[
-      {${1} && (
-        <>
-        ${2}
-        </>
-      )}
-      ]]
-    ),
-    ls.parser.parse_snippet(
-      { trig = "mzss" },
-      [[
-        ${1}: (_state?: RepertoireState) =>
-          setter(set, _state, (s) => {
-            ${2}
-          }),
-      ]]
-    ),
-    ls.parser.parse_snippet(
-      { trig = "msw" },
-      "<Spacer width={${1}}/>"
-    ),
-    ls.parser.parse_snippet(
-      { trig = "misp" },
-      [[
-        {intersperse(
-          ${1}.map((x, i) => {
-            return <div key={i} style={s()}></div>;
-          }),
-          (i) => {
-            return <Spacer height={height}key={i} />;
-          }
-        )}
-      ]]
-    )
-  })
-
-  -- table.insert(ls.snippets["all"], )
-  -- table.insert(ls.snippets["all"], ls.parser.parse_snippet(
-  --   "msh",
-  --   "<Spacer height={${1}}/>"
-  -- ))
-  -- table.insert(ls.snippets["all"], ls.parser.parse_snippet(
-  --   "msw",
-  --   "<Spacer width={${1}}/>"
-  -- ))
-  --
-  -- table.insert(ls.snippets["all"], s("misp", {
-  --   t(
-  --     {
-  --       "{intersperse(",
-  --       "items.map((x, i) => {",
-  --       "return null;",
-  --       "}),",
-  --       "(i) => {",
-  --       "return null",
-  --       "},",
-  --       ")}"
-  --     }
-  --   ) }))
-end
+-- local add_snippets = function()
+--   local ls = require "luasnip"
+--   local s = ls.snippet
+--   local sn = ls.snippet_node
+--   local isn = ls.indent_snippet_node
+--   local t = ls.text_node
+--   local i = ls.insert_node
+--   local f = ls.function_node
+--   local c = ls.choice_node
+--   local d = ls.dynamic_node
+--   local r = ls.restore_node
+--   local events = require("luasnip.util.events")
+--   local ai = require("luasnip.nodes.absolute_indexer")
+--   local fmt = require("luasnip.extras.fmt").fmt
+--   local m = require("luasnip.extras").m
+--   local lambda = require("luasnip.extras").l
+--   ls.add_snippets("rust", {
+--     ls.parser.parse_snippet(
+--       { trig = "rs" },
+--       "\"${1}\".to_string()"
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "mte" },
+--       [[
+--       let start = std::time::Instant::now();
+--       eprintln!("Elapsed: {:?}", start.elapsed());
+--       ]]
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "ps" },
+--       [[
+--       #[derive(Debug, Clone, Eq, PartialEq)]
+--       pub struct ${1} {
+--         pub ${2}: ${3},
+--       }
+--       ]]
+--     ),
+--   })
+--   ls.add_snippets("all", {
+--     s("uuid", {
+--       f(function(args, snip, user_arg_1)
+--         return vim.fn.trim(vim.fn.system([[uuidgen | tr '[:upper:]' '[:lower:]']]))
+--       end), -- callback (args, parent, user_args) -> string
+--     })
+--   })
+--
+--   ls.add_snippets("typescriptreact", {
+--     -- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
+--     ls.parser.parse_snippet(
+--       { trig = "msd" },
+--       "<div style={s(${1})}>${2}</div>"
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "msv" },
+--       "<View style={s(${1})}>${2}</View>"
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "mst" },
+--       "<CMText style={s(${1})}>${2}</CMText>"
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "mhm" },
+--       "const isMobile = useIsMobile()"
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "mht" },
+--       "const track = useTrack()"
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "msh" },
+--       "<Spacer height={${1}}/>"
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "cl" },
+--       "console.log('${1}', ${2})"
+--     ),
+--
+--     ls.parser.parse_snippet(
+--       { trig = "jsxc" },
+--       [[
+--       {${1} && (
+--         <>
+--         ${2}
+--         </>
+--       )}
+--       ]]
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "mzss" },
+--       [[
+--         ${1}: (_state?: RepertoireState) =>
+--           setter(set, _state, (s) => {
+--             ${2}
+--           }),
+--       ]]
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "msw" },
+--       "<Spacer width={${1}}/>"
+--     ),
+--     ls.parser.parse_snippet(
+--       { trig = "misp" },
+--       [[
+--         {intersperse(
+--           ${1}.map((x, i) => {
+--             return <div key={i} style={s()}></div>;
+--           }),
+--           (i) => {
+--             return <Spacer height={height}key={i} />;
+--           }
+--         )}
+--       ]]
+--     )
+--   })
+--
+--   -- table.insert(ls.snippets["all"], )
+--   -- table.insert(ls.snippets["all"], ls.parser.parse_snippet(
+--   --   "msh",
+--   --   "<Spacer height={${1}}/>"
+--   -- ))
+--   -- table.insert(ls.snippets["all"], ls.parser.parse_snippet(
+--   --   "msw",
+--   --   "<Spacer width={${1}}/>"
+--   -- ))
+--   --
+--   -- table.insert(ls.snippets["all"], s("misp", {
+--   --   t(
+--   --     {
+--   --       "{intersperse(",
+--   --       "items.map((x, i) => {",
+--   --       "return null;",
+--   --       "}),",
+--   --       "(i) => {",
+--   --       "return null",
+--   --       "},",
+--   --       ")}"
+--   --     }
+--   --   ) }))
+-- end
 
 local wk = require("which-key")
 

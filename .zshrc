@@ -154,8 +154,6 @@ alias f_grecb="git for-each-ref --sort=committerdate refs/heads/ --format='%(ref
 alias prsb='gh pr list --author "@me" -w --repo "https://github.com/ProjectOpenSea/opensea-api"'
 alias prsf='gh pr list --author "@me" -w --repo "https://github.com/ProjectOpenSea/opensea-next"'
 
-eval "$(fnm env --use-on-cd)"
-
 source "/opt/homebrew/opt/spaceship/spaceship.zsh"
 
 export PYENV_ROOT="$HOME/.pyenv"
@@ -211,3 +209,5 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(fnm env --use-on-cd)"
+
