@@ -65,6 +65,13 @@ require("lazy").setup {
       })
     end,
   },
+  -- {
+  --   'NeogitOrg/neogit',
+  --   dependencies = 'nvim-lua/plenary.nvim',
+  --   config = function()
+  --     require('neogit').setup()
+  --   end
+  -- },
   {
     "jackMort/ChatGPT.nvim",
     config = function()
@@ -140,21 +147,62 @@ require("lazy").setup {
       require('aerial').setup({})
     end,
   },
-
   -- use({ "simrat39/symbols-outline.nvim", config = function() end })
   { "junegunn/fzf" },
   { "junegunn/fzf.vim" },
-  -- use({
-  --   "kevinhwang91/nvim-bqf",
-  --   event = { "BufRead", "BufNew" },
-  --   config = function()
-  --     require("bqf").setup({
-  --       func_map = {
-  --         tab = "",
-  --       },
-  --     })
-  --   end,
-  -- })
+  {
+    "epwalsh/obsidian.nvim",
+    -- lazy = true,
+    -- event = { "BufReadPre /Users/marcusbuffett/Documents/SecondBrain/*.md" },
+    -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand':
+    -- event = { "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md" },
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+
+      -- Optional, for completion.
+      "hrsh7th/nvim-cmp",
+
+      -- Optional, for search and quick-switch functionality.
+      "nvim-telescope/telescope.nvim",
+
+      -- Optional, an alternative to telescope for search and quick-switch functionality.
+      -- "ibhagwan/fzf-lua"
+
+      -- Optional, another alternative to telescope for search and quick-switch functionality.
+      -- "junegunn/fzf",
+      -- "junegunn/fzf.vim"
+
+      -- Optional, alternative to nvim-treesitter for syntax highlighting.
+      "godlygeek/tabular",
+      "preservim/vim-markdown",
+    },
+    opts = {
+      dir = "~/Documents/SecondBrain", -- no need to call 'vim.fn.expand' here
+      note_id_func = function(title)
+        -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+        -- In this case a note with the title 'My new note' will given an ID that looks
+        -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
+        local suffix = ""
+        if title ~= nil then
+          -- If title is given, transform it into valid file name.
+          suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        else
+          -- If title is nil, just add 4 random uppercase letters to the suffix.
+          for _ = 1, 4 do
+            suffix = suffix .. string.char(math.random(65, 90))
+          end
+        end
+        return tostring(suffix)
+      end,
+
+
+      -- see below for full list of options 👇
+    },
+    config = function(_, opts)
+      require("obsidian").setup(opts)
+    end,
+  },
   {
     "numtostr/FTerm.nvim",
     config = function()
@@ -393,7 +441,7 @@ require("lazy").setup {
       local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
       local opts = {
         on_attach = function(client, bufnr)
-          print(vim.inspect(client.server_capabilities))
+          -- print(vim.inspect(client.server_capabilities))
           -- require("aerial").on_attach(client, bufnr)
           if client.server_capabilities.documentFormattingProvider then
             vim.cmd([[
@@ -683,7 +731,7 @@ require("lazy").setup {
       require("nvim_comment").setup()
     end,
   },
-  { "beauwilliams/focus.nvim",                     config = function() require("focus").setup() end },
+  -- { "beauwilliams/focus.nvim",                     config = function() require("focus").setup() end },
   {
     "nanozuki/tabby.nvim",
     config = function()
@@ -752,7 +800,7 @@ require("lazy").setup {
     "ahmedkhalf/project.nvim",
     config = function()
       require("project_nvim").setup({
-        patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "Cargo.toml" },
+        patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "Cargo.toml", ".obsidian" },
         -- silent_chdir = false,
         ignore_lsp = { "null-ls", "tsserver" },
         manual_mode = false,
@@ -811,7 +859,7 @@ require("lazy").setup {
       })
     end,
   },
-  { "folke/neodev.nvim",      opts = {} },
+  { "folke/neodev.nvim",                           opts = {} },
   {
     "hrsh7th/cmp-nvim-lsp"
   },
@@ -995,7 +1043,6 @@ require("lazy").setup {
           end,
         },
         require("null-ls").builtins.formatting.ruff,
-        require("null-ls").builtins.formatting.rome,
         -- require("null-ls").builtins.formatting.eslint_d.with({
         -- }),
         -- require("null-ls").builtins.diagnostics.sqlfluff.with({
@@ -1006,6 +1053,9 @@ require("lazy").setup {
       }
       if work then
         table.insert(sources, require("null-ls").builtins.formatting.prettier)
+      end
+      if not work then
+        table.insert(sources, require("null-ls").builtins.formatting.rome)
       end
       require("null-ls").setup({
         debug = true,
@@ -1230,7 +1280,7 @@ require("lazy").setup {
       end,
     },
   },
-  { "MunifTanjim/nui.nvim", lazy = true },
+  { "MunifTanjim/nui.nvim",   lazy = true },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -1616,23 +1666,24 @@ vim.g.markdown_recommended_style = 0
 -- end
 
 local wk = require("which-key")
-print("Setting up keymaps")
 
 wk.register({
   m = {
-    e = { require("react-extract").extract_to_current_file, "Extract to current file" },
+    -- e = { require("react-extract").extract_to_current_file, "Extract to current file" },
   },
   r = {
-
     d = { "\"+y", "Yank to system clioard" },
   }
 }, { prefix = "<leader>", mode = "v" })
 
 wk.register({
   ["<leader>"] = {
-    z = {
-      "<cmd>HopLineStart<CR>",
-      "Hop line",
+    r = {
+
+      i = {
+        "<cmd>HopLineStart<CR>",
+        "Hop line",
+      }
     },
   },
 }, { mode = "x" })
@@ -1674,7 +1725,7 @@ wk.register({
     name = "Navigation",
     r = { ":lua require('nvim-window').pick()<CR>", "Window picker" },
     s = { ":tabn<CR>", "Next tab" },
-    t = { ":$tabnew<CR>", "New tab" },
+    t = { ":tabclose<CR>", "Close tab" },
     d = { "<cmd>only<CR>", "Close all others" },
     e = { "<cmd>q<CR>", "Close window" },
     a = { "<C-w>v", "Split vertically" },
@@ -1686,7 +1737,14 @@ wk.register({
     s = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
     d = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
     h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
-    e = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+    e = { function()
+      if require("obsidian").util.cursor_on_markdown_link() then
+        return vim.cmd.normal(vim.api.nvim_replace_termcodes(":ObsidianFollowLink<CR>", true, true, true))
+      else
+        vim.lsp.buf.definition()
+      end
+    end
+    , "Definition" },
     i = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition" },
     a = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
   },
@@ -1709,16 +1767,16 @@ wk.register({
   i = {
     name = "Openers",
     n = {
-      "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", "New zk note"
+      "", ""
     },
     d = {
       "",
       ""
     },
     e = {
-      "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Search zk notes"
+      "<Cmd>ObsidianSearch<CR>", "Search obsidian"
     },
-    s = { ":Neotree filesystem reveal<CR>", "Nvim toggle" },
+    s = { ":Neotree filesystem reveal<CR>", "Neotree toggle" },
     a = { function()
       require("spectre").open()
     end, "Spectre" },
