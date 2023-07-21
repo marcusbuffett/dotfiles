@@ -116,6 +116,10 @@ keybinds clear-defaults=true {
     }
     "locked" {
         bind "Ctrl s" { SwitchToMode "Normal"; }
+        // bind "Ctrl h" { MoveFocus "Left"; }
+        // bind "Ctrl l" { MoveFocus "Right"; }
+        // bind "Ctrl j" { MoveFocus "Down"; }
+        // bind "Ctrl k" { MoveFocus "Up"; }
     }
     shared_except "locked" {
         bind "Ctrl s" { SwitchToMode "Locked"; }
