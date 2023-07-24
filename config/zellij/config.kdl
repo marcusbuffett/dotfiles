@@ -4,6 +4,8 @@ keybinds clear-defaults=true {
       bind "p" { SwitchToMode "Pane"; }
       bind "r" { SwitchToMode "Resize"; }
       bind "s" { SwitchToMode "Search"; }
+      bind "Ctrl d" { MoveFocus "Down"; SwitchToMode "Locked"; }
+      bind "Ctrl t" { MoveFocus "Up"; SwitchToMode "Locked"; }
       bind "t" { SwitchToMode "Tab"; }
       bind "m" { SwitchToMode "Move"; }
       bind "o" { SwitchToMode "Session"; }

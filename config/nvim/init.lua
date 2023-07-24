@@ -130,7 +130,9 @@ require("lazy").setup {
     config = function()
       vim.api.nvim_set_keymap("n", "<Leader>z", ":HopLineStart<CR>", {})
       vim.api.nvim_set_keymap("x", "<Leader>z", "<cmd>HopLineStart<CR>", {})
-      require("hop").setup()
+      require("hop").setup({
+        keys = "dstrneailhupfwbmo"
+      })
     end,
   },
   { "michaeljsmith/vim-indent-object" },
@@ -141,12 +143,6 @@ require("lazy").setup {
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   -- use({ "p00f/nvim-ts-rainbow" })
   { "RRethy/nvim-treesitter-textsubjects" },
-  {
-    "stevearc/aerial.nvim",
-    config = function()
-      require('aerial').setup({})
-    end,
-  },
   -- use({ "simrat39/symbols-outline.nvim", config = function() end })
   { "junegunn/fzf" },
   { "junegunn/fzf.vim" },
@@ -178,7 +174,7 @@ require("lazy").setup {
       "preservim/vim-markdown",
     },
     opts = {
-      dir = "~/Documents/SecondBrain", -- no need to call 'vim.fn.expand' here
+      dir = "~/Obsidian/SecondBrain", -- no need to call 'vim.fn.expand' here
       note_id_func = function(title)
         -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
         -- In this case a note with the title 'My new note' will given an ID that looks
@@ -186,7 +182,7 @@ require("lazy").setup {
         local suffix = ""
         if title ~= nil then
           -- If title is given, transform it into valid file name.
-          suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+          suffix = title:gsub("[^A-Za-z0-9-,'\".]", "")
         else
           -- If title is nil, just add 4 random uppercase letters to the suffix.
           for _ = 1, 4 do
@@ -319,6 +315,13 @@ require("lazy").setup {
     config = function()
       require("which-key").setup()
     end,
+  },
+  {
+    'NeogitOrg/neogit',
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('neogit').setup()
+    end
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -573,7 +576,7 @@ require("lazy").setup {
     run = ':TSUpdate',
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "tsx", "json", "rust", "python" },
+        ensure_installed = { "tsx", "json", "rust", "python", "lua" },
         sync_install = false,
         disable = function(lang, buf)
           local max_filesize = 100 * 1024 -- 100 KB
@@ -731,7 +734,6 @@ require("lazy").setup {
       require("nvim_comment").setup()
     end,
   },
-  -- { "beauwilliams/focus.nvim",                     config = function() require("focus").setup() end },
   {
     "nanozuki/tabby.nvim",
     config = function()
@@ -1679,7 +1681,6 @@ wk.register({
 wk.register({
   ["<leader>"] = {
     r = {
-
       i = {
         "<cmd>HopLineStart<CR>",
         "Hop line",
