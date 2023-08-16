@@ -13,6 +13,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
+local lsp_formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+
 require("lazy").setup {
   {
     "kylechui/nvim-surround",
@@ -174,7 +178,7 @@ require("lazy").setup {
       "preservim/vim-markdown",
     },
     opts = {
-      dir = "~/Obsidian/SecondBrain", -- no need to call 'vim.fn.expand' here
+      dir = "~/Obsidian/Second Brain", -- no need to call 'vim.fn.expand' here
       note_id_func = function(title)
         -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
         -- In this case a note with the title 'My new note' will given an ID that looks
@@ -191,9 +195,34 @@ require("lazy").setup {
         end
         return tostring(suffix)
       end,
+      daily_notes = {
+        -- Optional, if you keep daily notes in a separate directory.
+        folder = "Calendar/Dailies",
+        -- Optional, if you want to change the date format for daily notes.
+        date_format = "%Y-%m-%d"
+      },
+      completion = {
+        new_notes_location = "000 Zettel",
+      },
+      mappings = {
+      },
+      disable_frontmatter = true,
+      follow_url_func = function(url)
+        -- Open the URL in the default web browser.
+        vim.fn.jobstart({ "open", url }) -- Mac OS
+        -- vim.fn.jobstart({"xdg-open", url})  -- linux
+      end,
+
+      open_app_foreground = true,
 
 
-      -- see below for full list of options 👇
+
+
+      templates = {
+        subdir = "Templates",
+        date_format = "%Y-%m-%d-%a",
+        time_format = "%H:%M"
+      },
     },
     config = function(_, opts)
       require("obsidian").setup(opts)
@@ -495,8 +524,11 @@ require("lazy").setup {
       if not work then
         lspconfig.rome.setup(opts)
       end
-      if vim.fn.executable('relay-compiler') == 1 then
-        lspconfig.relay_lsp.setup(opts)
+      if work then
+        if vim.fn.executable('relay-compiler') == 1 then
+          -- copy = vim.deepcopy(opts)
+          lspconfig.relay_lsp.setup(opts)
+        end
       end
 
       lspconfig.lua_ls.setup(opts)
@@ -657,6 +689,9 @@ require("lazy").setup {
       window = {
         mappings = {
           ["<space>"] = "none",
+          ["/"] = "none",
+          ["s"] = "none",
+          ["?"] = "none",
         },
       },
       default_component_configs = {
@@ -816,10 +851,12 @@ require("lazy").setup {
       require("telescope").load_extension("ui-select")
     end
   },
+  { 'nvim-telescope/telescope-fzf-native.nvim',    build = 'make' },
+
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { { "nvim-lua/plenary.nvim" }, { "debugloop/telescope-undo.nvim" },
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' } },
+      { 'nvim-telescope/telescope-fzf-native.nvim' } },
     config = function()
       require("telescope").load_extension("projects")
       require("telescope").load_extension("undo")
@@ -861,7 +898,7 @@ require("lazy").setup {
       })
     end,
   },
-  { "folke/neodev.nvim",                           opts = {} },
+  { "folke/neodev.nvim",      opts = {} },
   {
     "hrsh7th/cmp-nvim-lsp"
   },
@@ -1063,15 +1100,14 @@ require("lazy").setup {
         debug = true,
         sources = sources,
         on_attach = function(client, bufnr)
-          -- print("In the on_attach thing for this client")
-          -- print(vim.inspect(client.server_capabilities))
+          print("In the on_attach thing for this client")
           if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_clear_autocmds({ group = lsp_formatting_augroup, buffer = bufnr })
             vim.api.nvim_create_autocmd("BufWritePre", {
-              group = augroup,
+              group = lsp_formatting_augroup,
               buffer = bufnr,
               callback = function()
-                vim.lsp.buf.format({ bufnr = bufnr, async = false, timeout_ms = 20000 })
+                vim.lsp.buf.format({ async = false })
               end,
             })
           end
@@ -1151,7 +1187,10 @@ require("lazy").setup {
       require("gitlinker").setup({
         callbacks = {
           ["gitlab.tula.co"] = require("gitlinker.hosts").get_gitlab_type_url,
+
         },
+        mappings = "<space>gy"
+
       })
     end,
   },
@@ -1238,30 +1277,6 @@ require("lazy").setup {
     end,
   },
   {
-    "mickael-menu/zk-nvim",
-    config = function()
-      require("zk").setup({
-        -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
-        -- it's recommended to use "telescope" or "fzf"
-        picker = "telescope",
-        lsp = {
-          -- `config` is passed to `vim.lsp.start_client(config)`
-          config = {
-            cmd = { "zk", "lsp" },
-            name = "zk",
-            -- on_attach = ...
-            -- etc, see `:h vim.lsp.start_client()`
-          },
-          -- automatically attach buffers in a zk notebook that match the given filetypes
-          auto_attach = {
-            enabled = true,
-            filetypes = { "markdown" },
-          },
-        },
-      })
-    end
-  },
-  {
     "rcarriga/nvim-notify",
     keys = {
       {
@@ -1282,7 +1297,7 @@ require("lazy").setup {
       end,
     },
   },
-  { "MunifTanjim/nui.nvim",   lazy = true },
+  { "MunifTanjim/nui.nvim", lazy = true },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -1432,7 +1447,7 @@ opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true      -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
 opt.laststatus = 0
-opt.list = true            -- Show some invisible characters (tabs...
+opt.list = false           -- Show some invisible characters (tabs...
 opt.mouse = "a"            -- Enable mouse mode
 opt.number = true          -- Print line number
 opt.pumblend = 10          -- Popup blend
@@ -1460,6 +1475,7 @@ opt.updatetime = 200               -- Save swap file and trigger CursorHold
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5                -- Minimum window width
 opt.wrap = false                   -- Disable line wrap
+opt.expandtab = true
 
 if vim.fn.has("nvim-0.9.0") == 1 then
   opt.splitkeep = "screen"
@@ -1739,8 +1755,10 @@ wk.register({
     d = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
     h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
     e = { function()
-      if require("obsidian").util.cursor_on_markdown_link() then
-        return vim.cmd.normal(vim.api.nvim_replace_termcodes(":ObsidianFollowLink<CR>", true, true, true))
+      local current_path = vim.fn.expand("%:p:h")
+
+      if require("obsidian").util.cursor_on_markdown_link() and current_path == "~/Obsidian/Second Brain" then
+        vim.cmd.normal(vim.api.nvim_replace_termcodes(":ObsidianFollowLink<CR>", true, true, true))
       else
         vim.lsp.buf.definition()
       end
@@ -1768,14 +1786,13 @@ wk.register({
   i = {
     name = "Openers",
     n = {
-      "", ""
+      "<Cmd>ObsidianQuickSwitch<CR>", "Search obsidian files"
     },
     d = {
-      "",
-      ""
+      ":Telescope commands<CR>", "Command pallete",
     },
     e = {
-      "<Cmd>ObsidianSearch<CR>", "Search obsidian"
+      "<Cmd>ObsidianSearch<CR>", "Grep obsidian files"
     },
     s = { ":Neotree filesystem reveal<CR>", "Neotree toggle" },
     a = { function()
@@ -1783,6 +1800,11 @@ wk.register({
     end, "Spectre" },
     r = { ":ChatGPT<CR>", "ChatGPT" },
     t = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
+  },
+  g = {
+    y = { function()
+      require "gitlinker".get_buf_range_url("n", { action_callback = require "gitlinker.actions".copy_to_clipboard })
+    end, "gitlinker" },
   }
 }, { prefix = "<leader>" })
 wk.register({
