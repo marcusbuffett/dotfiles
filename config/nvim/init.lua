@@ -43,6 +43,7 @@ require("lazy").setup {
     end
   },
   { "kazhala/close-buffers.nvim" },
+
   {
     "Bryley/neoai.nvim",
     dependencies = {
@@ -658,9 +659,9 @@ require("lazy").setup {
     end,
   },
   {
-    "echasnovski/mini.pairs",
-    event = "VeryLazy",
-    opts = {},
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
   },
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
@@ -1003,8 +1004,26 @@ require("lazy").setup {
       -- local gps = require("nvim-gps")
       require("lualine").setup({
         sections = {
-          lualine_c = {
-            { "filename", },
+          lualine_x = {
+            {
+              require("noice").api.status.message.get_hl,
+              cond = require("noice").api.status.message.has,
+            },
+            {
+              require("noice").api.status.command.get,
+              cond = require("noice").api.status.command.has,
+              color = { fg = "#ff9e64" },
+            },
+            {
+              require("noice").api.status.mode.get,
+              cond = require("noice").api.status.mode.has,
+              color = { fg = "#ff9e64" },
+            },
+            {
+              require("noice").api.status.search.get,
+              cond = require("noice").api.status.search.has,
+              color = { fg = "#ff9e64" },
+            },
           },
         },
       })
@@ -1446,7 +1465,7 @@ opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true      -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
-opt.laststatus = 0
+-- opt.laststatus = 0
 opt.list = false           -- Show some invisible characters (tabs...
 opt.mouse = "a"            -- Enable mouse mode
 opt.number = true          -- Print line number
