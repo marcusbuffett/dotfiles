@@ -548,6 +548,8 @@ require("lazy").setup {
           end,
         })
       end
+      lspconfig.tailwindcss.setup(opts)
+      lspconfig.emmet_language_server.setup(opts)
 
 
       lspconfig.tsserver.setup {
