@@ -1,0 +1,5 @@
+romkatv/zsh-bench kind:path
+
+
+romkatv/powerlevel10k
+

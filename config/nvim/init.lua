@@ -219,11 +219,11 @@ require("lazy").setup {
 
 
 
-      templates = {
-        subdir = "Templates",
-        date_format = "%Y-%m-%d-%a",
-        time_format = "%H:%M"
-      },
+      -- templates = {
+      --   subdir = "Templates",
+      --   date_format = "%Y-%m-%d-%a",
+      --   time_format = "%H:%M"
+      -- },
     },
     config = function(_, opts)
       require("obsidian").setup(opts)
