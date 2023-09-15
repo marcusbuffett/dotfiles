@@ -429,19 +429,40 @@ require("lazy").setup {
 
 
   { "kyazdani42/nvim-web-devicons" },
-  { "williamboman/mason-lspconfig.nvim" },
   {
     "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim"
+    },
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     build = ":MasonUpdate",
-    opts = {
-      ensure_installed = {
-        "stylua",
-        "rust_analyzer",
-        "rome"
-      },
-    },
+    config = function()
+      require("mason").setup({
+
+      })
+      require("mason-lspconfig").setup {
+        ensure_installed = {
+          "rust_analyzer",
+          "rome",
+        },
+      }
+      require('mason-tool-installer').setup {
+
+        -- a list of all tools you want to ensure are installed upon
+        -- start; they should be the names Mason uses for each tool
+        ensure_installed = {
+          "tailwindcss-language-server",
+          -- Status: doesn't work with typescript config files
+          -- "unocss-language-server",
+          "emmet-language-server",
+          "lua-language-server",
+        },
+
+        auto_update = true,
+      }
+    end,
   },
 
   {
@@ -486,6 +507,7 @@ require("lazy").setup {
           end
         end,
         capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern('.git'),
         diagnostics = {
           underline = true,
           update_in_insert = false,
@@ -549,6 +571,8 @@ require("lazy").setup {
         })
       end
       lspconfig.tailwindcss.setup(opts)
+      -- lspconfig.unocss.setup(opts)
+
       lspconfig.emmet_language_server.setup(opts)
 
 
@@ -661,9 +685,12 @@ require("lazy").setup {
     end,
   },
   {
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    opts = {} -- this is equalent to setup({}) function
+    'altermo/ultimate-autopair.nvim',
+    event = { 'InsertEnter', 'CmdlineEnter' },
+    branch = 'v0.6',
+    opts = {
+      --Config goes here
+    },
   },
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
@@ -725,47 +752,47 @@ require("lazy").setup {
 
 
 
-  {
-    "axkirillov/easypick.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    config = function()
-      local easypick = require("easypick")
-
-      -- only required for the example to work
-      local base_branch = "master"
-
-      easypick.setup({
-        pickers = {
-          -- add your custom pickers here
-          -- below you can find some examples of what those can look like
-
-          -- list files inside current folder with default previewer
-          {
-            -- name for your custom picker, that can be invoked using :Easypick <name> (supports tab completion)
-            name = "ls",
-            -- the command to execute, output has to be a list of plain text entries
-            command = "ls",
-            -- specify your custom previwer, or use one of the easypick.previewers
-            previewer = easypick.previewers.default()
-          },
-
-          -- diff current branch with base_branch and show files that changed with respective diffs in preview
-          {
-            name = "changed_files",
-            command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " )",
-            previewer = easypick.previewers.branch_diff({ base_branch = base_branch })
-          },
-
-          -- list files that have conflicts with diffs in preview
-          {
-            name = "conflicts",
-            command = "git diff --name-only --diff-filter=U --relative",
-            previewer = easypick.previewers.file_diff()
-          },
-        }
-      })
-    end
-  },
+  -- {
+  --   "axkirillov/easypick.nvim",
+  --   dependencies = { "nvim-telescope/telescope.nvim" },
+  --   config = function()
+  --     local easypick = require("easypick")
+  --
+  --     -- only required for the example to work
+  --     local base_branch = "master"
+  --
+  --     easypick.setup({
+  --       pickers = {
+  --         -- add your custom pickers here
+  --         -- below you can find some examples of what those can look like
+  --
+  --         -- list files inside current folder with default previewer
+  --         {
+  --           -- name for your custom picker, that can be invoked using :Easypick <name> (supports tab completion)
+  --           name = "ls",
+  --           -- the command to execute, output has to be a list of plain text entries
+  --           command = "ls",
+  --           -- specify your custom previwer, or use one of the easypick.previewers
+  --           previewer = easypick.previewers.default()
+  --         },
+  --
+  --         -- diff current branch with base_branch and show files that changed with respective diffs in preview
+  --         {
+  --           name = "changed_files",
+  --           command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " )",
+  --           previewer = easypick.previewers.branch_diff({ base_branch = base_branch })
+  --         },
+  --
+  --         -- list files that have conflicts with diffs in preview
+  --         {
+  --           name = "conflicts",
+  --           command = "git diff --name-only --diff-filter=U --relative",
+  --           previewer = easypick.previewers.file_diff()
+  --         },
+  --       }
+  --     })
+  --   end
+  -- },
   {
     "terrortylor/nvim-comment",
     config = function()
@@ -869,7 +896,28 @@ require("lazy").setup {
 
       require("telescope").setup({
         defaults = {
-          path_display = { "smart" }
+          path_display = { "smart" },
+          prompt_prefix = "   ",
+          selection_caret = "  ",
+          entry_prefix = "  ",
+          initial_mode = "insert",
+          selection_strategy = "reset",
+          sorting_strategy = "ascending",
+          layout_strategy = "horizontal",
+          layout_config = {
+            horizontal = {
+              prompt_position = "top",
+              preview_width = 0.55,
+              results_width = 0.8,
+            },
+            vertical = {
+              mirror = false,
+            },
+            width = 0.87,
+            height = 0.80,
+            preview_cutoff = 120,
+          },
+
         },
         extensions = {
           ["ui-select"] = {
@@ -1121,7 +1169,6 @@ require("lazy").setup {
         debug = true,
         sources = sources,
         on_attach = function(client, bufnr)
-          print("In the on_attach thing for this client")
           if client.supports_method("textDocument/formatting") then
             vim.api.nvim_clear_autocmds({ group = lsp_formatting_augroup, buffer = bufnr })
             vim.api.nvim_create_autocmd("BufWritePre", {
