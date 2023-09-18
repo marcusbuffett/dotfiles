@@ -8,6 +8,8 @@ fi
 # zmodload zsh/zprof
 
 KEYTIMEOUT=1
+export VI_MODE_SET_CURSOR=true
+
 
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
@@ -155,3 +157,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval "$(rbenv init - zsh)"
