@@ -685,12 +685,9 @@ require("lazy").setup {
     end,
   },
   {
-    'altermo/ultimate-autopair.nvim',
-    event = { 'InsertEnter', 'CmdlineEnter' },
-    branch = 'v0.6',
-    opts = {
-      --Config goes here
-    },
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
   },
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
@@ -869,7 +866,7 @@ require("lazy").setup {
       require("project_nvim").setup({
         patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "Cargo.toml", ".obsidian" },
         -- silent_chdir = false,
-        ignore_lsp = { "null-ls", "tsserver" },
+        ignore_lsp = { "tsserver" },
         manual_mode = false,
       })
     end,
@@ -1137,51 +1134,6 @@ require("lazy").setup {
         -- }
       }
     end
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      local sources = {
-        -- require("null-ls").builtins.formatting.stylua,
-        require("null-ls").builtins.formatting.fixjson,
-        -- require("null-ls").builtins.formatting.prettier_d_slim,
-        require("null-ls").builtins.formatting.black.with {
-          cwd = function(params)
-            return vim.fn.fnamemodify(params.bufname, ':h')
-          end,
-        },
-        require("null-ls").builtins.formatting.ruff,
-        -- require("null-ls").builtins.formatting.eslint_d.with({
-        -- }),
-        -- require("null-ls").builtins.diagnostics.sqlfluff.with({
-        --   extra_args = { "--dialect", "postgres" }, -- change to your dialect
-        -- }),
-        -- require("null-ls").builtins.diagnostics.eslint_d,
-        -- require("null-ls").builtins.completion.spell,
-      }
-      if work then
-        table.insert(sources, require("null-ls").builtins.formatting.prettier)
-      end
-      if not work then
-        table.insert(sources, require("null-ls").builtins.formatting.rome)
-      end
-      require("null-ls").setup({
-        debug = true,
-        sources = sources,
-        on_attach = function(client, bufnr)
-          if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = lsp_formatting_augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = lsp_formatting_augroup,
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.format({ async = false })
-              end,
-            })
-          end
-        end,
-      })
-    end,
   },
   {
     "weilbith/nvim-code-action-menu",
