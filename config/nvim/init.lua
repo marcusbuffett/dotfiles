@@ -1,5 +1,3 @@
-local work = vim.env.WORK or false
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -229,16 +227,16 @@ require("lazy").setup {
       require("obsidian").setup(opts)
     end,
   },
-  {
-    "numtostr/FTerm.nvim",
-    config = function()
-      local map = vim.api.nvim_set_keymap
-      local opts = { noremap = true, silent = true }
-
-      map("n", "<C-e>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
-      map("t", "<C-e>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
-    end,
-  },
+  -- {
+  --   "numtostr/FTerm.nvim",
+  --   config = function()
+  --     local map = vim.api.nvim_set_keymap
+  --     local opts = { noremap = true, silent = true }
+  --
+  --     map("n", "<C-e>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
+  --     map("t", "<C-e>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
+  --   end,
+  -- },
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -311,12 +309,12 @@ require("lazy").setup {
       })
     end,
   },
-  -- { "anuvyklack/windows.nvim",
-  --   dependencies = "anuvyklack/middleclass",
-  --   config = function()
-  --     require('windows').setup()
-  --   end
-  -- },
+  -- -- { "anuvyklack/windows.nvim",
+  -- --   dependencies = "anuvyklack/middleclass",
+  -- --   config = function()
+  -- --     require('windows').setup()
+  -- --   end
+  -- -- },
   { "stefandtw/quickfix-reflector.vim" },
   {
     "windwp/nvim-spectre",
@@ -334,12 +332,12 @@ require("lazy").setup {
     end,
   },
   { "akinsho/toggleterm.nvim" },
-  -- {
-  --   "glepnir/dashboard-nvim",
-  --   config = function()
-  --     vim.g.dashboard_default_executive = "telescope"
-  --   end,
-  -- },
+  -- -- {
+  -- --   "glepnir/dashboard-nvim",
+  -- --   config = function()
+  -- --     vim.g.dashboard_default_executive = "telescope"
+  -- --   end,
+  -- -- },
   {
     "folke/which-key.nvim",
     config = function()
@@ -445,7 +443,6 @@ require("lazy").setup {
       require("mason-lspconfig").setup {
         ensure_installed = {
           "rust_analyzer",
-          "rome",
         },
       }
       require('mason-tool-installer').setup {
@@ -489,6 +486,7 @@ require("lazy").setup {
       {
         "hrsh7th/cmp-nvim-lsp",
       },
+      -- "creativenull/efmls-configs-nvim"
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -528,7 +526,6 @@ require("lazy").setup {
           enabled = false,
         },
         -- add any global capabilities here
-        capabilities = {},
         -- Automatically format on save
         autoformat = true,
         -- Enable this to show formatters used in a notification
@@ -543,9 +540,37 @@ require("lazy").setup {
         },
 
       }
+      -- local biome = require('efmls-configs.formatters.biome')
+      -- local fixjson = require('efmls-configs.formatters.fixjson')
+      -- local languages = {
+      --   typescript = { biome },
+      --   typescriptreact = { biome },
+      --   json = { fixjson },
+      --   jsonc = { fixjson },
+      -- }
+      --
+      -- -- Or use the defaults provided by this plugin
+      -- -- check doc/SUPPORTED_LIST.md for the supported languages
+      -- --
+      -- -- local languages = require('efmls-configs.defaults').languages()
+      --
+      -- local efmls_config = {
+      --   filetypes = vim.tbl_keys(languages),
+      --   settings = {
+      --     rootMarkers = { '.git/' },
+      --     languages = languages,
+      --   },
+      --   init_options = {
+      --     documentFormatting = true,
+      --     documentRangeFormatting = true,
+      --   },
+      -- }
+      --
+      -- lspconfig.efm.setup(vim.tbl_extend('force', efmls_config, opts))
+
       lspconfig.rust_analyzer.setup(opts)
       if not work then
-        lspconfig.rome.setup(opts)
+        lspconfig.biome.setup(opts)
       end
       if work then
         if vim.fn.executable('relay-compiler') == 1 then
@@ -866,7 +891,7 @@ require("lazy").setup {
       require("project_nvim").setup({
         patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "Cargo.toml", ".obsidian" },
         -- silent_chdir = false,
-        ignore_lsp = { "tsserver" },
+        ignore_lsp = { "null-ls", "tsserver" },
         manual_mode = false,
       })
     end,
@@ -950,6 +975,21 @@ require("lazy").setup {
   {
     "hrsh7th/cmp-nvim-lsp"
   },
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+      print("luasnip loaded, setting keymaps")
+      vim.keymap.set({ "i" }, "<C-n>", function()
+        return require("luasnip").jump(1)
+      end, { silent = true })
+    end
+  },
 
   {
     "hrsh7th/nvim-cmp",
@@ -959,7 +999,7 @@ require("lazy").setup {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
-      'saadparwaiz1/cmp_luasnip',
+      'saadparwaiz1/cmp_luasnip'
     },
     opts = function()
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -1002,48 +1042,6 @@ require("lazy").setup {
       }
     end,
   },
-  {
-    "rafamadriz/friendly-snippets",
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-    end,
-  },
-
-
-  {
-    "L3MON4D3/LuaSnip",
-    build = (not jit.os:find("Windows"))
-        and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
-        or nil,
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
-    },
-    opts = {
-      history = true,
-      delete_check_events = "TextChanged",
-    },
-    -- stylua: ignore
-    keys = {
-      {
-        "<tab>",
-        function()
-          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-        end,
-        expr = true,
-        silent = true,
-        mode = "i",
-      },
-      { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
-      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-    },
-  },
-
-
-
-
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "kyazdani42/nvim-web-devicons", },
@@ -1134,6 +1132,51 @@ require("lazy").setup {
         -- }
       }
     end
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    config = function()
+      local sources = {
+        -- require("null-ls").builtins.formatting.stylua,
+        require("null-ls").builtins.formatting.fixjson,
+        -- require("null-ls").builtins.formatting.prettier_d_slim,
+        require("null-ls").builtins.formatting.black.with {
+          cwd = function(params)
+            return vim.fn.fnamemodify(params.bufname, ':h')
+          end,
+        },
+        require("null-ls").builtins.formatting.ruff,
+        -- require("null-ls").builtins.formatting.eslint_d.with({
+        -- }),
+        -- require("null-ls").builtins.diagnostics.sqlfluff.with({
+        --   extra_args = { "--dialect", "postgres" }, -- change to your dialect
+        -- }),
+        -- require("null-ls").builtins.diagnostics.eslint_d,
+        -- require("null-ls").builtins.completion.spell,
+      }
+      if work then
+        table.insert(sources, require("null-ls").builtins.formatting.prettier)
+      end
+      if not work then
+        table.insert(sources, require("null-ls").builtins.formatting.biome)
+      end
+      require("null-ls").setup({
+        debug = true,
+        sources = sources,
+        on_attach = function(client, bufnr)
+          if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = lsp_formatting_augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = lsp_formatting_augroup,
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format({ async = false })
+              end,
+            })
+          end
+        end,
+      })
+    end,
   },
   {
     "weilbith/nvim-code-action-menu",
@@ -1563,145 +1606,124 @@ vim.g.markdown_recommended_style = 0
 --
 -- lvim.builtin.treesitter.highlight.enabled = true
 --
--- local add_snippets = function()
---   local ls = require "luasnip"
---   local s = ls.snippet
---   local sn = ls.snippet_node
---   local isn = ls.indent_snippet_node
---   local t = ls.text_node
---   local i = ls.insert_node
---   local f = ls.function_node
---   local c = ls.choice_node
---   local d = ls.dynamic_node
---   local r = ls.restore_node
---   local events = require("luasnip.util.events")
---   local ai = require("luasnip.nodes.absolute_indexer")
---   local fmt = require("luasnip.extras.fmt").fmt
---   local m = require("luasnip.extras").m
---   local lambda = require("luasnip.extras").l
---   ls.add_snippets("rust", {
---     ls.parser.parse_snippet(
---       { trig = "rs" },
---       "\"${1}\".to_string()"
---     ),
---     ls.parser.parse_snippet(
---       { trig = "mte" },
---       [[
---       let start = std::time::Instant::now();
---       eprintln!("Elapsed: {:?}", start.elapsed());
---       ]]
---     ),
---     ls.parser.parse_snippet(
---       { trig = "ps" },
---       [[
---       #[derive(Debug, Clone, Eq, PartialEq)]
---       pub struct ${1} {
---         pub ${2}: ${3},
---       }
---       ]]
---     ),
---   })
---   ls.add_snippets("all", {
---     s("uuid", {
---       f(function(args, snip, user_arg_1)
---         return vim.fn.trim(vim.fn.system([[uuidgen | tr '[:upper:]' '[:lower:]']]))
---       end), -- callback (args, parent, user_args) -> string
---     })
---   })
---
---   ls.add_snippets("typescriptreact", {
---     -- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
---     ls.parser.parse_snippet(
---       { trig = "msd" },
---       "<div style={s(${1})}>${2}</div>"
---     ),
---     ls.parser.parse_snippet(
---       { trig = "msv" },
---       "<View style={s(${1})}>${2}</View>"
---     ),
---     ls.parser.parse_snippet(
---       { trig = "mst" },
---       "<CMText style={s(${1})}>${2}</CMText>"
---     ),
---     ls.parser.parse_snippet(
---       { trig = "mhm" },
---       "const isMobile = useIsMobile()"
---     ),
---     ls.parser.parse_snippet(
---       { trig = "mht" },
---       "const track = useTrack()"
---     ),
---     ls.parser.parse_snippet(
---       { trig = "msh" },
---       "<Spacer height={${1}}/>"
---     ),
---     ls.parser.parse_snippet(
---       { trig = "cl" },
---       "console.log('${1}', ${2})"
---     ),
---
---     ls.parser.parse_snippet(
---       { trig = "jsxc" },
---       [[
---       {${1} && (
---         <>
---         ${2}
---         </>
---       )}
---       ]]
---     ),
---     ls.parser.parse_snippet(
---       { trig = "mzss" },
---       [[
---         ${1}: (_state?: RepertoireState) =>
---           setter(set, _state, (s) => {
---             ${2}
---           }),
---       ]]
---     ),
---     ls.parser.parse_snippet(
---       { trig = "msw" },
---       "<Spacer width={${1}}/>"
---     ),
---     ls.parser.parse_snippet(
---       { trig = "misp" },
---       [[
---         {intersperse(
---           ${1}.map((x, i) => {
---             return <div key={i} style={s()}></div>;
---           }),
---           (i) => {
---             return <Spacer height={height}key={i} />;
---           }
---         )}
---       ]]
---     )
---   })
---
---   -- table.insert(ls.snippets["all"], )
---   -- table.insert(ls.snippets["all"], ls.parser.parse_snippet(
---   --   "msh",
---   --   "<Spacer height={${1}}/>"
---   -- ))
---   -- table.insert(ls.snippets["all"], ls.parser.parse_snippet(
---   --   "msw",
---   --   "<Spacer width={${1}}/>"
---   -- ))
---   --
---   -- table.insert(ls.snippets["all"], s("misp", {
---   --   t(
---   --     {
---   --       "{intersperse(",
---   --       "items.map((x, i) => {",
---   --       "return null;",
---   --       "}),",
---   --       "(i) => {",
---   --       "return null",
---   --       "},",
---   --       ")}"
---   --     }
---   --   ) }))
--- end
+local add_snippets = function()
+  local ls = require "luasnip"
+  local s = ls.snippet
+  local sn = ls.snippet_node
+  local isn = ls.indent_snippet_node
+  local t = ls.text_node
+  local i = ls.insert_node
+  local f = ls.function_node
+  local c = ls.choice_node
+  local d = ls.dynamic_node
+  local r = ls.restore_node
+  local events = require("luasnip.util.events")
+  local ai = require("luasnip.nodes.absolute_indexer")
+  local fmt = require("luasnip.extras.fmt").fmt
+  local m = require("luasnip.extras").m
+  local lambda = require("luasnip.extras").l
+  ls.add_snippets("rust", {
+    ls.parser.parse_snippet(
+      { trig = "rs" },
+      "\"${1}\".to_string()"
+    ),
+    ls.parser.parse_snippet(
+      { trig = "mte" },
+      [[
+      let start = std::time::Instant::now();
+      eprintln!("Elapsed: {:?}", start.elapsed());
+      ]]
+    ),
+    ls.parser.parse_snippet(
+      { trig = "ps" },
+      [[
+      #[derive(Debug, Clone, Eq, PartialEq)]
+      pub struct ${1} {
+        pub ${2}: ${3},
+      }
+      ]]
+    ),
+  })
+  ls.add_snippets("all", {
+    s("uuid", {
+      f(function(args, snip, user_arg_1)
+        return vim.fn.trim(vim.fn.system([[uuidgen | tr '[:upper:]' '[:lower:]']]))
+      end), -- callback (args, parent, user_args) -> string
+    })
+  })
+
+  ls.add_snippets("typescriptreact", {
+    -- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
+    ls.parser.parse_snippet(
+      { trig = "sed" },
+      "<div class={clsx(\"${1}\")}>${2}</div>"
+    ),
+    ls.parser.parse_snippet(
+      { trig = "shm" },
+      "const isMobile = useIsMobile()"
+    ),
+    ls.parser.parse_snippet(
+      { trig = "seh" },
+      "<Spacer height={${1}}/>"
+    ),
+    ls.parser.parse_snippet(
+      { trig = "cl" },
+      "console.log('${1}', ${2})"
+    ),
+
+    ls.parser.parse_snippet(
+      { trig = "seif" },
+      [[
+      <Show when={${1}}>
+      ${2}
+      </Show>
+      ]]
+    ),
+    ls.parser.parse_snippet(
+      { trig = "sew" },
+      "<Spacer width={${1}}/>"
+    ),
+    -- ls.parser.parse_snippet(
+    --   { trig = "misp" },
+    --   [[
+    --     {intersperse(
+    --       ${1}.map((x, i) => {
+    --         return <div key={i} style={s()}></div>;
+    --       }),
+    --       (i) => {
+    --         return <Spacer height={height}key={i} />;
+    --       }
+    --     )}
+    --   ]]
+    -- )
+  })
+
+  -- table.insert(ls.snippets["all"], )
+  -- table.insert(ls.snippets["all"], ls.parser.parse_snippet(
+  --   "msh",
+  --   "<Spacer height={${1}}/>"
+  -- ))
+  -- table.insert(ls.snippets["all"], ls.parser.parse_snippet(
+  --   "msw",
+  --   "<Spacer width={${1}}/>"
+  -- ))
+  --
+  -- table.insert(ls.snippets["all"], s("misp", {
+  --   t(
+  --     {
+  --       "{intersperse(",
+  --       "items.map((x, i) => {",
+  --       "return null;",
+  --       "}),",
+  --       "(i) => {",
+  --       "return null",
+  --       "},",
+  --       ")}"
+  --     }
+  --   ) }))
+end
+
+add_snippets()
 
 local wk = require("which-key")
 
