@@ -158,3 +158,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(rbenv init - zsh)"
+
+eval "$(direnv hook zsh)"

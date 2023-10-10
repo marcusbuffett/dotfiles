@@ -1,3 +1,5 @@
+local work = vim.env.WORK or false
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -238,44 +240,60 @@ require("lazy").setup {
   --   end,
   -- },
   {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
-      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
-      {
-        "R",
-        mode = { "o", "x" },
-        function() require("flash").treesitter_search() end,
-        desc =
-        "Treesitter Search"
-      },
-      {
-        "<c-s>",
-        mode = { "c" },
-        function() require("flash").toggle() end,
-        desc =
-        "Toggle Flash Search"
-      },
-    },
-
+    "ggandor/leap.nvim",
     config = function()
-      require("flash").setup(
-        {
-          labels = "dstrneaibuqmpvkw",
-          modes = {
-            char = {
-              keys = { "f", "F", "t", "T", ";" },
-            },
-            search = {
-              enabled = false,
-            }
-          },
-        })
-    end,
-    ---@type Flash.Config
-    opts = {},
+      -- local function get_windows_on_tabpage()
+      --   local t = {}
+      --   local ids = string.gmatch(vim.fn.string(vim.fn.winlayout()), "%d+")
+      --   for id in ids do t[#t + 1] = id end
+      --   return vim.tbl_map(function(id) return vim.fn.getwininfo(id)[1] end, t)
+      -- end
+
+      require("which-key").register({
+        s = { function()
+          local current_window = vim.fn.win_getid()
+          require('leap').leap { target_windows = { current_window } }
+        end, "leap" },
+      }, {
+        mode = "n"
+      })
+      --
+      -- require("which-key").register({
+      --   t = { "<Plug>(leap-backward)", "leap" }
+      -- }, {
+      --   mode = "n"
+      -- })
+      -- require("which-key").register({
+      --   s = { "<Plug>(leap-forward)", "leap" }
+      -- }, {
+      --   mode = "n"
+      -- })
+      -- require("which-key").register({
+      --   t = { "<Plug>(leap-backward)", "leap" }
+      -- }, {
+      --   mode = "x"
+      -- })
+      -- require("which-key").register({
+      --   s = { "<Plug>(leap-forward)", "leap" }
+      -- }, {
+      --   mode = "x"
+      -- })
+      require('leap').setup {
+        -- case_insensitive = true,
+        safe_labels = {},
+        labels = { "s", "t", "n", "e", "a", "i", "d", "r", "l", "h", "u", "p", "q", "g", "m", "b" },
+        -- special_keys = {
+        --   repeat_search = '<enter>',
+        --   next_target   = '<enter>',
+        --   prev_target   = '<tab>',
+        --   next_group    = '<space>',
+        --   prev_group    = '<tab>',
+        --   eol           = '<space>',
+        -- },
+      }
+      -- vim.cmd([[highlight LeapBackdrop guifg=#918474 guibg=none]])
+      -- vim.cmd([[highlight LeapLabelPrimary guifg=#000000 guibg=#EBEDF1]])
+    end
   },
 
   {
@@ -526,6 +544,7 @@ require("lazy").setup {
           enabled = false,
         },
         -- add any global capabilities here
+        capabilities = {},
         -- Automatically format on save
         autoformat = true,
         -- Enable this to show formatters used in a notification
@@ -643,7 +662,7 @@ require("lazy").setup {
     config = function()
       require('nvim-window').setup({
         -- The characters available for hinting windows.
-        chars = { "s", "t", "n", "e", "a", "i" },
+        chars = { "s", "t", "n", "e", "a", "i", "d", "r", "l", "h", "u", "p", "q", "g", "m", "b" },
         -- A group to use for overwriting the Normal highlight group in the floating
         -- window. This can be used to change the background color.
         normal_hl = 'Normal',
@@ -910,12 +929,6 @@ require("lazy").setup {
     dependencies = { { "nvim-lua/plenary.nvim" }, { "debugloop/telescope-undo.nvim" },
       { 'nvim-telescope/telescope-fzf-native.nvim' } },
     config = function()
-      require("telescope").load_extension("projects")
-      require("telescope").load_extension("undo")
-      require('telescope').load_extension('fzf')
-
-
-
       require("telescope").setup({
         defaults = {
           path_display = { "smart" },
@@ -942,6 +955,12 @@ require("lazy").setup {
 
         },
         extensions = {
+          fzf = {
+            fuzzy = true,                   -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+          },
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {
               -- more options
@@ -969,6 +988,9 @@ require("lazy").setup {
           },
         },
       })
+      require("telescope").load_extension("projects")
+      require("telescope").load_extension("undo")
+      require('telescope').load_extension('fzf')
     end,
   },
   { "folke/neodev.nvim",      opts = {} },

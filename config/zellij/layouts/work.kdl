@@ -16,23 +16,9 @@ layout {
   }
   tab name="processes" {
     pane {
-
       pane {
         cwd "~/projects/opensea-next"
-          command "zsh"
-
-      }
-      pane {
-        cwd "~/projects/opensea-next"
-          command "zsh"
-          args "-c" "yarn nodemon --watch src/lib/graphql --exec \"yarn sign-queries\""
-
-      }
-      pane {
-        cwd "~/projects/opensea-api"
-          command "zsh"
-          // args "-c" ""
-
+          command "yarn dev"
       }
     }
   }
