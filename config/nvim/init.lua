@@ -1071,27 +1071,27 @@ require("lazy").setup {
       -- local gps = require("nvim-gps")
       require("lualine").setup({
         sections = {
-          lualine_x = {
-            {
-              require("noice").api.status.message.get_hl,
-              cond = require("noice").api.status.message.has,
-            },
-            {
-              require("noice").api.status.command.get,
-              cond = require("noice").api.status.command.has,
-              color = { fg = "#ff9e64" },
-            },
-            {
-              require("noice").api.status.mode.get,
-              cond = require("noice").api.status.mode.has,
-              color = { fg = "#ff9e64" },
-            },
-            {
-              require("noice").api.status.search.get,
-              cond = require("noice").api.status.search.has,
-              color = { fg = "#ff9e64" },
-            },
-          },
+          -- lualine_x = {
+          --   -- {
+          --   --   require("noice").api.status.message.get_hl,
+          --   --   cond = require("noice").api.status.message.has,
+          --   -- },
+          --   -- {
+          --   --   require("noice").api.status.command.get,
+          --   --   cond = require("noice").api.status.command.has,
+          --   --   color = { fg = "#ff9e64" },
+          --   -- },
+          --   -- {
+          --   --   require("noice").api.status.mode.get,
+          --   --   cond = require("noice").api.status.mode.has,
+          --   --   color = { fg = "#ff9e64" },
+          --   -- },
+          --   -- {
+          --   --   require("noice").api.status.search.get,
+          --   --   cond = require("noice").api.status.search.has,
+          --   --   color = { fg = "#ff9e64" },
+          --   -- },
+          -- },
         },
       })
     end,
@@ -1167,6 +1167,7 @@ require("lazy").setup {
             return vim.fn.fnamemodify(params.bufname, ':h')
           end,
         },
+        require("null-ls").builtins.formatting.ruff,
         require("null-ls").builtins.formatting.ruff,
         -- require("null-ls").builtins.formatting.eslint_d.with({
         -- }),
@@ -1383,51 +1384,51 @@ require("lazy").setup {
     },
   },
   { "MunifTanjim/nui.nvim", lazy = true },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      lsp = {
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
-        },
-      },
-      routes = {
-        {
-          filter = {
-            event = "msg_show",
-            any = {
-              { find = "%d+L, %d+B" },
-              { find = "; after #%d+" },
-              { find = "; before #%d+" },
-            },
-          },
-          view = "mini",
-        },
-      },
-      popupmenu = {
-        enabled = false,
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-        inc_rename = true,
-      },
-    },
-    -- stylua: ignore
-    keys = {
-      { "<leader>ba", function() require("noice").cmd("all") end, desc = "Noice All" },
-      {
-        "<leader>bd",
-        function() require("noice").cmd("dismiss") end,
-        desc =
-        "Dismiss All"
-      },
-    },
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     lsp = {
+  --       override = {
+  --         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+  --         ["vim.lsp.util.stylize_markdown"] = true,
+  --         ["cmp.entry.get_documentation"] = true,
+  --       },
+  --     },
+  --     routes = {
+  --       {
+  --         filter = {
+  --           event = "msg_show",
+  --           any = {
+  --             { find = "%d+L, %d+B" },
+  --             { find = "; after #%d+" },
+  --             { find = "; before #%d+" },
+  --           },
+  --         },
+  --         view = "mini",
+  --       },
+  --     },
+  --     popupmenu = {
+  --       enabled = false,
+  --     },
+  --     presets = {
+  --       bottom_search = true,
+  --       command_palette = true,
+  --       long_message_to_split = true,
+  --       inc_rename = true,
+  --     },
+  --   },
+  --   -- stylua: ignore
+  --   keys = {
+  --     { "<leader>ba", function() require("noice").cmd("all") end, desc = "Noice All" },
+  --     {
+  --       "<leader>bd",
+  --       function() require("noice").cmd("dismiss") end,
+  --       desc =
+  --       "Dismiss All"
+  --     },
+  --   },
+  -- },
 
 
 
@@ -1673,13 +1674,8 @@ local add_snippets = function()
       end), -- callback (args, parent, user_args) -> string
     })
   })
-
-  ls.add_snippets("typescriptreact", {
+  local snippets = {
     -- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
-    ls.parser.parse_snippet(
-      { trig = "sed" },
-      "<div class={clsx(\"${1}\")}>${2}</div>"
-    ),
     ls.parser.parse_snippet(
       { trig = "shm" },
       "const isMobile = useIsMobile()"
@@ -1718,7 +1714,28 @@ local add_snippets = function()
     --     )}
     --   ]]
     -- )
-  })
+  }
+
+
+  if work then
+    table.insert(snippets, ls.parser.parse_snippet(
+      { trig = "sed" },
+      "<div className={\"${1}\"}>${2}</div>"
+    )
+    )
+    table.insert(snippets, ls.parser.parse_snippet(
+      { trig = "sedl" },
+      "<div className={classNames(\"${1}\")}>${2}</div>"
+    ))
+  end
+  if not work then
+    table.insert(snippets, ls.parser.parse_snippet(
+      { trig = "sed" },
+      "<div class={clsx(\"${1}\")}>${2}</div>"
+    ))
+  end
+
+  ls.add_snippets("typescriptreact", snippets)
 
   -- table.insert(ls.snippets["all"], )
   -- table.insert(ls.snippets["all"], ls.parser.parse_snippet(

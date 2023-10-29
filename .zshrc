@@ -92,10 +92,10 @@ alias prsf='gh pr list --author "@me" -w --repo "https://github.com/ProjectOpenS
 
 # source "/opt/homebrew/opt/spaceship/spaceship.zsh"
 
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 export PATH="$HOME/.local/bin:$PATH"
 
 source ~/.secrets.zsh
@@ -103,7 +103,7 @@ source ~/.secrets.zsh
 export ADOBE_CONTENT_AUTHENTICITY_CLAIM_TOOL_PATH="packages/adobe-cai-cli/macos"
 export RSVG_CONVERT_PATH=/usr/local/bin
 
-# pyenv activate opensea
+pyenv activate opensea
 eval "$(zoxide init zsh)"
 
 export PATH="$PATH:/Users/marcusbuffett/.foundry/bin"
