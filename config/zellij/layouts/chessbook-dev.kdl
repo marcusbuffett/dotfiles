@@ -20,7 +20,7 @@ layout {
     pane {
       cwd "~/projects/chessbook/server"
     command "nu"
-    args "-c" "cargo watch -x run"
+    args "-c" "cargo watch -x lrun"
 
     }
     pane {

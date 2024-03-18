@@ -96,17 +96,48 @@ require("lazy").setup {
     config = function()
     end,
   },
-  {
-    "folke/tokyonight.nvim",
-    opts = { style = "moon" },
-    priority = 1000,
-    lazy = false,
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   opts = { style = "moon" },
+  --   priority = 1000,
+  --   lazy = false,
+  --   config = function()
+  --     vim.cmd [[colorscheme tokyonight-moon]]
+  --     vim.cmd [[highlight FlashLabel guifg=#bb9af7 guibg=#3b4261]]
+  --   end
+  -- },
+  --
+  { "rebelot/kanagawa.nvim",
     config = function()
-      vim.cmd [[colorscheme tokyonight-moon]]
-      vim.cmd [[highlight FlashLabel guifg=#bb9af7 guibg=#3b4261]]
+      vim.cmd("colorscheme kanagawa")
     end
   },
+  { "nvim-neotest/neotest",
 
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "rouge8/neotest-rust",
+      "marilari88/neotest-vitest"
+    }
+    , config = function()
+    require("neotest").setup({
+      adapters = {
+        require("neotest-rust")({
+        }),
+        -- require("neotest-vim-test")({
+        --   ignore_file_types = { "python", "vim", "lua" },
+        -- }),
+      },
+
+    })
+  end },
+
+  -- { "catppuccin/nvim", name = "catppuccin", priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme "catppuccin"
+  --   end
+  -- },
 
   { "Exafunction/codeium.vim" },
   -- use({
@@ -151,84 +182,84 @@ require("lazy").setup {
   -- use({ "simrat39/symbols-outline.nvim", config = function() end })
   { "junegunn/fzf" },
   { "junegunn/fzf.vim" },
-  {
-    "epwalsh/obsidian.nvim",
-    -- lazy = true,
-    -- event = { "BufReadPre /Users/marcusbuffett/Documents/SecondBrain/*.md" },
-    -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand':
-    -- event = { "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md" },
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-
-      -- Optional, for completion.
-      "hrsh7th/nvim-cmp",
-
-      -- Optional, for search and quick-switch functionality.
-      "nvim-telescope/telescope.nvim",
-
-      -- Optional, an alternative to telescope for search and quick-switch functionality.
-      -- "ibhagwan/fzf-lua"
-
-      -- Optional, another alternative to telescope for search and quick-switch functionality.
-      -- "junegunn/fzf",
-      -- "junegunn/fzf.vim"
-
-      -- Optional, alternative to nvim-treesitter for syntax highlighting.
-      "godlygeek/tabular",
-      "preservim/vim-markdown",
-    },
-    opts = {
-      dir = "~/Obsidian/Second Brain", -- no need to call 'vim.fn.expand' here
-      note_id_func = function(title)
-        -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
-        -- In this case a note with the title 'My new note' will given an ID that looks
-        -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
-        local suffix = ""
-        if title ~= nil then
-          -- If title is given, transform it into valid file name.
-          suffix = title:gsub("[^A-Za-z0-9-,'\".]", "")
-        else
-          -- If title is nil, just add 4 random uppercase letters to the suffix.
-          for _ = 1, 4 do
-            suffix = suffix .. string.char(math.random(65, 90))
-          end
-        end
-        return tostring(suffix)
-      end,
-      daily_notes = {
-        -- Optional, if you keep daily notes in a separate directory.
-        folder = "Calendar/Dailies",
-        -- Optional, if you want to change the date format for daily notes.
-        date_format = "%Y-%m-%d"
-      },
-      completion = {
-        new_notes_location = "000 Zettel",
-      },
-      mappings = {
-      },
-      disable_frontmatter = true,
-      follow_url_func = function(url)
-        -- Open the URL in the default web browser.
-        vim.fn.jobstart({ "open", url }) -- Mac OS
-        -- vim.fn.jobstart({"xdg-open", url})  -- linux
-      end,
-
-      open_app_foreground = true,
-
-
-
-
-      -- templates = {
-      --   subdir = "Templates",
-      --   date_format = "%Y-%m-%d-%a",
-      --   time_format = "%H:%M"
-      -- },
-    },
-    config = function(_, opts)
-      require("obsidian").setup(opts)
-    end,
-  },
+  -- {
+  --   "epwalsh/obsidian.nvim",
+  --   -- lazy = true,
+  --   -- event = { "BufReadPre /Users/marcusbuffett/Documents/SecondBrain/*.md" },
+  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand':
+  --   -- event = { "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md" },
+  --   dependencies = {
+  --     -- Required.
+  --     "nvim-lua/plenary.nvim",
+  --
+  --     -- Optional, for completion.
+  --     "hrsh7th/nvim-cmp",
+  --
+  --     -- Optional, for search and quick-switch functionality.
+  --     "nvim-telescope/telescope.nvim",
+  --
+  --     -- Optional, an alternative to telescope for search and quick-switch functionality.
+  --     -- "ibhagwan/fzf-lua"
+  --
+  --     -- Optional, another alternative to telescope for search and quick-switch functionality.
+  --     -- "junegunn/fzf",
+  --     -- "junegunn/fzf.vim"
+  --
+  --     -- Optional, alternative to nvim-treesitter for syntax highlighting.
+  --     "godlygeek/tabular",
+  --     "preservim/vim-markdown",
+  --   },
+  --   opts = {
+  --     dir = "~/Obsidian/Second Brain", -- no need to call 'vim.fn.expand' here
+  --     note_id_func = function(title)
+  --       -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+  --       -- In this case a note with the title 'My new note' will given an ID that looks
+  --       -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
+  --       local suffix = ""
+  --       if title ~= nil then
+  --         -- If title is given, transform it into valid file name.
+  --         suffix = title:gsub("[^A-Za-z0-9-,'\".]", "")
+  --       else
+  --         -- If title is nil, just add 4 random uppercase letters to the suffix.
+  --         for _ = 1, 4 do
+  --           suffix = suffix .. string.char(math.random(65, 90))
+  --         end
+  --       end
+  --       return tostring(suffix)
+  --     end,
+  --     daily_notes = {
+  --       -- Optional, if you keep daily notes in a separate directory.
+  --       folder = "Calendar/Dailies",
+  --       -- Optional, if you want to change the date format for daily notes.
+  --       date_format = "%Y-%m-%d"
+  --     },
+  --     completion = {
+  --       new_notes_location = "000 Zettel",
+  --     },
+  --     mappings = {
+  --     },
+  --     disable_frontmatter = true,
+  --     follow_url_func = function(url)
+  --       -- Open the URL in the default web browser.
+  --       vim.fn.jobstart({ "open", url }) -- Mac OS
+  --       -- vim.fn.jobstart({"xdg-open", url})  -- linux
+  --     end,
+  --
+  --     open_app_foreground = true,
+  --
+  --
+  --
+  --
+  --     -- templates = {
+  --     --   subdir = "Templates",
+  --     --   date_format = "%Y-%m-%d-%a",
+  --     --   time_format = "%H:%M"
+  --     -- },
+  --   },
+  --   config = function(_, opts)
+  --     require("obsidian").setup(opts)
+  --   end,
+  -- },
   -- {
   --   "numtostr/FTerm.nvim",
   --   config = function()
@@ -241,7 +272,19 @@ require("lazy").setup {
   -- },
   {
     "ggandor/leap.nvim",
+    dependencies = {
+      "ggandor/flit.nvim",
+    },
     config = function()
+      require('flit').setup {
+        keys = { f = 'f', F = 'F', t = 't', T = 'T' },
+        -- A string like "nv", "nvo", "o", etc.
+        labeled_modes = "v",
+        multiline = true,
+        -- Like `leap`s similar argument (call-specific overrides).
+        -- E.g.: opts = { equivalence_classes = {} }
+        opts = {}
+      }
       -- local function get_windows_on_tabpage()
       --   local t = {}
       --   local ids = string.gmatch(vim.fn.string(vim.fn.winlayout()), "%d+")
@@ -251,9 +294,17 @@ require("lazy").setup {
 
       require("which-key").register({
         s = { function()
-          local current_window = vim.fn.win_getid()
-          require('leap').leap { target_windows = { current_window } }
+          require('leap').leap { target_windows = { vim.api.nvim_get_current_win() } }
         end, "leap" },
+        S = {
+          function()
+            local focusable_windows = vim.tbl_filter(
+              function(win) return vim.api.nvim_win_get_config(win).focusable end,
+              vim.api.nvim_tabpage_list_wins(0)
+            )
+            require('leap').leap { target_windows = focusable_windows }
+          end
+          , "leap" }
       }, {
         mode = "n"
       })
@@ -362,14 +413,19 @@ require("lazy").setup {
       require("which-key").setup()
     end,
   },
+  -- {
+  --   'NeogitOrg/neogit',
+  --   dependencies = 'nvim-lua/plenary.nvim',
+  --   config = function()
+  --     require('neogit').setup()
+  --   end
+  -- },
   {
-    'NeogitOrg/neogit',
-    dependencies = 'nvim-lua/plenary.nvim',
-    config = function()
-      require('neogit').setup()
-    end
+    "aspeddro/gitui.nvim",
+    opts = {},
   },
   {
+
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
@@ -495,7 +551,6 @@ require("lazy").setup {
 
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
       { "folke/neodev.nvim",  opts = {} },
@@ -588,15 +643,7 @@ require("lazy").setup {
       -- lspconfig.efm.setup(vim.tbl_extend('force', efmls_config, opts))
 
       lspconfig.rust_analyzer.setup(opts)
-      if not work then
-        lspconfig.biome.setup(opts)
-      end
-      if work then
-        if vim.fn.executable('relay-compiler') == 1 then
-          -- copy = vim.deepcopy(opts)
-          lspconfig.relay_lsp.setup(opts)
-        end
-      end
+      lspconfig.biome.setup(opts)
 
       lspconfig.lua_ls.setup(opts)
       lspconfig.pyright.setup(opts)
@@ -617,7 +664,6 @@ require("lazy").setup {
       lspconfig.tailwindcss.setup(opts)
       -- lspconfig.unocss.setup(opts)
 
-      lspconfig.emmet_language_server.setup(opts)
 
 
       lspconfig.tsserver.setup {
@@ -657,6 +703,7 @@ require("lazy").setup {
       }
     end
   },
+
   {
     "https://gitlab.com/yorickpeterse/nvim-window.git",
     config = function()
@@ -750,7 +797,9 @@ require("lazy").setup {
       end
     end,
     opts = {
-      sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+      sources = { "filesystem", "buffers",
+        -- "git_status",
+        "document_symbols" },
       open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "Outline" },
       filesystem = {
         bind_to_cwd = false,
@@ -776,14 +825,6 @@ require("lazy").setup {
     },
     config = function(_, opts)
       require("neo-tree").setup(opts)
-      vim.api.nvim_create_autocmd("TermClose", {
-        pattern = "*lazygit",
-        callback = function()
-          if package.loaded["neo-tree.sources.git_status"] then
-            require("neo-tree.sources.git_status").refresh()
-          end
-        end,
-      })
     end,
   },
 
@@ -835,9 +876,9 @@ require("lazy").setup {
   --   end
   -- },
   {
-    "terrortylor/nvim-comment",
+    "numToStr/Comment.nvim",
     config = function()
-      require("nvim_comment").setup()
+      require("Comment").setup()
     end,
   },
   {
@@ -932,7 +973,6 @@ require("lazy").setup {
       require("telescope").setup({
         defaults = {
           path_display = { "smart" },
-          prompt_prefix = "   ",
           selection_caret = "  ",
           entry_prefix = "  ",
           initial_mode = "insert",
@@ -967,7 +1007,11 @@ require("lazy").setup {
             },
           },
           lsp_handlers = {
-            disable = {},
+            disable = {
+              -- ['textDocument/codeAction'] = true,
+
+            },
+
             location = {
               telescope = {},
               no_results_message = "No references found",
@@ -981,7 +1025,8 @@ require("lazy").setup {
               no_results_message = "No calls found",
             },
             code_action = {
-              telescope = {},
+              telescope = require('telescope.themes').get_dropdown({}),
+
               no_results_message = "No code actions available",
               prefix = "",
             },
@@ -997,21 +1042,21 @@ require("lazy").setup {
   {
     "hrsh7th/cmp-nvim-lsp"
   },
-  {
-    "L3MON4D3/LuaSnip",
-    -- follow latest release.
-    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
-    build = "make install_jsregexp",
-    dependencies = { "rafamadriz/friendly-snippets" },
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-      print("luasnip loaded, setting keymaps")
-      vim.keymap.set({ "i" }, "<C-n>", function()
-        return require("luasnip").jump(1)
-      end, { silent = true })
-    end
-  },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   -- follow latest release.
+  --   version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+  --   -- install jsregexp (optional!).
+  --   build = "make install_jsregexp",
+  --   dependencies = { "rafamadriz/friendly-snippets" },
+  --   config = function()
+  --     -- require("luasnip.loaders.from_vscode").lazy_load()
+  --     print("luasnip loaded, setting keymaps")
+  --     vim.keymap.set({ "i" }, "<C-n>", function()
+  --       return require("luasnip").jump(1)
+  --     end, { silent = true })
+  --   end
+  -- },
 
   {
     "hrsh7th/nvim-cmp",
@@ -1071,28 +1116,14 @@ require("lazy").setup {
       -- local gps = require("nvim-gps")
       require("lualine").setup({
         sections = {
-          -- lualine_x = {
-          --   -- {
-          --   --   require("noice").api.status.message.get_hl,
-          --   --   cond = require("noice").api.status.message.has,
-          --   -- },
-          --   -- {
-          --   --   require("noice").api.status.command.get,
-          --   --   cond = require("noice").api.status.command.has,
-          --   --   color = { fg = "#ff9e64" },
-          --   -- },
-          --   -- {
-          --   --   require("noice").api.status.mode.get,
-          --   --   cond = require("noice").api.status.mode.has,
-          --   --   color = { fg = "#ff9e64" },
-          --   -- },
-          --   -- {
-          --   --   require("noice").api.status.search.get,
-          --   --   cond = require("noice").api.status.search.has,
-          --   --   color = { fg = "#ff9e64" },
-          --   -- },
-          -- },
+          lualine_a = { 'mode' },
+          lualine_b = { 'diagnostics' },
+          lualine_c = { 'filename' },
+          lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' }
         },
+
       })
     end,
   },
@@ -1160,15 +1191,15 @@ require("lazy").setup {
     config = function()
       local sources = {
         -- require("null-ls").builtins.formatting.stylua,
-        require("null-ls").builtins.formatting.fixjson,
+        require("null-ls").builtins.formatting.jsonls,
         -- require("null-ls").builtins.formatting.prettier_d_slim,
         require("null-ls").builtins.formatting.black.with {
           cwd = function(params)
             return vim.fn.fnamemodify(params.bufname, ':h')
           end,
         },
-        require("null-ls").builtins.formatting.ruff,
-        require("null-ls").builtins.formatting.ruff,
+        -- require("null-ls").builtins.formatting.ruff,
+        -- require("null-ls").builtins.formatting.rustfmt,
         -- require("null-ls").builtins.formatting.eslint_d.with({
         -- }),
         -- require("null-ls").builtins.diagnostics.sqlfluff.with({
@@ -1177,12 +1208,12 @@ require("lazy").setup {
         -- require("null-ls").builtins.diagnostics.eslint_d,
         -- require("null-ls").builtins.completion.spell,
       }
-      if work then
-        table.insert(sources, require("null-ls").builtins.formatting.prettier)
-      end
-      if not work then
-        table.insert(sources, require("null-ls").builtins.formatting.biome)
-      end
+      -- if work then
+      --   table.insert(sources, require("null-ls").builtins.formatting.prettier)
+      -- end
+      -- if not work then
+      table.insert(sources, require("null-ls").builtins.formatting.biome)
+      -- end
       require("null-ls").setup({
         debug = true,
         sources = sources,
@@ -1201,10 +1232,10 @@ require("lazy").setup {
       })
     end,
   },
-  {
-    "weilbith/nvim-code-action-menu",
-    cmd = "CodeActionMenu",
-  },
+  -- {
+  --   "weilbith/nvim-code-action-menu",
+  --   cmd = "CodeActionMenu",
+  -- },
   { "kosayoda/nvim-lightbulb" },
   {
     "nvim-telescope/telescope-file-browser.nvim",
@@ -1651,6 +1682,17 @@ local add_snippets = function()
       "\"${1}\".to_string()"
     ),
     ls.parser.parse_snippet(
+      { trig = "mep" },
+      [[
+      pub async fn new_route(
+          endpoint_state: EndpointState,
+          Json(request): Json<NewPathRequest>,
+      ) -> EndpointResult<Response> {
+        Ok(Json(todo!()).into_response())
+      }
+      ]]
+    ),
+    ls.parser.parse_snippet(
       { trig = "mte" },
       [[
       let start = std::time::Instant::now();
@@ -1762,7 +1804,7 @@ local add_snippets = function()
   --   ) }))
 end
 
-add_snippets()
+-- and_snippets()
 
 local wk = require("which-key")
 
@@ -1811,7 +1853,9 @@ wk.register({
   d = {
     name = "Git",
     t = { ":Git commit<CR>", "Fugitive commit" },
-    s = { ":DiffviewOpen<CR>", "Diffview" },
+    s = { function()
+      require("gitui").open()
+    end, "gitui" },
     a = { ":Git push<CR>", "Fugitive push" },
     n = { "<cmd>Gvdiffsplit<CR>", "diffview" },
     i = { "<cmd>DiffviewFileHistory %<CR>", "File history" },
@@ -1831,18 +1875,20 @@ wk.register({
   },
   t = {
     name = "lsp",
-    r = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic" },
-    s = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic" },
+    r = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next diagnostic error" },
+    s = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev diagnostic error" },
+    m = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next diagnostic" },
+    g = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev diagnostic" },
     d = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
     h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
     e = { function()
       local current_path = vim.fn.expand("%:p:h")
 
-      if require("obsidian").util.cursor_on_markdown_link() and current_path == "~/Obsidian/Second Brain" then
-        vim.cmd.normal(vim.api.nvim_replace_termcodes(":ObsidianFollowLink<CR>", true, true, true))
-      else
-        vim.lsp.buf.definition()
-      end
+      -- if require("obsidian").util.cursor_on_markdown_link() and current_path == "~/Obsidian/Second Brain" then
+      --   vim.cmd.normal(vim.api.nvim_replace_termcodes(":ObsidianFollowLink<CR>", true, true, true))
+      -- else
+      vim.lsp.buf.definition()
+      -- end
     end
     , "Definition" },
     i = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition" },
@@ -1850,7 +1896,9 @@ wk.register({
   },
   r = {
     name = "Misc / High Freq",
-    a = { ":CodeActionMenu<CR>", "Code action" },
+    a = { function()
+      vim.lsp.buf.code_action()
+    end, "Code action" },
     e = { ":Telescope neoclip<CR>", "Neoclip" },
     n = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" },
     i = {
@@ -1888,10 +1936,12 @@ wk.register({
     end, "gitlinker" },
   }
 }, { prefix = "<leader>" })
-wk.register({
-  ["<F8>"] = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" }
 
+wk.register({
+  ["<F8>"] = { "<cmd>w<CR>:noh<CR>", "Save / Clear Highlights" },
+  ["<Tab>"] = { "<C-^>", "Cycle between buffers" }
 }, { mode = "n" })
+
 wk.register({
   ["<F8>"] = { "<esc><cmd>w<CR><cmd>noh<CR><esc>", "Save / Clear Highlights" }
 }, { mode = "i" })

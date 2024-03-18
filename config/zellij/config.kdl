@@ -3,6 +3,7 @@ keybinds clear-defaults=true {
     normal {
       bind "p" { SwitchToMode "Pane"; }
       bind "r" { SwitchToMode "Resize"; }
+      bind "d" { Detach; }
       bind "s" { SwitchToMode "Search"; }
       bind "Ctrl d" { MoveFocus "Down"; SwitchToMode "Locked"; }
       bind "Ctrl t" { MoveFocus "Up"; SwitchToMode "Locked"; }
@@ -14,6 +15,7 @@ keybinds clear-defaults=true {
       bind "l" "Right" { MoveFocus "Right"; }
       bind "j" "Down" { MoveFocus "Down"; }
       bind "k" "Up" { MoveFocus "Up"; }
+      bind "f" { ToggleFocusFullscreen; SwitchToMode "Locked"; }
     }
     resize {
         bind "h" "Left" { Resize "Increase Left"; }
@@ -112,16 +114,19 @@ keybinds clear-defaults=true {
     }
     shared {
       bind "Ctrl e" { ToggleFloatingPanes; }
+      bind "Ctrl l" { ToggleTab; SwitchToMode "Locked"; }
+        bind "Alt a" { ToggleTab; SwitchToMode "Locked"; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
     "locked" {
         bind "Ctrl s" { SwitchToMode "Normal"; }
-        // bind "Ctrl h" { MoveFocus "Left"; }
-        // bind "Ctrl l" { MoveFocus "Right"; }
-        // bind "Ctrl j" { MoveFocus "Down"; }
-        // bind "Ctrl k" { MoveFocus "Up"; }
+        bind "Ctrl h" { MoveFocus "Left"; }
+        bind "Ctrl l" { MoveFocus "Right"; }
+        bind "Ctrl j" { MoveFocus "Down"; }
+        bind "Ctrl k" { MoveFocus "Up"; }
+        bind "Alt t" { ToggleTab; SwitchToMode "Locked"; }
     }
     shared_except "locked" {
         bind "Ctrl s" { SwitchToMode "Locked"; }
@@ -239,7 +244,7 @@ default_mode "locked"
 // Valid values: positive integers
 // Default value: 10000
 //
-// scroll_buffer_size 10000
+scroll_buffer_size 400000
 
 // Provide a command to execute when copying text. The text will be piped to
 // the stdin of the program to perform the copy. This can be used with
