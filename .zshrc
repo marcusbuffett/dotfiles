@@ -222,3 +222,5 @@ function ya() {
 	rm -f -- "$tmp"
 }
 
+
+export PATH="$PATH:/opt/nvim-linux64/bin"
