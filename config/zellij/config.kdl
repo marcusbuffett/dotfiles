@@ -222,7 +222,7 @@ layout_dir "$HOME/.config/zellij/layouts"
 // The name of the default layout to load on startup
 // Default: "default"
 //
-default_layout "chessbook-dev"
+// default_layout "chessbook-dev"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
@@ -244,7 +244,7 @@ default_mode "locked"
 // Valid values: positive integers
 // Default value: 10000
 //
-scroll_buffer_size 400000
+scroll_buffer_size 20000
 
 // Provide a command to execute when copying text. The text will be piped to
 // the stdin of the program to perform the copy. This can be used with

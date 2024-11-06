@@ -40,6 +40,8 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 # setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 
+ulimit -n 10240
+
 
 # User configuration
 
@@ -224,3 +226,11 @@ function ya() {
 
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
+
+# To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
+[[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
+. "$HOME/.cargo/env"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"

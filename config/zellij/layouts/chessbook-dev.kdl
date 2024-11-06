@@ -10,7 +10,7 @@ layout {
   tab name="editor" focus=true {
     pane name="editor" {
 
-    command "nu"
+    command "zsh"
     args "-c" "nvim"
       }
   }
@@ -19,13 +19,13 @@ layout {
 
     pane {
       cwd "~/projects/chessbook/server"
-    command "nu"
+    command "zsh"
     args "-c" "cargo watch -x lrun"
 
     }
     pane {
       cwd "~/projects/chessbook/frontend"
-    command "nu"
+    command "zsh"
     args "-c" "pnpm dev"
 
     }
