@@ -120,12 +120,12 @@ alias ll="exa -lah"
 
 # source "/opt/homebrew/opt/spaceship/spaceship.zsh"
 
-export PYENV_ROOT="$HOME/.pyenv"
-if command -v pyenv 1>/dev/null 2>&1; then
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
+# export PYENV_ROOT="$HOME/.pyenv"
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   export PATH="$PYENV_ROOT/bin:$PATH"
+#   eval "$(pyenv init -)"
+#   eval "$(pyenv virtualenv-init -)"
+# fi
 export PATH="$HOME/.local/bin:$PATH"
 
 source ~/.secrets.zsh
@@ -160,7 +160,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(fnm env --use-on-cd)"
+# eval "$(fnm env --use-on-cd)"
 
 # bun completions
 [ -s "/Users/marcusbuffett/.bun/_bun" ] && source "/Users/marcusbuffett/.bun/_bun"
@@ -242,3 +242,4 @@ cdn() {
   fi
 }
 
+eval "$(/Users/marcusbuffett/.local/bin/mise activate zsh)"

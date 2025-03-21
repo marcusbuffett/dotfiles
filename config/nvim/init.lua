@@ -664,11 +664,11 @@ require("lazy").setup {
             -- Conform will run multiple formatters sequentially
             python = { "black" },
             -- Use a sub-list to run only the first available formatter
-            javascript = get_formatter(),
-            javascriptreact = get_formatter(),
-            typescript = get_formatter(),
-            html = get_formatter(),
-            typescriptreact = get_formatter(),
+            javascript = get_formatter,
+            javascriptreact = get_formatter,
+            typescript = get_formatter,
+            html = get_formatter,
+            typescriptreact = get_formatter,
           },
         })
       end
@@ -1390,7 +1390,6 @@ require("lazy").setup {
       version = false,
       config = function()
         require('mini.bracketed').setup()
-        print("Setting up auto root")
         require('mini.misc').setup()
         require('mini.misc').setup_auto_root()
         require('mini.ai').setup({
