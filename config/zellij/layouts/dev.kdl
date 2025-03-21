@@ -1,0 +1,81 @@
+
+layout {
+    cwd "~/projects/micro"
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+    }
+
+    tab name="chessbook" focus=false {
+        pane split_direction="vertical" {
+            pane name="editor" {
+                command "zsh"
+                args "-c" "nvim"
+            }
+            pane split_direction="horizontal" stacked=true {
+                pane name="BE Build" {
+                    command "zsh"
+                    args "-c" "cd server && cargo --color=always watch --why -x 'lbuild --color=always'"
+                }
+                pane name="BE Tests" {
+                    command "zsh"
+                    args "-c" "cd server && cargo --color=always watch -x 'ltest --color=always -- -Z unstable-options --report-time'"
+                }
+                pane name="BE" {
+                    command "zsh"
+                    args "-c" "cd server && cargo --color=always watch -x 'lrun'"
+                }
+                pane name="FE Types" {
+                    cwd "~/projects/chessbook/frontend"
+                    command "zsh"
+                    args "-c" "tsc --noEmit --watch"
+                }
+                pane name="FE Server" {
+                    command "zsh"
+                    args "-c" "cd frontend && pnpm dev"
+                }
+                pane name="FE Tests" {
+                    command "zsh"
+                    args "-c" "cd frontend && pnpm vitest"
+                }
+            }
+        }
+    }
+    tab name="primer" focus=true {
+        pane split_direction="vertical" {
+            pane name="editor" {
+                command "zsh"
+                args "-c" "nvim"
+            }
+            pane split_direction="horizontal" stacked=true {
+                pane name="BE Build" {
+                    command "zsh"
+                    args "-c" "cd server && cargo --color=always watch --why -x 'lbuild --color=always'"
+                }
+                // pane name="BE Tests" {
+                //     command "zsh"
+                //     args "-c" "cd server && cargo --color=always watch -x 'ltest --color=always -- -Z unstable-options --report-time'"
+                // }
+                // pane name="BE" {
+                //     command "zsh"
+                //     args "-c" "cd server && cargo --color=always watch -x 'lrun'"
+                // }
+                // pane name="FE Types" {
+                //     cwd "~/projects/chessbook/frontend"
+                //     command "zsh"
+                //     args "-c" "tsc --noEmit --watch"
+                // }
+                // pane name="FE Server" {
+                //     command "zsh"
+                //     args "-c" "cd frontend && pnpm dev"
+                // }
+                // pane name="FE Tests" {
+                //     command "zsh"
+                //     args "-c" "cd frontend && pnpm vitest"
+                // }
+            }
+        }
+    }
+}

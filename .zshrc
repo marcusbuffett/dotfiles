@@ -8,7 +8,7 @@ fi
 # zmodload zsh/zprof
 
 KEYTIMEOUT=1
-export VI_MODE_SET_CURSOR=true
+# export VI_MODE_SET_CURSOR=true
 
 
 # Check if antidote is installed
@@ -151,22 +151,6 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-export ZK_NOTEBOOK_DIR="$HOME/zk-notebook"
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export GOPATH="/usr/local/go"
-export PATH="$PATH:$GOPATH/bin"
-
-
-# pnpm
-export PNPM_HOME="/Users/marcusbuffett/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
 # pnpm end
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
@@ -186,6 +170,9 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$PATH:$BUN_INSTALL/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if command -v fzf 1>/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
 # zprof
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -225,12 +212,33 @@ function ya() {
 }
 
 
-export PATH="$PATH:/opt/nvim-linux64/bin"
-
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
 [[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
 . "$HOME/.cargo/env"
 
-. "$HOME/.atuin/bin/env"
 
-eval "$(atuin init zsh)"
+
+alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
+
+export ANDROID_HOME=/Users/marcusbuffett/Library/Android/sdk
+# for sed without weird os x stuff
+PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+
+
+# if (( $+commands[ov] )); then
+#  export PAGER=ov
+# fi
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+zvm_after_init_commands+=(eval "$(atuin init zsh)")
+zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
+
+cdn() {
+  local dir=$(exa -D -s created -1 . 2>/dev/null | tail -1)
+  if [[ -n "$dir" ]]; then
+    cd "$dir"
+  else
+    echo "No directories found in current location"
+  fi
+}
+

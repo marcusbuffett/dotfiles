@@ -23,58 +23,58 @@ require("lazy").setup {
 
   spec = {
     { "tpope/vim-fugitive" },
-    {
-      "kylechui/nvim-surround",
-      version = "*", -- Use for stability; omit to use `main` branch for the latest features
-      event = "VeryLazy",
-      config = function()
-        require("nvim-surround").setup({
-          keymaps = {
-            insert = "<C-g>s",
-            insert_line = "<C-g>S",
-            normal = "ys",
-            normal_cur = "yss",
-            normal_line = "yS",
-            normal_cur_line = "ySS",
-            visual = "s",
-            visual_line = "gS",
-            delete = "ds",
-            change = "cs",
-            change_line = "cS",
-          },
-
-          -- Configuration here, or leave empty to use defaults
-        })
-      end
-    },
+    -- {
+    --   "kylechui/nvim-surround",
+    --   version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    --   event = "VeryLazy",
+    --   config = function()
+    --     require("nvim-surround").setup({
+    --       keymaps = {
+    --         insert = "<C-g>s",
+    --         insert_line = "<C-g>S",
+    --         normal = "ys",
+    --         normal_cur = "yss",
+    --         normal_line = "yS",
+    --         normal_cur_line = "ySS",
+    --         visual = "s",
+    --         visual_line = "gS",
+    --         delete = "ds",
+    --         change = "cs",
+    --         change_line = "cS",
+    --       },
+    --
+    --       -- Configuration here, or leave empty to use defaults
+    --     })
+    --   end
+    -- },
     { "kazhala/close-buffers.nvim" },
 
-    {
-      "Bryley/neoai.nvim",
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-      },
-      cmd = {
-        "NeoAI",
-        "NeoAIOpen",
-        "NeoAIClose",
-        "NeoAIToggle",
-        "NeoAIContext",
-        "NeoAIContextOpen",
-        "NeoAIContextClose",
-        "NeoAIInject",
-        "NeoAIInjectCode",
-        "NeoAIInjectContext",
-        "NeoAIInjectContextCode",
-      },
-      keys = {
-      },
-      config = function()
-        require("neoai").setup({
-          -- Options go here
-        })
-      end,
-    },
+    -- {
+    --   "Bryley/neoai.nvim",
+    --   dependencies = {
+    --     "MunifTanjim/nui.nvim",
+    --   },
+    --   cmd = {
+    --     "NeoAI",
+    --     "NeoAIOpen",
+    --     "NeoAIClose",
+    --     "NeoAIToggle",
+    --     "NeoAIContext",
+    --     "NeoAIContextOpen",
+    --     "NeoAIContextClose",
+    --     "NeoAIInject",
+    --     "NeoAIInjectCode",
+    --     "NeoAIInjectContext",
+    --     "NeoAIInjectContextCode",
+    --   },
+    --   keys = {
+    --   },
+    --   config = function()
+    --     require("neoai").setup({
+    --       -- Options go here
+    --     })
+    --   end,
+    -- },
     -- {
     --   'NeogitOrg/neogit',
     --   dependencies = 'nvim-lua/plenary.nvim',
@@ -82,49 +82,58 @@ require("lazy").setup {
     --     require('neogit').setup()
     --   end
     -- },
-    {
-      "jackMort/ChatGPT.nvim",
-      config = function()
-        require("chatgpt").setup({
-          -- optional configuration
-        })
-      end,
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim"
-      }
-    },
+    -- {
+    --   "jackMort/ChatGPT.nvim",
+    --   config = function()
+    --     require("chatgpt").setup({
+    --       -- optional configuration
+    --     })
+    --   end,
+    --   dependencies = {
+    --     "MunifTanjim/nui.nvim",
+    --     "nvim-lua/plenary.nvim",
+    --     "nvim-telescope/telescope.nvim"
+    --   }
+    -- },
     { "ilAYAli/scMRU.nvim" },
     -- {
     --   "amarakon/nvim-cmp-buffer-lines",
     --   config = function()
     --   end,
     -- },
-    -- {
-    --   "folke/tokyonight.nvim",
-    --   opts = { style = "moon" },
-    --   priority = 1000,
-    --   lazy = false,
-    --   config = function()
-    --     vim.cmd [[colorscheme tokyonight-moon]]
-    --     vim.cmd [[highlight FlashLabel guifg=#bb9af7 guibg=#3b4261]]
-    --   end
-    -- },
+    {
+      "folke/tokyonight.nvim",
+      opts = { style = "moon" },
+      priority = 1000,
+      lazy = false,
+      config = function()
+        vim.cmd [[colorscheme tokyonight-moon]]
+        vim.cmd [[highlight FlashLabel guifg=#bb9af7 guibg=#3b4261]]
+      end
+    },
     --
     -- { "rebelot/kanagawa.nvim",
     --   config = function()
     --     vim.cmd("colorscheme kanagawa")
     --   end
     -- },
-    {
-      "folke/tokyonight.nvim",
-      lazy = false,
-      priority = 1000,
-      config = function()
-        vim.cmd [[colorscheme tokyonight-night]]
-      end
-    },
+    -- {
+    --   'AlexvZyl/nordic.nvim',
+    --   lazy = false,
+    --   priority = 1000,
+    --   config = function()
+    --     require('nordic').load()
+    --   end
+    -- },
+
+    -- {
+    --   "folke/tokyonight.nvim",
+    --   lazy = false,
+    --   priority = 1000,
+    --   config = function()
+    --     vim.cmd [[colorscheme tokyonight-night]]
+    --   end
+    -- },
     { "nvim-neotest/neotest",
 
       dependencies = {
@@ -147,13 +156,24 @@ require("lazy").setup {
       })
     end },
 
-    -- { "catppuccin/nvim", name = "catppuccin", priority = 1000,
+    -- { "catppuccin/nvim",
+    --   lazy = false,
+    --   name = "catppuccin",
+    --   priority = 1000,
+    --
     --   config = function()
-    --     vim.cmd.colorscheme "catppuccin"
+    --     require("catppuccin").setup {
+    --       color_overrides = {
+    --         all = {
+    --           crust = "#495367",
+    --         },
+    --       }
+    --     }
+    --
+    --     vim.cmd.colorscheme "catppuccin-mocha"
     --   end
     -- },
 
-    -- { "Exafunction/codeium.vim" },
     {
       "supermaven-inc/supermaven-nvim",
       config = function()
@@ -162,6 +182,7 @@ require("lazy").setup {
         })
       end,
     },
+    -- { "Exafunction/codeium.vim" },
     {
       "oskarrrrrrr/symbols.nvim",
       config = function()
@@ -173,14 +194,6 @@ require("lazy").setup {
       end
     },
 
-
-    -- use({
-    --   'glepnir/zephyr-nvim',
-    --   config = function()
-    --     vim.cmd([[colorscheme zephyr]])
-    --   end
-    -- })
-    -- { "wbthomason/packer.nvim" },
 
     {
       "NeogitOrg/neogit",
@@ -303,15 +316,8 @@ require("lazy").setup {
       end,
     },
     {
-      "christoomey/vim-tmux-navigator",
-      config = function()
-      end
-    },
-    {
       "phaazon/hop.nvim",
       config = function()
-        vim.api.nvim_set_keymap("n", "<Leader>z", ":HopLineStart<CR>", {})
-        vim.api.nvim_set_keymap("x", "<Leader>z", "<cmd>HopLineStart<CR>", {})
         require("hop").setup({
           keys = "dstrneailhupfwbmo"
         })
@@ -320,102 +326,11 @@ require("lazy").setup {
     { "michaeljsmith/vim-indent-object" },
     { "jeetsukumaran/vim-indentwise" },
     { "tommcdo/vim-exchange" },
-    -- { "simnalamburt/vim-mundo" },
     { "epilande/vim-react-snippets" },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
-    -- use({ "p00f/nvim-ts-rainbow" })
     { "RRethy/nvim-treesitter-textsubjects" },
-    -- use({ "simrat39/symbols-outline.nvim", config = function() end })
     { "junegunn/fzf" },
     { "junegunn/fzf.vim" },
-    -- {
-    --   "epwalsh/obsidian.nvim",
-    --   -- lazy = true,
-    --   -- event = { "BufReadPre /Users/marcusbuffett/Documents/SecondBrain/*.md" },
-    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand':
-    --   -- event = { "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md" },
-    --   dependencies = {
-    --     -- Required.
-    --     "nvim-lua/plenary.nvim",
-    --
-    --     -- Optional, for completion.
-    --     "hrsh7th/nvim-cmp",
-    --
-    --     -- Optional, for search and quick-switch functionality.
-    --     "nvim-telescope/telescope.nvim",
-    --
-    --     -- Optional, an alternative to telescope for search and quick-switch functionality.
-    --     -- "ibhagwan/fzf-lua"
-    --
-    --     -- Optional, another alternative to telescope for search and quick-switch functionality.
-    --     -- "junegunn/fzf",
-    --     -- "junegunn/fzf.vim"
-    --
-    --     -- Optional, alternative to nvim-treesitter for syntax highlighting.
-    --     "godlygeek/tabular",
-    --     "preservim/vim-markdown",
-    --   },
-    --   opts = {
-    --     dir = "~/Obsidian/Second Brain", -- no need to call 'vim.fn.expand' here
-    --     note_id_func = function(title)
-    --       -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
-    --       -- In this case a note with the title 'My new note' will given an ID that looks
-    --       -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
-    --       local suffix = ""
-    --       if title ~= nil then
-    --         -- If title is given, transform it into valid file name.
-    --         suffix = title:gsub("[^A-Za-z0-9-,'\".]", "")
-    --       else
-    --         -- If title is nil, just add 4 random uppercase letters to the suffix.
-    --         for _ = 1, 4 do
-    --           suffix = suffix .. string.char(math.random(65, 90))
-    --         end
-    --       end
-    --       return tostring(suffix)
-    --     end,
-    --     daily_notes = {
-    --       -- Optional, if you keep daily notes in a separate directory.
-    --       folder = "Calendar/Dailies",
-    --       -- Optional, if you want to change the date format for daily notes.
-    --       date_format = "%Y-%m-%d"
-    --     },
-    --     completion = {
-    --       new_notes_location = "000 Zettel",
-    --     },
-    --     mappings = {
-    --     },
-    --     disable_frontmatter = true,
-    --     follow_url_func = function(url)
-    --       -- Open the URL in the default web browser.
-    --       vim.fn.jobstart({ "open", url }) -- Mac OS
-    --       -- vim.fn.jobstart({"xdg-open", url})  -- linux
-    --     end,
-    --
-    --     open_app_foreground = true,
-    --
-    --
-    --
-    --
-    --     -- templates = {
-    --     --   subdir = "Templates",
-    --     --   date_format = "%Y-%m-%d-%a",
-    --     --   time_format = "%H:%M"
-    --     -- },
-    --   },
-    --   config = function(_, opts)
-    --     require("obsidian").setup(opts)
-    --   end,
-    -- },
-    -- {
-    --   "numtostr/FTerm.nvim",
-    --   config = function()
-    --     local map = vim.api.nvim_set_keymap
-    --     local opts = { noremap = true, silent = true }
-    --
-    --     map("n", "<C-e>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
-    --     map("t", "<C-e>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
-    --   end,
-    -- },
     {
       "ggandor/leap.nvim",
       dependencies = {
@@ -445,7 +360,10 @@ require("lazy").setup {
           S = {
             function()
               local focusable_windows = vim.tbl_filter(
-                function(win) return vim.api.nvim_win_get_config(win).focusable end,
+                function(win)
+                  return vim.api.nvim_win_get_config(win)
+                      .focusable
+                end,
                 vim.api.nvim_tabpage_list_wins(0)
               )
               require('leap').leap { target_windows = focusable_windows }
@@ -524,12 +442,6 @@ require("lazy").setup {
         })
       end,
     },
-    -- -- { "anuvyklack/windows.nvim",
-    -- --   dependencies = "anuvyklack/middleclass",
-    -- --   config = function()
-    -- --     require('windows').setup()
-    -- --   end
-    -- -- },
     { "stefandtw/quickfix-reflector.vim" },
     {
       "windwp/nvim-spectre",
@@ -547,12 +459,6 @@ require("lazy").setup {
       end,
     },
     { "akinsho/toggleterm.nvim" },
-    -- -- {
-    -- --   "glepnir/dashboard-nvim",
-    -- --   config = function()
-    -- --     vim.g.dashboard_default_executive = "telescope"
-    -- --   end,
-    -- -- },
     {
       "folke/which-key.nvim",
       config = function()
@@ -563,13 +469,6 @@ require("lazy").setup {
         )
       end,
     },
-    -- {
-    --   'NeogitOrg/neogit',
-    --   dependencies = 'nvim-lua/plenary.nvim',
-    --   config = function()
-    --     require('neogit').setup()
-    --   end
-    -- },
     {
       "aspeddro/gitui.nvim",
       opts = {},
@@ -603,7 +502,8 @@ require("lazy").setup {
           map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
           map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
           map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
-          map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
+          map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end,
+            "Blame Line")
           map("n", "<leader>ghd", gs.diffthis, "Diff This")
           map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
           map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
@@ -615,18 +515,21 @@ require("lazy").setup {
       event = { "BufReadPost", "BufNewFile" },
       opts = {
         delay = 200,
-        large_file_cutoff = 2000,
-        large_file_overrides = {
-          providers = { "lsp" },
-        },
+        large_file_cutoff = 5000,
+        large_file_overrides = nil,
       },
       config = function(_, opts)
         require("illuminate").configure(opts)
 
         local function map(key, dir, buffer)
           vim.keymap.set("n", key, function()
-            require("illuminate")["goto_" .. dir .. "_reference"](false)
-          end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+              require("illuminate")["goto_" .. dir .. "_reference"](false)
+            end,
+            {
+              desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference",
+              buffer =
+                  buffer
+            })
         end
 
         map("]]", "next")
@@ -657,9 +560,10 @@ require("lazy").setup {
         -- require'lspconfig'.rust_analyzer.setup{}
 
         local lspconfig = require('lspconfig')
-        print("Setting up lspconfig", vim.inspect(opts))
+        -- print("Setting up lspconfig", vim.inspect(opts))
         for server, config in pairs(opts.servers or {}) do
-          config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+          config.capabilities = require('blink.cmp').get_lsp_capabilities(config
+            .capabilities)
           lspconfig[server].setup(config)
         end
       end
@@ -737,6 +641,17 @@ require("lazy").setup {
     {
       'stevearc/conform.nvim',
       config = function()
+        -- function that checks if root of current git repo is "micro", and uses prettier if so, otherwise biome
+        local function get_formatter()
+          local root = vim.fn.system("git rev-parse --show-toplevel")
+          local last_dir = vim.fn.fnamemodify(root, ":t")
+          last_dir = last_dir:gsub("\n", "")
+          if last_dir == "micro" then
+            return { "prettier" }
+          else
+            return { "biome" }
+          end
+        end
         require("conform").setup({
           format_on_save = {
             -- These options will be passed to conform.format()
@@ -749,11 +664,11 @@ require("lazy").setup {
             -- Conform will run multiple formatters sequentially
             python = { "black" },
             -- Use a sub-list to run only the first available formatter
-            javascript = { "biome" },
-            javascriptreact = { "biome" },
-            typescript = { "biome" },
-            html = { "biome" },
-            typescriptreact = { "biome" },
+            javascript = get_formatter(),
+            javascriptreact = get_formatter(),
+            typescript = get_formatter(),
+            html = get_formatter(),
+            typescriptreact = get_formatter(),
           },
         })
       end
@@ -769,7 +684,7 @@ require("lazy").setup {
       -- keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
       build = ":MasonUpdate",
       config = function()
-        print("mason")
+        -- print("mason")
         require("mason").setup({
 
         })
@@ -793,6 +708,10 @@ require("lazy").setup {
                         "--profile=rust-analyzer",
                       },
                     },
+                    cargo = {
+                      features = { "ssr" } -- Add this line
+                    }
+
                   }
                 },
                 on_attach = function(client, bufnr)
@@ -816,7 +735,7 @@ require("lazy").setup {
         -- local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
         local opts = {
           on_attach = function(client, bufnr)
-            print("hello ", client.name)
+            -- print("hello ", client.name)
             -- require("aerial").on_attach(client, bufnr)
             if client.server_capabilities.documentFormattingProvider then
               vim.cmd([[
@@ -828,8 +747,7 @@ require("lazy").setup {
             end
           end,
           -- capabilities = capabilities,
-          root_dir = lspconfig.util.root_pattern(".git", "init.lua", ".luarc.json", "lua", "Cargo.toml", "package.json",
-            "package-lock.json"),
+          root_dir = lspconfig.util.root_pattern(".git", "init.lua"),
 
           diagnostics = {
             underline = true,
@@ -869,7 +787,7 @@ require("lazy").setup {
         lspconfig.lua_ls.setup(opts)
         lspconfig.rust_analyzer.setup(opts)
         lspconfig.pyright.setup(opts)
-        lspconfig.gopls.setup {}
+        -- lspconfig.gopls.setup {}
         lspconfig.tailwindcss.setup(opts)
         lspconfig.ts_ls.setup {
           on_attach = function(client, bufnr)
@@ -880,7 +798,8 @@ require("lazy").setup {
           handlers = {
             ["textDocument/definition"] = function(_, result, params)
               if result == nil or vim.tbl_isempty(result) then
-                local _ = vim.lsp.log.info() and vim.lsp.log.info(params.method, "No location found")
+                local _ = vim.lsp.log.info() and
+                    vim.lsp.log.info(params.method, "No location found")
                 return nil
               end
 
@@ -895,7 +814,8 @@ require("lazy").setup {
                     end
                   end
                   if not isReactDTs then
-                    vim.fn.setqflist(vim.lsp.util.locations_to_items(result))
+                    vim.fn.setqflist(vim.lsp.util
+                      .locations_to_items(result))
                     vim.api.nvim_command("copen")
                   end
                 end
@@ -906,6 +826,13 @@ require("lazy").setup {
           },
           -- capabilities = capabilities
         }
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+          local client = vim.lsp.get_client_by_id(ctx.client_id)
+          if client and client.name == "graphql" then
+            return
+          end
+          vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
+        end
       end,
     },
 
@@ -945,7 +872,7 @@ require("lazy").setup {
       -- run = ':TSUpdate',
       config = function()
         require("nvim-treesitter.configs").setup({
-          ensure_installed = { "tsx", "json", "rust", "python", "lua", "typescript", "javascript", "css", "scss", "html", "yaml" },
+          ensure_installed = { "tsx", "json", "rust", "python", "lua", "typescript", "javascript", "css", "scss", "html", "yaml", "graphql" },
           sync_install = false,
           disable = function(lang, buf)
             local max_filesize = 100 * 1024 -- 100 KB
@@ -999,7 +926,6 @@ require("lazy").setup {
       event = "InsertEnter",
       opts = {} -- this is equalent to setup({}) function
     },
-    { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
     {
       "nvim-neo-tree/neo-tree.nvim",
       branch = "v3.x",
@@ -1047,53 +973,6 @@ require("lazy").setup {
       end,
     },
 
-
-
-
-
-
-
-    -- {
-    --   "axkirillov/easypick.nvim",
-    --   dependencies = { "nvim-telescope/telescope.nvim" },
-    --   config = function()
-    --     local easypick = require("easypick")
-    --
-    --     -- only required for the example to work
-    --     local base_branch = "master"
-    --
-    --     easypick.setup({
-    --       pickers = {
-    --         -- add your custom pickers here
-    --         -- below you can find some examples of what those can look like
-    --
-    --         -- list files inside current folder with default previewer
-    --         {
-    --           -- name for your custom picker, that can be invoked using :Easypick <name> (supports tab completion)
-    --           name = "ls",
-    --           -- the command to execute, output has to be a list of plain text entries
-    --           command = "ls",
-    --           -- specify your custom previwer, or use one of the easypick.previewers
-    --           previewer = easypick.previewers.default()
-    --         },
-    --
-    --         -- diff current branch with base_branch and show files that changed with respective diffs in preview
-    --         {
-    --           name = "changed_files",
-    --           command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " )",
-    --           previewer = easypick.previewers.branch_diff({ base_branch = base_branch })
-    --         },
-    --
-    --         -- list files that have conflicts with diffs in preview
-    --         {
-    --           name = "conflicts",
-    --           command = "git diff --name-only --diff-filter=U --relative",
-    --           previewer = easypick.previewers.file_diff()
-    --         },
-    --       }
-    --     })
-    --   end
-    -- },
     {
       "numToStr/Comment.nvim",
       config = function()
@@ -1155,15 +1034,6 @@ require("lazy").setup {
         end)
       end
     },
-    -- {
-    --   'rmagatti/auto-session',
-    --   config = function()
-    --     require("auto-session").setup {
-    --       log_level = "error",
-    --       auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-    --     }
-    --   end
-    -- },
     {
       "ahmedkhalf/project.nvim",
       config = function()
@@ -1182,7 +1052,7 @@ require("lazy").setup {
         require("telescope").load_extension("ui-select")
       end
     },
-    { 'nvim-telescope/telescope-fzf-native.nvim',    build = 'make' },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
     {
       "nvim-telescope/telescope.nvim",
@@ -1257,22 +1127,6 @@ require("lazy").setup {
         require('telescope').load_extension('fzf')
       end,
     },
-    { "folke/neodev.nvim",      opts = {} },
-    -- {
-    --   "L3MON4D3/LuaSnip",
-    --   -- follow latest release.
-    --   version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    --   -- install jsregexp (optional!).
-    --   build = "make install_jsregexp",
-    --   dependencies = { "rafamadriz/friendly-snippets" },
-    --   config = function()
-    --     -- require("luasnip.loaders.from_vscode").lazy_load()
-    --     print("luasnip loaded, setting keymaps")
-    --     vim.keymap.set({ "i" }, "<C-n>", function()
-    --       return require("luasnip").jump(1)
-    --     end, { silent = true })
-    --   end
-    -- },
 
     {
       'saghen/blink.cmp',
@@ -1283,7 +1137,7 @@ require("lazy").setup {
       -- use a release tag to download pre-built binaries
       version = 'v0.*',
       -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-      -- build = 'cargo build --release',
+      build = 'cargo build --release',
       -- If you use nix, you can build from source using latest nightly rust with:
       -- build = 'nix run .#build-plugin',
 
@@ -1295,15 +1149,23 @@ require("lazy").setup {
         -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
         -- see the "default configuration" section below for full documentation on how to define
         -- your own keymap.
-        keymap = { preset = 'enter' },
-
-        highlight = {
-          -- sets the fallback highlight groups to nvim-cmp's highlight groups
-          -- useful for when your theme doesn't support blink.cmp
-          -- will be removed in a future release, assuming themes add support
-          use_nvim_cmp_as_default = true,
+        keymap = { preset = 'default',
+          ['<CR>'] = { 'accept', 'fallback' },
         },
-        windows = {
+
+        completion = {
+          list = {
+
+            selection = {
+
+              preselect = false,
+            }
+          },
+          trigger = {
+
+            show_on_trigger_character = true,
+
+          },
           documentation = {
             auto_show = true,
             auto_show_delay_ms = 0,
@@ -1312,7 +1174,7 @@ require("lazy").setup {
         },
         -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- adjusts spacing to ensure icons are aligned
-        nerd_font_variant = 'mono',
+        -- nerd_font_variant = 'mono',
 
         -- experimental auto-brackets support
         -- accept = { auto_brackets = { enabled = true } }
@@ -1322,57 +1184,6 @@ require("lazy").setup {
       }
     },
 
-    -- {
-    --   "hrsh7th/nvim-cmp",
-    --   event = "InsertEnter",
-    --   dependencies = {
-    --     'hrsh7th/cmp-nvim-lsp',
-    --     'hrsh7th/cmp-buffer',
-    --     'hrsh7th/cmp-path',
-    --     'hrsh7th/cmp-cmdline',
-    --     'saadparwaiz1/cmp_luasnip'
-    --   },
-    --   opts = function()
-    --     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-    --     local cmp = require("cmp")
-    --     local defaults = require("cmp.config.default")()
-    --     return {
-    --       completion = {
-    --         completeopt = "menu,menuone,noinsert",
-    --       },
-    --       snippet = {
-    --         expand = function(args)
-    --           require("luasnip").lsp_expand(args.body)
-    --         end,
-    --       },
-    --       mapping = cmp.mapping.preset.insert({
-    --         ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-    --         ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-    --         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    --         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    --         ["<C-Space>"] = cmp.mapping.complete(),
-    --         ["<C-e>"] = cmp.mapping.abort(),
-    --         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    --         ["<S-CR>"] = cmp.mapping.confirm({
-    --           behavior = cmp.ConfirmBehavior.Replace,
-    --           select = true,
-    --         }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    --       }),
-    --       sources = cmp.config.sources({
-    --         { name = "nvim_lsp" },
-    --         { name = "luasnip" },
-    --         { name = "buffer" },
-    --         { name = "path" },
-    --       }),
-    --       experimental = {
-    --         ghost_text = {
-    --           hl_group = "CmpGhostText",
-    --         },
-    --       },
-    --       sorting = defaults.sorting,
-    --     }
-    --   end,
-    -- },
     {
       "nvim-lualine/lualine.nvim",
       dependencies = { "kyazdani42/nvim-web-devicons", },
@@ -1391,56 +1202,6 @@ require("lazy").setup {
         })
       end,
     },
-    -- {
-    --   "nvimtools/none-ls.nvim",
-    --   config = function()
-    --     local sources = {
-    --       -- require("null-ls").builtins.formatting.stylua,
-    --       -- require("null-ls").builtins.formatting.jsonls,
-    --       -- require("null-ls").builtins.formatting.prettier_d_slim,
-    --       require("null-ls").builtins.formatting.black.with {
-    --         cwd = function(params)
-    --           return vim.fn.fnamemodify(params.bufname, ':h')
-    --         end,
-    --       },
-    --       -- require("null-ls").builtins.formatting.ruff,
-    --       -- require("null-ls").builtins.formatting.rustfmt,
-    --       -- require("null-ls").builtins.formatting.eslint_d.with({
-    --       -- }),
-    --       -- require("null-ls").builtins.diagnostics.sqlfluff.with({
-    --       --   extra_args = { "--dialect", "postgres" }, -- change to your dialect
-    --       -- }),
-    --       -- require("null-ls").builtins.diagnostics.eslint_d,
-    --       -- require("null-ls").builtins.completion.spell,
-    --     }
-    --     -- if work then
-    --     --   table.insert(sources, require("null-ls").builtins.formatting.prettier)
-    --     -- end
-    --     -- if not work then
-    --     table.insert(sources, require("null-ls").builtins.formatting.biome)
-    --     -- end
-    --     require("null-ls").setup({
-    --       debug = true,
-    --       sources = sources,
-    --       on_attach = function(client, bufnr)
-    --         if client.supports_method("textDocument/formatting") then
-    --           vim.api.nvim_clear_autocmds({ group = lsp_formatting_augroup, buffer = bufnr })
-    --           vim.api.nvim_create_autocmd("BufWritePre", {
-    --             group = lsp_formatting_augroup,
-    --             buffer = bufnr,
-    --             callback = function()
-    --               vim.lsp.buf.format({ async = false })
-    --             end,
-    --           })
-    --         end
-    --       end,
-    --     })
-    --   end,
-    -- },
-    -- {
-    --   "weilbith/nvim-code-action-menu",
-    --   cmd = "CodeActionMenu",
-    -- },
     { "kosayoda/nvim-lightbulb" },
     {
       "nvim-telescope/telescope-file-browser.nvim",
@@ -1530,20 +1291,24 @@ require("lazy").setup {
     },
 
     {
-      "kdheepak/lazygit.nvim",
-      lazy = true,
-      cmd = {
-        "LazyGit",
-        "LazyGitConfig",
-        "LazyGitCurrentFile",
-        "LazyGitFilter",
-        "LazyGitFilterCurrentFile",
-      },
-      -- optional for floating window border decoration
-      dependencies = {
-        "nvim-lua/plenary.nvim",
+      "folke/snacks.nvim",
+      priority = 1000,
+      lazy = false,
+      ---@type snacks.Config
+      opts = {
+        bigfile = { enabled = true },
+        lazygit = { enabled = true },
+        notifier = { enabled = true },
+        scroll = {
+          enabled = false,
+          animate = {
+            duration = { step = 15, total = 100 },
+            easing = "linear",
+          },
+        },
       },
     },
+
 
     {
       "stevearc/dressing.nvim",
@@ -1563,64 +1328,6 @@ require("lazy").setup {
     },
 
 
-
-    -- {
-    --   'mrjones2014/legendary.nvim',
-    --   config = function()
-    --     require('legendary').setup({
-    --       keymaps = {
-    --         { '<F88>', ':ZkTags<CR>', description = 'zk tags' },
-    --
-    --
-    --       },
-    --       which_key = {
-    --         -- Automatically add which-key tables to legendary
-    --         -- see ./doc/WHICH_KEY.md for more details
-    --         auto_register = true,
-    --         -- you can put which-key.nvim tables here,
-    --         -- or alternatively have them auto-register,
-    --         -- see ./doc/WHICH_KEY.md
-    --         mappings = {},
-    --         opts = {},
-    --         -- controls whether legendary.nvim actually binds they keymaps,
-    --         -- or if you want to let which-key.nvim handle the bindings.
-    --         -- if not passed, true by default
-    --         do_binding = false,
-    --       },
-    --       commands = {
-    --
-    --       },
-    --       funcs = {
-    --         -- Make arbitrary Lua functions that can be executed via the item finder
-    --         {
-    --           function()
-    --             require('spectre').open()
-    --           end,
-    --           description = 'Spectre',
-    --         },
-    --       },
-    --       autocmds = {
-    --       },
-    --       extensions = {
-    --         nvim_tree = true,
-    --         diffview = true,
-    --       },
-    --     })
-    --   end
-    -- },
-
-    -- TODO: neotest
-    -- {
-    --   "nvim-neotest/neotest",
-    --   dependencies = {
-    --     "nvim-lua/plenary.nvim",
-    --     "nvim-treesitter/nvim-treesitter",
-    --     "antoinemadec/FixCursorHold.nvim"
-    --   }
-    -- },
-    {
-      "tomlion/vim-solidity",
-    },
     {
       "andrewferrier/debugprint.nvim",
       config = function()
@@ -1649,56 +1356,6 @@ require("lazy").setup {
       },
     },
     { "MunifTanjim/nui.nvim", lazy = true },
-    -- {
-    --   "folke/noice.nvim",
-    --   event = "VeryLazy",
-    --   opts = {
-    --     lsp = {
-    --       override = {
-    --         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-    --         ["vim.lsp.util.stylize_markdown"] = true,
-    --         ["cmp.entry.get_documentation"] = true,
-    --       },
-    --     },
-    --     routes = {
-    --       {
-    --         filter = {
-    --           event = "msg_show",
-    --           any = {
-    --             { find = "%d+L, %d+B" },
-    --             { find = "; after #%d+" },
-    --             { find = "; before #%d+" },
-    --           },
-    --         },
-    --         view = "mini",
-    --       },
-    --     },
-    --     popupmenu = {
-    --       enabled = false,
-    --     },
-    --     presets = {
-    --       bottom_search = true,
-    --       command_palette = true,
-    --       long_message_to_split = true,
-    --       inc_rename = true,
-    --     },
-    --   },
-    --   -- stylua: ignore
-    --   keys = {
-    --     { "<leader>ba", function() require("noice").cmd("all") end, desc = "Noice All" },
-    --     {
-    --       "<leader>bd",
-    --       function() require("noice").cmd("dismiss") end,
-    --       desc =
-    --       "Dismiss All"
-    --     },
-    --   },
-    -- },
-
-
-
-
-
     {
       "danielfalk/smart-open.nvim",
       -- branch = "0.1.x",
@@ -1707,12 +1364,6 @@ require("lazy").setup {
       end,
       dependencies = { "kkharji/sqlite.lua" }
     },
-    -- {
-    --   "nvim-zh/colorful-winsep.nvim",
-    --   config = function()
-    --     require('colorful-winsep').setup()
-    --   end
-    -- },
     {
       "nvim-neo-tree/neo-tree.nvim",
       requires = {
@@ -1724,10 +1375,14 @@ require("lazy").setup {
     {
       "chrisgrieser/nvim-spider",
       config = function()
-        vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
-        vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-w" })
-        vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-w" })
-        vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-w" })
+        vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>",
+          { desc = "Spider-w" })
+        vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>",
+          { desc = "Spider-w" })
+        vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>",
+          { desc = "Spider-w" })
+        vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')<CR>",
+          { desc = "Spider-w" })
       end
     },
     {
@@ -1735,128 +1390,27 @@ require("lazy").setup {
       version = false,
       config = function()
         require('mini.bracketed').setup()
+        print("Setting up auto root")
+        require('mini.misc').setup()
+        require('mini.misc').setup_auto_root()
         require('mini.ai').setup({
           n_lines = 1000,
 
         })
       end
     },
-    {
-      "yetone/avante.nvim",
-      lazy = false,
-      version = false, -- set this if you want to always pull the latest change
-      opts = {
-        -- add any opts here
-      },
-      -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-      build = "make",
-      -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-      dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "stevearc/dressing.nvim",
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        --- The below dependencies are optional,
-        "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-        "zbirenbaum/copilot.lua",      -- for providers='copilot'
-        {
-          -- support for image pasting
-          "HakonHarnes/img-clip.nvim",
-          event = "VeryLazy",
-          opts = {
-            -- recommended settings
-            default = {
-              embed_image_as_base64 = false,
-              prompt_for_file_name = false,
-              drag_and_drop = {
-                insert_mode = true,
-              },
-              -- required for Windows users
-              use_absolute_path = true,
-            },
-          },
-        },
-        {
-          -- Make sure to set this up properly if you have lazy=true
-          'MeanderingProgrammer/render-markdown.nvim',
-          opts = {
-            file_types = { "markdown", "Avante" },
-          },
-          ft = { "markdown", "Avante" },
-        },
-      },
-    },
-
-
 
     {
-      "David-Kunz/gen.nvim",
+      "kylechui/nvim-surround",
+      version = "*", -- Use for stability; omit to use `main` branch for the latest features
+      event = "VeryLazy",
       config = function()
-        require("gen").setup({
-          model = "deepseek-coder-v2:latest",
-          host = "localhost", -- The host running the Ollama service.
-          port = "11434",     -- The port on which the Ollama service is listening.
-          model_options = {
-            temperature = 0.1,
-            repetition_penalty = 1,
-          },
-          quit_map = "q",      -- set keymap for close the response window
-          retry_map = "<c-r>", -- set keymap to re-send the current prompt
-          init = function(options) end,
-          -- Function to initialize Ollama
-          -- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
-          -- This can also be a command string.
-          -- The executed command must return a JSON object with { response, context }
-          -- (context property is optional).
-          -- list_models = '<omitted lua function>', -- Retrieves a list of model names
-          display_mode = "float", -- The display mode. Can be "float" or "split".
-          show_prompt = true,     -- Shows the prompt submitted to Ollama.
-          show_model = true,      -- Displays which model you are using at the beginning of your chat session.
-          no_auto_close = true,   -- Never closes the window automatically.
-          debug = true            -- Prints errors and the command which is run.
+        require("nvim-surround").setup({
+          -- Configuration here, or leave empty to use defaults
         })
-        require("gen").prompts = {
-          Generate = { prompt = "$input", replace = true },
-          ChatGeneral = { prompt = "$input" },
-          Chat = { prompt = "$input\n---\n$text" },
-          -- Summarize = { prompt = "Summarize the following text:\n$text" },
-          Ask = { prompt = "Regarding the following text, $input\n---\n$text" },
-          -- Make_List = {
-          --   prompt = "Render the following text as a markdown list:\n$text",
-          --   replace = true,
-          -- },
-          -- Make_Table = {
-          --   prompt = "Render the following text as a markdown table:\n$text",
-          --   replace = true,
-          -- },
-          Review_Code = {
-            prompt = "Review the following code and make concise suggestions:\n```$filetype\n$text\n```",
-          },
-          Cleanup = {
-            prompt =
-            "Give me some ideas to clean up the following code:\n```$filetype\n$text\n```",
-          },
-          Enhance_Code = {
-            prompt =
-            "Enhance the following code, only output the result in format ```$filetype\n...\n```:\n```$filetype\n$text\n```",
-            replace = true,
-            extract = "```$filetype\n(.-)```",
-          },
-          Fill = {
-            prompt =
-            "Given the following $filetype code:```\n$text\n```\n\nFill in the missing pieces.\n\nReturn your result in the format ```$filetype\n...\n```",
-            replace = true,
-            extract = "```$filetype\n(.-)```",
-          },
-          Change_Code = {
-            prompt =
-            "Regarding the following $filetype code:```\n$text\n```\n\n$input\n\nReturn your result in the format ```$filetype\n...\n```",
-            replace = true,
-            extract = "```$filetype\n(.-)```",
-          },
-        }
       end
     },
+
 
     {
       "antosha417/nvim-lsp-file-operations",
@@ -1933,20 +1487,22 @@ opt.pumblend = 10         -- Popup blend
 opt.pumheight = 10        -- Maximum number of entries in a popup
 opt.relativenumber = true -- Relative line numbers
 opt.scrolloff = 4         -- Lines of context
+opt.mousescroll = "ver:1,hor:10"
+
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
-opt.shiftround = true     -- Round indent
-opt.shiftwidth = 2        -- Size of an indent
+opt.shiftround = true    -- Round indent
+opt.shiftwidth = 2       -- Size of an indent
 opt.shortmess:append({ W = true, I = true, c = true })
-opt.showmode = false      -- Dont show mode since we have a statusline
-opt.sidescrolloff = 8     -- Columns of context
-opt.signcolumn = "yes"    -- Always show the signcolumn, otherwise it would shift the text each time
-opt.smartcase = true      -- Don't ignore case with capitals
-opt.smartindent = true    -- Insert indents automatically
+opt.showmode = false     -- Dont show mode since we have a statusline
+opt.sidescrolloff = 8    -- Columns of context
+opt.signcolumn = "yes"   -- Always show the signcolumn, otherwise it would shift the text each time
+opt.smartcase = true     -- Don't ignore case with capitals
+opt.smartindent = true   -- Insert indents automatically
 opt.spelllang = { "en" }
-opt.splitbelow = true     -- Put new windows below current
-opt.splitright = true     -- Put new windows right of current
-opt.tabstop = 2           -- Number of spaces tabs count for
-opt.termguicolors = true  -- True color support
+opt.splitbelow = true    -- Put new windows below current
+opt.splitright = true    -- Put new windows right of current
+opt.tabstop = 2          -- Number of spaces tabs count for
+opt.termguicolors = true -- True color support
 opt.timeoutlen = 300
 opt.undofile = true
 opt.undolevels = 10000
@@ -2196,6 +1752,12 @@ wk.register({
     i = { ":Chat code_edit_4 ", "Chat gpt 4 edit" },
     a = { ":Chat complete ", "ChatGPT w/ last selection" },
   },
+  r = {
+
+    a = { function()
+      require("fastaction").code_action()
+    end, "Code action" },
+  }
 }, { prefix = "<leader>", mode = "v" })
 
 wk.register({
@@ -2215,7 +1777,7 @@ wk.register({
   d = {
     name = "Git",
     t = { ":Git commit<CR>", "Fugitive commit" },
-    s = { ":LazyGit<CR>", "Lazygit" },
+    s = { function() require("snacks").lazygit() end, "Lazygit" },
     a = { ":Git push<CR>", "Fugitive push" },
     n = { "<cmd>Gvdiffsplit<CR>", "diffview" },
     i = { "<cmd>DiffviewFileHistory %<CR>", "File history" },
@@ -2293,7 +1855,8 @@ wk.register({
   },
   g = {
     y = { function()
-      require "gitlinker".get_buf_range_url("n", { action_callback = require "gitlinker.actions".copy_to_clipboard })
+      require "gitlinker".get_buf_range_url("n",
+        { action_callback = require "gitlinker.actions".copy_to_clipboard })
     end, "gitlinker" },
   }
 }, { prefix = "<leader>" })
@@ -2302,3 +1865,47 @@ wk.register({
   ["<Tab>"] = { "<C-^>", "Cycle between buffers" }
 }, { mode = "n" })
 vim.lsp.set_log_level("debug")
+
+-- Add to your init.lua
+local large_file_size_mb = 10
+
+vim.api.nvim_create_autocmd("BufReadPre", {
+  callback = function()
+    local file = vim.fn.expand("<afile>")
+    local size = vim.fn.getfsize(file)
+
+    if size > large_file_size_mb * 1024 * 1024 or size == -2 then
+      -- Disable heavy features for large files
+      vim.opt_local.swapfile = false
+      vim.opt_local.bufhidden = "unload"
+      vim.opt_local.buftype = "nowrite"
+      vim.opt_local.undolevels = -1
+
+      -- Disable syntax highlighting
+      vim.opt_local.syntax = "OFF"
+      vim.api.nvim_create_autocmd("BufEnter", {
+        buffer = 0,          -- Current buffer
+        once = true,         -- Only run once
+        callback = function()
+          vim.cmd("LspStop") -- Or alternatively use vim.lsp.stop_client(vim.lsp.get_active_clients())
+        end
+      })
+
+
+      -- Ignore FileType events
+      local eventignore = vim.opt.eventignore:get()
+      if not vim.tbl_contains(eventignore, "FileType") then
+        table.insert(eventignore, "FileType")
+        vim.opt.eventignore = eventignore
+      end
+    else
+      -- Re-enable FileType events for normal files
+      local eventignore = vim.opt.eventignore:get()
+      local index = vim.tbl_contains(eventignore, "FileType")
+      if index then
+        table.remove(eventignore, index)
+        vim.opt.eventignore = eventignore
+      end
+    end
+  end
+})
